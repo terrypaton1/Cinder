@@ -1,28 +1,15 @@
-﻿#region
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-#endregion
-
 public class TNTBrick : BrickBase {
-	/// <summary>
-	/// The explosion range.
-	/// </summary>
+	
 	float explosionRange = 1;
 
-	/// <summary>
-	/// Awake this instance.
-	/// </summary>
 	void Awake() {
 		_brickAnimation = GetComponent<Animator>();
 	}
 
-	/// <summary>
-	/// Raises the collision enter2D event.
-	/// </summary>
-	/// <param name="coll">Coll.</param>
-	void OnCollisionEnter2D(Collision2D collision) {
+	protected override void CollisionEnterCode(Collision2D collision) {
 		if (brickHasBeenDestroyed)
 			return;
 //		Debug.Log("TNT:" + collision.gameObject.tag);
@@ -34,10 +21,6 @@ public class TNTBrick : BrickBase {
 //			Debug.Log("Explode this brick");
 		}
 	}
-
-	/// <summary>
-	/// Startup this instance.
-	/// </summary>
 	protected override void Startup() {
 		SetupLayers();
 		explosionRange = GameVariables.tntExplosionRange;
@@ -53,10 +36,6 @@ public class TNTBrick : BrickBase {
 		ApplyNormalLayers();
 	}
 
-	/// <summary>
-	/// Destroys the brick.
-	/// </summary>
-	/// <returns>The brick.</returns>
 	public override IEnumerator DestroyBrickSequence(bool playSound = true) {
 
 		_brickAnimation.Play("BrickDestroyed");
@@ -79,9 +58,6 @@ public class TNTBrick : BrickBase {
 		visualObjects.SetActive(false);
 	}
 
-	/// <summary>
-	/// Updates the amount of hits left display. TNT brick doesn't use this
-	/// </summary>
 	public override void UpdateAmountOfHitsLeftDisplay() {
 		// TNT brick doesn't use this
 	}

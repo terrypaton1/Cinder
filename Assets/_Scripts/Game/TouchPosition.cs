@@ -1,138 +1,100 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Runtime.InteropServices;
 
-public class TouchPosition : BaseObject {
-	/// <summary>
-	/// The camera reference.
-	/// </summary>
-	[SerializeField]
-	Camera camera_ref;
-	/// <summary>
-	/// The user interface camera.
-	/// </summary>
-	[SerializeField] UICamera _uiCamera;
-	/// <summary>
-	/// The game is paused.
-	/// </summary>
-		bool gameIsPaused = false;
-	/// <summary>
-	/// The last touch position.
-	/// </summary>
-	Vector2 lastTouchPosition = Vector2.zero;
+public class TouchPosition : BaseObject
+{
+    [SerializeField]
+    protected Camera camera_ref;
 
-	void Touched(GameObject go, Vector2 _vector) {
-		Debug.Log("Touched! " + _vector);
-		lastTouchPosition = _vector;
-	}
+    [SerializeField]
+    protected UICamera _uiCamera;
 
-	//	void is
-	/// <summary>
-	/// Raises the enable event.
-	/// </summary>
-	void OnEnable() {
-		Messenger.AddListener(GlobalEvents.PauseGame, PauseGame);
-		Messenger.AddListener(GlobalEvents.ResumeGame, ResumeGame);
-		//		UICamera.genericEventHandler = this.gameObject;
-//		UICamera.onDrag   += Touched;
+    private bool gameIsPaused;
 
-	}
+    private Vector2 lastTouchPosition = Vector2.zero;
+    private static TouchPosition s_Instance;
 
+    protected void OnEnable()
+    {
+        Messenger.AddListener(GlobalEvents.PauseGame, PauseGame);
+        Messenger.AddListener(GlobalEvents.ResumeGame, ResumeGame);
+    }
 
-	/// <summary>
-	/// Remove listeners
-	/// </summary>
-	void OnDisable() {
-		Messenger.RemoveListener(GlobalEvents.PauseGame, PauseGame);
-		Messenger.RemoveListener(GlobalEvents.ResumeGame, ResumeGame);
-	}
+    protected void OnDisable()
+    {
+        Messenger.RemoveListener(GlobalEvents.PauseGame, PauseGame);
+        Messenger.RemoveListener(GlobalEvents.ResumeGame, ResumeGame);
+    }
 
-	/// <summary>
-	/// Pauses the game.
-	/// </summary>
-	public void PauseGame() {
+    public void PauseGame()
+    {
 //		Debug.Log("*** game paused");
-		gameIsPaused = true;
+        gameIsPaused = true;
+    }
 
-	}
-	/// <summary>
-	/// Resumes the game.
-	/// </summary>
-	void ResumeGame() {
-		StartCoroutine(ResumeGameSequence());
+    private void ResumeGame()
+    {
+        StartCoroutine(ResumeGameSequence());
+    }
 
-	}
-	/// <summary>
-	/// Resumes the game sequence.
-	/// </summary>
-	/// <returns>The game sequence.</returns>
-	IEnumerator ResumeGameSequence() {
-		yield return new WaitForSeconds(.1f);
-		gameIsPaused = false;
-	}
+    private IEnumerator ResumeGameSequence()
+    {
+        yield return new WaitForSeconds(.1f);
+        gameIsPaused = false;
+    }
 
-	/// <summary>
-	/// Gets the players position.
-	/// </summary>
-	/// <returns>The players position.</returns>
-	public Vector2 GetPlayersPosition() {
-	if (gameIsPaused) return lastTouchPosition;
-		#if UNITY_EDITOR
-		Vector3 p = camera_ref.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera_ref.nearClipPlane));
-		lastTouchPosition.x = p.x;
-		lastTouchPosition.y = p.y;
-		return 	lastTouchPosition;
-		#else
+    public Vector2 GetPlayersPosition()
+    {
+        if (gameIsPaused) return lastTouchPosition;
+#if UNITY_EDITOR
+        Vector3 p = camera_ref.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+            camera_ref.nearClipPlane));
+        lastTouchPosition.x = p.x;
+        lastTouchPosition.y = p.y;
+        return lastTouchPosition;
+#else
 		if (Input.touchCount < 1)
 			return lastTouchPosition;
-		Touch _touch =	Input.GetTouch(0);
+		Touch _touch = Input.GetTouch(0);
 //		Debug.Log("pos:" + _touch.position);
 //		Debug.Log("_touch.pos.x:" + _touch.position.x + " / Input.mousePosition.x:" + Input.mousePosition.x);
-		Vector3 p = camera_ref.ScreenToWorldPoint(new Vector3(_touch.position.x, _touch.position.y, camera_ref.nearClipPlane));
+		Vector3 p =
+ camera_ref.ScreenToWorldPoint(new Vector3(_touch.position.x, _touch.position.y, camera_ref.nearClipPlane));
 		lastTouchPosition.x = p.x;
 		lastTouchPosition.y = p.y;
 		return 	lastTouchPosition;
-		#endif
-	}
+#endif
+    }
 
-	#region instance
+    protected void OnDestroy()
+    {
+        s_Instance = null;
+    }
 
-	void OnDestroy() {	
-		s_Instance = null;
-	}
-	// ************************************
-	// s_Instance is used to cache the instance found in the scene so we don't have to look it up every time.
-	// ************************************
-	private static TouchPosition s_Instance = null;
+    public static TouchPosition instance
+    {
+        get
+        {
+            if (s_Instance == null)
+            {
+                // This is where the magic happens.
+                //  FindObjectOfType(...) returns the first AManager object in the scene.
+                s_Instance = FindObjectOfType(typeof(TouchPosition)) as TouchPosition;
+            }
 
-	// ************************************
-	// This defines a static instance property that attempts to find the manager object in the scene and
-	// returns it to the caller.
-	// ************************************
-	public static TouchPosition instance {
-		get {
-			if (s_Instance == null) {
-				// This is where the magic happens.
-				//  FindObjectOfType(...) returns the first AManager object in the scene.
-				s_Instance = FindObjectOfType(typeof(TouchPosition)) as TouchPosition;
-			}
-
-			// If it is still null, create a new instance
-			if (s_Instance == null) {
-				Debug.Log("Could not locate an TouchPosition object!");
+            // If it is still null, create a new instance
+            if (s_Instance == null)
+            {
+                Debug.Log("Could not locate an TouchPosition object!");
 //				UnityEngine.Debug.Break();
-			}
+            }
 
-			return s_Instance;
-		}
-	}
+            return s_Instance;
+        }
+    }
 
-	// ************************************
-	// Ensure that the instance is destroyed when the game is stopped in the editor.
-	// ************************************
-	void OnApplicationQuit() {
-		s_Instance = null;
-	}
-
-	#endregion
+    protected void OnApplicationQuit()
+    {
+        s_Instance = null;
+    }
 }

@@ -2,6 +2,15 @@
 
 public class BaseObject : MonoBehaviour
 {
+    protected void OnCollisionEnter2D(Collision2D collision)
+    {
+        CollisionEnterCode(collision);
+    }
+
+    protected virtual void CollisionEnterCode(Collision2D collision)
+    {
+    }
+
     protected virtual void PlaySound(SoundList sound)
     {
         Messenger<SoundList>.Broadcast(GlobalEvents.PlaySoundFX, sound, MessengerMode.DONT_REQUIRE_LISTENER);

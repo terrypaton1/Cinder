@@ -1,21 +1,11 @@
-﻿#region
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-
-#endregion
 
 public class BrickBase : BaseObject
 {
-    /// <summary>
-    /// The mutlti hit sprites reference.
-    /// </summary>
     [SerializeField]
     protected BrickMutltiHitSprites mutltiHitSpritesReference;
 
-    /// <summary>
-    /// The amount to reset the hit counter back to on restart
-    /// </summary>
     [HideInInspector]
     public int resetHitsToDestroyCount = 1;
 
@@ -24,60 +14,40 @@ public class BrickBase : BaseObject
 
     public GameObject visualObjects;
 
-    /// <summary>
-    /// The brick animation.
-    /// </summary>
     public Animator _brickAnimation;
 
     protected bool brickHasBeenDestroyed;
 
-    /// <summary>
-    /// The brick points value.
-    /// </summary>
     protected int brickPointsValue = 10;
 
-    int bricksLayerDuringFlameBall;
+    private int bricksLayerDuringFlameBall;
 
-    int bricksLayerNormal;
+    private int bricksLayerNormal;
 
-    /// <summary>
-    /// The colliders.
-    /// </summary>
     protected Collider2D[] colliders;
 
     protected Vector2 visualScale = Vector2.one;
 
-    /// <summary>
-    /// Gets a value indicating whether this <see cref="BrickBase"/> brick has been destroyed.
-    /// </summary>
-    /// <value><c>true</c> if brick has been destroyed; otherwise, <c>false</c>.</value>
     public bool BrickHasBeenDestroyed => brickHasBeenDestroyed;
 
-    /// <summary>
-    /// Start this instance.
-    /// </summary>
-    void Start()
+    protected void Start()
     {
         StartCoroutine(TestStartingUpGame());
     }
 
-    void OnEnable()
+    protected void OnEnable()
     {
         Messenger.AddListener(GlobalEvents.ActivateFlameBall, ActivateFlameBall);
         Messenger.AddListener(GlobalEvents.DisableFlameBall, ApplyNormalLayers);
     }
 
-    void OnDisable()
+    protected void OnDisable()
     {
         Messenger.RemoveListener(GlobalEvents.ActivateFlameBall, ActivateFlameBall);
         Messenger.RemoveListener(GlobalEvents.DisableFlameBall, ApplyNormalLayers);
     }
 
-    /// <summary>
-    /// Raises the collision enter2D event.
-    /// </summary>
-    /// <param name="coll">Coll.</param>
-    void OnCollisionEnter2D(Collision2D collision)
+      protected override void CollisionEnterCode(Collision2D collision)
     {
         if (brickHasBeenDestroyed)
             return;
@@ -105,9 +75,6 @@ public class BrickBase : BaseObject
         }
     }
 
-    /// <summary>
-    /// Sets up the layers.
-    /// </summary>
     protected void SetupLayers()
     {
 //		Debug.Log("SetupLayers");
@@ -116,18 +83,11 @@ public class BrickBase : BaseObject
         bricksLayerNormal = LayerMask.NameToLayer("Bricks");
     }
 
-    /// <summary>
-    /// Setups the falling point object.
-    /// </summary>
-    /// <param name="_fallingPointObject">Falling point object.</param>
     public virtual void SetupFallingPointObject(FallingPoints _fallingPointObject)
     {
-//	
+//	empty
     }
 
-    /// <summary>
-    /// Resets the brick.
-    /// </summary>
     public virtual void ResetBrick()
     {
         brickHasBeenDestroyed = false;
@@ -193,9 +153,6 @@ public class BrickBase : BaseObject
         UpdateAmountOfHitsLeftDisplay();
     }
 
-    /// <summary>
-    /// Disables the colliders.
-    /// </summary>
     protected void DisableColliders()
     {
         if (colliders == null)
@@ -215,18 +172,12 @@ public class BrickBase : BaseObject
         Startup();
     }
 
-    /// <summary>
-    /// Enables the colliders.
-    /// </summary>
     protected void EnableColliders()
     {
         foreach (var colliderReference in colliders)
             colliderReference.enabled = true;
     }
 
-    /// <summary>
-    /// Updates the amount of hits left display.
-    /// </summary>
     public virtual void UpdateAmountOfHitsLeftDisplay()
     {
         if (amountOfHitsToDestroy < 2)
@@ -239,9 +190,6 @@ public class BrickBase : BaseObject
         mutltiHitSpritesReference.DisplayHitsLeft(amountOfHitsToDestroy);
     }
 
-    /// <summary>
-    /// Startup this instance.
-    /// </summary>
     protected virtual void Startup()
     {
         SetupLayers();
@@ -263,9 +211,6 @@ public class BrickBase : BaseObject
         StartCoroutine(RevealBrick());
     }
 
-    /// <summary>
-    /// Brick has been hit by a ball.
-    /// </summary>
     public virtual void BrickHitByBall()
     {
         amountOfHitsToDestroy--;
@@ -283,9 +228,6 @@ public class BrickBase : BaseObject
         UpdateAmountOfHitsLeftDisplay();
     }
 
-    /// <summary>
-    /// Shakes the brick.
-    /// </summary>
     private IEnumerator ShakeBrick()
     {
         // shake the visual element of this brick
@@ -304,17 +246,10 @@ public class BrickBase : BaseObject
 //		yield return 0;
     }
 
-    /// <summary>
-    /// Starts the item falling from destroyed brick.
-    /// </summary>
     protected virtual void StartItemFallingFromDestroyedBrick()
     {
     }
 
-    /// <summary>
-    /// Destroys the brick.
-    /// </summary>
-    /// <returns>The brick.</returns>
     public virtual IEnumerator DestroyBrickSequence(bool playSound = true)
     {
         _brickAnimation.Play("BrickDestroyed");

@@ -24,40 +24,35 @@ public class WanderingObstacle : BaseObject
     Animator _animator;
 
     protected Collider2D _collider;
+    private int amountOfBricksDestroyedSoFar;
 
-    int amountOfBricksDestroyedSoFar;
+    private int amountOfHitRecievedFromBall;
 
-    int amountOfHitRecievedFromBall;
-
-    /// <summary>
-    /// The current direction tendancy.
-    // only change direction if been going in same direction for a while
-    /// </summary>
     float currentDirectionTendancy;
 
-    float currentSpeed;
-    float maxSpeed = 3;
-    bool obstacleHasBeenDestroyed;
-    int obstaclePointsValue;
+    private float currentSpeed;
+    private float maxSpeed = 3;
+    private bool obstacleHasBeenDestroyed;
+    private int obstaclePointsValue;
 
-    Vector3 startingPosition;
-    Rigidbody2D thisRigidbody;
+    private Vector3 startingPosition;
+    private Rigidbody2D thisRigidbody;
 
-    Vector3 visualScale = Vector3.one;
+    private Vector3 visualScale = Vector3.one;
     // if amountOfBricksBeforeSpawn ==0 then the obstacle should start straight away
     // the obstacle should semi randomly move around the screen
     // doesnt collide with bricks, but does collide with ball
     // Doesn't move below a height of 4
     // after x amount of hits from a ball, this obstacle should be destroyed
 
-    void Awake()
+    protected void Awake()
     {
         _collider = GetComponentInChildren<Collider2D>();
         thisRigidbody = GetComponentInChildren<Rigidbody2D>();
         startingPosition = transform.position;
     }
 
-    private void Start()
+    protected void Start()
     {
         DisableObstacle();
         CheckIfObstacleShouldBeEnabled();
@@ -122,14 +117,14 @@ public class WanderingObstacle : BaseObject
         }
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         Messenger.AddListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.AddListener(GlobalEvents.BrickWasDestroyed, BrickWasDestroyed);
         Messenger.AddListener(MenuEvents.RestartGame, RestartGame);
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         Messenger.RemoveListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.RemoveListener(GlobalEvents.BrickWasDestroyed, BrickWasDestroyed);
@@ -180,14 +175,14 @@ public class WanderingObstacle : BaseObject
         }
     }
 
-    void RestartGame()
+    private void RestartGame()
     {
         DisableObstacle();
         transform.position = startingPosition;
         CheckIfObstacleShouldBeEnabled();
     }
 
-    void CheckIfObstacleShouldBeEnabled()
+    private void CheckIfObstacleShouldBeEnabled()
     {
         if (amountOfBricksBeforeSpawn == 0)
         {

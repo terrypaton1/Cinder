@@ -1,23 +1,32 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.Serialization;
 
 public class RotatingBarrier : MonoBehaviour
 {
-	public bool rotateClockwise = true;
-	public float speed = 45f;
-	Rigidbody2D _rigidbody2D;
+    [SerializeField]
+    public bool rotateClockwise = true;
 
-	void Start ()
-	{
-		_rigidbody2D = GetComponent<Rigidbody2D> ();
-	}
+    [SerializeField]
+    public float speed = 45f;
 
-	void FixedUpdate ()
-	{
-		if (rotateClockwise) {
-			_rigidbody2D.MoveRotation (_rigidbody2D.rotation + speed * Time.fixedDeltaTime);
-		} else {
-			_rigidbody2D.MoveRotation (_rigidbody2D.rotation- speed * Time.fixedDeltaTime);
-		}        
-	}
+    [FormerlySerializedAs("_rigidbody2D")]
+    [SerializeField]
+    private Rigidbody2D rigidbody2D;
+
+    protected void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    protected void FixedUpdate()
+    {
+        if (rotateClockwise)
+        {
+            rigidbody2D.MoveRotation(rigidbody2D.rotation + speed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            rigidbody2D.MoveRotation(rigidbody2D.rotation - speed * Time.fixedDeltaTime);
+        }
+    }
 }
