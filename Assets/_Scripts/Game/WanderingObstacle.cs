@@ -61,7 +61,10 @@ public class WanderingObstacle : BaseObject
     protected void FixedUpdate()
     {
         if (obstacleHasBeenDestroyed)
+        {
             return;
+        }
+
         if (activeAndMoving)
         {
             currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, Time.deltaTime);

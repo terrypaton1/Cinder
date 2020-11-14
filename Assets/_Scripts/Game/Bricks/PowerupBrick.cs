@@ -22,74 +22,33 @@ public enum PowerupType {
 
 [ExecuteInEditMode][SelectionBase]
 public class PowerupBrick : BrickBase {
-	/// <summary>
-	/// The random powerup choices.
-	/// </summary>
+	
 	public PowerupType[] randomPowerupChoices;
-
-	/// <summary>
-	/// The type of power up.
-	/// </summary>
+	
 	public PowerupType typeOfPowerUp;
-
-	/// <summary>
-	/// The falling power up prefab.
-	/// </summary>
+	
 	public GameObject fallingPowerUpPrefab;
-
-	/// <summary>
-	/// The powerup wide.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupWide;
-
-	/// <summary>
-	/// The powerup multiball.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupMultiball;
-
-	/// <summary>
-	/// The powerup small bat.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupSmallBat;
-
-	/// <summary>
-	/// The powerup crazy ball.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupCrazyBall;
-
-	/// <summary>
-	/// The powerup laser.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupLaser;
-
-	/// <summary>
-	/// The powerup shield.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupShield;
-
-	/// <summary>
-	/// The powerup split bat.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupSplitBat;
-
-	/// <summary>
-	/// The powerup random.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupRandom;
-
-	/// <summary>
-	/// The powerup random.
-	/// </summary>
+	
 	[SerializeField] Sprite powerupFlameball;
-
-	/// <summary>
-	/// The sprite renderer.
-	/// </summary>
+	
 	[SerializeField] SpriteRenderer _spriteRenderer;
-
-	/// <summary>
-	/// The falling power up.
-	/// </summary>
+	
 	FallingPowerup fallingPowerUp;
 
 	void Awake() {
@@ -102,10 +61,7 @@ public class PowerupBrick : BrickBase {
 		if (fallingPowerUp != null)
 			Destroy(fallingPowerUp.gameObject);
 	}
-
-	/// <summary>
-	/// Rename the game object so it reflects the type of power up it is
-	/// </summary>
+	
 	void OnGUI() {
 		var name = "PowerUp" + typeOfPowerUp;
 		if (gameObject.name != name) {
@@ -113,10 +69,7 @@ public class PowerupBrick : BrickBase {
 		}
 		EvaluateDisplay();
 	}
-
-	/// <summary>
-	/// Evaluates the display of the powerup.
-	/// </summary>
+	
 	public void EvaluateDisplay() {
 		switch (typeOfPowerUp) {
 			case PowerupType.Multiball:
@@ -150,32 +103,20 @@ public class PowerupBrick : BrickBase {
 //				
 		}
 	}
-
-	/// <summary>
-	/// Updates the amount of hits left display. powerup brick doesn't use this
-	/// </summary>
+	
 	public override void UpdateAmountOfHitsLeftDisplay() {
 		// powerup brick doesn't use this
 	}
-
-	/// <summary>
-	/// Resets the brick.
-	/// </summary>
+	
 	public override void ResetBrick() {
 		fallingPowerUp.DisableFallingPowerup();
 		base.ResetBrick();
 	}
-
-	/// <summary>
-	/// Starts the item falling from destroyed brick.
-	/// </summary>
+	
 	protected override void StartItemFallingFromDestroyedBrick() {
 		fallingPowerUp.StartFalling(transform.position);
 	}
-
-	/// <summary>
-	/// Startup this instance.
-	/// </summary>
+	
 	override protected  void Startup() {
 		SetupLayers();
 		// create a powerup ready for when the brick is destroyed

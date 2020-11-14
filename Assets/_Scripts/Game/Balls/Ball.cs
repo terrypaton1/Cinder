@@ -1,42 +1,23 @@
-#region
-
 using UnityEngine;
-
-#endregion
 
 public class Ball : BaseObject
 {
-    /// <summary>
-    /// The trigger collider.
-    /// </summary>
     [SerializeField]
     CircleCollider2D triggerCollider;
 
-    public bool activeAndMoving ;
+    public bool activeAndMoving;
 
-    /// <summary>
-    /// The circle collider.
-    /// </summary>
     [SerializeField]
     CircleCollider2D circleCollider;
 
-    /// <summary>
-    /// The flame ball particle holder.
-    /// </summary>
     [SerializeField]
     GameObject flameBallParticleHolder;
 
-    /// <summary>
-    /// The crazy ball particle holder.
-    /// </summary>
     [SerializeField]
     GameObject crazyBallParticleHolder;
 
     float addedRepeatedVerticalBounce;
 
-    /// <summary>
-    /// The ball max speed. This is variable based on the level. It is set by the BallManager in LaunchBall
-    /// </summary>
     float ballMaxSpeed = 5;
 
     int bricksHitInARow;
@@ -45,14 +26,11 @@ public class Ball : BaseObject
 
     float currentBallSpeed;
 
-    /// <summary>
-    /// The fireball layer moving down.
-    /// </summary>
     int fireballLayerMovingDown;
 
     int fireballLayerMovingUp;
 
-    private  bool flameBallIsActive ;
+    private bool flameBallIsActive;
     int hitWallsInARowOnlyCount;
     int layerMovingDown;
     int layerMovingUp;
@@ -61,9 +39,6 @@ public class Ball : BaseObject
 
     Rigidbody2D thisRigidbody;
 
-    /// <summary>
-    /// Awake this instance.
-    /// </summary>
     void Awake()
     {
         thisRigidbody = GetComponentInChildren<Rigidbody2D>();
@@ -309,7 +284,7 @@ public class Ball : BaseObject
         if (bricksHitInARow == 16)
         {
             PlaySound(SoundList.MultiHitExcellent);
-            Messenger<int>.Broadcast(GlobalEvents.PointsCollected,  GameVariables.multihit3Points,
+            Messenger<int>.Broadcast(GlobalEvents.PointsCollected, GameVariables.multihit3Points,
                 MessengerMode.DONT_REQUIRE_LISTENER);
             ShowInGameMessage("Excellent!");
         }
@@ -317,7 +292,7 @@ public class Ball : BaseObject
         if (bricksHitInARow == 20)
         {
             PlaySound(SoundList.MultiHitAwesome);
-            Messenger<int>.Broadcast(GlobalEvents.PointsCollected,  GameVariables.multihit3Points,
+            Messenger<int>.Broadcast(GlobalEvents.PointsCollected, GameVariables.multihit3Points,
                 MessengerMode.DONT_REQUIRE_LISTENER);
             ShowInGameMessage("Awesome!");
         }
@@ -325,7 +300,7 @@ public class Ball : BaseObject
         if (bricksHitInARow == 25)
         {
             PlaySound(SoundList.MultiHitWild);
-            Messenger<int>.Broadcast(GlobalEvents.PointsCollected,  GameVariables.multihit5Points,
+            Messenger<int>.Broadcast(GlobalEvents.PointsCollected, GameVariables.multihit5Points,
                 MessengerMode.DONT_REQUIRE_LISTENER);
             ShowInGameMessage("Wild!");
         }
@@ -333,7 +308,7 @@ public class Ball : BaseObject
         if (bricksHitInARow == 30)
         {
             PlaySound(SoundList.MultiHitMadness);
-            Messenger<int>.Broadcast(GlobalEvents.PointsCollected,  GameVariables.multihit6Points,
+            Messenger<int>.Broadcast(GlobalEvents.PointsCollected, GameVariables.multihit6Points,
                 MessengerMode.DONT_REQUIRE_LISTENER);
             ShowInGameMessage("Madness!");
         }
@@ -390,7 +365,7 @@ public class Ball : BaseObject
     /// <summary>
     /// Resets the bounce check. Used for determining if the ball gets stuck bouncing sideways
     /// </summary>
-   private void resetBounceCheck()
+    private void resetBounceCheck()
     {
         addedRepeatedVerticalBounce = 0;
         hitWallsInARowOnlyCount = 0;

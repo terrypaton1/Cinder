@@ -1,28 +1,16 @@
-﻿#region
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-#endregion
 
 #if UNITY_EDITOR
 [SelectionBase][ExecuteInEditMode]
 #endif
 
 public class Boss : BrickBase {
-	/// <summary>
-	/// The falling freeze prefab.
-	/// </summary>
 	public GameObject fallingFreezePrefab;
 
-	/// <summary>
-	/// The can drop freeze power.
-	/// </summary>
 	bool canDropFreezePower;
 
-	/// <summary>
-	/// The falling points reference.
-	/// </summary>
 	FallingFreeze fallingFreezeReference;
 
 	/// <summary>
@@ -60,25 +48,15 @@ public class Boss : BrickBase {
 			Destroy(fallingFreezeReference.gameObject);
 	}
 
-	/// <summary>
-	/// Updates the amount of hits left display.
-	/// </summary>
 	public override void UpdateAmountOfHitsLeftDisplay() {
 //		base.UpdateAmountOfHitsLeftDisplay();
 		mutltiHitSpritesReference.gameObject.SetActive(false);
 	}
-
-	/// <summary>
-	/// Setups the falling point object.
-	/// </summary>
-	/// <param name="_fallingPointObject"OnTriggerEnter2D>Falling point object.</param>
+	
 	public override void SetupFallingPointObject(FallingPoints _fallingPointObject) {
 //		Debug.Log("SetupFallingPointObject");
 	}
-
-	/// <summary>
-	/// Brick has been hit by a ball.
-	/// </summary>
+	
 	override public void BrickHitByBall() {
 		if (canDropFreezePower) {
 			// judge wether we should drop a freeze
@@ -96,10 +74,7 @@ public class Boss : BrickBase {
 		base.BrickHitByBall();
 		DisplayBossHealth();
 	}
-
-	/// <summary>
-	/// Starts the falling freeze 'powerup'
-	/// </summary>
+	
 	void StartFallingFreeze() {
 		var position = transform.position;
 		position.x += Random.Range(-1.4f, 1.4f);
@@ -118,28 +93,18 @@ public class Boss : BrickBase {
 			Messenger.Broadcast(GlobalEvents.HideBossHealthBar);
 		}
 	}
-
-	/// <summary>
-	/// Resets the brick.
-	/// </summary>
+	
 	public override void ResetBrick() {
 		fallingFreezeReference.Disable();
 		freezeDropTriggerCount=0;
 		base.ResetBrick();
 		Messenger.Broadcast(GlobalEvents.DisplayBossHealthBar);
 	}
-
-	/// <summary>
-	/// Starts the item falling from destroyed brick.
-	/// </summary>
+	
 	protected override void StartItemFallingFromDestroyedBrick() {
 		
 	}
-
-	/// <summary>
-	/// Destroys the boss.
-	/// </summary>
-	/// <returns>The brick.</returns>
+	
 	public override IEnumerator DestroyBrickSequence(bool playSound = true) {
 		_brickAnimation.Play("BrickDestroyed");
 		StartItemFallingFromDestroyedBrick();
@@ -165,10 +130,7 @@ public class Boss : BrickBase {
 		BrickManager.instance.BrickDestroyed(this);
 		visualObjects.SetActive(false);
 	}
-
-	/// <summary>
-	/// Startup this instance.
-	/// </summary>
+	
 	protected override void Startup() {
 
 		SetupLayers();
