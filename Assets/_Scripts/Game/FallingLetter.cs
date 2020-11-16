@@ -9,57 +9,33 @@ public class FallingLetter : BaseObject
     public GameObject display3;
     public GameObject display4;
 
-    /// <summary>
-    /// The points value.
-    /// </summary>
-    int _pointsValue;
+    private int _pointsValue;
 
-    /// <summary>
-    /// The collider.
-    /// </summary>
-    Collider2D _collider;
+    private Collider2D _collider;
 
-    /// <summary>
-    /// The visual objects.
-    /// </summary>
     public GameObject visualObjects;
 
-    /// <summary>
-    /// The Rigidbody2D
-    /// </summary>
-    Rigidbody2D rigid2D;
+    private Rigidbody2D rigid2D;
 
-    /// <summary>
-    /// The current falling speed.
-    /// </summary>
-    float currentFallingSpeed = 0;
+    private float currentFallingSpeed = 0;
 
-    /// <summary>
-    /// The maximum falling speed. Updated from GameVariables on setup
-    /// </summary>
-    float maximumFallingSpeed;
+    private float maximumFallingSpeed;
 
-    /// <summary>
-    /// The is falling.
-    /// </summary>
-    bool isFalling = false;
+    private bool isFalling = false;
 
-    void OnEnable()
+    protected void OnEnable()
     {
         Messenger.AddListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.AddListener(GlobalEvents.LifeLost, LifeLost);
     }
 
-    void OnDisable()
+    protected void OnDisable()
     {
         Messenger.RemoveListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.RemoveListener(GlobalEvents.LifeLost, LifeLost);
     }
 
-    /// <summary>
-    /// The player loses a life
-    /// </summary>
-    void LifeLost()
+    private void LifeLost()
     {
         if (!isFalling)
             return;
@@ -70,14 +46,11 @@ public class FallingLetter : BaseObject
         Disable();
     }
 
-    /// <summary>
-    /// Level complete. Stop the falling powerup
-    /// </summary>
-    void LevelComplete()
+    private void LevelComplete()
     {
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (isFalling)
         {
@@ -110,7 +83,7 @@ public class FallingLetter : BaseObject
         isFalling = false;
     }
 
-    void SetupVisualDisplay()
+    private void SetupVisualDisplay()
     {
         switch (letter)
         {
@@ -132,10 +105,6 @@ public class FallingLetter : BaseObject
         }
     }
 
-    /// <summary>
-    /// Starts the falling.
-    /// </summary>
-    /// <param name="position">Position.</param>
     public void StartFalling(Vector3 position)
     {
         // start falling, slowly at first, then faster
@@ -147,10 +116,7 @@ public class FallingLetter : BaseObject
         isFalling = true;
     }
 
-    /// <summary>
-    /// Disables the falling powerup.
-    /// </summary>
-    public void Disable()
+    private void Disable()
     {
 //		Debug.Log("DisableFallingPoint");
         HideAllVisualObjects();
@@ -159,10 +125,7 @@ public class FallingLetter : BaseObject
         currentFallingSpeed = 0;
     }
 
-    /// <summary>
-    /// Hides all visual objects.
-    /// </summary>
-    void HideAllVisualObjects()
+    private void HideAllVisualObjects()
     {
         display0.SetActive(false);
         display1.SetActive(false);
@@ -171,11 +134,7 @@ public class FallingLetter : BaseObject
         display4.SetActive(false);
     }
 
-    /// <summary>
-    /// Raises the collision enter2D event.
-    /// </summary>
-    /// <param name="collision">Collision.</param>
-    void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("playersbat"))
         {

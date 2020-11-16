@@ -6,17 +6,17 @@ public class FallingFreeze : BaseObject
 
     public bool isFalling;
 
-    Collider2D _collider;
+    private Collider2D _collider;
 
-    readonly PowerupType _powerupType = PowerupType.FreezePlayer;
+    private readonly PowerupType _powerupType = PowerupType.FreezePlayer;
 
-    float currentFallingSpeed;
+    private float currentFallingSpeed;
 
-    float maximumFallingSpeed;
+    private float maximumFallingSpeed;
 
-    Rigidbody2D rigid2D;
+    private Rigidbody2D rigid2D;
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (isFalling)
         {
@@ -27,13 +27,13 @@ public class FallingFreeze : BaseObject
         }
     }
 
-    void OnEnable()
+    protected void OnEnable()
     {
         Messenger.AddListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.AddListener(GlobalEvents.LifeLost, LifeLost);
     }
 
-    void OnDisable()
+    protected void OnDisable()
     {
         Messenger.RemoveListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.RemoveListener(GlobalEvents.LifeLost, LifeLost);
@@ -60,10 +60,7 @@ public class FallingFreeze : BaseObject
         }
     }
 
-    /// <summary>
-    /// The player loses a life
-    /// </summary>
-    void LifeLost()
+    private void LifeLost()
     {
         if (!isFalling)
             return;
@@ -72,10 +69,7 @@ public class FallingFreeze : BaseObject
         Disable();
     }
 
-    /// <summary>
-    /// Level complete. Stop the falling powerup and dispose of it
-    /// </summary>
-    void LevelComplete()
+    private void LevelComplete()
     {
         Messenger<ParticleTypes, Vector3>.Broadcast(GlobalEvents.SpawnParticleEffect, ParticleTypes.DestroyFallingItems,
             transform.position, MessengerMode.DONT_REQUIRE_LISTENER);
@@ -98,14 +92,9 @@ public class FallingFreeze : BaseObject
         isFalling = false;
     }
 
-    /// <summary>
-    /// Starts the falling.
-    /// </summary>
-    /// <param name="position">Position.</param>
     public void StartFalling(Vector3 position)
     {
         // start falling, slowly at first, then faster
-//		Debug.Log("start falling");
         transform.position = position;
         visualObjects.SetActive(true);
         _collider.enabled = true;
@@ -113,12 +102,8 @@ public class FallingFreeze : BaseObject
         isFalling = true;
     }
 
-    /// <summary>
-    /// Disables the falling powerup.
-    /// </summary>
     public void Disable()
     {
-//		Debug.Log("DisableFallingPowerup");
         isFalling = false;
         visualObjects.SetActive(false);
         _collider.enabled = false;

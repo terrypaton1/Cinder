@@ -2,7 +2,7 @@
 
 public class RoundBumper : BaseObject
 {
-    Animator bumperAnimation;
+    private Animator bumperAnimation;
     public float bumperPower = 2f;
 
     protected void Start()
