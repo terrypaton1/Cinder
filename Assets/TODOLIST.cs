@@ -2,25 +2,6 @@
 using System.Collections;
 
 public class TODOLIST : MonoBehaviour {
-	//---------- Updates for google play
-/*
-* 
-*
-*/
-	//---------- DONE?
-
-	//---------- NOW
-
-	//---------- SOON
-	//TODO: Research a great sound management system for Unity
-	//TODO: Add sounds to UI
-	//TODO: It's possible that the game can show game over, then level complete if the last brick get broken just at the right time. Put a slight delay into game over?
-	//TODO: Record pixels voice for the various words said in the game 'level complete' 'game over' etc
-	//TODO: Game complete sequence needs to have some animations
-
-	//---------- Visual stuff to do
-	//TODO: Add animation to all buttons on interaction
-	//TODO: Animate the in game menu screens - juicy!
 
 	//---------- LATER
 	//TODO: Setup main menu music
