@@ -3,43 +3,43 @@ using UnityEngine;
 public class Ball : BaseObject
 {
     [SerializeField]
-    CircleCollider2D triggerCollider;
+    protected CircleCollider2D triggerCollider;
 
     public bool activeAndMoving;
 
     [SerializeField]
-    CircleCollider2D circleCollider;
+    protected CircleCollider2D circleCollider;
 
     [SerializeField]
-    GameObject flameBallParticleHolder;
+    protected GameObject flameBallParticleHolder;
 
     [SerializeField]
-    GameObject crazyBallParticleHolder;
+    protected GameObject crazyBallParticleHolder;
 
-    float addedRepeatedVerticalBounce;
+    private float addedRepeatedVerticalBounce;
 
-    float ballMaxSpeed = 5;
+    private float ballMaxSpeed = 5;
 
-    int bricksHitInARow;
+    private int bricksHitInARow;
 
     private bool crazyBallIsActive;
 
-    float currentBallSpeed;
+    private float currentBallSpeed;
 
-    int fireballLayerMovingDown;
+    private int fireballLayerMovingDown;
 
-    int fireballLayerMovingUp;
+    private int fireballLayerMovingUp;
 
     private bool flameBallIsActive;
-    int hitWallsInARowOnlyCount;
-    int layerMovingDown;
-    int layerMovingUp;
-    float radians;
-    Vector2 speed;
+    private int hitWallsInARowOnlyCount;
+    private int layerMovingDown;
+    private int layerMovingUp;
+    private float radians;
+    private Vector2 speed;
 
-    Rigidbody2D thisRigidbody;
+    private Rigidbody2D thisRigidbody;
 
-    void Awake()
+    protected void Awake()
     {
         thisRigidbody = GetComponentInChildren<Rigidbody2D>();
         layerMovingUp = LayerMask.NameToLayer("BallMovingUp");
@@ -51,7 +51,7 @@ public class Ball : BaseObject
         DisableCrazyBall();
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         // check if the y velocity ever reaches zero
         // check the speed of the ball and make it always locked
@@ -120,7 +120,7 @@ public class Ball : BaseObject
         }
     }
 
-    void OnEnable()
+    protected void OnEnable()
     {
         Messenger.AddListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.AddListener(GlobalEvents.ActivateFlameBall, ActivateFlameBall);
@@ -129,7 +129,7 @@ public class Ball : BaseObject
         Messenger.AddListener(GlobalEvents.ActivateCrazyBall, ActivateCrazyBall);
     }
 
-    void OnDisable()
+    protected void OnDisable()
     {
 //		Debug.Log("OnDisable");
         Messenger.RemoveListener(MenuEvents.LevelComplete, LevelComplete);
@@ -139,7 +139,7 @@ public class Ball : BaseObject
         Messenger.RemoveListener(GlobalEvents.ActivateCrazyBall, ActivateCrazyBall);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
 //		Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("deadzone"))
@@ -201,7 +201,7 @@ public class Ball : BaseObject
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
 //		Debug.Log("other:" + other.gameObject.name, other.gameObject);
         if (other.gameObject.CompareTag("brick"))
@@ -211,42 +211,38 @@ public class Ball : BaseObject
         }
     }
 
-    /// <summary>
-    /// Pushs from bumper.
-    /// </summary>
-    /// <param name="_force">Force.</param>
     public void PushFromBumper(Vector2 _force)
     {
         thisRigidbody.AddForce(_force, ForceMode2D.Force);
     }
 
-    void ActivateCrazyBall()
+    private void ActivateCrazyBall()
     {
         crazyBallIsActive = true;
         crazyBallParticleHolder.SetActive(true);
     }
 
-    void DisableCrazyBall()
+    private void DisableCrazyBall()
     {
         crazyBallIsActive = false;
         crazyBallParticleHolder.SetActive(false);
     }
 
-    void ActivateFlameBall()
+    private void ActivateFlameBall()
     {
         flameBallIsActive = true;
         triggerCollider.enabled = true;
         flameBallParticleHolder.SetActive(true);
     }
 
-    void DisableFlameBall()
+    private void DisableFlameBall()
     {
         triggerCollider.enabled = false;
         flameBallIsActive = false;
         flameBallParticleHolder.SetActive(false);
     }
 
-    void LevelComplete()
+    private void LevelComplete()
     {
 //		StopBall();
         BallManager.instance.RemoveBall(this);
@@ -330,10 +326,7 @@ public class Ball : BaseObject
         }
     }
 
-    /// <summary>
-    /// Checks the bounce off wall angle. Check if the ball has been bouncing repeatedly at a shallow angle of the walls
-    /// </summary>
-    void CheckBounceOffWallAngle()
+    private void CheckBounceOffWallAngle()
     {
         hitWallsInARowOnlyCount++;
         addedRepeatedVerticalBounce += thisRigidbody.velocity.y;
@@ -362,9 +355,6 @@ public class Ball : BaseObject
         }
     }
 
-    /// <summary>
-    /// Resets the bounce check. Used for determining if the ball gets stuck bouncing sideways
-    /// </summary>
     private void resetBounceCheck()
     {
         addedRepeatedVerticalBounce = 0;

@@ -1,9 +1,5 @@
-﻿#region
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Serialization;
-
-#endregion
 
 public class InGameButtons : MonoBehaviour
 {
@@ -12,7 +8,7 @@ public class InGameButtons : MonoBehaviour
     public Buttons
         thisButtonID;
 
-    protected Animator _animator;
+    Animator _animator;
 
     void Awake()
     {

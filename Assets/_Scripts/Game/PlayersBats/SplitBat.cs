@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class SplitBat :  PlayersBatBase {
+﻿public class SplitBat :  PlayersBatBase {
 	public override void MorphToPlayState() {
 		MorphToPlayingAnimation.Play("SplitBatIntro");
 	}

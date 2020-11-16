@@ -1,9 +1,5 @@
-﻿#region
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-
-#endregion
 
 public class PowerupManager : BaseObject
 {
@@ -41,20 +37,17 @@ public class PowerupManager : BaseObject
 
     private float shieldTimer;
 
-    void Awake()
+    protected void Awake()
     {
         InstantlyHideShield();
     }
 
-    void Update()
+    protected void Update()
     {
         ManagePowerups();
     }
 
-    /// <summary>
-    /// Raises the enable event.
-    /// </summary>
-    protected    void OnEnable()
+    protected void OnEnable()
     {
         Messenger.AddListener(MenuEvents.LevelComplete, LevelComplete);
         Messenger.AddListener(MenuEvents.RestartGame, RestartLevel);
@@ -64,9 +57,6 @@ public class PowerupManager : BaseObject
         DisableAllPowerups();
     }
 
-    /// <summary>
-    /// Raises the disable event.
-    /// </summary>
     protected void OnDisable()
     {
         Messenger.RemoveListener(MenuEvents.LevelComplete, LevelComplete);
@@ -76,16 +66,13 @@ public class PowerupManager : BaseObject
         Messenger<Vector3, Vector3>.RemoveListener(GlobalEvents.FireLaser, FireLaser);
     }
 
-    void LevelComplete()
+    private void LevelComplete()
     {
         Messenger.Broadcast(GlobalEvents.HidePowerupBar);
         DisableAllPowerups();
     }
 
-    /// <summary>
-    /// Disables all powerups.
-    /// </summary>
-    void DisableAllPowerups()
+    private void DisableAllPowerups()
     {
         laserBatEnabled = false;
         laserBatTimer = 0;
@@ -100,7 +87,7 @@ public class PowerupManager : BaseObject
         InstantlyHideShield();
     }
 
-    void FireLaser(Vector3 position, Vector3 velocity)
+    private void FireLaser(Vector3 position, Vector3 velocity)
     {
         // fire a laser from position, in direction and speed of velocity
 //		Debug.Log("fire a bullet");
@@ -109,20 +96,14 @@ public class PowerupManager : BaseObject
         _laserBullet.Launch(velocity);
     }
 
-    /// <summary>
-    /// Player loses a life
-    /// </summary>
-    void LifeLost()
+    private void LifeLost()
     {
         if (shieldEnabled)
             InstantlyHideShield();
         DisableAllPowerups();
     }
 
-    /// <summary>
-    /// Activates the powerup.
-    /// </summary>
-    void ActivatePowerup(PowerupType _powerupType)
+    private void ActivatePowerup(PowerupType _powerupType)
     {
         // if the game is not in play mode, then don't activate power up - this is to catch some cases during level complete or game over where a power up may be collcted at the same time as the event occurs
         if (GameManager.instance.gameState != GameState.Playing)
@@ -178,10 +159,7 @@ public class PowerupManager : BaseObject
         }
     }
 
-    /// <summary>
-    /// Manages the powerups.
-    /// </summary>
-    void ManagePowerups()
+    private void ManagePowerups()
     {
         if (shieldEnabled)
         {
@@ -256,10 +234,7 @@ public class PowerupManager : BaseObject
         }
     }
 
-    /// <summary>
-    /// Activates the laser bat.
-    /// </summary>
-    void ActivateLaserBat()
+    private void ActivateLaserBat()
     {
 //		Debug.Log("ActivateLaserBat");
         Messenger.Broadcast(GlobalEvents.DisplayPowerupBar);
@@ -270,10 +245,7 @@ public class PowerupManager : BaseObject
         ShowInGameMessage("Laser!");
     }
 
-    /// <summary>
-    /// Disables the laser bat.
-    /// </summary>
-    void DisableLaserBat()
+    private void DisableLaserBat()
     {
         laserBatEnabled = false;
 //		Debug.Log("DisableLaserBat");
@@ -281,10 +253,7 @@ public class PowerupManager : BaseObject
         TestDisablePowerupBar();
     }
 
-    /// <summary>
-    /// Tests the disable powerup bar. Only disable it if no other powerups are active
-    /// </summary>
-    void TestDisablePowerupBar()
+    private void TestDisablePowerupBar()
     {
         if (laserBatEnabled) return;
         if (shieldEnabled) return;
@@ -292,7 +261,7 @@ public class PowerupManager : BaseObject
         Messenger.Broadcast(GlobalEvents.HidePowerupBar);
     }
 
-    void ActivateFreezePlayer()
+    private void ActivateFreezePlayer()
     {
         Debug.Log("ActivateFreezePlayer");
 //		Debug.Break();
@@ -303,19 +272,13 @@ public class PowerupManager : BaseObject
         PlaySound(SoundList.PowerupFreeze);
     }
 
-    /// <summary>
-    /// Disables the crazy ball.
-    /// </summary>
-    void DisableFreezePlayer()
+    private void DisableFreezePlayer()
     {
         freezePlayerEnabled = false;
         PlayersBatManager.instance.DisableFreezePlayer();
     }
 
-    /// <summary>
-    /// Activates the crazy ball.
-    /// </summary>
-    void ActivateCrazyBall()
+    private void ActivateCrazyBall()
     {
         Messenger.Broadcast(GlobalEvents.DisplayPowerupBar);
 //		Debug.Log("ActivateCrazyBall");
@@ -328,30 +291,21 @@ public class PowerupManager : BaseObject
         PlaySound(SoundList.PowerupCrazyBall);
     }
 
-    /// <summary>
-    /// Disables the crazy ball.
-    /// </summary>
-    void DisableCrazyBall()
+    private void DisableCrazyBall()
     {
         crazyBallEnabled = false;
 //		Messenger.Broadcast(GlobalEvents.HidePowerupBar);
         TestDisablePowerupBar();
     }
 
-    /// <summary>
-    /// Restarts the level.
-    /// </summary>
-    void RestartLevel()
+    private void RestartLevel()
     {
         DisableAllPowerups();
         Messenger.Broadcast(GlobalEvents.HidePowerupBarInstantly);
         InstantlyHideShield();
     }
 
-    /// <summary>
-    /// Disables the shield.
-    /// </summary>
-    void DisableShield()
+    private void DisableShield()
     {
 //		Debug.Log("DisableShield");
         StartCoroutine(DisableShieldSequence());
@@ -360,10 +314,7 @@ public class PowerupManager : BaseObject
         TestDisablePowerupBar();
     }
 
-    /// <summary>
-    /// Disables the shield sequence.
-    /// </summary>
-    IEnumerator DisableShieldSequence()
+    private IEnumerator DisableShieldSequence()
     {
         shieldEnabled = false;
         shieldCollider.SetActive(false);
@@ -371,10 +322,7 @@ public class PowerupManager : BaseObject
         InstantlyHideShield();
     }
 
-    /// <summary>
-    /// Enables the shield.
-    /// </summary>
-    void ActivateShield()
+    private void ActivateShield()
     {
         Messenger.Broadcast(GlobalEvents.DisplayPowerupBar);
         shieldPulseShown = false;
@@ -386,10 +334,7 @@ public class PowerupManager : BaseObject
         shieldAnimator.Play("ActivateShield");
     }
 
-    /// <summary>
-    /// Instantlies the hide shield.
-    /// </summary>
-    void InstantlyHideShield()
+    private void InstantlyHideShield()
     {
         shieldEnabled = false;
         shieldTimer = 0;
@@ -398,10 +343,7 @@ public class PowerupManager : BaseObject
         shieldObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Activates the flame ball.
-    /// </summary>
-    void ActivateFlameBall()
+    private void ActivateFlameBall()
     {
         PlaySound(SoundList.PowerupFireball);
         ShowInGameMessage("Fireball!");

@@ -1,76 +1,57 @@
-﻿#region
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-#endregion
+public class InitialLoadScreen : BaseObject
+{
+    [SerializeField]
+    protected UISprite loadingSprite;
 
-public class InitialLoadScreen : BaseObject {
-	/// <summary>
-	/// The loading sprite.
-	/// </summary>
-	[SerializeField] UISprite loadingSprite;
+    private readonly Vector3 rotationAmount = new Vector3(0, 0, -180f);
 
-	/// <summary>
-	/// The rotation amount.
-	/// </summary>
-	readonly Vector3 rotationAmount = new Vector3(0, 0, -180f);
-
-	/// <summary>
-	/// Start this instance.
-	/// </summary>
-	void Start() {
-		StartCoroutine(InitialLoadSequence());
+    protected void Start()
+    {
+        StartCoroutine(InitialLoadSequence());
 //		Log("LoginUser");
+    }
 
-	}
+    protected void Update()
+    {
+        loadingSprite.transform.Rotate(rotationAmount * Time.deltaTime);
+    }
 
-	/// <summary>
-	/// Update this instance.
-	/// </summary>
-	void Update() {
-		loadingSprite.transform.Rotate(rotationAmount*Time.deltaTime);
-	}
+    protected void OnEnable()
+    {
+        Messenger<bool>.AddListener(GlobalEvents.LoginResult, LoginResult);
+    }
 
-	/// <summary>
-	/// Raises the enable event.
-	/// </summary>
-	void OnEnable() {
-		Messenger<bool>.AddListener(GlobalEvents.LoginResult, LoginResult);
+    protected void OnDisable()
+    {
+        Messenger<bool>.RemoveListener(GlobalEvents.LoginResult, LoginResult);
+    }
 
-	}
+    private IEnumerator InitialLoadSequence()
+    {
+        yield return new WaitForSeconds(.25f);
 
-	/// <summary>
-	/// Raises the disable event.
-	/// </summary>
-	void OnDisable() {
-		Messenger<bool>.RemoveListener(GlobalEvents.LoginResult, LoginResult);
-	}
+        if (PlayerPrefs.GetInt(DataVariables.playerHasLoggedIntoGooglePlayGames) == 1)
+        {
+            Messenger.Broadcast(SocialEvents.LoginUser);
+        }
 
-	/// <summary>
-	/// Initials the load sequence.
-	/// </summary>
-	/// <returns>The load sequence.</returns>
-	IEnumerator InitialLoadSequence() {
-		yield return new WaitForSeconds(.25f);
+        Messenger<UIScreens>.Broadcast(GlobalEvents.DisplayUIScreen, UIScreens.MainMenu);
+    }
 
-		if (PlayerPrefs.GetInt(DataVariables.playerHasLoggedIntoGooglePlayGames) == 1){
-			Messenger.Broadcast(SocialEvents.LoginUser);
-		}
+    private void LoginResult(bool success)
+    {
+        if (success)
+        {
+            Debug.Log("Authenticated");
+        }
+        else
+        {
+            Debug.Log("Failed to authenticate");
+        }
 
-		Messenger<UIScreens>.Broadcast(GlobalEvents.DisplayUIScreen, UIScreens.MainMenu);
-	}
-
-	/// <summary>
-	/// Logins the result.
-	/// </summary>
-	/// <param name="success">If set to <c>true</c> success.</param>
-	void LoginResult(bool success) {
-		if (success) {
-			Debug.Log("Authenticated");
-		} else {
-			Debug.Log("Failed to authenticate");
-		}
-		// go to the main menu regardless of result
-	}
+        // go to the main menu regardless of result
+    }
 }

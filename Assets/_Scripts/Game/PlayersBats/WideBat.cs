@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class WideBat :  PlayersBatBase {
+﻿public class WideBat :  PlayersBatBase {
 	public override void MorphToPlayState() {
 		MorphToPlayingAnimation.Play("WideBatIntro");
 	}

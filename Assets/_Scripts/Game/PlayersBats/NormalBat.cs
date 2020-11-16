@@ -1,7 +1,4 @@
-﻿//using UnityEngine;
-using System.Collections;
-
-public class NormalBat :  PlayersBatBase {
+﻿public class NormalBat :  PlayersBatBase {
 	public override void MorphToPlayState() {
 //		Debug.Log("MorphToPlayState");
 		MorphToPlayingAnimation.Play("NormalBatIntro");

@@ -1,137 +1,119 @@
-﻿#region
+﻿using UnityEngine;
 
-using UnityEngine;
+public class GooglePlayLoginButton : BaseObject
+{
+    [SerializeField]
+    protected UILabel textLabel;
 
-#endregion
+    [SerializeField]
+    protected GameObject loginPromptMessage;
 
-public class GooglePlayLoginButton : BaseObject {
-	/// <summary>
-	/// The logged in label.
-	/// </summary>
-	[SerializeField]
-	UILabel textLabel;
+    private Animator _animator;
 
-	[SerializeField]
-	GameObject loginPromptMessage;
+    private bool playerLoggedIn;
 
-	/// <summary>
-	/// The animator.
-	/// </summary>
-	Animator _animator;
+    protected void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
-	/// <summary>
-	/// The player logged in.
-	/// </summary>
-	bool playerLoggedIn;
+    protected void OnEnable()
+    {
+        Messenger<bool>.AddListener(GlobalEvents.LoginResult, LoginResult);
+        Messenger.AddListener(SocialEvents.ConfirmSignoutOfSocial, CheckLoginState);
+        Messenger.AddListener(SocialEvents.AttemptingLogin, AttemptingLogin);
+        CheckLoginState();
+    }
 
-	/// <summary>
-	/// Awake this instance.
-	/// </summary>
-	void Awake() {
-		_animator = GetComponent<Animator>();
-	}
+    protected void OnDisable()
+    {
+        Messenger<bool>.RemoveListener(GlobalEvents.LoginResult, LoginResult);
+        Messenger.RemoveListener(SocialEvents.AttemptingLogin, AttemptingLogin);
+        Messenger.RemoveListener(SocialEvents.ConfirmSignoutOfSocial, CheckLoginState);
+    }
 
-	/// <summary>
-	/// Raises the enable event.
-	/// </summary>
-	void OnEnable() {
-		Messenger<bool>.AddListener(GlobalEvents.LoginResult, LoginResult);
-		Messenger.AddListener(SocialEvents.ConfirmSignoutOfSocial, CheckLoginState);	
-		Messenger.AddListener(SocialEvents.AttemptingLogin, AttemptingLogin);
-		CheckLoginState();
-	}
+    protected void OnClick()
+    {
+        if (_animator != null)
+        {
+            _animator.Play("ButtonPressAnimation");
+        }
 
-	/// <summary>
-	/// Raises the disable event.
-	/// </summary>
-	void OnDisable() {
-		Messenger<bool>.RemoveListener(GlobalEvents.LoginResult, LoginResult);
-		Messenger.RemoveListener(SocialEvents.AttemptingLogin, AttemptingLogin);
-		Messenger.RemoveListener(SocialEvents.ConfirmSignoutOfSocial, CheckLoginState);	
-	}
+        if (!playerLoggedIn)
+        {
+            Log("Trying to log the player in");
 
-	/// <summary>
-	/// Raises the click event.
-	/// </summary>
-	void OnClick() {
-		if (_animator != null) {
-			_animator.Play("ButtonPressAnimation");
-		}
-		if (!playerLoggedIn) {
-			Log("Trying to log the player in");
+            Messenger.Broadcast(SocialEvents.AttemptingLogin, MessengerMode.DONT_REQUIRE_LISTENER);
+            Messenger.Broadcast(SocialEvents.LoginUser);
+        }
+        else
+        {
+            Debug.Log("user is logged in");
+            // display the confirm sign the player out dialog
+            Messenger<UIScreens>.Broadcast(GlobalEvents.DisplayUIScreen, UIScreens.ConfirmLogOut,
+                MessengerMode.DONT_REQUIRE_LISTENER);
+        }
+    }
 
-			Messenger.Broadcast(SocialEvents.AttemptingLogin, MessengerMode.DONT_REQUIRE_LISTENER);
-			Messenger.Broadcast(SocialEvents.LoginUser);
-		} else {
-			Debug.Log("user is logged in");
-			// display the confirm sign the player out dialog
-			Messenger<UIScreens>.Broadcast(GlobalEvents.DisplayUIScreen, UIScreens.ConfirmLogOut, MessengerMode.DONT_REQUIRE_LISTENER);
+    private void AttemptingLogin()
+    {
+        PlayerPrefs.SetInt(DataVariables.playerHasLoggedIntoGooglePlayGames, 1);
+        textLabel.text = "Logging in ...";
+        CheckLoginState();
+    }
 
-		}
-	}
+    private void LoginResult(bool success)
+    {
+        Log("GooglePlayLoginButton:" + success);
+        if (success)
+        {
+            // save game has been loaded, update any details we need to.
+            CheckLoginState();
+        }
+        else
+        {
+            // user is not logged in
+            playerLoggedIn = false;
+            textLabel.text = "Log in";
+            loginPromptMessage.SetActive(true);
+        }
+    }
 
-	/// <summary>
-	/// Attemptings the login.
-	/// </summary>
-	void AttemptingLogin() {
-		PlayerPrefs.SetInt(DataVariables.playerHasLoggedIntoGooglePlayGames, 1);
-		textLabel.text = "Logging in ...";
-		CheckLoginState();
-	}
+    private void CheckLoginState()
+    {
+        if (PlayerPrefs.GetInt(DataVariables.playerHasLoggedIntoGooglePlayGames) == 0)
+        {
+            PlayerIsNotLoggedIn();
+            return;
+        }
 
-	/// <summary>
-	/// The login result has returned from google play games, this could mean the maximum level unlocked has changed, update the details
-	/// </summary>
-	/// <param name="success">If set to <c>true</c> success.</param>
-	void LoginResult(bool success) {
-		Log("GooglePlayLoginButton:" + success);
-		if (success) {
-			// save game has been loaded, update any details we need to.
-			CheckLoginState();
-		} else {
-			// user is not logged in
-			playerLoggedIn = false;
-			textLabel.text = "Log in";
-			loginPromptMessage.SetActive(true);
-		}
-	}
-
-	/// <summary>
-	/// Checks the state of the login.
-	/// </summary>
-	void CheckLoginState() {
-		if (PlayerPrefs.GetInt(DataVariables.playerHasLoggedIntoGooglePlayGames) == 0) {
-			PlayerIsNotLoggedIn();
-			return;
-		}
 //		Debug.Log("CheckLoginState");
-		Log("CheckLoginState");
+        Log("CheckLoginState");
 
-
-		if (Social.localUser.authenticated){
+        if (Social.localUser.authenticated)
+        {
 //		if (PlayGamesPlatform.Instance.IsAuthenticated()) {
-			// user is logged in
-			GameVariables.instance.playerIsLoggedIn = true;
-			playerLoggedIn = true;
-			textLabel.text = "Logged in :)";
-			loginPromptMessage.SetActive(false);
-		} else {
-			// user is not logged in
-			PlayerIsNotLoggedIn();
-			// start checking if the player is logged in repeqatedly, every few seconds
-			if (gameObject.activeInHierarchy)
-				Invoke("CheckLoginState", 2);
-		}
-	}
+            // user is logged in
+            GameVariables.instance.playerIsLoggedIn = true;
+            playerLoggedIn = true;
+            textLabel.text = "Logged in :)";
+            loginPromptMessage.SetActive(false);
+        }
+        else
+        {
+            // user is not logged in
+            PlayerIsNotLoggedIn();
+            // start checking if the player is logged in repeqatedly, every few seconds
+            if (gameObject.activeInHierarchy)
+                Invoke("CheckLoginState", 2);
+        }
+    }
 
-	/// <summary>
-	/// Players the is not logged in.
-	/// </summary>
-	void PlayerIsNotLoggedIn() {
-		playerLoggedIn = false;
-		textLabel.text = "Log in";
-		GameVariables.instance.playerIsLoggedIn = false;
-		loginPromptMessage.SetActive(true);
-
-	}
+    private void PlayerIsNotLoggedIn()
+    {
+        playerLoggedIn = false;
+        textLabel.text = "Log in";
+        GameVariables.instance.playerIsLoggedIn = false;
+        loginPromptMessage.SetActive(true);
+    }
 }

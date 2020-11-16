@@ -1,39 +1,31 @@
-﻿#region
+﻿using UnityEngine;
 
-using UnityEngine;
+public class PointsDisplay : MonoBehaviour
+{
+    [SerializeField]
+    protected UILabel pointsDisplayText;
 
-#endregion
+    Animator _pointsCollectedAnimator;
 
-public class PointsDisplay : MonoBehaviour {
-	/// <summary>
-	/// The points display text.
-	/// </summary>
-	[SerializeField] UILabel pointsDisplayText;
+    protected void OnEnable()
+    {
+        UpdatePointsDisplay(0);
+        Messenger<int>.AddListener(MenuEvents.UpdatePointsDisplay, UpdatePointsDisplay);
+        _pointsCollectedAnimator = GetComponent<Animator>();
+    }
 
-	/// <summary>
-	/// The points collected animator.
-	/// </summary>
-	Animator _pointsCollectedAnimator;
+    protected void OnDisable()
+    {
+        Messenger<int>.RemoveListener(MenuEvents.UpdatePointsDisplay, UpdatePointsDisplay);
+    }
 
-	void OnEnable() {
-		UpdatePointsDisplay(0);
-		Messenger<int>.AddListener(MenuEvents.UpdatePointsDisplay, UpdatePointsDisplay);
-		_pointsCollectedAnimator = GetComponent<Animator>();
-	}
-
-	void OnDisable() {
-		Messenger<int>.RemoveListener(MenuEvents.UpdatePointsDisplay, UpdatePointsDisplay);
-	}
-
-	/// <summary>
-	/// Updates the points display.
-	/// </summary>
-	/// <param name="value">Value.</param>
-	void UpdatePointsDisplay(int value) {
-		pointsDisplayText.text = value.ToString("n0");
-		if (value > 0) {
-			_pointsCollectedAnimator.Play("PointsCollected",0,0);
+    private void UpdatePointsDisplay(int value)
+    {
+        pointsDisplayText.text = value.ToString("n0");
+        if (value > 0)
+        {
+            _pointsCollectedAnimator.Play("PointsCollected", 0, 0);
 //			_pointsCollectedAnimator.SetTime(0);
-		}
-	}
+        }
+    }
 }

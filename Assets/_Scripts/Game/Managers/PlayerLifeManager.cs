@@ -1,139 +1,114 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class PlayerLifeManager : BaseObject {
-	/// <summary>
-	/// The player lives.
-	/// </summary>
-	int playerLives;
-	/// <summary>
-	/// The player lives text.
-	/// </summary>
-	[SerializeField] UILabel playerLivesText;
+public class PlayerLifeManager : BaseObject
+{
+    private int playerLives;
 
-	void Awake() {
-		playerLives = GameVariables.playerStartingLives;
-		UpdateLivesDisplay();
-	}
+    [SerializeField]
+    protected UILabel playerLivesText;
 
-	void OnEnable() {
-		Messenger.AddListener(MenuEvents.RestartGame, RestartLevel);
-	}
+    protected void Awake()
+    {
+        playerLives = GameVariables.playerStartingLives;
+        UpdateLivesDisplay();
+    }
 
-	void OnDisable() {
-		Messenger.RemoveListener(MenuEvents.RestartGame, RestartLevel);
-	}
-	/// <summary>
-	/// Restarts the level.
-	/// </summary>
-	void RestartLevel() {
-		StopAllCoroutines();
-	}
-	/// <summary>
-	/// Gets the player lives.
-	/// </summary>
-	/// <value>The player lives.</value>
-	public int PlayerLives {
-		get {
-			return playerLives;
-		}
-	}
-	/// <summary>
-	/// Gives the player extra life.
-	/// </summary>
-	public void GivePlayerExtraLife(){
-		PlaySound(SoundList.ExtraLife);
-		playerLives++;
-		UpdateLivesDisplay();
-		// show a message
+    protected void OnEnable()
+    {
+        Messenger.AddListener(MenuEvents.RestartGame, RestartLevel);
+    }
 
-	}
-	/// <summary>
-	/// Players the loses A life.
-	/// </summary>
-	public void PlayerLosesALife() {
-		StartCoroutine(PlayerLifeLostSequence());
-	}
+    protected void OnDisable()
+    {
+        Messenger.RemoveListener(MenuEvents.RestartGame, RestartLevel);
+    }
 
-	/// <summary>
-	/// Players the life lost sequence.
-	/// </summary>
-	/// <returns>The life lost sequence.</returns>
-	IEnumerator PlayerLifeLostSequence() {
+    private void RestartLevel()
+    {
+        StopAllCoroutines();
+    }
+
+    public int PlayerLives
+    {
+        get { return playerLives; }
+    }
+
+    public void GivePlayerExtraLife()
+    {
+        PlaySound(SoundList.ExtraLife);
+        playerLives++;
+        UpdateLivesDisplay();
+        // show a message
+    }
+
+    public void PlayerLosesALife()
+    {
+        StartCoroutine(PlayerLifeLostSequence());
+    }
+
+    private IEnumerator PlayerLifeLostSequence()
+    {
 //		Debug.Log("Life lost");
-		PlaySound(SoundList.LifeLost);
+        PlaySound(SoundList.LifeLost);
 
-		Messenger.Broadcast(GlobalEvents.LifeLost);
-		// show a message that the player has lost a life
-		playerLives--;
-		UpdateLivesDisplay();
-		PlayersBatManager.instance.PlayerLosesLife();
-		yield return new WaitForSeconds(.5f);
-		// if player loses all lives, game over
-		if (playerLives < 1) {
-			// game over;
-			Messenger.Broadcast(GlobalEvents.GameOver);
-			yield break;
-		}
-		// player still has lives left!
-		// wait a little while
-		yield return new WaitForSeconds(2f);
-		// if the player has lives left, spawn a new ball
+        Messenger.Broadcast(GlobalEvents.LifeLost);
+        // show a message that the player has lost a life
+        playerLives--;
+        UpdateLivesDisplay();
+        PlayersBatManager.instance.PlayerLosesLife();
+        yield return new WaitForSeconds(.5f);
+        // if player loses all lives, game over
+        if (playerLives < 1)
+        {
+            // game over;
+            Messenger.Broadcast(GlobalEvents.GameOver);
+            yield break;
+        }
+
+        // player still has lives left!
+        // wait a little while
+        yield return new WaitForSeconds(2f);
+        // if the player has lives left, spawn a new ball
 //		Debug.Log("add a new ball");
-		BallManager.instance.AddNewBall();
-		Messenger.Broadcast(GlobalEvents.ResumeLevelTimer,MessengerMode.DONT_REQUIRE_LISTENER);
+        BallManager.instance.AddNewBall();
+        Messenger.Broadcast(GlobalEvents.ResumeLevelTimer, MessengerMode.DONT_REQUIRE_LISTENER);
+    }
 
+    private void UpdateLivesDisplay()
+    {
+        // animate the text with a tween?
+        playerLivesText.text = playerLives.ToString();
+    }
 
-	}
+    protected void OnDestroy()
+    {
+        s_Instance = null;
+    }
 
-	/// <summary>
-	/// Updates the lives display.
-	/// </summary>
-	void UpdateLivesDisplay() {
-		// animate the text with a tween?
-		playerLivesText.text = playerLives.ToString();
-	}
+    private static PlayerLifeManager s_Instance = null;
 
-	#region instance
+    public static PlayerLifeManager instance
+    {
+        get
+        {
+            if (s_Instance == null)
+            {
+                s_Instance = FindObjectOfType(typeof(PlayerLifeManager)) as PlayerLifeManager;
+            }
 
-	void OnDestroy() {	
-		s_Instance = null;
-	}
-	// ************************************
-	// s_Instance is used to cache the instance found in the scene so we don't have to look it up every time.
-	// ************************************
-	private static PlayerLifeManager s_Instance = null;
+            if (s_Instance == null)
+            {
+                Debug.LogError("Could not locate an PlayerLifeManager object!");
+                Debug.Break();
+            }
 
-	// ************************************
-	// This defines a static instance property that attempts to find the manager object in the scene and
-	// returns it to the caller.
-	// ************************************
-	public static PlayerLifeManager instance {
-		get {
-			if (s_Instance == null) {
-				// This is where the magic happens.
-				//  FindObjectOfType(...) returns the first AManager object in the scene.
-				s_Instance = FindObjectOfType(typeof(PlayerLifeManager)) as PlayerLifeManager;
-			}
+            return s_Instance;
+        }
+    }
 
-			// If it is still null, create a new instance
-			if (s_Instance == null) {
-				Debug.LogError("Could not locate an PlayerLifeManager object!");
-				Debug.Break();
-			}
-
-			return s_Instance;
-		}
-	}
-
-	// ************************************
-	// Ensure that the instance is destroyed when the game is stopped in the editor.
-	// ************************************
-	void OnApplicationQuit() {
-		s_Instance = null;
-	}
-
-	#endregion
-
+    protected void OnApplicationQuit()
+    {
+        s_Instance = null;
+    }
 }

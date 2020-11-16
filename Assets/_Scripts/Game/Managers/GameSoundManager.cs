@@ -136,38 +136,24 @@ public class GameSoundManager : MonoBehaviour {
 	[SerializeField]
 	AudioClip bonusLetterCollected;
 
-	/// <summary>
-	/// The audio source1.
-	/// </summary>
+	
 	[SerializeField]
 	AudioSource _audioSource1;
-	/// <summary>
-	/// The audio source2.
-	/// </summary>
+	
 	[SerializeField]
 	AudioSource _audioSource2Balls;
-	/// <summary>
-	/// The audio source2 bricks.
-	/// </summary>
+	
 	[SerializeField]
 	AudioSource _audioSource2Bricks;
 
 
-	/// <summary>
-	/// The random sound number
-	/// </summary>
+	
 	int randomSound;
-	/// <summary>
-	/// The random pitch.
-	/// </summary>
+	
 	float randomPitch;
-	/// <summary>
-	/// The low pitch range.
-	/// </summary>
+	
 	public float lowPitchRange = .95f;
-	/// <summary>
-	/// The high pitch range.
-	/// </summary>
+	
 	public float highPitchRange = 1.05f;
 
 	void OnEnable() {
@@ -177,11 +163,7 @@ public class GameSoundManager : MonoBehaviour {
 	void OnDisable() {
 		Messenger<SoundList>.RemoveListener(GlobalEvents.PlaySoundFX, PlaySound);
 	}
-
-	/// <summary>
-	/// Playes a sound.
-	/// </summary>
-	/// <param name="soundID">Sound I.</param>
+	
 	public void PlaySound(SoundList soundID) {
 		if (GameVariables.instance.SFXEnabled == 0) {
 //			Debug.Log("SFX disabled");
