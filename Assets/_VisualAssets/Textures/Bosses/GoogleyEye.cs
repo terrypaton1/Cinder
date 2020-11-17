@@ -8,6 +8,7 @@ public class GoogleyEye : MonoBehaviour {
 	void Update() {
 		// look at the players bat
 		if (currentBallTracking == null) {
+			// todo ARRRGH this code is terrible, this needs to be changed to requesting a ball from the BallManager.
 			currentBallTracking = (Ball)FindObjectOfType(typeof(Ball));
 		}
 
