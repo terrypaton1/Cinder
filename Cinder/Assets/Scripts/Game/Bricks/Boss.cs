@@ -1,0 +1,156 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Boss : BrickBase
+{
+    [SerializeField]
+    protected FallingFreeze fallingFreezeReference;
+
+    [SerializeField]
+    private GoogleyEye[] googleyEyes;
+
+    private int freezeDropTriggerCount = 0;
+    private bool canDropFreezePower = false;
+
+    protected void Awake()
+    {
+        UpdateAmountOfHitsLeftDisplay();
+        // determine if boss can drop freezes
+        int levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        if (levelNumber >= GameVariables.bossesStartDroppingFreezesFromLevel)
+        {
+            canDropFreezePower = true;
+        }
+    }
+
+    public override void SetupFallingPointObject(FallingPoints _fallingPointObject)
+    {
+//		Debug.Log("SetupFallingPointObject");
+    }
+
+    public override void BrickHitByBall()
+    {
+        if (canDropFreezePower)
+        {
+            //todo change this to behaviours in a list that get processed
+            ManageDropFreezePower();
+        }
+
+        base.BrickHitByBall();
+        DisplayBossHealth();
+    }
+
+    private void ManageDropFreezePower()
+    {
+        // judge whether we should drop a freeze
+        freezeDropTriggerCount++;
+        // every 5 hits, the boss will drop a freeze, if one isn't falling already
+        if (fallingFreezeReference.isFalling)
+        {
+            return;
+        }
+
+        // there is no freeze falling, we could drop another!
+        if (freezeDropTriggerCount >= GameVariables.bossDropFreezeTriggerCount)
+        {
+            // drop a freeze! 
+            StartFallingFreeze();
+            freezeDropTriggerCount = 0;
+        }
+    }
+
+    private void StartFallingFreeze()
+    {
+        Vector3 position = transform.position;
+        position.x += Random.Range(-1.4f, 1.4f);
+
+        CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(position, PowerupType.FreezePlayer);
+    }
+
+    private void DisplayBossHealth()
+    {
+        if (amountOfHitsToDestroy > 0)
+        {
+            float percent = (float) amountOfHitsToDestroy / (float) resetHitsToDestroyCount;
+            CoreConnector.GameUIManager.bossHealthRemainingDisplay.DisplayPercent(percent);
+        }
+        else
+        {
+            // hide the health bar
+            CoreConnector.GameUIManager.bossHealthRemainingDisplay.HideBossHealthBar();
+        }
+    }
+
+    public override void ResetBrick()
+    {
+        ShowGoogleyEyes();
+        fallingFreezeReference.Setup();
+        fallingFreezeReference.Disable();
+
+        freezeDropTriggerCount = 0;
+
+        brickPointsValue = Points.BossPointsValue;
+        UpdateAmountOfHitsLeftDisplay();
+        base.ResetBrick();
+        CoreConnector.GameUIManager.bossHealthRemainingDisplay.DisplayBossHealthBar();
+    }
+
+    protected override void StartItemFallingFromDestroyedBrick()
+    {
+    }
+
+    protected override IEnumerator DestroyBrickSequence(bool playSound = true)
+    {
+        brickAnimation.Play("BrickDestroyed");
+
+        StartItemFallingFromDestroyedBrick();
+
+        BrickHasBeenDestroyed = true;
+        // based on the boss starting health, award points
+        int pointsForBoss = Points.BossPointsValue * resetHitsToDestroyCount;
+
+        CoreConnector.GameManager.scoreManager.PointsCollected(pointsForBoss);
+        SpawnParticles(ParticleTypes.BossExplosion, transform.position);
+
+        if (playSound)
+        {
+            PlaySound(SoundList.brickDestroyed);
+        }
+
+        yield return 0;
+        DisableColliders();
+        while (visualScale.x > 0.1f)
+        {
+            visualScale.x *= 0.8f;
+            visualScale.y *= 0.8f;
+            visualObjects.transform.localScale = visualScale;
+            yield return 0;
+        }
+
+        CoreConnector.GameManager.brickManager.BrickDestroyed(this);
+        visualObjects.SetActive(false);
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+        fallingFreezeReference.Disable();
+        HideGoogleyEyes();
+    }
+
+    protected void ShowGoogleyEyes()
+    {
+        foreach (var eye in googleyEyes)
+        {
+            eye.Show();
+        }
+    }
+
+    protected void HideGoogleyEyes()
+    {
+        foreach (var eye in googleyEyes)
+        {
+            eye.Hide();
+        }
+    }
+}

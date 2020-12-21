@@ -1,0 +1,237 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.Serialization;
+
+public class WanderingObstacle : BrickBase
+{
+    [SerializeField]
+    protected bool useCrazyMovement;
+
+    [SerializeField]
+    protected Rigidbody2D thisRigidbody;
+
+    [SerializeField]
+    protected Animator _animator;
+
+    [Range(1, 30)]
+    public int amountOfBricksBeforeSpawn;
+
+    public bool activeAndMoving;
+
+    [FormerlySerializedAs("amountofHitsToKill")]
+    [Range(1, 10)]
+    public int amountOfHitsToKill = 2;
+
+    private int amountOfHitReceivedFromBall;
+    private int obstaclePointsValue;
+
+    private int amountOfBricksDestroyedSoFar;
+    private float currentSpeed;
+    private float maxSpeed = 3;
+    private float currentDirectionTendency;
+    private Vector3 startingPosition;
+
+    // if amountOfBricksBeforeSpawn ==0 then the obstacle should start straight away
+    // the obstacle should semi randomly move around the screen
+    // doesnt collide with bricks, but does collide with ball
+    // Doesn't move below a height of 4
+    // after x amount of hits from a ball, this obstacle should be destroyed
+
+    protected void Awake()
+    {
+        startingPosition = transform.position;
+    }
+
+    public override void LevelComplete()
+    {
+        thisRigidbody.velocity = Vector2.zero;
+        activeAndMoving = false;
+    }
+
+    public override void BrickWasDestroyed()
+    {
+        if (BrickHasBeenDestroyed)
+        {
+            return;
+        }
+
+        if (!activeAndMoving)
+        {
+            amountOfBricksDestroyedSoFar++;
+            CheckIfObstacleShouldBeEnabled();
+        }
+    }
+
+    private void CheckIfObstacleShouldBeEnabled()
+    {
+        if (amountOfBricksBeforeSpawn == 0)
+        {
+            EnableObstacle();
+        }
+        else
+        {
+            if (amountOfBricksDestroyedSoFar >= amountOfBricksBeforeSpawn)
+            {
+                EnableObstacle();
+            }
+        }
+    }
+
+    public override void BrickHitByBall()
+    {
+        PlaySound(SoundList.WanderingObstacleHit);
+        amountOfHitReceivedFromBall--;
+        if (amountOfHitReceivedFromBall < 1)
+        {
+            StartCoroutine(DestroyBrickSequence());
+        }
+        else
+        {
+// brick has taken a hit, shake its visuals!
+            _animator.Play("WanderingObstacleHitWithBall");
+        }
+    }
+
+    protected override  IEnumerator DestroyBrickSequence(bool playSound = true)
+    {
+        BrickHasBeenDestroyed = true;
+
+        thisRigidbody.velocity = Vector2.zero;
+        activeAndMoving = false;
+
+        CoreConnector.GameManager.scoreManager.PointsCollected(obstaclePointsValue);
+        SpawnParticles(ParticleTypes.WanderingObstacleExplosion, transform.position);
+        if (playSound)
+        {
+            PlaySound(SoundList.WanderingObstacleDestroyed);
+        }
+
+        CoreConnector.GameManager.brickManager.BrickDestroyed(this);
+
+        yield return null;
+
+        DisableColliders();
+
+        var counter = 0.5f;
+        targetScale = 0.1f;
+
+        while (counter > 0)
+        {
+            counter -= Time.deltaTime;
+            yield return null;
+        }
+
+        DisableVisuals();
+    }
+
+    public override void ResetBrick()
+    {
+        DisableObstacle();
+        transform.position = startingPosition;
+        CheckIfObstacleShouldBeEnabled();
+        
+        base.ResetBrick();
+    }
+
+    private void EnableObstacle()
+    {
+        obstaclePointsValue = Points.WanderingObstaclePointsValue;
+        maxSpeed = GameVariables.wanderingObstacleSpeed;
+        activeAndMoving = true;
+
+        EnableColliders();
+        EnableVisuals();
+
+        SpawnParticles(ParticleTypes.WanderingObstacleSpawn, transform.position);
+
+        visualScale = Vector3.one;
+        visualObjects.transform.localScale = visualScale;
+        // apply a random direction
+        var randomVector = Random.insideUnitCircle;
+        randomVector = randomVector.normalized * 10f;
+        currentDirectionTendency = 0;
+        thisRigidbody.AddForce(randomVector);
+    }
+
+    private void DisableObstacle()
+    {
+        thisRigidbody.velocity = Vector2.zero;
+        activeAndMoving = false;
+
+        amountOfBricksDestroyedSoFar = 0;
+        amountOfHitReceivedFromBall = amountOfHitsToKill;
+
+        DisableColliders();
+        DisableVisuals();
+    }
+
+    public override void UpdateLoop()
+    {
+        if (!activeAndMoving)
+        {
+            return;
+        }
+    }
+
+    protected void FixedUpdate()
+    {
+        if (BrickHasBeenDestroyed)
+        {
+            return;
+        }
+
+        if (!activeAndMoving)
+        {
+            return;
+        }
+
+        currentSpeed = Mathf.Lerp(currentSpeed, maxSpeed, Time.deltaTime);
+        var velocity = thisRigidbody.velocity;
+        if (velocity.magnitude < currentSpeed)
+        {
+            thisRigidbody.velocity = velocity.normalized * currentSpeed;
+        }
+
+        if (velocity.magnitude > maxSpeed)
+        {
+//					Debug.Log("slowing down the entity");
+            currentSpeed = velocity.magnitude;
+            currentSpeed -= Time.deltaTime * 3f;
+            thisRigidbody.velocity = velocity.normalized * currentSpeed;
+        }
+
+        if (useCrazyMovement)
+        {
+            // crazy ball only gets applied if the ball is away from the bat, don't want it too hard for the player to hit
+            if (transform.position.y > 2)
+            {
+                velocity = thisRigidbody.velocity;
+                // modify the balls movement direction, but only if the balls y> 2(?)
+                velocity.x += Random.Range(-.15f, .15f);
+                velocity.y += Random.Range(-.15f, .15f);
+                velocity = velocity.normalized * currentSpeed;
+                thisRigidbody.velocity = velocity;
+            }
+        }
+
+        // depending on left/right direction flip the sprite 
+        if (velocity.x < 0)
+        {
+            currentDirectionTendency -= .1f;
+        }
+        else
+        {
+            currentDirectionTendency += .1f;
+        }
+
+        currentDirectionTendency = Mathf.Clamp(currentDirectionTendency, -1f, 1f);
+        if (currentDirectionTendency < 0)
+        {
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
+    }
+}

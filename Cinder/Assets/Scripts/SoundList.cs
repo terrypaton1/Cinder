@@ -1,0 +1,42 @@
+﻿public enum SoundList
+{
+    ballHitsBrick,
+    ballHitsWall,
+    ballHitsBat,
+    brickDestroyed,
+    levelComplete,
+    ballLost,
+    multiball,
+    PointsCollected,
+    LifeLost,
+
+    ExtraLife,
+    PowerupShield,
+    PowerupLaser,
+    PowerupCrazyBall,
+    PowerupFireball,
+    PowerupSmallBat,
+    PowerupSplitBat,
+    PowerupWideBat,
+    PowerupFreeze,
+    TNTBrick,
+
+    MultiHitAwesome,
+    MultiHitMadness,
+    MultiHitExcellent,
+    MultiHitBrilliant,
+    MultiHitInsane,
+    MultiHitWild,
+    MultiHitUnbelievable,
+    MultiHit,
+
+    RounderBumper,
+    LaserBulletHitsBrick,
+    LaserBulletFiring,
+    LaserBulletHitsWall,
+    BallHitsShield,
+    WanderingObstacleDestroyed,
+    WanderingObstacleHit,
+    AllBONUSLettersCollected,
+    BONUSLetterCollected
+}
