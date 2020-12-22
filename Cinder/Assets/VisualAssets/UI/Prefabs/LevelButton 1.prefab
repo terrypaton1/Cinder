@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -14.530029}
+  m_AnchoredPosition: {x: -0.19000053, y: -5.130001}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4552091771675034859
@@ -66,8 +66,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d3d4a588e7f7b4334b93e8cfc412203e, type: 2}
-  m_sharedMaterial: {fileID: 3064619565168313411, guid: d3d4a588e7f7b4334b93e8cfc412203e,
+  m_fontAsset: {fileID: 11400000, guid: bc5570f5f081346b78c142238f40b403, type: 2}
+  m_sharedMaterial: {fileID: 2420751857840863778, guid: bc5570f5f081346b78c142238f40b403,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 38.8
+  m_fontSize: 29
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 5.895996, z: 0, w: 25.302185}
+  m_margin: {x: 8.778137, y: 5.895996, z: 12.070068, w: 15.182922}
   m_textInfo:
     textComponent: {fileID: 4552091771675034860}
     characterCount: 1
@@ -284,6 +284,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4552091772646523015}
     m_Modifications:
+    - target: {fileID: 2113154878295180208, guid: 02483928460b741558905ba5c225f4d0,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2113154878295180210, guid: 02483928460b741558905ba5c225f4d0,
         type: 3}
       propertyPath: m_Name
@@ -451,6 +456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113154878295180208, guid: 02483928460b741558905ba5c225f4d0,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2113154878295180210, guid: 02483928460b741558905ba5c225f4d0,
         type: 3}
