@@ -39,8 +39,8 @@ public class FallingBase : BaseObject
     public virtual void StartFalling(Vector3 position)
     {
         // start falling, slowly at first, then faster
-        objectTransform.position = position;
-        objectTransform.localEulerAngles = Vector3.zero;
+        transform.position = position;
+        transform.localEulerAngles = Vector3.zero;
         rigid2D.isKinematic = false;
         EnableVisuals();
         colliderRef.enabled = true;
