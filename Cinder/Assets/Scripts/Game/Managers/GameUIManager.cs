@@ -18,6 +18,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField]
     public BossHealthRemainingDisplay bossHealthRemainingDisplay;
 
+    [SerializeField]
+    public GameMessages gameMessages;
+    
     protected void OnEnable()
     {
         CoreConnector.GameUIManager = this;
@@ -63,5 +66,6 @@ public class GameUIManager : MonoBehaviour
     {
         bossHealthRemainingDisplay.Hide();
         powerupRemainingDisplay.HidePowerUpBar();
+        gameMessages.LifeLost();
     }
 }

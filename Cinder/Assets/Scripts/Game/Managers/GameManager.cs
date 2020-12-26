@@ -21,9 +21,6 @@ public class GameManager : BaseObject
     public PlayersBatManager playersBatManager;
 
     [SerializeField]
-    public GameMessages gameMessages;
-
-    [SerializeField]
     public ScoreManager scoreManager;
 
     [SerializeField]
@@ -98,7 +95,7 @@ public class GameManager : BaseObject
 
         playerLifeManager.RestartGame();
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
         touchPosition.ResumeGame();
 
         StartPlay(0.25f);
@@ -205,6 +202,8 @@ public class GameManager : BaseObject
 
     private IEnumerator PlayerLifeLostSequence()
     {
+        // It is intentional that there is no message telling the player they have lost a life.
+        
         ChangeGameState(GameState.LifeLost);
 
         PlaySound(SoundList.LifeLost);
@@ -212,16 +211,13 @@ public class GameManager : BaseObject
         playerLifeManager.PlayerLosesALife();
 
         playersBatManager.PlayerLosesLife();
-        gameMessages.LifeLost();
         brickManager.LifeLost();
         CoreConnector.GameUIManager.LifeLost();
         powerupManager.LifeLost();
         levelTimer.StopTimer();
-
-        // todo show a message that the player has lost a life?
-
+        
         yield return new WaitForSeconds(0.5f);
-        // if player loses all lives, game over
+        
         if (playerLifeManager.PlayerLives < 1)
         {
             // game over;
@@ -231,7 +227,6 @@ public class GameManager : BaseObject
 
         // player still has lives left!
         StartPlay(2.0f);
-        // this should now exit the lose life sequence, and now start a new start a new life
     }
 
     private void StartPlay(float initialDelay)

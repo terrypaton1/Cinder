@@ -37,6 +37,6 @@ public class MultiBrickHitAward : MonoBehaviour
     {
         CoreConnector.SoundManager.PlaySound(sound);
         CoreConnector.GameManager.scoreManager.PointsCollected(points);
-        CoreConnector.GameManager.gameMessages.DisplayInGameMessage(awardedMessage);
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(awardedMessage);
     }
 }

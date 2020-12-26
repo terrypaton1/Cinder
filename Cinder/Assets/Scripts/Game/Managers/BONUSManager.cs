@@ -166,7 +166,7 @@ public class BONUSManager : BaseObject
         CoreConnector.GameManager.scoreManager.PointsCollected(Points.AllLettersOfBONUSCollectedPoints);
         // now we need to reset the objects for it to start over again
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
         _sprite0Animator.Play(LetterBonusCollectedAnimation);
         _sprite1Animator.Play(LetterBonusCollectedAnimation);
         _sprite2Animator.Play(LetterBonusCollectedAnimation);

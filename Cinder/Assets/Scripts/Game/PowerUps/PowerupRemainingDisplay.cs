@@ -16,8 +16,8 @@ public class PowerupRemainingDisplay : MonoBehaviour
     [SerializeField]
     protected Animator messageAnimation;
 
-    private const string PowerupRemainingShow = "PowerupRemainingShow";
-    private const string PowerupRemainingHide = "PowerupRemainingHide";
+    private const string PowerupRemainingShow = "Show";
+    private const string PowerupRemainingHide = "Hide";
     private bool isShowing;
 
     protected void Awake()
@@ -60,7 +60,7 @@ public class PowerupRemainingDisplay : MonoBehaviour
     private IEnumerator HideInGameMessageSequence()
     {
         messageAnimation.Play(PowerupRemainingHide);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.0f);
         DisableVisuals();
     }
 

@@ -10,8 +10,8 @@ public class BaseObject : MonoBehaviour
 
     protected void ShowInGameMessage(string _messageText)
     {
-//		Debug.Log("ShowInGameMessage:"+_messageText);
-        CoreConnector.GameManager.gameMessages.DisplayInGameMessage(_messageText);
+		Debug.Log("ShowInGameMessage:"+_messageText);
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(_messageText);
     }
 
     protected void SpawnParticles(ParticleTypes particleType, Vector3 position)

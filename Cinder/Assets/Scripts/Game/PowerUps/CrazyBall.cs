@@ -25,7 +25,7 @@
     {
         base.Activate();
 
-        CoreConnector.GameManager.gameMessages.DisplayInGameMessage(Message.CrazyBall);
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Message.CrazyBall);
 
         CoreConnector.GameManager.ballManager.ActivateCrazyBall();
         timer = GameVariables.crazyBallLengthOfTime;

@@ -37,7 +37,7 @@ public class BossHealthRemainingDisplay : MonoBehaviour
     private IEnumerator HideInGameMessageSequence()
     {
         messageAnimation.Play("BossHealthRemainingHide");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.0f);
         _messageBox.SetActive(false);
     }
 

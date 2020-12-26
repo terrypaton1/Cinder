@@ -162,9 +162,7 @@ public class PlayersBatManager : BaseObject
 
         ChangeToNewBat(PlayerBatTypes.Normal);
 
-        Debug.Log("PlayerBatTypes.Normal");
-
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.0f);
 
         batIsActive = true;
     }
@@ -188,7 +186,8 @@ public class PlayersBatManager : BaseObject
         // depending on the previous bat type, we need to transition to the next
         if (previousBatType != PlayerBatTypes.None)
         {
-            StopCoroutine(PlayerLosesLifeSequence());
+            
+            StopCoroutine(transitionCoroutine);
 
             transitionCoroutine = TransitionToNextBatType();
             StartCoroutine(transitionCoroutine);
@@ -221,7 +220,7 @@ public class PlayersBatManager : BaseObject
         if (currentBat != normalBat)
         {
             currentBat.MorphToNormal();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.0f);
         }
 
         // then we swap to the new bat (which starts looking like a normal bat)
@@ -273,23 +272,7 @@ public class PlayersBatManager : BaseObject
         freezePlayerActive = false;
         // stop the player from moving onto a new bat type
         StopTransitionCoroutine();
-
-        StartCoroutine(PlayerLosesLifeSequence());
-    }
-
-    private IEnumerator PlayerLosesLifeSequence()
-    {
-//		Debug.Log("PlayerLosesLifeSequence");
-        CoreConnector.GameManager.gameMessages.HideInGameMessage();
-
         currentBat.PlayerLosesLife();
-
-        yield return new WaitForSeconds(1f);
-
-        batIsActive = true;
-
-        currentBatType = PlayerBatTypes.None;
-        ChangeToNewBat(PlayerBatTypes.Normal);
     }
 
     public void RestartLevel()
@@ -313,6 +296,8 @@ public class PlayersBatManager : BaseObject
 
         DisableFreezePlayer();
 
+        currentBatType = PlayerBatTypes.None;
+        batIsActive = true;
         ChangeToNewBat(PlayerBatTypes.Normal);
     }
 

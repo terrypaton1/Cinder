@@ -103,14 +103,14 @@ public class BallManager : BaseObject
         SpawnParticles(ParticleTypes.NewBallOne, ballStartPosition);
 
         // wait a little while
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
 
         var ball = GetBallFromPool();
         ball.transform.position = ballStartPosition;
         ball.Enable();
         ballList.Add(ball);
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
 
         // get speed for ball
         ballMaxSpeedForCurrentLevel = CalculateBallMaxSpeed();
@@ -130,7 +130,7 @@ public class BallManager : BaseObject
 
         SpawnParticles(ParticleTypes.NewBallTwo, ballStartPosition);
         // wait a little while
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
 
         // add ball one
         ballStartPosition.x = xPosition;
@@ -146,7 +146,7 @@ public class BallManager : BaseObject
         ball2.Enable();
         ballList.Add(ball2);
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
         // get speed for ball
         ballMaxSpeedForCurrentLevel = CalculateBallMaxSpeed();
         // launch the balls
