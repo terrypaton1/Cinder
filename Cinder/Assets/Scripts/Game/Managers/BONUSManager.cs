@@ -114,7 +114,7 @@ public class BONUSManager : BaseObject
     {
         collectedObjects.Add(_fallingLetter);
         fallingObjects.Remove(_fallingLetter);
-//		Debug.Log("lettersCollectedForDebug:" + lettersCollectedForDebug);
+        
         var letterValue = word.IndexOf(_fallingLetter.letter, StringComparison.Ordinal);
 
         switch (letterValue)

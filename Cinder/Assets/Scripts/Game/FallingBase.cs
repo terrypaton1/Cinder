@@ -8,10 +8,11 @@ public class FallingBase : BaseObject
     [SerializeField]
     protected SpriteRenderer spriteRenderer;
 
-    public bool isFalling;
-
     [SerializeField]
     protected Rigidbody2D rigid2D;
+
+    private Transform objectTransform;
+    public bool isFalling;
 
     public override void LifeLost()
     {
@@ -32,12 +33,14 @@ public class FallingBase : BaseObject
 
     public virtual void Setup()
     {
+        objectTransform = transform;
     }
 
     public virtual void StartFalling(Vector3 position)
     {
         // start falling, slowly at first, then faster
-        transform.position = position;
+        objectTransform.position = position;
+        objectTransform.localEulerAngles = Vector3.zero;
         rigid2D.isKinematic = false;
         EnableVisuals();
         colliderRef.enabled = true;
@@ -52,7 +55,8 @@ public class FallingBase : BaseObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(CollisionTags.DeadZone) || collision.gameObject.CompareTag(CollisionTags.Shield))
+        if (collision.gameObject.CompareTag(CollisionTags.DeadZone) ||
+            collision.gameObject.CompareTag(CollisionTags.Shield))
         {
             FellInToDeadZone();
         }
@@ -85,7 +89,7 @@ public class FallingBase : BaseObject
 
     protected virtual void FellInToDeadZone()
     {
-        var powerUpLostEffectPosition = transform.position;
+        var powerUpLostEffectPosition = objectTransform.position;
         powerUpLostEffectPosition.y = 0;
         SpawnParticles(ParticleTypes.PowerupLost, powerUpLostEffectPosition);
         Disable();

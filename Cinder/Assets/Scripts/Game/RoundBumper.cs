@@ -7,7 +7,7 @@ public class RoundBumper : NonBrick
 
     private static string BumperAnimation = "RoundBumper1";
 
-    protected new void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         //topdo move the collision processing to the ball instead of here
         if (collision.gameObject.CompareTag(CollisionTags.Ball))

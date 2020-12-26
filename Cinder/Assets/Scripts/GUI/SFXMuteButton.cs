@@ -12,12 +12,6 @@ public class SFXMuteButton : MonoBehaviour
     [SerializeField]
     protected GameObject offGraphic;
 
-    protected void OnEnable()
-    {
-        // todo refresh the SFX state when opening menus etc
-        // EvaluateSFXState();
-    }
-
     public void AudioButtonPressed()
     {
         _animator.Play("ButtonPressAnimation");
