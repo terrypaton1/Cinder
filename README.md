@@ -1,6 +1,6 @@
 # Cinder
 <p align="center"> 
-    <img src="./res/CinderSocial.jpg">
+    <img src="./res/GameIcon.jpg">
 </p>
 An open source 'brick breaker' game by Terry Paton. Originally written in 2016, it is now updated (in late 2020) to the new standards Terry has learnt since then.
 Available to play in the Android google play store: <a href="https://play.google.com/store/apps/details?id=com.terrypaton.cinder"> Cinder </a>
