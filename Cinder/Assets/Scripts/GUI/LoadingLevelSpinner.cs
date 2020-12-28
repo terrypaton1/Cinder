@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class LoadingLevelSpinner : MonoBehaviour {
-	Vector3 rotateSpeed = new Vector3(0, 0, -540);
-	// Update is called once per frame
-	void Update() {
-		transform.Rotate(rotateSpeed*Time.deltaTime);
-	}
+public class LoadingLevelSpinner : MonoBehaviour
+{
+    private readonly Vector3 rotateSpeed = new Vector3(0, 0, -540);
+
+    protected void Update()
+    {
+        transform.Rotate(rotateSpeed * Time.deltaTime);
+    }
 }

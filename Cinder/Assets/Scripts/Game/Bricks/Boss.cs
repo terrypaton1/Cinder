@@ -9,8 +9,8 @@ public class Boss : BrickBase
     [SerializeField]
     private GoogleyEye[] googleyEyes;
 
-    private int freezeDropTriggerCount = 0;
-    private bool canDropFreezePower = false;
+    private int freezeDropTriggerCount;
+    private bool canDropFreezePower;
 
     protected void Awake()
     {
@@ -51,17 +51,18 @@ public class Boss : BrickBase
         }
 
         // there is no freeze falling, we could drop another!
-        if (freezeDropTriggerCount >= GameVariables.bossDropFreezeTriggerCount)
+        if (freezeDropTriggerCount < GameVariables.bossDropFreezeTriggerCount)
         {
-            // drop a freeze! 
-            StartFallingFreeze();
-            freezeDropTriggerCount = 0;
+            return;
         }
+        // drop a freeze! 
+        StartFallingFreeze();
+        freezeDropTriggerCount = 0;
     }
 
     private void StartFallingFreeze()
     {
-        Vector3 position = transform.position;
+        var position = transform.position;
         position.x += Random.Range(-1.4f, 1.4f);
 
         CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(position, PowerupType.FreezePlayer);
@@ -71,7 +72,7 @@ public class Boss : BrickBase
     {
         if (amountOfHitsToDestroy > 0)
         {
-            float percent = (float) amountOfHitsToDestroy / (float) resetHitsToDestroyCount;
+            var percent = (float) amountOfHitsToDestroy / resetHitsToDestroyCount;
             CoreConnector.GameUIManager.bossHealthRemainingDisplay.DisplayPercent(percent);
         }
         else
@@ -83,7 +84,7 @@ public class Boss : BrickBase
 
     public override void ResetBrick()
     {
-        ShowGoogleyEyes();
+        ShowGooglyEyes();
         fallingFreezeReference.Setup();
         fallingFreezeReference.Disable();
 
@@ -107,7 +108,7 @@ public class Boss : BrickBase
 
         BrickHasBeenDestroyed = true;
         // based on the boss starting health, award points
-        int pointsForBoss = Points.BossPointsValue * resetHitsToDestroyCount;
+        var pointsForBoss = Points.BossPointsValue * resetHitsToDestroyCount;
 
         CoreConnector.GameManager.scoreManager.PointsCollected(pointsForBoss);
         SpawnParticles(ParticleTypes.BossExplosion, transform.position);
@@ -135,10 +136,10 @@ public class Boss : BrickBase
     {
         base.Hide();
         fallingFreezeReference.Disable();
-        HideGoogleyEyes();
+        HideGooglyEyes();
     }
 
-    protected void ShowGoogleyEyes()
+    private void ShowGooglyEyes()
     {
         foreach (var eye in googleyEyes)
         {
@@ -146,7 +147,7 @@ public class Boss : BrickBase
         }
     }
 
-    protected void HideGoogleyEyes()
+    private void HideGooglyEyes()
     {
         foreach (var eye in googleyEyes)
         {

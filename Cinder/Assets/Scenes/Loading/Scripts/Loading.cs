@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Loading : MonoBehaviour
 {
     [SerializeField]
-    Camera loadingCamera;
+    protected Camera loadingCamera;
 
     private const string Main = "Main";
     private const string Game = "Game";
@@ -20,7 +20,6 @@ public class Loading : MonoBehaviour
     {
         // start the process of loading the UI and then core game
         Init();
-        CoreConnector.IsLevelsLoaded = true;
     }
 
     protected void Awake()
@@ -31,11 +30,13 @@ public class Loading : MonoBehaviour
 
     protected void Update()
     {
-        if (Application.targetFrameRate != targetFPS)
+        if (Application.targetFrameRate == targetFPS)
         {
-            Debug.Log("setting frame rate to " + targetFPS);
-            Application.targetFrameRate = targetFPS;
+            return;
         }
+
+        Debug.Log("setting frame rate to " + targetFPS);
+        Application.targetFrameRate = targetFPS;
     }
 
     private void OnDisable()

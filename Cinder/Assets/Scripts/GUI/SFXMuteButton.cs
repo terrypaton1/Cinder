@@ -2,10 +2,6 @@
 
 public class SFXMuteButton : MonoBehaviour
 {
-    //todo convert these to sprite renderers
-    [SerializeField]
-    protected Animator _animator;
-
     [SerializeField]
     protected GameObject onGraphic;
 
@@ -14,16 +10,8 @@ public class SFXMuteButton : MonoBehaviour
 
     public void AudioButtonPressed()
     {
-        _animator.Play("ButtonPressAnimation");
-
-        if (CoreConnector.GameManager.gameVariables.SFXEnabled == 0)
-        {
-            CoreConnector.GameManager.gameVariables.SFXEnabled = 1;
-        }
-        else
-        {
-            CoreConnector.GameManager.gameVariables.SFXEnabled = 0;
-        }
+        CoreConnector.GameManager.gameVariables.SFXEnabled =
+            CoreConnector.GameManager.gameVariables.SFXEnabled == 0 ? 1 : 0;
 
         PlayerPrefs.SetInt(DataVariables.SFXEnabled, CoreConnector.GameManager.gameVariables.SFXEnabled);
         EvaluateSFXState();

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 [SelectionBase]
 public class LevelButton : MonoBehaviour
 {
-    // TODO this class needs refactoring and should hand level changing responsibility to a relevant class.
     [SerializeField]
     protected Image lockedSprite;
 
@@ -27,15 +26,16 @@ public class LevelButton : MonoBehaviour
     {
         var maxLevelNumber = PlayerPrefs.GetInt(DataVariables.maxLevelBeatenPrefix);
 
-        int currentLevel = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var currentLevel = PlayerPrefs.GetInt(DataVariables.currentLevel);
 
         var buttonScale = new Vector3(1.0f, 1.0f, 1.0f);
         if (currentLevel == levelNumber)
         {
             buttonScale = new Vector3(1.4f, 1.4f, 1.4f);
         }
+
         transform.localScale = buttonScale;
-        
+
         if (maxLevelNumber < 1)
         {
             maxLevelNumber = 1;
@@ -58,7 +58,7 @@ public class LevelButton : MonoBehaviour
             button.enabled = false;
         }
 
-        levelNumberLabel.text = (levelNumber).ToString();
+        levelNumberLabel.text = levelNumber.ToString();
     }
 
     public void OnClick()

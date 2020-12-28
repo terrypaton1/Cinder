@@ -11,7 +11,6 @@ public class FallingPoints : FallingBase
         _pointsValue = newPointsValue;
         // disable all pointsDisplay
         Setup();
-        isFalling = false;
     }
 
     public override void Setup()
@@ -21,6 +20,7 @@ public class FallingPoints : FallingBase
             return;
         }
 
+        isFalling = false;
         spriteRenderer.enabled = true;
         switch (category)
         {
@@ -28,13 +28,13 @@ public class FallingPoints : FallingBase
                 spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay10;
                 break;
             case 2:
-                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay10;
+                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay50;
                 break;
             case 3:
-                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay10;
+                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay100;
                 break;
             default:
-                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay10;
+                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay500;
                 break;
         }
     }

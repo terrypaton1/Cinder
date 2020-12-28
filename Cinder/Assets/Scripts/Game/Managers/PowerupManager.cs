@@ -69,14 +69,14 @@ public class PowerupManager : BaseObject
         switch (_powerupType)
         {
             case PowerupType.MultiBall:
-                PlaySound(SoundList.multiball);
+                PlaySound(SoundList.multiBall);
                 // add two new balls to the scene, side by side at the starting height
                 CoreConnector.GameManager.ballManager.AddMultiballs(-.3f);
                 ShowInGameMessage(Message.MultiBall);
                 break;
             case PowerupType.WideBat:
                 laserBat.DisableInstantly();
-                PlaySound(SoundList.PowerupWideBat);
+                PlaySound(SoundList.PowerUpWideBat);
                 CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Wide);
                 ShowInGameMessage(Message.WideBat);
                 break;

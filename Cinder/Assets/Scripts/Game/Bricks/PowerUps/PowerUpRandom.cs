@@ -3,7 +3,7 @@
     public override void EvaluateDisplay()
     {
         typeOfPowerUp = PowerupType.Random;
-        _spriteRenderer.sprite = CoreConnector.GameSettings.powerupRandom;
+        _spriteRenderer.sprite = CoreConnector.GameSettings.powerUpRandom;
     }
 
     public override void ResetBrick()
@@ -14,8 +14,8 @@
 
     protected override void StartItemFallingFromDestroyedBrick()
     {
-        int randomPowerUpNum = UnityEngine.Random.Range(0, randomPowerupChoices.Length);
-        PowerupType randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
+        var randomPowerUpNum = UnityEngine.Random.Range(0, randomPowerupChoices.Length);
+        var randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
         CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(transform.position, randomTypeOfPowerUp);
     }
 }

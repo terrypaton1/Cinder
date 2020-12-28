@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "GameSettings", menuName = "Cinder/GameSettings", order = 1)]
 public class GameSettings : ScriptableObject
 {
-    public static bool DrawWallSidesDebug = false;
-    public static readonly float HealthReset = 0.5f;
-
     [SerializeField]
     public Sprite pointsDisplay10;
 
@@ -18,33 +16,42 @@ public class GameSettings : ScriptableObject
     [SerializeField]
     public Sprite pointsDisplay500;
 
+    [FormerlySerializedAs("powerupMultiball")]
     [Header("Power up sprites")]
     [SerializeField]
-    public Sprite powerupMultiball;
+    public Sprite powerUpMultiBall;
 
+    [FormerlySerializedAs("powerupSmallBat")]
     [SerializeField]
-    public Sprite powerupSmallBat;
+    public Sprite powerUpSmallBat;
 
+    [FormerlySerializedAs("powerupCrazyBall")]
     [SerializeField]
-    public Sprite powerupCrazyBall;
+    public Sprite powerUpCrazyBall;
 
+    [FormerlySerializedAs("powerupLaser")]
     [SerializeField]
-    public Sprite powerupLaser;
+    public Sprite powerUpLaser;
 
+    [FormerlySerializedAs("powerupShield")]
     [SerializeField]
-    public Sprite powerupShield;
+    public Sprite powerUpShield;
 
+    [FormerlySerializedAs("powerupSplitBat")]
     [SerializeField]
-    public Sprite powerupSplitBat;
+    public Sprite powerUpSplitBat;
 
+    [FormerlySerializedAs("powerupRandom")]
     [SerializeField]
-    public Sprite powerupRandom;
+    public Sprite powerUpRandom;
 
+    [FormerlySerializedAs("powerupFlameBall")]
     [SerializeField]
-    public Sprite powerupFlameball;
+    public Sprite powerUpFlameBall;
 
+    [FormerlySerializedAs("powerupWide")]
     [SerializeField]
-    public Sprite powerupWide;
+    public Sprite powerUpWide;
 
     [Header("Bonus letters")]
     [SerializeField]

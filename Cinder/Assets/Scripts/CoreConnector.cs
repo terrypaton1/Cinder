@@ -99,7 +99,6 @@ public class CoreConnector : MonoBehaviour
     {
         if (Instance != null)
         {
-            //Debug.Log("Core Connector already found");
             return;
         }
 
@@ -113,12 +112,4 @@ public class CoreConnector : MonoBehaviour
     {
         instance = null;
     }
-
-    public static bool IsLevelsLoaded
-    {
-        get { return levelsIsLoaded; }
-        set => levelsIsLoaded = value;
-    }
-
-    private static bool levelsIsLoaded;
 }
