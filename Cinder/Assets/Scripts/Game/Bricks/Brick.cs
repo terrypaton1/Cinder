@@ -7,33 +7,33 @@ public class Brick : BrickBase
     protected override void StartItemFallingFromDestroyedBrick()
     {
         // check if we should drop a falling points object (or a bonus letter)
-        if (!CoreConnector.GameManager.bonusManager.BrickShouldDropPoints(transform.position))
+        if (CoreConnector.GameManager.bonusManager.BrickShouldDropPoints(transform.position))
         {
-            return;
+            //  fallingPointsReference.StartFalling(transform.position);
+
+            int pointsValue = Points.fallingPointValues1;
+            int category = 0;
+
+            if (resetHitsToDestroyCount > 1)
+            {
+                pointsValue = Points.fallingPointValues2;
+                category = 1;
+            }
+
+            if (resetHitsToDestroyCount > 3)
+            {
+                pointsValue = Points.fallingPointValues3;
+                category = 2;
+            }
+
+            if (resetHitsToDestroyCount > 5)
+            {
+                pointsValue = Points.fallingPointValues4;
+                category = 3;
+            }
+
+            CoreConnector.GameManager.fallingObjectsManager.AddFallingPoints(transform.position, pointsValue, category);
         }
-
-        var pointsValue = Points.fallingPointValues1;
-        var category = 0;
-
-        if (resetHitsToDestroyCount > 1)
-        {
-            pointsValue = Points.fallingPointValues2;
-            category = 1;
-        }
-
-        if (resetHitsToDestroyCount > 3)
-        {
-            pointsValue = Points.fallingPointValues3;
-            category = 2;
-        }
-
-        if (resetHitsToDestroyCount > 5)
-        {
-            pointsValue = Points.fallingPointValues4;
-            category = 3;
-        }
-
-        CoreConnector.GameManager.fallingObjectsManager.AddFallingPoints(transform.position, pointsValue, category);
     }
 
     public override void Shake(float amount)
