@@ -3,9 +3,6 @@
 [CreateAssetMenu(fileName = "GameSettings", menuName = "Cinder/GameSettings", order = 1)]
 public class GameSettings : ScriptableObject
 {
-    public static bool DrawWallSidesDebug = false;
-    public static readonly float HealthReset = 0.5f;
-
     [SerializeField]
     public Sprite pointsDisplay10;
 

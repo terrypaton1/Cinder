@@ -172,7 +172,7 @@ public class GameSoundManager : MonoBehaviour
             case SoundList.ballLost:
                 _audioSource1.PlayOneShot(ballLost);
                 break;
-            case SoundList.multiball:
+            case SoundList.multiBall:
                 _audioSource1.PlayOneShot(multiball);
                 break;
             case SoundList.ExtraLife:
@@ -201,7 +201,7 @@ public class GameSoundManager : MonoBehaviour
             case SoundList.PowerupSplitBat:
                 _audioSource1.PlayOneShot(powerupDoubleBat);
                 break;
-            case SoundList.PowerupWideBat:
+            case SoundList.PowerUpWideBat:
                 _audioSource1.PlayOneShot(powerupLongBat);
                 break;
             case SoundList.PowerupFreeze:

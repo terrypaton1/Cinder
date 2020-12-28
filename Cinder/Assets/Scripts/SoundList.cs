@@ -6,7 +6,7 @@
     brickDestroyed,
     levelComplete,
     ballLost,
-    multiball,
+    multiBall,
     PointsCollected,
     LifeLost,
 
@@ -17,7 +17,7 @@
     PowerupFireball,
     PowerupSmallBat,
     PowerupSplitBat,
-    PowerupWideBat,
+    PowerUpWideBat,
     PowerupFreeze,
     TNTBrick,
 

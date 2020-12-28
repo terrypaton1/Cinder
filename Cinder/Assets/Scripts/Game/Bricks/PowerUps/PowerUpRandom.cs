@@ -14,8 +14,8 @@
 
     protected override void StartItemFallingFromDestroyedBrick()
     {
-        int randomPowerUpNum = UnityEngine.Random.Range(0, randomPowerupChoices.Length);
-        PowerupType randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
+        var randomPowerUpNum = UnityEngine.Random.Range(0, randomPowerupChoices.Length);
+        var randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
         CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(transform.position, randomTypeOfPowerUp);
     }
 }

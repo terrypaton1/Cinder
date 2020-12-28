@@ -38,7 +38,7 @@ public class Brick : BrickBase
 
     public override void Shake(float amount)
     {
-        float randomRadius = Random.Range(0.05f, 0.1f) * amount;
+        var randomRadius = Random.Range(0.05f, 0.1f) * amount;
 
         var newLocal = Random.insideUnitSphere * randomRadius;
         newLocal.z = 0;
@@ -58,18 +58,19 @@ public class Brick : BrickBase
             return;
         }
 
-        // todo also use this is for managing the shake
         var newPosition =
             Vector3.Lerp(visualObjects.transform.localPosition, Vector3.zero, Time.deltaTime * 10);
         visualObjects.transform.localPosition = newPosition;
 
-        if (resetCounter > 0)
+        if (resetCounter <= 0)
         {
-            resetCounter--;
-            if (resetCounter == 0)
-            {
-                visualObjects.transform.localEulerAngles = Vector3.zero;
-            }
+            return;
+        }
+
+        resetCounter--;
+        if (resetCounter == 0)
+        {
+            visualObjects.transform.localEulerAngles = Vector3.zero;
         }
     }
 }

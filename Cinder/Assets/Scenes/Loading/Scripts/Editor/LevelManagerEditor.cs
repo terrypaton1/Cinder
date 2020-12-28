@@ -22,7 +22,7 @@ public class LevelManagerEditor : Editor
         base.OnInspectorGUI();
     }
 
-    private void HideAllRenderers(LevelsManager classRef)
+    private static void HideAllRenderers(LevelsManager classRef)
     {
         foreach (var brick in classRef.allLevels)
         {
@@ -30,7 +30,7 @@ public class LevelManagerEditor : Editor
         }
     }
 
-    private void ShowAllRenderers(LevelsManager classRef)
+    private static void ShowAllRenderers(LevelsManager classRef)
     {
         foreach (var brick in classRef.allLevels)
         {

@@ -36,21 +36,24 @@ public class FallingBase : BaseObject
         objectTransform = transform;
     }
 
-    public virtual void StartFalling(Vector3 position)
+    public void StartFalling(Vector3 position)
     {
         // start falling, slowly at first, then faster
-        transform.position = position;
-        transform.localEulerAngles = Vector3.zero;
-        rigid2D.isKinematic = false;
+        var transform1 = transform;
+        transform1.position = position;
+        transform1.localEulerAngles = Vector3.zero;
+
         EnableVisuals();
+
         colliderRef.enabled = true;
+        colliderRef.gameObject.isStatic = false;
+
+        rigid2D.isKinematic = false;
         rigid2D.simulated = true;
         rigid2D.angularVelocity = 0.0f;
         rigid2D.velocity = Vector3.zero;
+
         isFalling = true;
-        colliderRef.gameObject.isStatic = false;
-        // use a coroutine to move the object
-        // rigid2D.AddForce(Vector2.down * 4.0f, ForceMode2D.Force);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -62,7 +65,7 @@ public class FallingBase : BaseObject
         }
     }
 
-    public virtual void Disable()
+    public void Disable()
     {
         rigid2D.isKinematic = true;
         isFalling = false;
@@ -72,7 +75,7 @@ public class FallingBase : BaseObject
         rigid2D.angularVelocity = 0.0f;
     }
 
-    public void DisableVisuals()
+    private void DisableVisuals()
     {
         spriteRenderer.enabled = false;
     }

@@ -6,12 +6,12 @@ public class PowerupBrickEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        var _powerup = (PowerupBrick) target;
-        _powerup.typeOfPowerUp = (PowerupType) EditorGUILayout.EnumPopup("Type of Powerup:", _powerup.typeOfPowerUp);
+        var powerUp = (PowerupBrick) target;
+        powerUp.typeOfPowerUp = (PowerupType) EditorGUILayout.EnumPopup("Type of PowerUp:", powerUp.typeOfPowerUp);
 
-        if (_powerup.typeOfPowerUp == PowerupType.Random)
+        if (powerUp.typeOfPowerUp == PowerupType.Random)
         {
-            GUILayout.Label("Random powerup - fill the array with your choices");
+            GUILayout.Label("Random PowerUp - fill the array with your choices");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("randomPowerupChoices"), true);
         }
 
@@ -22,10 +22,10 @@ public class PowerupBrickEditor : Editor
             return;
         }
 
-        _powerup.EvaluateDisplay();
-        if (_powerup.typeOfPowerUp == PowerupType.Random)
+        powerUp.EvaluateDisplay();
+        if (powerUp.typeOfPowerUp == PowerupType.Random)
         {
-            if (_powerup.randomPowerupChoices.Length == 0)
+            if (powerUp.randomPowerupChoices.Length == 0)
             {
                 Debug.LogError("ERROR: No random choices have been set");
             }
