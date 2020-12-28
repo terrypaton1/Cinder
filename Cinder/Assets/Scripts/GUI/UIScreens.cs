@@ -7,6 +7,5 @@
 	LoadingScreen,
 	LevelComplete,
 	GameComplete,
-	GameOver,
-	undefined
+	GameOver
 }

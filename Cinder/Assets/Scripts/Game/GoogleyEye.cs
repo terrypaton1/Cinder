@@ -12,6 +12,7 @@ public class GoogleyEye : MonoBehaviour
 
     protected void Update()
     {
+        // todo - this is awful!
         // look at the players bat
         if (currentBallTracking == null)
         {
@@ -24,7 +25,7 @@ public class GoogleyEye : MonoBehaviour
             return;
         }
 
-        Vector3 dir = (currentBallTracking.transform.position - this.transform.position).normalized * .08f;
+        var dir = (currentBallTracking.transform.position - this.transform.position).normalized * .08f;
         eyeBall.localPosition = Vector3.Lerp(eyeBall.localPosition, dir, Time.deltaTime * 5f);
     }
 

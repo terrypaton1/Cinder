@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class FallingFreeze : FallingBase
+﻿public class FallingFreeze : FallingBase
 {
     public override void Setup()
     {
@@ -9,7 +7,7 @@ public class FallingFreeze : FallingBase
 
     public override void HitPlayersBat()
     {
-        CoreConnector.GameManager.powerupManager.ActivatePowerup(PowerupType.FreezePlayer);
+        CoreConnector.GameManager.powerUpManager.ActivatePowerUp(PowerupType.FreezePlayer);
         base.HitPlayersBat();
     }
     

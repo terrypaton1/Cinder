@@ -5,9 +5,6 @@ using UnityEngine.UI;
 public class PowerupRemainingDisplay : MonoBehaviour
 {
     [SerializeField]
-    protected GameObject content;
-
-    [SerializeField]
     protected Transform bar;
 
     [SerializeField]

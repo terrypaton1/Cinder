@@ -36,12 +36,17 @@ public class BONUSManager : BaseObject
     private const string LetterBonusCollectedAnimation = "LetterBonusCollected";
     private const string HideLetterAnimation = "HideLetter";
 
+    protected void OnEnable()
+    {
+        Setup();
+    }
+
     public void RestartGame()
     {
         ResetFallingObjectsAvailable();
     }
 
-    public void Setup()
+    private void Setup()
     {
         fallingObjects = new List<FallingLetter>();
         collectedObjects = new List<FallingLetter>();

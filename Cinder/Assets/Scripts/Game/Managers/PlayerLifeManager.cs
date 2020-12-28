@@ -2,16 +2,6 @@
 {
     private int playerLives;
 
-    public void Hide()
-    {
-        CoreConnector.GameUIManager.playerLifeDisplay.Hide();
-    }
-
-    public void Show()
-    {
-        CoreConnector.GameUIManager.playerLifeDisplay.Show();
-    }
-
     public void RestartGame()
     {
         StopAllCoroutines();

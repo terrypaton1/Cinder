@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum ParticleTypes
 {
@@ -8,8 +9,8 @@ public enum ParticleTypes
     NewBallOne,
     NewBallTwo,
     BallLost,
-    PowerupLost,
-    PowerupCollected,
+    PowerUpLost,
+    PowerUpCollected,
     FallingPointsCollected,
     DestroyFallingItems,
     TNTExplosion,
@@ -40,11 +41,13 @@ public class ParticleManager : MonoBehaviour
     [SerializeField]
     protected ParticleSystem ballLostParticleSystem;
 
+    [FormerlySerializedAs("PowerupLostParticles")]
     [SerializeField]
-    protected ParticleSystem PowerupLostParticles;
+    protected ParticleSystem PowerUpLostParticles;
 
+    [FormerlySerializedAs("PowerupCollectedParticles")]
     [SerializeField]
-    protected ParticleSystem PowerupCollectedParticles;
+    protected ParticleSystem PowerUpCollectedParticles;
 
     [SerializeField]
     protected ParticleSystem FallingPointsCollectedParticles;
@@ -101,13 +104,13 @@ public class ParticleManager : MonoBehaviour
                 ballLostParticleSystem.transform.position = position;
                 ballLostParticleSystem.Emit(10);
                 break;
-            case ParticleTypes.PowerupLost:
-                PowerupLostParticles.transform.position = position;
-                PowerupLostParticles.Emit(10);
+            case ParticleTypes.PowerUpLost:
+                PowerUpLostParticles.transform.position = position;
+                PowerUpLostParticles.Emit(10);
                 break;
-            case ParticleTypes.PowerupCollected:
-                PowerupCollectedParticles.transform.position = position;
-                PowerupCollectedParticles.Emit(10);
+            case ParticleTypes.PowerUpCollected:
+                PowerUpCollectedParticles.transform.position = position;
+                PowerUpCollectedParticles.Emit(10);
                 break;
             case ParticleTypes.FallingPointsCollected:
                 FallingPointsCollectedParticles.transform.position = position;

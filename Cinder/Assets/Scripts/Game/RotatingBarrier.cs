@@ -24,10 +24,4 @@ public class RotatingBarrier : NonBrick
             _rigidbody2D.MoveRotation(_rigidbody2D.rotation - speed * Time.fixedDeltaTime);
         }
     }
-
-    public override void Reset()
-    {
-        base.Reset();
-        // todo reset the rotation back to its start rotation to what it started at
-    }
 }

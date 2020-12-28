@@ -17,8 +17,8 @@
     public override void HitPlayersBat()
     {
         base.HitPlayersBat();
-        SpawnParticles(ParticleTypes.PowerupCollected, transform.position);
-        CoreConnector.GameManager.powerupManager.ActivatePowerup(powerupType);
+        SpawnParticles(ParticleTypes.PowerUpCollected, transform.position);
+        CoreConnector.GameManager.powerUpManager.ActivatePowerUp(powerupType);
     }
 
     protected override void FellInToDeadZone()
@@ -27,6 +27,6 @@
 
         var powerupLostEffectPosition = transform.position;
         powerupLostEffectPosition.y = 0;
-        SpawnParticles(ParticleTypes.PowerupLost, powerupLostEffectPosition);
+        SpawnParticles(ParticleTypes.PowerUpLost, powerupLostEffectPosition);
     }
 }

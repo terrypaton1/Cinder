@@ -40,7 +40,7 @@ public class LevelsManager : MonoBehaviour
     {
         var levelNumber = GetCurrentLevelNumber();
         var level = allLevels[levelNumber];
-        List<BrickBase> brickList = new List<BrickBase>(level.bricks);
+        var brickList = new List<BrickBase>(level.bricks);
         return brickList;
     }
 
@@ -49,11 +49,11 @@ public class LevelsManager : MonoBehaviour
         var levelNumber = GetCurrentLevelNumber();
         var level = allLevels[levelNumber];
 
-        List<NonBrick> brickList = new List<NonBrick>(level.nonBricks);
+        var brickList = new List<NonBrick>(level.nonBricks);
         return brickList;
     }
 
-    private int GetCurrentLevelNumber()
+    private static int GetCurrentLevelNumber()
     {
         var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
         // levels are stored as base zero

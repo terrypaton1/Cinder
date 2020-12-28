@@ -13,8 +13,9 @@ public class GameManager : BaseObject
     [SerializeField]
     public BrickManager brickManager;
 
+    [FormerlySerializedAs("powerupManager")]
     [SerializeField]
-    public PowerupManager powerupManager;
+    public PowerupManager powerUpManager;
 
     [Space(10)]
     [SerializeField]
@@ -64,7 +65,6 @@ public class GameManager : BaseObject
 
     public void PerformInitialSetup()
     {
-        Debug.Log("Game is fully loaded, doing initialization");
         fallingObjectsManager.BuildFallingPointsPool();
         fallingObjectsManager.BuildFallingPowerUpsPool();
         ballManager.Setup();
@@ -80,8 +80,9 @@ public class GameManager : BaseObject
 
         yield return new WaitForSeconds(0.25f);
 
-        int levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
 
+        CoreConnector.GameUIManager.playerLifeDisplay.Show();
         CoreConnector.LevelsManager.DisplayLevel(levelNumber);
         brickManager.LoadLevelsBricks();
         backgrounds.DisplayForLevel(levelNumber);
@@ -159,9 +160,9 @@ public class GameManager : BaseObject
 
         CoreConnector.GameManager.gameVariables.StoreTotalBricksBroken();
         CoreConnector.LevelsManager.HideAllLevels();
-
+        CoreConnector.GameUIManager.gameMessages.HideInGameMessageInstantly();
         playersBatManager.Reset();
-        playerLifeManager.Hide();
+        CoreConnector.GameUIManager.playerLifeDisplay.Hide();
         ballManager.ResetAllBalls();
         fallingObjectsManager.HideAll();
     }
@@ -212,7 +213,7 @@ public class GameManager : BaseObject
         playersBatManager.PlayerLosesLife();
         brickManager.LifeLost();
         CoreConnector.GameUIManager.LifeLost();
-        powerupManager.LifeLost();
+        powerUpManager.LifeLost();
         levelTimer.StopTimer();
         
         yield return new WaitForSeconds(0.5f);
@@ -240,7 +241,7 @@ public class GameManager : BaseObject
         ChangeGameState(GameState.StartPlay);
         playersBatManager.RestartLevel();
         ballManager.RestartLevel();
-        powerupManager.RestartLevel();
+        powerUpManager.RestartLevel();
 
         yield return new WaitForSeconds(initialDelay);
 
@@ -251,7 +252,7 @@ public class GameManager : BaseObject
 
     public void RestartGame()
     {
-        // this should perhaps go through the startGane
+        // this should perhaps go through the startGaMe
         levelTimer.ResetTimer();
 
         brickManager.RestartLevel();
@@ -260,7 +261,7 @@ public class GameManager : BaseObject
 
         CoreConnector.GameUIManager.bossHealthRemainingDisplay.Hide();
         scoreManager.RestartLevel();
-        powerupManager.RestartLevel();
+        powerUpManager.RestartLevel();
 
         //todo reset the players lives too?
 
@@ -281,14 +282,14 @@ public class GameManager : BaseObject
     {
         playersBatManager.LevelComplete();
         brickManager.LevelComplete();
-        powerupManager.LevelComplete();
+        powerUpManager.LevelComplete();
         fallingObjectsManager.LevelComplete();
 
         levelTimer.StopTimer();
 
         // check if the max level beaten should be increased
-        int maxLevelBeaten = PlayerPrefs.GetInt(DataVariables.maxLevelBeatenPrefix);
-        int nextLevelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel) + 1;
+        var maxLevelBeaten = PlayerPrefs.GetInt(DataVariables.maxLevelBeatenPrefix);
+        var nextLevelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel) + 1;
         if (nextLevelNumber > maxLevelBeaten)
         {
             maxLevelBeaten = nextLevelNumber;

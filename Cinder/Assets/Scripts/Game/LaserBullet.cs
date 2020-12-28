@@ -14,7 +14,7 @@ public class LaserBullet : BaseObject
         thisRigidbody.velocity = velocity;
     }
 
-    public void HitABrick(Vector2 particleSpawnPosition)
+    private void HitABrick(Vector2 particleSpawnPosition)
     {
         PlaySound(SoundList.LaserBulletHitsBrick);
         RePoolObject();

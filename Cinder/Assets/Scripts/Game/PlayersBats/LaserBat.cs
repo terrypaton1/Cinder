@@ -3,9 +3,9 @@
 public class LaserBat : PlayersBatBase
 {
     private float firingFrequency = 1.0f;
-    private string Intro = "LaserBatIntro";
-    private string ToNormal = "LaserBatToNormal";
-    private string PlayerLosesLifeAnimation = "LaserBatPlayerLosesLife";
+    private const string Intro = "LaserBatIntro";
+    private const string ToNormal = "LaserBatToNormal";
+    private const string PlayerLosesLifeAnimation = "LaserBatPlayerLosesLife";
     private float timer;
     private bool shootingBullet;
 
@@ -43,7 +43,7 @@ public class LaserBat : PlayersBatBase
     private void FireBullet()
     {
         PlaySound(SoundList.LaserBulletFiring);
-        CoreConnector.GameManager.powerupManager.FireLaser(transform.position, FiringVelocity);
+        CoreConnector.GameManager.powerUpManager.FireLaser(transform.position, FiringVelocity);
     }
 
     protected override void UpdateLoop()

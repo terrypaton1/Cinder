@@ -16,9 +16,9 @@ public class PlayersBatBase : BaseObject
     private SpriteRenderer[] spriteRenderers;
 
     private bool batIsEnabled;
-    private readonly string Intro = "Intro";
-    private readonly string ToNormal = "ToNormal";
-    private readonly string PlayerLosesLifeAnimation = "PlayerLosesLife";
+    private const string Intro = "Intro";
+    private const string ToNormal = "ToNormal";
+    private const string PlayerLosesLifeAnimation = "PlayerLosesLife";
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {

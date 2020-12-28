@@ -53,16 +53,6 @@ public class CoreConnector : MonoBehaviour
         set => gameUIManager = value;
     }
 
-    public static ParticleManager ParticleManager
-    {
-        get
-        {
-            Assert.IsNotNull(particleManager, "Error: particleManager reference is null");
-            return particleManager;
-        }
-        set => particleManager = value;
-    }
-
     public static GameSoundManager SoundManager
     {
         get

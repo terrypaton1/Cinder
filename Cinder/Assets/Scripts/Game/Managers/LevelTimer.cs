@@ -8,9 +8,9 @@ public class LevelTimer : MonoBehaviour
     [SerializeField]
     public PowerupType[] randomPowerupChoices;
 
-    private string repeatingFunctionName = "IncrementTime";
+    private const string repeatingFunctionName = "IncrementTime";
 
-    private float repeatingTimeStep = 1f;
+    private const float repeatingTimeStep = 1.0f;
     private float timePassed;
     private float timeBeforeFirstPowerUpDrops;
     private bool powerUpDropStarted;
@@ -59,11 +59,13 @@ public class LevelTimer : MonoBehaviour
         }
 
         timeBetweenPowerUpsTimer += repeatingTimeStep;
-        if (timeBetweenPowerUpsTimer > timeBetweenPowerUps)
+        if (!(timeBetweenPowerUpsTimer > timeBetweenPowerUps))
         {
-            timeBetweenPowerUpsTimer = 0;
-            DropPowerUp();
+            return;
         }
+
+        timeBetweenPowerUpsTimer = 0;
+        DropPowerUp();
     }
 
     public void ResetTimer()

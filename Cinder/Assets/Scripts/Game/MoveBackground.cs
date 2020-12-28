@@ -5,7 +5,7 @@ public class MoveBackground : MonoBehaviour
     private Vector3 position;
     private float rotation;
 
-    private float range = .2f;
+    private const float range = .2f;
 
     protected void Start()
     {
@@ -14,7 +14,7 @@ public class MoveBackground : MonoBehaviour
 
     protected void Update()
     {
-        float radian = Mathf.Deg2Rad * rotation;
+        var radian = Mathf.Deg2Rad * rotation;
         var newPosition = position;
         newPosition.x += Mathf.Cos(radian) * range;
         newPosition.y += Mathf.Sin(radian) * range;

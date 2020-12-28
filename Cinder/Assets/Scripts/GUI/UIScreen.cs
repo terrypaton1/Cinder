@@ -5,12 +5,12 @@ public class UIScreen : MonoBehaviour
     [SerializeField]
     private GameObject content;
 
-    public virtual void Show()
+    public void Show()
     {
         content.SetActive(true);
     }
 
-    public virtual void Hide()
+    public void Hide()
     {
         content.SetActive(false);
     }

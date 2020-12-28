@@ -20,9 +20,9 @@ public class FallingObjectsManager : MonoBehaviour
             fallingPoint.Disable();
         }
 
-        foreach (var fallingPowerup in fallingPowerUpPool)
+        foreach (var fallingPowerUp in fallingPowerUpPool)
         {
-            fallingPowerup.Disable();
+            fallingPowerUp.Disable();
         }
     }
 
@@ -69,10 +69,10 @@ public class FallingObjectsManager : MonoBehaviour
         }
     }
 
-    public void AddFallingPowerUp(Vector3 position, PowerupType newPowerupType)
+    public void AddFallingPowerUp(Vector3 position, PowerupType newPowerUpType)
     {
         var falling = GetPowerUpFromPool();
-        falling.Setup(newPowerupType);
+        falling.Setup(newPowerUpType);
         falling.StartFalling(position);
     }
 
@@ -86,7 +86,7 @@ public class FallingObjectsManager : MonoBehaviour
             }
         }
 
-        Debug.LogError("Out of falling powerups");
+        Debug.LogError("Out of falling powerUps");
         return null;
     }
 

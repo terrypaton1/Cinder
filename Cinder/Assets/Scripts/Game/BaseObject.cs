@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
-    protected virtual void PlaySound(SoundList sound)
+    protected void PlaySound(SoundList sound)
     {
         CoreConnector.SoundManager.PlaySound(sound);
     }
 
-    protected void ShowInGameMessage(string _messageText)
+    protected static void ShowInGameMessage(string _messageText)
     {
 //		Debug.Log("ShowInGameMessage:"+_messageText);
         CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(_messageText);
     }
 
-    protected void SpawnParticles(ParticleTypes particleType, Vector3 position)
+    protected static void SpawnParticles(ParticleTypes particleType, Vector3 position)
     {
         CoreConnector.GameManager.particleManager.SpawnParticleEffect(particleType, position);
     }

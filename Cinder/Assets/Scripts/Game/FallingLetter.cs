@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class FallingLetter : FallingBase
+﻿public class FallingLetter : FallingBase
 {
     public string letter = "display0";
 

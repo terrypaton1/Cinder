@@ -218,7 +218,7 @@ public class BrickBase : BaseObject
         targetScale = 0.05f;
 
         var timePassed = 0.0f;
-        var timeToTake = 0.35f;
+        const float timeToTake = 0.35f;
 
         while (timePassed < timeToTake)
         {

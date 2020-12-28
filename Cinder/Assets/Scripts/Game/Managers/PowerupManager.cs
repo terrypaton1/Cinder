@@ -23,10 +23,10 @@ public class PowerupManager : BaseObject
     public override void LevelComplete()
     {
         CoreConnector.GameUIManager.HidePowerUpBar();
-        DisableAllPowerups();
+        DisableAllPowerUps();
     }
 
-    private void DisableAllPowerups()
+    private void DisableAllPowerUps()
     {
         shield.DisablePowerUp();
         crazyBallRef.DisablePowerUp();
@@ -36,7 +36,7 @@ public class PowerupManager : BaseObject
 
     protected void OnEnable()
     {
-        DisableAllPowerups();
+        DisableAllPowerUps();
     }
 
     public void FireLaser(Vector3 position, Vector3 velocity)
@@ -52,12 +52,12 @@ public class PowerupManager : BaseObject
     public override void LifeLost()
     {
         shield.DisableInstantly();
-        DisableAllPowerups();
+        DisableAllPowerUps();
     }
 
-    public void ActivatePowerup(PowerupType powerupType)
+    public void ActivatePowerUp(PowerupType powerUpType)
     {
-        // if the game is not in play mode, then don't activate power up - this is to catch some cases during level complete or game over where a power up may be collcted at the same time as the event occurs
+        // if the game is not in play mode, then don't activate power up - this is to catch some cases during level complete or game over where a power up may be collected at the same time as the event occurs
         if (!CoreConnector.GameManager.IsGamePlaying())
         {
             // Game is not playing, cannot activate a powerup
@@ -65,7 +65,7 @@ public class PowerupManager : BaseObject
         }
 
         // check that level isn't complete as its possible that a power up is collected just as you complete a level		
-        switch (powerupType)
+        switch (powerUpType)
         {
             case PowerupType.MultiBall:
                 PlaySound(SoundList.multiBall);
@@ -123,10 +123,10 @@ public class PowerupManager : BaseObject
             return;
         }
 
-        ManagePowerups();
+        ManagePowerUps();
     }
 
-    private void ManagePowerups()
+    private void ManagePowerUps()
     {
         var deltaTime = Time.deltaTime;
 
@@ -161,7 +161,7 @@ public class PowerupManager : BaseObject
 
     public void RestartLevel()
     {
-        DisableAllPowerups();
+        DisableAllPowerUps();
         CoreConnector.GameUIManager.HidePowerUpBarInstantly();
     }
 }

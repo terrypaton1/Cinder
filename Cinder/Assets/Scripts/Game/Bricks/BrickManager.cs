@@ -52,7 +52,7 @@ public class BrickManager : MonoBehaviour
     {
         // check if brick destroyed is the same as the last one
         BrickWasDestroyed();
-        CoreConnector.GameManager.powerupManager.BrickWasDestroyed();
+        CoreConnector.GameManager.powerUpManager.BrickWasDestroyed();
         CoreConnector.GameManager.gameVariables.IncreaseBricksBroken();
 
         if (BricksAreStillActive())

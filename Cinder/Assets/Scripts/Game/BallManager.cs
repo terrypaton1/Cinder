@@ -157,7 +157,7 @@ public class BallManager : BaseObject
     private float CalculateBallMaxSpeed()
     {
         // get the current level
-        int levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
         if (levelNumber < 6)
         {
             return GameVariables.ballMaxSpeedPhase1;
@@ -179,10 +179,10 @@ public class BallManager : BaseObject
 
     public void BallDestroyed(Ball ball)
     {
-        var ballLostEffectPsoition = ball.transform.position;
+        var position = ball.transform.position;
         // find the bottom of the screen
-        ballLostEffectPsoition.y = 0.0f;
-        SpawnParticles(ParticleTypes.BallLost, ballLostEffectPsoition);
+        position.y = 0.0f;
+        SpawnParticles(ParticleTypes.BallLost, position);
 
         PlaySound(SoundList.ballLost);
         RemoveBall(ball);

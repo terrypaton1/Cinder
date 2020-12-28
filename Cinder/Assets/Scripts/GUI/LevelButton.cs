@@ -12,7 +12,7 @@ public class LevelButton : MonoBehaviour
     protected TextMeshProUGUI levelNumberLabel;
 
     [SerializeField]
-    protected UnityEngine.UI.Button button;
+    protected Button button;
 
     public int levelNumber = 1;
     public Image levelSprite;

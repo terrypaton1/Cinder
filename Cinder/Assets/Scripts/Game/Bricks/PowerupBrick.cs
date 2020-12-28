@@ -25,7 +25,7 @@ public class PowerupBrick : BrickBase
         CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(transform.position, typeOfPowerUp);
     }
     
-    protected virtual void InitializeBrick()
+    protected void InitializeBrick()
     {
         brickPointsValue = 50;
         UpdateAmountOfHitsLeftDisplay();

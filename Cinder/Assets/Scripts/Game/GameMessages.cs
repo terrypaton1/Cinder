@@ -15,8 +15,8 @@ public class GameMessages : MonoBehaviour
 
     private IEnumerator coroutine;
 
-    private readonly string HideMessage = "HideMessage";
-    private readonly string ShowMessage = "ShowMessage";
+    private const string HideMessage = "HideMessage";
+    private const string ShowMessage = "ShowMessage";
 
     protected void Awake()
     {

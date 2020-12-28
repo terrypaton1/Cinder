@@ -94,7 +94,7 @@ public class FallingBase : BaseObject
     {
         var powerUpLostEffectPosition = objectTransform.position;
         powerUpLostEffectPosition.y = 0;
-        SpawnParticles(ParticleTypes.PowerupLost, powerUpLostEffectPosition);
+        SpawnParticles(ParticleTypes.PowerUpLost, powerUpLostEffectPosition);
         Disable();
     }
 }

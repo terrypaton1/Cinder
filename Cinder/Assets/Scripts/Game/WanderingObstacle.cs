@@ -225,13 +225,6 @@ public class WanderingObstacle : BrickBase
         }
 
         currentDirectionTendency = Mathf.Clamp(currentDirectionTendency, -1f, 1f);
-        if (currentDirectionTendency < 0)
-        {
-            sprite.flipX = true;
-        }
-        else
-        {
-            sprite.flipX = false;
-        }
+        sprite.flipX = currentDirectionTendency < 0;
     }
 }
