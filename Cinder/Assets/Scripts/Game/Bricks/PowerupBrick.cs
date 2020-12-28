@@ -17,18 +17,19 @@ public class PowerupBrick : BrickBase
 
     public override void UpdateAmountOfHitsLeftDisplay()
     {
-        // powerup brick doesn't use this
+        // powerUp brick doesn't use this
     }
 
     protected override void StartItemFallingFromDestroyedBrick()
     {
         CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(transform.position, typeOfPowerUp);
     }
-
+    
     protected virtual void InitializeBrick()
     {
         brickPointsValue = 50;
         UpdateAmountOfHitsLeftDisplay();
         EvaluateDisplay();
     }
+
 }

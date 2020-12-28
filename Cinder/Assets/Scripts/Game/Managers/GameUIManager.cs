@@ -3,7 +3,7 @@
 public class GameUIManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject buttonsHolder;
+    protected GameObject buttonsHolder;
 
     [SerializeField]
     public PointsDisplay pointsDisplay;
@@ -20,7 +20,7 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField]
     public GameMessages gameMessages;
-    
+
     protected void OnEnable()
     {
         CoreConnector.GameUIManager = this;

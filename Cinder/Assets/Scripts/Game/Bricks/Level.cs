@@ -15,7 +15,7 @@ public class Level : MonoBehaviour
         nonBricks = GetComponentsInChildren<NonBrick>();
     }
 
-    public virtual void Show()
+    public void Show()
     {
         foreach (var brick in bricks)
         {
@@ -28,7 +28,7 @@ public class Level : MonoBehaviour
         }
     }
 
-    public virtual void Hide()
+    public void Hide()
     {
         foreach (var brick in bricks)
         {

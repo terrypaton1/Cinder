@@ -3,13 +3,6 @@ using UnityEngine.Assertions;
 
 public class CoreConnector : MonoBehaviour
 {
-    /*[SerializeField]
-    protected GameSettings gameSettings;
-
-    public ref GameSettings GetGameSettings()
-    {
-        return ref gameSettings;
-    }*/
     private static GameMessages gameMessages;
     private static CoreConnector instance;
     private static GameManager gameManager;
@@ -19,11 +12,6 @@ public class CoreConnector : MonoBehaviour
     private static ParticleManager particleManager;
     private static GameSoundManager soundManager;
     private static LevelsManager levelsManager;
-    
-    public static CoreConnector Instance
-    {
-        get { return instance; }
-    }
 
     public static GameManager GameManager
     {
@@ -93,23 +81,5 @@ public class CoreConnector : MonoBehaviour
             return levelsManager;
         }
         set => levelsManager = value;
-    }
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            return;
-        }
-
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-
-    private void OnDisable()
-    {
-        instance = null;
     }
 }

@@ -12,15 +12,15 @@ public class LevelTimer : MonoBehaviour
 
     private float repeatingTimeStep = 1f;
     private float timePassed;
-    private float timeBeforeFirstPowerupDrops;
-    private bool powerupDropStarted;
-    private float timeBetweenPowerupsTimer;
-    private float timeBetweenPowerups;
+    private float timeBeforeFirstPowerUpDrops;
+    private bool powerUpDropStarted;
+    private float timeBetweenPowerUpsTimer;
+    private float timeBetweenPowerUps;
 
     protected void OnEnable()
     {
-        timeBeforeFirstPowerupDrops = 1.5f * 60;
-        timeBetweenPowerups = 20;
+        timeBeforeFirstPowerUpDrops = 1.5f * 60;
+        timeBetweenPowerUps = 20;
         fallingPowerUp.Setup(PowerupType.MultiBall);
         fallingPowerUp.Disable();
     }
@@ -41,54 +41,55 @@ public class LevelTimer : MonoBehaviour
             return;
         }
 
-        if (!powerupDropStarted)
+        if (!powerUpDropStarted)
         {
             timePassed += repeatingTimeStep;
 //			Debug.Log("timePassed:" + timePassed);
-            if (timePassed > timeBeforeFirstPowerupDrops)
+            if (timePassed > timeBeforeFirstPowerUpDrops)
             {
-                powerupDropStarted = true;
+                powerUpDropStarted = true;
 //				Debug.Log("drop first powerup");
-                DropPowerup();
+                DropPowerUp();
             }
         }
 
-        if (powerupDropStarted)
+        if (!powerUpDropStarted)
         {
-            timeBetweenPowerupsTimer += repeatingTimeStep;
-//			Debug.Log("timeBetweenPowerupsTimer:" + timeBetweenPowerupsTimer);
-            if (timeBetweenPowerupsTimer > timeBetweenPowerups)
-            {
-                timeBetweenPowerupsTimer = 0;
-                DropPowerup();
-            }
+            return;
+        }
+
+        timeBetweenPowerUpsTimer += repeatingTimeStep;
+        if (timeBetweenPowerUpsTimer > timeBetweenPowerUps)
+        {
+            timeBetweenPowerUpsTimer = 0;
+            DropPowerUp();
         }
     }
 
     public void ResetTimer()
     {
         fallingPowerUp.Disable();
-        powerupDropStarted = false;
+        powerUpDropStarted = false;
         timePassed = 0;
-        timeBetweenPowerupsTimer = 0;
+        timeBetweenPowerUpsTimer = 0;
         StartTimer();
     }
 
     public void StopTimer()
     {
-//		Debug.Log("StopRepeating");
         CancelInvoke(repeatingFunctionName);
     }
 
-    public void DropPowerup()
+    private void DropPowerUp()
     {
-        int randomPowerUpNum = Random.Range(0, randomPowerupChoices.Length);
-        PowerupType randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
+        var randomPowerUpNum = Random.Range(0, randomPowerupChoices.Length);
+        var randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
         fallingPowerUp.Setup(randomTypeOfPowerUp);
 
-        Vector3 powerupStartPosition = new Vector3(Random.Range(-1.3f, 1.3f), 8, 0);
-        fallingPowerUp.StartFalling(powerupStartPosition);
-        CoreConnector.GameManager.particleManager.SpawnParticleEffect(ParticleTypes.LaserHitsBrick,
-            powerupStartPosition);
+        var powerUpStartPosition = new Vector3(Random.Range(-1.3f, 1.3f), 8, 0);
+        fallingPowerUp.StartFalling(powerUpStartPosition);
+        CoreConnector.GameManager.particleManager.SpawnParticleEffect(
+            ParticleTypes.LaserHitsBrick,
+            powerUpStartPosition);
     }
 }

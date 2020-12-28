@@ -23,52 +23,52 @@ public enum ParticleTypes
 public class ParticleManager : MonoBehaviour
 {
     [SerializeField]
-    ParticleSystem _brickCollisionParticleSystem;
+    protected ParticleSystem _brickCollisionParticleSystem;
 
     [SerializeField]
-    ParticleSystem _brickExplosionParticleSystem;
+    protected ParticleSystem _brickExplosionParticleSystem;
 
     [SerializeField]
-    ParticleSystem _batCollisionParticleSystem;
+    protected ParticleSystem _batCollisionParticleSystem;
 
     [SerializeField]
-    ParticleSystem _newBallParticleSystem;
+    protected ParticleSystem _newBallParticleSystem;
 
     [SerializeField]
-    ParticleSystem _newBallTwoParticleSystem;
+    protected ParticleSystem _newBallTwoParticleSystem;
 
     [SerializeField]
-    ParticleSystem ballLostParticleSystem;
+    protected ParticleSystem ballLostParticleSystem;
 
     [SerializeField]
-    ParticleSystem PowerupLostParticles;
+    protected ParticleSystem PowerupLostParticles;
 
     [SerializeField]
-    ParticleSystem PowerupCollectedParticles;
+    protected ParticleSystem PowerupCollectedParticles;
 
     [SerializeField]
-    ParticleSystem FallingPointsCollectedParticles;
+    protected ParticleSystem FallingPointsCollectedParticles;
 
     [SerializeField]
-    ParticleSystem DestroyFallingItemsParticles;
+    protected ParticleSystem DestroyFallingItemsParticles;
 
     [SerializeField]
-    ParticleSystem TNTExplosionParticles;
+    protected ParticleSystem TNTExplosionParticles;
 
     [SerializeField]
-    ParticleSystem LaserBulletParticles;
+    protected ParticleSystem LaserBulletParticles;
 
     [SerializeField]
-    ParticleSystem WanderingObstacleExplosionParticles;
+    protected ParticleSystem WanderingObstacleExplosionParticles;
 
     [SerializeField]
-    ParticleSystem WanderingObstacleSpawnParticles;
+    protected ParticleSystem WanderingObstacleSpawnParticles;
 
     [SerializeField]
-    ParticleSystem BossExplosionParticles;
+    protected ParticleSystem BossExplosionParticles;
 
     [SerializeField]
-    ParticleSystem FreezePlayerParticles;
+    protected ParticleSystem FreezePlayerParticles;
 
     public void SpawnParticleEffect(ParticleTypes effect, Vector3 position)
     {

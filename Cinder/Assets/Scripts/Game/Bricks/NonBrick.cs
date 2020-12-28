@@ -9,38 +9,34 @@ public class NonBrick : BaseObject
     [SerializeField]
     protected Collider2D colliderRef;
 
-    public virtual void Show()
+    public void Show()
     {
         EnableVisuals();
         EnableCollisions();
     }
 
-    public virtual void Hide()
+    public void Hide()
     {
         DisableCollisions();
         DisableVisuals();
     }
 
-    protected virtual void DisableVisuals()
+    private void DisableVisuals()
     {
-        if (spriteRenderer == null)
-        {
-            Debug.Log("HER#!",gameObject);
-        }
         spriteRenderer.enabled = false;
     }
 
-    protected virtual void EnableVisuals()
+    private void EnableVisuals()
     {
         spriteRenderer.enabled = true;
     }
 
-    protected virtual void DisableCollisions()
+    private void DisableCollisions()
     {
         colliderRef.enabled = false;
     }
 
-    protected virtual void EnableCollisions()
+    private void EnableCollisions()
     {
         colliderRef.enabled = true;
     }

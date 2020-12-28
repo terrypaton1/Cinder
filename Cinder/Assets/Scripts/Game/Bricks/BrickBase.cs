@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using Random = UnityEngine.Random;
 
@@ -27,21 +26,12 @@ public class BrickBase : BaseObject
     protected float targetScale = 1.0f;
     private Vector3 scale = Vector3.one;
     private float delayCounter;
-    private bool brickHasBeenDestroyed;
     private IEnumerator coroutine;
-
-    [SerializeField]
-    public Animator brickAnimation;
 
     public bool BrickHasBeenDestroyed
     {
-        get { return brickHasBeenDestroyed; }
-        set { brickHasBeenDestroyed = value; }
-    }
-
-    public virtual void SetupFallingPointObject(FallingPoints _fallingPointObject)
-    {
-//	
+        get;
+        set;
     }
 
     public virtual void Hide()
@@ -77,7 +67,6 @@ public class BrickBase : BaseObject
 
     private IEnumerator StartSequence()
     {
-        // todo a better initial animation system would be better
         yield return new WaitForSeconds(delayCounter);
 
         EnableVisuals();
@@ -99,7 +88,7 @@ public class BrickBase : BaseObject
         }
     }
 
-    void SetVisualScale(float scaleValue)
+    private void SetVisualScale(float scaleValue)
     {
         scale.x = scale.y = scaleValue;
         visualObjects.transform.localScale = scale;
@@ -116,7 +105,7 @@ public class BrickBase : BaseObject
         colliderRef.gameObject.layer = CoreConnector.GameManager.brickManager.bricksLayerDuringFlameBall;
     }
 
-    protected void ApplyNormalLayers()
+    private void ApplyNormalLayers()
     {
 //		Debug.Log("ApplyNormalLayers on bricks");
         if (!Application.isPlaying)
@@ -128,7 +117,7 @@ public class BrickBase : BaseObject
         colliderRef.gameObject.layer = CoreConnector.GameManager.brickManager.bricksLayerNormal;
     }
 
-    public virtual void AffectedByTNTExplosion()
+    public void AffectedByTNTExplosion()
     {
         if (BrickHasBeenDestroyed)
         {
@@ -181,7 +170,7 @@ public class BrickBase : BaseObject
         }
         else
         {
-// brick has taken a hit, shake its visuals!
+            // brick has taken a hit, shake its visuals!
             StartShake();
         }
 
@@ -191,7 +180,7 @@ public class BrickBase : BaseObject
     private IEnumerator ShakeBrick()
     {
         // shake the visual element of this brick
-        int count = 10;
+        var count = 10;
         while (count > 0)
         {
             visualObjects.transform.localPosition = new Vector2(
@@ -257,13 +246,8 @@ public class BrickBase : BaseObject
         sprite.enabled = false;
     }
 
-    public virtual void EnableVisuals()
+    public void EnableVisuals()
     {
         sprite.enabled = true;
-    }
-
-    public void DisableForEditor()
-    {
-        DisableVisuals();
     }
 }

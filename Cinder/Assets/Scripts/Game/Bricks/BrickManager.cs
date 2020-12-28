@@ -3,15 +3,9 @@ using System.Collections.Generic;
 
 public class BrickManager : MonoBehaviour
 {
-    [SerializeField]
-    protected GameObject fallingPointsPrefabReference;
-
-    [SerializeField]
-    protected GameObject brickMultiHitSpritePrefabReference;
-
     private Vector3 brickTestPosition = Vector3.zero;
 
-    private float distance = 0;
+    private float distance;
 
     private List<BrickBase> activeBrickList = new List<BrickBase>();
     private List<NonBrick> nonBrickList = new List<NonBrick>();
@@ -40,7 +34,6 @@ public class BrickManager : MonoBehaviour
 
     public void RestartLevel()
     {
-//		Debug.Log("RestartLevel");
         activeBrickList = CoreConnector.LevelsManager.GetBricksForCurrentLevel();
         nonBrickList = CoreConnector.LevelsManager.GetNonBricksForCurrentLevel();
 
@@ -74,7 +67,7 @@ public class BrickManager : MonoBehaviour
     private bool BricksAreStillActive()
     {
         // how many bricks are still active
-        int activeBricks = CalculateActiveBricks();
+        var activeBricks = CalculateActiveBricks();
         return activeBricks > 0;
     }
 
@@ -165,7 +158,7 @@ public class BrickManager : MonoBehaviour
         }
     }
 
-    public void BrickWasDestroyed()
+    private void BrickWasDestroyed()
     {
         foreach (var brickBase in activeBrickList)
         {

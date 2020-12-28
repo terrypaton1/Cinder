@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 
 public class Boss : BrickBase
 {
     [SerializeField]
     protected FallingFreeze fallingFreezeReference;
 
+    [FormerlySerializedAs("googleyEyes")]
     [SerializeField]
-    private GoogleyEye[] googleyEyes;
+    private GoogleyEye[] googlyEyes;
 
     private int freezeDropTriggerCount;
     private bool canDropFreezePower;
@@ -16,23 +18,17 @@ public class Boss : BrickBase
     {
         UpdateAmountOfHitsLeftDisplay();
         // determine if boss can drop freezes
-        int levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
         if (levelNumber >= GameVariables.bossesStartDroppingFreezesFromLevel)
         {
             canDropFreezePower = true;
         }
     }
 
-    public override void SetupFallingPointObject(FallingPoints _fallingPointObject)
-    {
-//		Debug.Log("SetupFallingPointObject");
-    }
-
     public override void BrickHitByBall()
     {
         if (canDropFreezePower)
         {
-            //todo change this to behaviours in a list that get processed
             ManageDropFreezePower();
         }
 
@@ -102,8 +98,6 @@ public class Boss : BrickBase
 
     protected override IEnumerator DestroyBrickSequence(bool playSound = true)
     {
-        brickAnimation.Play("BrickDestroyed");
-
         StartItemFallingFromDestroyedBrick();
 
         BrickHasBeenDestroyed = true;
@@ -141,7 +135,7 @@ public class Boss : BrickBase
 
     private void ShowGooglyEyes()
     {
-        foreach (var eye in googleyEyes)
+        foreach (var eye in googlyEyes)
         {
             eye.Show();
         }
@@ -149,7 +143,7 @@ public class Boss : BrickBase
 
     private void HideGooglyEyes()
     {
-        foreach (var eye in googleyEyes)
+        foreach (var eye in googlyEyes)
         {
             eye.Hide();
         }

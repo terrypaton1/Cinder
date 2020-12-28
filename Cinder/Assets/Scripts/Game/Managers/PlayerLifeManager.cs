@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class PlayerLifeManager : BaseObject
+﻿public class PlayerLifeManager : BaseObject
 {
     private int playerLives;
 

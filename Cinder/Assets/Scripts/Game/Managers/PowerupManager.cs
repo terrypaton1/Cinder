@@ -55,7 +55,7 @@ public class PowerupManager : BaseObject
         DisableAllPowerups();
     }
 
-    public void ActivatePowerup(PowerupType _powerupType)
+    public void ActivatePowerup(PowerupType powerupType)
     {
         // if the game is not in play mode, then don't activate power up - this is to catch some cases during level complete or game over where a power up may be collcted at the same time as the event occurs
         if (!CoreConnector.GameManager.IsGamePlaying())
@@ -65,8 +65,7 @@ public class PowerupManager : BaseObject
         }
 
         // check that level isn't complete as its possible that a power up is collected just as you complete a level		
-//		Debug.Log("ActivatePowerup:" + _powerupType.ToString());
-        switch (_powerupType)
+        switch (powerupType)
         {
             case PowerupType.MultiBall:
                 PlaySound(SoundList.multiBall);
@@ -93,19 +92,19 @@ public class PowerupManager : BaseObject
             case PowerupType.SplitBat:
                 PlaySound(SoundList.PowerupSplitBat);
                 CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Split);
-                ShowInGameMessage("Split!");
+                ShowInGameMessage(Message.SplitBat);
                 break;
             case PowerupType.Shield:
-                ShowInGameMessage("Shield!");
+                ShowInGameMessage(Message.Shield);
                 shield.Activate();
                 break;
             case PowerupType.FlameBall:
                 flameBall.Activate();
-                ShowInGameMessage("Fireball!");
+                ShowInGameMessage(Message.Fireball);
                 break;
             case PowerupType.CrazyBall:
                 crazyBallRef.Activate();
-                ShowInGameMessage("Crazy Ball!");
+                ShowInGameMessage(Message.CrazyBall);
                 break;
             case PowerupType.FreezePlayer:
 
@@ -156,6 +155,7 @@ public class PowerupManager : BaseObject
         {
             return;
         }
+
         CoreConnector.GameUIManager.HidePowerUpBar();
     }
 

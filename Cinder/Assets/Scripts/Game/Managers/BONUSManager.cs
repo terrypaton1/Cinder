@@ -31,10 +31,10 @@ public class BONUSManager : BaseObject
     protected Animator _sprite4Animator;
 
     private IEnumerator coroutine;
-    private readonly string word = "BRICK";
-    private readonly string LetterCollectedAnimation = "LetterCollected";
-    private readonly string LetterBonusCollectedAnimation = "LetterBonusCollected";
-    private readonly string HideLetterAnimation = "HideLetter";
+    private const string word = "BRICK";
+    private const string LetterCollectedAnimation = "LetterCollected";
+    private const string LetterBonusCollectedAnimation = "LetterBonusCollected";
+    private const string HideLetterAnimation = "HideLetter";
 
     public void RestartGame()
     {
@@ -103,8 +103,8 @@ public class BONUSManager : BaseObject
 
     private FallingLetter GetRandomLetterFromPool()
     {
-        int randomLetter = Random.Range(0, fallingLettersPool.Count);
-        FallingLetter fallingLetter = fallingLettersPool[randomLetter];
+        var randomLetter = Random.Range(0, fallingLettersPool.Count);
+        var fallingLetter = fallingLettersPool[randomLetter];
         fallingLettersPool.RemoveAt(randomLetter);
         fallingObjects.Add(fallingLetter);
         return fallingLetter;
@@ -114,7 +114,7 @@ public class BONUSManager : BaseObject
     {
         collectedObjects.Add(_fallingLetter);
         fallingObjects.Remove(_fallingLetter);
-        
+
         var letterValue = word.IndexOf(_fallingLetter.letter, StringComparison.Ordinal);
 
         switch (letterValue)

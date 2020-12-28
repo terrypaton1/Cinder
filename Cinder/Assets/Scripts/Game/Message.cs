@@ -18,4 +18,7 @@
     public const string WideBat = "Wide!";
     public const string SmallBat = "Small!";
     public const string LaserBat = "Laser!";
+    public const string SplitBat = "Split!";
+    public const string Shield = "Shield!";
+    public const string Fireball = "Fireball!";
 }

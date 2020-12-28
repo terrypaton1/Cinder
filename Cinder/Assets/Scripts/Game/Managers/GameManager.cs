@@ -145,7 +145,7 @@ public class GameManager : BaseObject
         ChangeGameState(GameState.GameOver);
         CoreConnector.GameManager.gameVariables.StoreTotalBricksBroken();
 
-        int playersFinalScore = CoreConnector.GameManager.scoreManager.playerScore;
+        var playersFinalScore = CoreConnector.GameManager.scoreManager.playerScore;
         Debug.Log("players final score:" + playersFinalScore);
 
         CoreConnector.UIManager.DisplayScreen(UIScreens.GameOver);
@@ -153,7 +153,6 @@ public class GameManager : BaseObject
 
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
         ChangeGameState(GameState.GameOver);
 
         Time.timeScale = 1;
@@ -287,7 +286,6 @@ public class GameManager : BaseObject
 
         levelTimer.StopTimer();
 
-        //int levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
         // check if the max level beaten should be increased
         int maxLevelBeaten = PlayerPrefs.GetInt(DataVariables.maxLevelBeatenPrefix);
         int nextLevelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel) + 1;

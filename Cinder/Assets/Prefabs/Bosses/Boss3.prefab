@@ -117,7 +117,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 463278}
-  - component: {fileID: 9544346}
   - component: {fileID: 11482664}
   m_Layer: 10
   m_Name: Boss3
@@ -143,25 +142,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9544346
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152180}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 11eeca6b0ff1e44e29c7956bd9283881, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &11482664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,9 +159,8 @@ MonoBehaviour:
   visualObjects: {fileID: 107782}
   resetHitsToDestroyCount: 25
   amountOfHitsToDestroy: 25
-  brickAnimation: {fileID: 9544346}
   fallingFreezeReference: {fileID: 161205966759194227}
-  googleyEyes:
+  googlyEyes:
   - {fileID: 4191386150962167576}
 --- !u!1 &182868
 GameObject:
@@ -229,6 +208,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -281,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 428308, guid: 8d1cea83a80d1476dbeb7cd5aea03efe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 428308, guid: 8d1cea83a80d1476dbeb7cd5aea03efe, type: 3}
       propertyPath: m_LocalPosition.y

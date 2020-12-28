@@ -9,7 +9,7 @@ public class FallingObjectsManager : MonoBehaviour
     [SerializeField]
     private FallingPowerup FallingPowerUpPrefab;
 
-    private int maxPooled = 20;
+    private const int maxPooled = 20;
     private List<FallingPoints> fallingPointsPool;
     private List<FallingPowerup> fallingPowerUpPool;
 
@@ -19,6 +19,7 @@ public class FallingObjectsManager : MonoBehaviour
         {
             fallingPoint.Disable();
         }
+
         foreach (var fallingPowerup in fallingPowerUpPool)
         {
             fallingPowerup.Disable();
@@ -28,7 +29,7 @@ public class FallingObjectsManager : MonoBehaviour
     public void BuildFallingPointsPool()
     {
         fallingPointsPool = new List<FallingPoints>();
-        for (int i = 0; i < maxPooled; ++i)
+        for (var i = 0; i < maxPooled; ++i)
         {
             var instance = Instantiate(FallingPointsPrefab, transform, true);
             fallingPointsPool.Add(instance);
@@ -53,14 +54,14 @@ public class FallingObjectsManager : MonoBehaviour
             }
         }
 
-        Debug.LogError(("Out of falling points"));
+        Debug.LogError("Out of falling points");
         return null;
     }
 
     public void BuildFallingPowerUpsPool()
     {
         fallingPowerUpPool = new List<FallingPowerup>();
-        for (int i = 0; i < maxPooled; ++i)
+        for (var i = 0; i < maxPooled; ++i)
         {
             var instance = Instantiate(FallingPowerUpPrefab, transform, true);
             fallingPowerUpPool.Add(instance);
@@ -85,7 +86,7 @@ public class FallingObjectsManager : MonoBehaviour
             }
         }
 
-        Debug.LogError(("Out of falling powerups"));
+        Debug.LogError("Out of falling powerups");
         return null;
     }
 

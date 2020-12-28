@@ -46,6 +46,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -129,8 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderRef: {fileID: 6110440}
   spriteRenderer: {fileID: 21289800}
-  isFalling: 0
   rigid2D: {fileID: -2036400483609859702}
+  isFalling: 0
 --- !u!50 &-2036400483609859702
 Rigidbody2D:
   serializedVersion: 4
@@ -190,7 +191,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
   m_IsTrigger: 0
@@ -224,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &447030
 Transform:
   m_ObjectHideFlags: 0

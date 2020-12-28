@@ -22,7 +22,7 @@
         CoreConnector.GameUIManager.pointsDisplay.UpdatePointsDisplay(playerScore);
     }
 
-    void CheckForBonusLife()
+    private void CheckForBonusLife()
     {
 //		Debug.Log("playerScore:"+playerScore);
         if (!bonusLife1Collected)
