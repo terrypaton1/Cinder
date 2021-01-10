@@ -84,7 +84,7 @@ public class Shield : PowerUpBase
     {
         base.Activate();
 
-        PlaySound(SoundList.PowerupShield);
+        PlaySound(SoundList.PowerUpShield);
 
         CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPowerUpBar();
 

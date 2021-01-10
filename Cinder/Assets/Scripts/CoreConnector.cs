@@ -23,16 +23,6 @@ public class CoreConnector : MonoBehaviour
         set => gameManager = value;
     }
 
-    public static GameSettings GameSettings
-    {
-        get
-        {
-            Assert.IsNotNull(gameSettings, "Error: gameSettings reference is null");
-            return gameSettings;
-        }
-        set => gameSettings = value;
-    }
-
     public static UIManager UIManager
     {
         get

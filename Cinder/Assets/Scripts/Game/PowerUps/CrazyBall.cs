@@ -29,6 +29,6 @@
 
         CoreConnector.GameManager.ballManager.ActivateCrazyBall();
         timer = GameVariables.crazyBallLengthOfTime;
-        PlaySound(SoundList.PowerupCrazyBall);
+        PlaySound(SoundList.PowerUpCrazyBall);
     }
 }

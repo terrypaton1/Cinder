@@ -3,7 +3,7 @@
     public override void EvaluateDisplay()
     {
         typeOfPowerUp = PowerupType.Random;
-        _spriteRenderer.sprite = CoreConnector.GameSettings.powerUpRandom;
+        _spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.powerUpRandom;
     }
 
     public override void ResetBrick()

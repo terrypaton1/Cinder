@@ -41,16 +41,18 @@ public class UIManager : BaseObject
     {
         CoreConnector.UIManager = this;
 
-        screens = new Dictionary<UIScreens, UIScreen>();
-        screens.Add(UIScreens.LevelChooser, levelChooser);
-        screens.Add(UIScreens.MainMenu, mainMenu);
-        screens.Add(UIScreens.Credits, credits);
-        screens.Add(UIScreens.LoadingScreen, loadingScreen);
-        screens.Add(UIScreens.LevelComplete, levelComplete);
-        screens.Add(UIScreens.GameComplete, gameComplete);
-        screens.Add(UIScreens.Game, gameUI);
-        screens.Add(UIScreens.GameOver, gameOver);
-        screens.Add(UIScreens.PauseGame, pauseGame);
+        screens = new Dictionary<UIScreens, UIScreen>
+        {
+            {UIScreens.LevelChooser, levelChooser},
+            {UIScreens.MainMenu, mainMenu},
+            {UIScreens.Credits, credits},
+            {UIScreens.LoadingScreen, loadingScreen},
+            {UIScreens.LevelComplete, levelComplete},
+            {UIScreens.GameComplete, gameComplete},
+            {UIScreens.Game, gameUI},
+            {UIScreens.GameOver, gameOver},
+            {UIScreens.PauseGame, pauseGame}
+        };
     }
 
     UIScreen GetScreen(UIScreens type)
@@ -94,7 +96,7 @@ public class UIManager : BaseObject
     public void PressMainMenuPlayButton()
     {
         CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
-        int currentLevel = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var currentLevel = PlayerPrefs.GetInt(DataVariables.currentLevel);
         if (currentLevel == 1)
         {
             CoreConnector.UIManager.LoadLevel(currentLevel);
@@ -166,9 +168,6 @@ public class UIManager : BaseObject
 
     private void ShowLevelChooser()
     {
-        // shut dow a game if one is active
-        // todo ensure any current running games are shutfown
-
         HideAllScreens();
         var screen = GetScreen(UIScreens.LevelChooser);
         screen.Show();
@@ -212,7 +211,7 @@ public class UIManager : BaseObject
 
     public void GoNextLevel()
     {
-        // this seems to be the UI button press that triggers the next level
+        // todo confirm this seems to be the UI button press that triggers the next level
         CoreConnector.GameManager.NextLevel();
     }
 

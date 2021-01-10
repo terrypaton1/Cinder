@@ -5,7 +5,7 @@
         base.Activate();
 
         timer = GameVariables.laserBatLengthOfTime;
-        PlaySound(SoundList.PowerupLaser);
+        PlaySound(SoundList.PowerUpLaser);
         CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Laser);
     }
 

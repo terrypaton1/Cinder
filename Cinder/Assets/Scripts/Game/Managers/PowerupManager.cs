@@ -81,7 +81,7 @@ public class PowerupManager : BaseObject
                 break;
             case PowerupType.SmallBat:
                 laserBat.DisableInstantly();
-                PlaySound(SoundList.PowerupSmallBat);
+                PlaySound(SoundList.PowerUpSmallBat);
                 CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Small);
                 ShowInGameMessage(Message.SmallBat);
                 break;
@@ -90,7 +90,7 @@ public class PowerupManager : BaseObject
                 ShowInGameMessage(Message.LaserBat);
                 break;
             case PowerupType.SplitBat:
-                PlaySound(SoundList.PowerupSplitBat);
+                PlaySound(SoundList.PowerUpSplitBat);
                 CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Split);
                 ShowInGameMessage(Message.SplitBat);
                 break;

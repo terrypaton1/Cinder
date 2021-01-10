@@ -4,11 +4,11 @@
     {
         base.Activate();
 
-        PlaySound(SoundList.PowerupFireball);
+        PlaySound(SoundList.PowerUpFireball);
         // tell all current balls to go into flame mode
         CoreConnector.GameManager.ActivateFlameBall();
         timer = GameVariables.flameBallLengthOfTime;
-        PlaySound(SoundList.PowerupLaser);
+        PlaySound(SoundList.PowerUpLaser);
     }
 
     public override void ManagePowerUpLoop(float deltaTime)

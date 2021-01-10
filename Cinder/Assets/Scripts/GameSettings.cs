@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "GameSettings", menuName = "Cinder/GameSettings", order = 1)]
 public class GameSettings : ScriptableObject
@@ -16,40 +15,31 @@ public class GameSettings : ScriptableObject
     [SerializeField]
     public Sprite pointsDisplay500;
 
-    [FormerlySerializedAs("powerupMultiball")]
     [Header("Power up sprites")]
     [SerializeField]
     public Sprite powerUpMultiBall;
 
-    [FormerlySerializedAs("powerupSmallBat")]
     [SerializeField]
     public Sprite powerUpSmallBat;
 
-    [FormerlySerializedAs("powerupCrazyBall")]
     [SerializeField]
     public Sprite powerUpCrazyBall;
 
-    [FormerlySerializedAs("powerupLaser")]
     [SerializeField]
     public Sprite powerUpLaser;
 
-    [FormerlySerializedAs("powerupShield")]
     [SerializeField]
     public Sprite powerUpShield;
 
-    [FormerlySerializedAs("powerupSplitBat")]
     [SerializeField]
     public Sprite powerUpSplitBat;
 
-    [FormerlySerializedAs("powerupRandom")]
     [SerializeField]
     public Sprite powerUpRandom;
 
-    [FormerlySerializedAs("powerupFlameBall")]
     [SerializeField]
     public Sprite powerUpFlameBall;
 
-    [FormerlySerializedAs("powerupWide")]
     [SerializeField]
     public Sprite powerUpWide;
 

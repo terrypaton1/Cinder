@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 public class GameManager : BaseObject
@@ -50,11 +50,25 @@ public class GameManager : BaseObject
     [SerializeField]
     public GameSettings gameSettings;
 
-    private GameState gameState = GameState.Setup;
     private GameState _lastGameState = GameState.Setup;
 
     private IEnumerator coroutine;
+
+    private GameState gameState = GameState.Setup;
     private IEnumerator StartGameCoroutine;
+
+    protected void Update()
+    {
+        if (gameState == GameState.Playing || gameState == GameState.Setup)
+        {
+            brickManager.UpdateLoop();
+        }
+    }
+
+    protected void OnEnable()
+    {
+        CoreConnector.GameManager = this;
+    }
 
     public void StartGame()
     {
@@ -102,19 +116,6 @@ public class GameManager : BaseObject
         StartPlay(0.25f);
     }
 
-    protected void OnEnable()
-    {
-        CoreConnector.GameManager = this;
-    }
-
-    protected void Update()
-    {
-        if (gameState == GameState.Playing || gameState == GameState.Setup)
-        {
-            brickManager.UpdateLoop();
-        }
-    }
-
     public void NextLevel()
     {
         brickManager.NextLevel();
@@ -124,8 +125,6 @@ public class GameManager : BaseObject
         levelTimer.ResetTimer();
 
         ChangeGameState(GameState.Setup);
-
-        Debug.Log("might need to clear UI here");
 
         IncrementPlayersCurrentLevel();
         StartGame();

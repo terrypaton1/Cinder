@@ -6,7 +6,7 @@ public class FreezePlayer : PowerUpBase
     {
         base.Activate();
         CoreConnector.GameManager.playersBatManager.EnableFreezePlayer();
-        PlaySound(SoundList.PowerupFreeze);
+        PlaySound(SoundList.PowerUpFreeze);
         timer = GameVariables.freezePlayerLengthOfTime;
     }
 

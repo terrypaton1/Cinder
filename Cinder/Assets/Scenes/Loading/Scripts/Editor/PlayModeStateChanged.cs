@@ -1,24 +1,27 @@
-﻿using UnityEngine;
+﻿#region
+
 using UnityEditor;
 using UnityEngine.SceneManagement;
+
+#endregion
 
 [InitializeOnLoadAttribute]
 public static class PlayModeStateChanged
 {
+    private static readonly string LoadingScene = "Loading";
+
     static PlayModeStateChanged()
     {
-        EditorApplication.playModeStateChanged += LogPlayModeState;
+        EditorApplication.playModeStateChanged += PlayModeState;
     }
 
-    private static void LogPlayModeState(PlayModeStateChange state)
+    private static void PlayModeState(PlayModeStateChange state)
     {
-        Debug.Log(state);
         if (state != PlayModeStateChange.EnteredPlayMode)
         {
             return;
         }
 
-        Debug.Log("Auto loading loading scene");
-        SceneManager.LoadScene("Loading");
+        SceneManager.LoadScene(LoadingScene);
     }
 }

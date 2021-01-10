@@ -182,28 +182,28 @@ public class GameSoundManager : MonoBehaviour
                 _audioSource2Balls.pitch = randomPitch;
                 _audioSource2Balls.PlayOneShot(pointsCollected[randomSound]);
                 break;
-            case SoundList.PowerupShield:
+            case SoundList.PowerUpShield:
                 _audioSource1.PlayOneShot(powerupShield);
                 break;
-            case SoundList.PowerupLaser:
+            case SoundList.PowerUpLaser:
                 _audioSource1.PlayOneShot(powerupLaser);
                 break;
-            case SoundList.PowerupCrazyBall:
+            case SoundList.PowerUpCrazyBall:
                 _audioSource1.PlayOneShot(powerupCrazyBall);
                 break;
-            case SoundList.PowerupFireball:
+            case SoundList.PowerUpFireball:
                 _audioSource1.PlayOneShot(powerupFireball);
                 break;
-            case SoundList.PowerupSmallBat:
+            case SoundList.PowerUpSmallBat:
                 _audioSource1.PlayOneShot(powerupShrinkBat);
                 break;
-            case SoundList.PowerupSplitBat:
+            case SoundList.PowerUpSplitBat:
                 _audioSource1.PlayOneShot(powerupDoubleBat);
                 break;
             case SoundList.PowerUpWideBat:
                 _audioSource1.PlayOneShot(powerupLongBat);
                 break;
-            case SoundList.PowerupFreeze:
+            case SoundList.PowerUpFreeze:
                 _audioSource1.PlayOneShot(powerupFreeze);
                 break;
 
