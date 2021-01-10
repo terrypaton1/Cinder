@@ -2,12 +2,9 @@
 {
     private int playerLives;
 
-    public void RestartGame()
+    public void ResetPlayerLives()
     {
-        StopAllCoroutines();
         playerLives = GameVariables.playerStartingLives;
-        CoreConnector.GameUIManager.playerLifeDisplay.Show();
-        CoreConnector.GameUIManager.playerLifeDisplay.UpdateLivesDisplay(playerLives);
     }
 
     public void RestartLevel()

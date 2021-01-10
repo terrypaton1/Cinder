@@ -66,7 +66,6 @@ public class UIManager : BaseObject
         return theOut;
     }
 
-
     private void DisplayUIScreen(UIScreens displayScreenID)
     {
         switch (displayScreenID)
@@ -94,7 +93,14 @@ public class UIManager : BaseObject
 
     public void PressMainMenuPlayButton()
     {
-        // todo if the player is on the first level, take them straight to the game, don't go to the level chooser
+        CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
+        int currentLevel = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        if (currentLevel == 1)
+        {
+            CoreConnector.UIManager.LoadLevel(currentLevel);
+            return;
+        }
+
         DisplayUIScreen(UIScreens.LevelChooser);
     }
 
@@ -141,7 +147,6 @@ public class UIManager : BaseObject
         ShowMainMenu();
         CoreConnector.GameManager.ExitGame();
     }
-
 
     public void HideAllScreens()
     {
@@ -231,6 +236,7 @@ public class UIManager : BaseObject
         var screen = GetScreen(UIScreens.PauseGame);
         screen.Show();
     }
+
     public void DisplayScreen(UIScreens screenID)
     {
         HideAllScreens();

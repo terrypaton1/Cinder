@@ -94,7 +94,7 @@ public class GameManager : BaseObject
 
         CoreConnector.GameUIManager.DisplayInGameButtons(true);
 
-        playerLifeManager.RestartGame();
+        playerLifeManager.RestartLevel();
 
         yield return new WaitForSeconds(0.5f);
         touchPosition.ResumeGame();
@@ -117,7 +117,6 @@ public class GameManager : BaseObject
 
     public void NextLevel()
     {
-        Debug.Log("NextLevel");
         brickManager.NextLevel();
         ballManager.GoingToNextLevel();
         levelTimer.ResetTimer();
@@ -264,7 +263,6 @@ public class GameManager : BaseObject
         powerUpManager.RestartLevel();
 
         //todo reset the players lives too?
-
         playerLifeManager.RestartLevel();
 
         bonusManager.RestartGame(); // todo do I need to do this line, I don't think so?
