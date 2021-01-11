@@ -4,7 +4,7 @@
 </p>
 The complete Unity3D open source to a 'brick breaker' clone game by Terry Paton.
 
-This game was developed as a rapid prototype using hand drawn art as a placeholders. The major gimmicks of the game are its power-ups and the 'bosses', essentially large bricks that need multiple hits.
+The major gimmicks of the game are its power-ups and the 'bosses', essentially large bricks that need multiple hits.
 
 Available to play in the Android google play store: <a href="https://play.google.com/store/apps/details?id=com.terrypaton.cinder"> Cinder </a>
 
