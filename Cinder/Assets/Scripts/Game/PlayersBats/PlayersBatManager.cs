@@ -185,9 +185,8 @@ public class PlayersBatManager : BaseObject
         // depending on the previous bat type, we need to transition to the next
         if (previousBatType != PlayerBatTypes.None)
         {
-            
-            StopCoroutine(transitionCoroutine);
-
+            StopTransitionCoroutine();
+           
             transitionCoroutine = TransitionToNextBatType();
             StartCoroutine(transitionCoroutine);
         }
