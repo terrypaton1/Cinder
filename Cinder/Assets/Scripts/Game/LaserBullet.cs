@@ -14,7 +14,7 @@ public class LaserBullet : BaseObject
         thisRigidbody.velocity = velocity;
     }
 
-    private void HitABrick(Vector2 particleSpawnPosition)
+    private void HitABrick()
     {
         PlaySound(SoundList.LaserBulletHitsBrick);
         RePoolObject();
@@ -40,7 +40,7 @@ public class LaserBullet : BaseObject
 
         if (collision.gameObject.CompareTag(CollisionTags.Brick))
         {
-            HitABrick(position);
+            HitABrick();
             var _brick = collision.gameObject.GetComponent<BrickBase>();
             _brick.BrickHitByBall();
             RePoolObject();
@@ -59,6 +59,7 @@ public class LaserBullet : BaseObject
 
     private void RePoolObject()
     {
+        // repool
         // todo change to repooling the object
         Destroy(gameObject);
     }

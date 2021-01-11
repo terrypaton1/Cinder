@@ -51,7 +51,6 @@ public class PowerupManager : BaseObject
 
     public override void LifeLost()
     {
-        shield.DisableInstantly();
         DisableAllPowerUps();
     }
 

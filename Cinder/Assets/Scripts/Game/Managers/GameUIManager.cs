@@ -65,7 +65,7 @@ public class GameUIManager : MonoBehaviour
     public void LifeLost()
     {
         bossHealthRemainingDisplay.Hide();
-        powerupRemainingDisplay.HidePowerUpBar();
+        HidePowerUpBar();
         gameMessages.LifeLost();
     }
 }

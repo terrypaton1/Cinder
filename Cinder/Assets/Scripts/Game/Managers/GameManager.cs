@@ -89,7 +89,7 @@ public class GameManager : BaseObject
         ballManager.ResetAllBalls();
         playersBatManager.HideAllBats();
         Time.timeScale = 1;
-        
+
         CoreConnector.UIManager.DisplayLevelLoader();
 
         yield return new WaitForSeconds(0.2f);
@@ -194,29 +194,28 @@ public class GameManager : BaseObject
 
     public void LoseLife()
     {
-        // put the game state into game over
-
         StartCoroutine(PlayerLifeLostSequence());
     }
 
     private IEnumerator PlayerLifeLostSequence()
     {
         // It is intentional that there is no message telling the player they have lost a life.
-        
         ChangeGameState(GameState.LifeLost);
-
         PlaySound(SoundList.LifeLost);
 
         playerLifeManager.PlayerLosesALife();
-
         playersBatManager.PlayerLosesLife();
+        
+        ballManager.LifeLost();
         brickManager.LifeLost();
-        CoreConnector.GameUIManager.LifeLost();
         powerUpManager.LifeLost();
+        
+        CoreConnector.GameUIManager.LifeLost();
+
         levelTimer.StopTimer();
-        
+
         yield return new WaitForSeconds(0.5f);
-        
+
         if (playerLifeManager.PlayerLives < 1)
         {
             // game over;

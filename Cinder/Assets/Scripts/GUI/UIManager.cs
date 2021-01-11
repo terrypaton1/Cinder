@@ -106,27 +106,6 @@ public class UIManager : BaseObject
         DisplayUIScreen(UIScreens.LevelChooser);
     }
 
-    public void PlayGame()
-    {
-        StartCoroutine(goGame());
-    }
-
-    private IEnumerator goGame()
-    {
-        HideAllScreens();
-
-        DisplayLevelLoader();
-
-        yield return new WaitForSeconds(0.2f);
-
-        // todo change this, because all UI will be loaded before playing
-        // load in the game scene.
-        var async = SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
-        yield return async;
-
-        ShowGamePlayUI();
-    }
-
     public void PressCreditsButton()
     {
         ShowCredits();
@@ -135,7 +114,7 @@ public class UIManager : BaseObject
     public void PressQuitButton()
     {
 #if !UNITY_EDITOR
-				Application.Quit();
+		    Application.Quit();
 #endif
     }
 
@@ -185,6 +164,7 @@ public class UIManager : BaseObject
         InitialLoad();
     }
 
+    //TODO REMOVE THIS ITS ONLY FOR DESKTOP?
     protected void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
