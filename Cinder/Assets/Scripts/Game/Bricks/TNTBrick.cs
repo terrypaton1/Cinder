@@ -21,6 +21,7 @@ public class TNTBrick : BrickBase
 
         yield return null;
 
+        DisableVisuals();
         DisableColliders();
 
         CoreConnector.GameManager.brickManager.TestDestroyBricksAroundTNT(position, explosionRange, this);
@@ -34,7 +35,6 @@ public class TNTBrick : BrickBase
             yield return null;
         }
 
-        DisableVisuals();
     }
 
     public override void UpdateAmountOfHitsLeftDisplay()
