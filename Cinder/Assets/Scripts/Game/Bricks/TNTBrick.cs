@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TNTBrick : BrickBase
 {
-    private float explosionRange = 4;
+    private float explosionRange = 8;
 
     protected override IEnumerator DestroyBrickSequence(bool playSound = true)
     {
