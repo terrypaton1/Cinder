@@ -18,12 +18,18 @@ public class PowerupManager : BaseObject
     protected FreezePlayer freezePlayer;
 
     [SerializeField]
-    protected LaserBullet laserBulletPrefabReference;
+    protected LaserBulletManager laserBulletManager;
+
+    public void OneTimeSetup()
+    {
+        laserBulletManager.OneTimeSetup();
+    }
 
     public override void LevelComplete()
     {
         CoreConnector.GameUIManager.HidePowerUpBar();
         DisableAllPowerUps();
+        laserBulletManager.LevelComplete();
     }
 
     private void DisableAllPowerUps()
@@ -44,9 +50,11 @@ public class PowerupManager : BaseObject
         // fire a laser from position, in direction and speed of velocity
 //		Debug.Log("fire a bullet");
 // todo change this to using a pool
-        var _laserBullet = Instantiate(laserBulletPrefabReference, position, Quaternion.identity);
-        _laserBullet.transform.parent = transform;
-        _laserBullet.Launch(velocity);
+        //     var _laserBullet = Instantiate(laserBulletPrefabReference, position, Quaternion.identity);
+        //    _laserBullet.transform.parent = transform;
+        //   _laserBullet.Launch(velocity);
+
+        laserBulletManager.LaunchLaserBullet(position, velocity);
     }
 
     public override void LifeLost()
@@ -105,7 +113,6 @@ public class PowerupManager : BaseObject
                 ShowInGameMessage(Message.Fireball);
                 break;
             case PowerupType.CrazyBall:
-                CoreConnector.GameUIManager.DisplayPowerUpBar();
                 crazyBallRef.Activate();
                 ShowInGameMessage(Message.CrazyBall);
                 break;
@@ -128,13 +135,11 @@ public class PowerupManager : BaseObject
 
     private void ManagePowerUps()
     {
-        var deltaTime = Time.deltaTime;
-
-        crazyBallRef.ManagePowerUpLoop(deltaTime);
-        shield.ManagePowerUpLoop(deltaTime);
-        laserBat.ManagePowerUpLoop(deltaTime);
-        flameBall.ManagePowerUpLoop(deltaTime);
-        freezePlayer.ManagePowerUpLoop(deltaTime);
+        crazyBallRef.ManagePowerUpTime();
+        shield.ManagePowerUpTime();
+        laserBat.ManagePowerUpTime();
+        flameBall.ManagePowerUpTime();
+        freezePlayer.ManagePowerUpTime();
     }
 
     public void TestDisablePowerupBar()
@@ -160,6 +165,7 @@ public class PowerupManager : BaseObject
     public void RestartLevel()
     {
         DisableAllPowerUps();
+        laserBulletManager.HideAll();
         CoreConnector.GameUIManager.HidePowerUpBarInstantly();
     }
 }

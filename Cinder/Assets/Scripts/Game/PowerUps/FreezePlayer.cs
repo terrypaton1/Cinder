@@ -10,29 +10,16 @@ public class FreezePlayer : PowerUpBase
         timer = GameVariables.freezePlayerLengthOfTime;
     }
 
-    public override void ManagePowerUpLoop(float deltaTime)
-    {
-        if (!powerUpActive)
-        {
-            return;
-        }
-
-        timer -= Time.deltaTime;
-        if (timer <= 0)
-        {
-            DisablePowerUp();
-        }
-    }
 
     public override void DisablePowerUp()
     {
-        base.DisablePowerUp();
         CoreConnector.GameManager.playersBatManager.DisableFreezePlayer();
+        base.DisablePowerUp();
     }
 
     public override void DisableInstantly()
     {
-        base.DisableInstantly();
         CoreConnector.GameManager.playersBatManager.DisableFreezePlayer();
+        base.DisableInstantly();
     }
 }

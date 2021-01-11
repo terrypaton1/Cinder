@@ -39,4 +39,27 @@ public class PowerUpBase : MonoBehaviour
     {
         powerUpActive = false;
     }
+
+    protected virtual void PowerUpTimeOver()
+    {
+        DisablePowerUp();
+        CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();
+    }
+
+    public virtual void ManagePowerUpTime()
+    {
+        if (!powerUpActive)
+        {
+            return;
+        }
+
+        timer -= Time.deltaTime;
+        // display percent left
+        var percentLeft = timer / GameVariables.laserBatLengthOfTime;
+        CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPercent(percentLeft);
+        if (timer <= 0)
+        {
+            PowerUpTimeOver();
+        }
+    }
 }

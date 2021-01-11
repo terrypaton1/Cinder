@@ -4,14 +4,46 @@ public class LaserBullet : BaseObject
 {
     private float currentLaserSpeed;
     private float laserMaxSpeed = 1;
+    public bool isUsed;
 
     [SerializeField]
     protected Rigidbody2D thisRigidbody;
 
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private BoxCollider2D boxCollider;
+
     public void Launch(Vector3 velocity)
     {
+        isUsed = true;
+
+        EnableVisuals();
+        EnableCollider();
+
         laserMaxSpeed = GameVariables.laserBulletSpeed;
         thisRigidbody.velocity = velocity;
+    }
+
+    private void EnableCollider()
+    {
+        boxCollider.enabled = true;
+    }
+
+    private void DisableCollider()
+    {
+        boxCollider.enabled = true;
+    }
+
+    private void DisableVisuals()
+    {
+        spriteRenderer.enabled = false;
+    }
+
+    private void EnableVisuals()
+    {
+        spriteRenderer.enabled = true;
     }
 
     private void HitABrick()
@@ -41,6 +73,7 @@ public class LaserBullet : BaseObject
         if (collision.gameObject.CompareTag(CollisionTags.Brick))
         {
             HitABrick();
+            // todo this could do with optimizing
             var _brick = collision.gameObject.GetComponent<BrickBase>();
             _brick.BrickHitByBall();
             RePoolObject();
@@ -52,15 +85,15 @@ public class LaserBullet : BaseObject
         }
     }
 
-    public override void LevelComplete()
+    public void Disable()
     {
-        RePoolObject();
+        DisableVisuals();
+        DisableCollider();
+        isUsed = false;
     }
 
     private void RePoolObject()
     {
-        // repool
-        // todo change to repooling the object
-        Destroy(gameObject);
+        Disable();
     }
 }

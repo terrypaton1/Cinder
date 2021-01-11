@@ -27,24 +27,14 @@ public class Shield : PowerUpBase
         }
     }
 
-    public override void ManagePowerUpLoop(float deltaTime)
+    public override void ManagePowerUpTime()
     {
+        base.ManagePowerUpTime(); 
         if (!powerUpActive)
         {
             return;
         }
-
-        timer -= deltaTime;
-        
-        var percentLeft = timer / GameVariables.crazyBallLengthOfTime;
-        CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPercent(percentLeft);
-
         EvaluatePulseShield();
-
-        if (timer <= 0)
-        {
-            DisablePowerUp();
-        }
     }
 
     private void EvaluatePulseShield()

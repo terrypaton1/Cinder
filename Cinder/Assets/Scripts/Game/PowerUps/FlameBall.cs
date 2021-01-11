@@ -11,17 +11,10 @@
         PlaySound(SoundList.PowerUpLaser);
     }
 
-    public override void ManagePowerUpLoop(float deltaTime)
+    public override void DisablePowerUp()
     {
-        if (!powerUpActive)
-        {
-            return;
-        }
+        base.DisablePowerUp();
 
-        timer -= deltaTime;
-        if (timer <= 0)
-        {
-            CoreConnector.GameManager.DisableFlameBall();
-        }
+        CoreConnector.GameManager.DisableFlameBall();
     }
 }

@@ -81,6 +81,7 @@ public class GameManager : BaseObject
     {
         fallingObjectsManager.BuildFallingPointsPool();
         fallingObjectsManager.BuildFallingPowerUpsPool();
+        powerUpManager.OneTimeSetup();
         ballManager.Setup();
     }
 
@@ -274,14 +275,12 @@ public class GameManager : BaseObject
         ChangeGameState(GameState.LevelComplete);
         StartCoroutine(LevelCompleteSequence());
     }
-
     private IEnumerator LevelCompleteSequence()
     {
         playersBatManager.LevelComplete();
         brickManager.LevelComplete();
         powerUpManager.LevelComplete();
         fallingObjectsManager.LevelComplete();
-
         levelTimer.StopTimer();
 
         // check if the max level beaten should be increased

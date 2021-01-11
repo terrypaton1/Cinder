@@ -9,22 +9,6 @@
         CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Laser);
     }
 
-    public override void ManagePowerUpLoop(float deltaTime)
-    {
-        if (!powerUpActive)
-        {
-            return;
-        }
-        timer -= deltaTime;
-        // display percent left
-        var percentLeft = timer / GameVariables.laserBatLengthOfTime;
-        CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPercent(percentLeft);
-        if (timer <= 0)
-        {
-            DisablePowerUp();
-        }
-    }
-
     public override void DisablePowerUp()
     {
         base.DisablePowerUp();
