@@ -61,7 +61,7 @@ public class Loading : MonoBehaviour
         yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
 
         CoreConnector.GameManager.PerformInitialSetup();
-// show main menu ui
+        // show main menu ui
 
         CoreConnector.UIManager.DisplayScreen(UIScreens.MainMenu);
 
@@ -73,7 +73,6 @@ public class Loading : MonoBehaviour
     {
         if (currentLoadingIndex >= loadSceneQueue.Length)
         {
-            Debug.Log("All levels loaded");
             StartUpGame();
             return;
         }

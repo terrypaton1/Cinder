@@ -86,15 +86,18 @@ public class PowerupManager : BaseObject
                 ShowInGameMessage(Message.SmallBat);
                 break;
             case PowerupType.LaserBat:
+                CoreConnector.GameUIManager.DisplayPowerUpBar();
                 laserBat.Activate();
                 ShowInGameMessage(Message.LaserBat);
                 break;
             case PowerupType.SplitBat:
+                laserBat.DisableInstantly();
                 PlaySound(SoundList.PowerUpSplitBat);
                 CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Split);
                 ShowInGameMessage(Message.SplitBat);
                 break;
             case PowerupType.Shield:
+                CoreConnector.GameUIManager.DisplayPowerUpBar();
                 ShowInGameMessage(Message.Shield);
                 shield.Activate();
                 break;
@@ -103,17 +106,15 @@ public class PowerupManager : BaseObject
                 ShowInGameMessage(Message.Fireball);
                 break;
             case PowerupType.CrazyBall:
+                CoreConnector.GameUIManager.DisplayPowerUpBar();
                 crazyBallRef.Activate();
                 ShowInGameMessage(Message.CrazyBall);
                 break;
             case PowerupType.FreezePlayer:
-
                 ShowInGameMessage(Message.Freeze);
                 freezePlayer.Activate();
                 break;
         }
-
-        CoreConnector.GameUIManager.DisplayPowerUpBar();
     }
 
     protected void Update()
@@ -135,11 +136,9 @@ public class PowerupManager : BaseObject
         laserBat.ManagePowerUpLoop(deltaTime);
         flameBall.ManagePowerUpLoop(deltaTime);
         freezePlayer.ManagePowerUpLoop(deltaTime);
-
-        TestDisablePowerupBar();
     }
 
-    private void TestDisablePowerupBar()
+    public void TestDisablePowerupBar()
     {
         if (laserBat.IsPowerUpActive())
         {

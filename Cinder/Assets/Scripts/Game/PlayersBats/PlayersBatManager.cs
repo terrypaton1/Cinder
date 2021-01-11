@@ -237,7 +237,6 @@ public class PlayersBatManager : BaseObject
 
         yield return 0;
 
-        Debug.Log("Bat transition finished");
         isMorphingBat = false;
     }
 

@@ -68,6 +68,7 @@ public class Shield : PowerUpBase
         coroutine = DisableShieldSequence();
         StartCoroutine(coroutine);
         shieldAnimator.Play(DisableShield);
+        CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();
     }
 
     private IEnumerator DisableShieldSequence()

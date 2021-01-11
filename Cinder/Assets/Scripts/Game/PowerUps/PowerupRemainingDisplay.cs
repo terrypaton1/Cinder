@@ -30,13 +30,12 @@ public class PowerupRemainingDisplay : MonoBehaviour
     public void DisplayPowerUpBar()
     {
         EnableVisuals();
-        isShowing = true;
         messageAnimation.Play(PowerupRemainingShow);
     }
 
     public void HidePowerUpBarInstantly()
     {
-        isShowing = false;
+        DisableVisuals();
         StopAllCoroutines();
         messageAnimation.Play(PowerupRemainingHide);
     }
@@ -49,7 +48,6 @@ public class PowerupRemainingDisplay : MonoBehaviour
         }
 
         isShowing = false;
-        Debug.Log("HIde powerup bar");
         StopAllCoroutines();
         StartCoroutine(HideInGameMessageSequence());
     }
@@ -61,21 +59,23 @@ public class PowerupRemainingDisplay : MonoBehaviour
         DisableVisuals();
     }
 
-
     private void DisableVisuals()
     {
         foreach (var image in images)
         {
             image.enabled = false;
         }
+
+        isShowing = false;
     }
 
     private void EnableVisuals()
     {
-        Debug.Log("powerup bar EnableVisuals");
         foreach (var image in images)
         {
             image.enabled = true;
         }
+
+        isShowing = true;
     }
 }

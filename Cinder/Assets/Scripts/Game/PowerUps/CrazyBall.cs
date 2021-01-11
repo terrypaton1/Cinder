@@ -30,5 +30,6 @@
         CoreConnector.GameManager.ballManager.ActivateCrazyBall();
         timer = GameVariables.crazyBallLengthOfTime;
         PlaySound(SoundList.PowerUpCrazyBall);
+        CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();
     }
 }
