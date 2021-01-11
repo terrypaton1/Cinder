@@ -23,6 +23,7 @@ public class Boss : BrickBase
         {
             canDropFreezePower = true;
         }
+        fallingFreezeReference.Setup();
     }
 
     public override void BrickHitByBall()

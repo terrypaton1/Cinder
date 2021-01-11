@@ -10,11 +10,7 @@ public class FallingPoints : FallingBase
         category = _category;
         _pointsValue = newPointsValue;
         // disable all pointsDisplay
-        Setup();
-    }
 
-    public override void Setup()
-    {
         if (!Application.isPlaying)
         {
             return;

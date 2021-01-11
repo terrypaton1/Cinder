@@ -20,13 +20,4 @@
         SpawnParticles(ParticleTypes.PowerUpCollected, transform.position);
         CoreConnector.GameManager.powerUpManager.ActivatePowerUp(powerupType);
     }
-
-    protected override void FellInToDeadZone()
-    {
-        base.FellInToDeadZone();
-
-        var powerupLostEffectPosition = transform.position;
-        powerupLostEffectPosition.y = 0;
-        SpawnParticles(ParticleTypes.PowerUpLost, powerupLostEffectPosition);
-    }
 }

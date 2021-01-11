@@ -2,6 +2,7 @@
 
 public class PowerUpBase : MonoBehaviour
 {
+    protected float maxTime = 1.0f;
     protected float timer;
     protected bool powerUpActive;
 
@@ -11,6 +12,7 @@ public class PowerUpBase : MonoBehaviour
 
     public virtual void Activate()
     {
+        ResetTimer();
         powerUpActive = true;
     }
 
@@ -38,6 +40,7 @@ public class PowerUpBase : MonoBehaviour
     public virtual void DisableInstantly()
     {
         powerUpActive = false;
+        ResetTimer();
     }
 
     protected virtual void PowerUpTimeOver()
@@ -55,7 +58,8 @@ public class PowerUpBase : MonoBehaviour
 
         timer -= Time.deltaTime;
         // display percent left
-        var percentLeft = timer / GameVariables.laserBatLengthOfTime;
+        var percentLeft = timer / maxTime;
+        percentLeft = Mathf.Clamp01(percentLeft);
         CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPercent(percentLeft);
         if (timer <= 0)
         {

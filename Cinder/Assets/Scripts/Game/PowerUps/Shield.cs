@@ -29,26 +29,29 @@ public class Shield : PowerUpBase
 
     public override void ManagePowerUpTime()
     {
-        base.ManagePowerUpTime(); 
+        base.ManagePowerUpTime();
         if (!powerUpActive)
         {
             return;
         }
+
         EvaluatePulseShield();
     }
 
     private void EvaluatePulseShield()
     {
+        if (timer > 1.5f)
+        {
+            return;
+        }
+
         if (shieldPulseShown)
         {
             return;
         }
 
-        if (timer < 1.5f)
-        {
-            shieldPulseShown = true;
-            shieldAnimator.Play(PulseShield);
-        }
+        shieldPulseShown = true;
+        shieldAnimator.Play(PulseShield);
     }
 
     public override void DisablePowerUp()
@@ -57,14 +60,15 @@ public class Shield : PowerUpBase
 
         coroutine = DisableShieldSequence();
         StartCoroutine(coroutine);
-        shieldAnimator.Play(DisableShield);
-        CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();
     }
 
     private IEnumerator DisableShieldSequence()
     {
+        shieldAnimator.Play(DisableShield);
+
         powerUpActive = false;
         shieldCollider.enabled = false;
+        CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();
 
         yield return new WaitForSeconds(1.0f);
 
@@ -76,28 +80,25 @@ public class Shield : PowerUpBase
         base.Activate();
 
         PlaySound(SoundList.PowerUpShield);
-
         CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPowerUpBar();
 
-        shieldPulseShown = false;
-        timer = GameVariables.powerUpShieldTotalTime;
-        shieldCollider.enabled = true;
+        maxTime =
+            timer = GameVariables.powerUpShieldTotalTime;
 
+        shieldCollider.enabled = true;
         sprite.enabled = true;
 
-        powerUpActive = true;
         shieldAnimator.Play(ActivateShield);
+        shieldPulseShown = false;
     }
 
     public override void DisableInstantly()
     {
         base.DisableInstantly();
 
-        powerUpActive = false;
-        timer = 0;
         shieldPulseShown = false;
-        shieldCollider.enabled = false;
 
+        shieldCollider.enabled = false;
         sprite.enabled = true;
     }
 }

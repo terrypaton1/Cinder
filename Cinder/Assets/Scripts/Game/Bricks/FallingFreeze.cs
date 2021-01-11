@@ -1,6 +1,6 @@
 ﻿public class FallingFreeze : FallingBase
 {
-    public override void Setup()
+    public void Setup()
     {
         isFalling = false;
     }

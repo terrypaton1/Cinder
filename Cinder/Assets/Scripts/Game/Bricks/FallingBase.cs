@@ -11,7 +11,6 @@ public class FallingBase : BaseObject
     [SerializeField]
     protected Rigidbody2D rigid2D;
 
-    private Transform objectTransform;
     public bool isFalling;
 
     public override void LifeLost()
@@ -29,11 +28,6 @@ public class FallingBase : BaseObject
     {
         SpawnParticles(ParticleTypes.DestroyFallingItems, transform.position);
         Disable();
-    }
-
-    public virtual void Setup()
-    {
-        objectTransform = transform;
     }
 
     public void StartFalling(Vector3 position)
@@ -92,7 +86,7 @@ public class FallingBase : BaseObject
 
     protected virtual void FellInToDeadZone()
     {
-        var powerUpLostEffectPosition = objectTransform.position;
+        var powerUpLostEffectPosition = transform.position;
         powerUpLostEffectPosition.y = 0;
         SpawnParticles(ParticleTypes.PowerUpLost, powerUpLostEffectPosition);
         Disable();
