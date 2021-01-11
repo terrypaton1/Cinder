@@ -92,7 +92,7 @@ public class GameManager : BaseObject
         
         CoreConnector.UIManager.DisplayLevelLoader();
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
 
         var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
 
@@ -102,7 +102,7 @@ public class GameManager : BaseObject
         backgrounds.DisplayForLevel(levelNumber);
         fallingObjectsManager.HideAll();
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
         CoreConnector.UIManager.HideAllScreens();
         CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
 
@@ -145,6 +145,7 @@ public class GameManager : BaseObject
         CoreConnector.GameManager.gameVariables.StoreTotalBricksBroken();
 
         var playersFinalScore = CoreConnector.GameManager.scoreManager.playerScore;
+        // not doing with the players final score. But here it is!
         Debug.Log("players final score:" + playersFinalScore);
 
         CoreConnector.UIManager.DisplayScreen(UIScreens.GameOver);
