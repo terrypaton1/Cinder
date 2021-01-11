@@ -1,15 +1,39 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class LevelsManager : MonoBehaviour
 {
     [SerializeField]
+    public Level[] levelPrefabs;
+
+    [SerializeField]
     public Level[] allLevels;
+
+    private int loadedLevelCounter;
 
     private void Start()
     {
         CoreConnector.LevelsManager = this;
-        HideAllLevels();
+    }
+
+    public IEnumerator CacheAllLevelsSequence()
+    {
+        loadedLevelCounter = 0;
+        var totalLevels = levelPrefabs.Length;
+        allLevels = new Level[totalLevels];
+        // while the levels are being loaded, return false
+        while (loadedLevelCounter < totalLevels)
+        {
+            var prefabRef = levelPrefabs[loadedLevelCounter];
+            var instance = Instantiate(prefabRef, transform);
+            instance.transform.position = Vector3.zero;
+            allLevels[loadedLevelCounter] = instance;
+            instance.Hide();
+
+            yield return new WaitForSeconds(0.02f);
+            loadedLevelCounter++;
+        }
     }
 
     private void OnDisable()

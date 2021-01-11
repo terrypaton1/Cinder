@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +8,13 @@ public class Loading : MonoBehaviour
     [SerializeField]
     protected Camera loadingCamera;
 
+    [SerializeField]
+    protected Canvas loadingScreen;
+
     private const string Main = "Main";
     private const string Game = "Game";
     private const string Levels_01_10 = "All_Levels";
     private int currentLoadingIndex;
-    private const int targetFPS = 60;
 
     private readonly string[] loadSceneQueue = {Main, Game, Levels_01_10};
     private IEnumerator gameLevelCoroutine;
@@ -25,18 +28,6 @@ public class Loading : MonoBehaviour
     protected void Awake()
     {
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = targetFPS;
-    }
-
-    protected void Update()
-    {
-        if (Application.targetFrameRate == targetFPS)
-        {
-            return;
-        }
-
-        Debug.Log("setting frame rate to " + targetFPS);
-        Application.targetFrameRate = targetFPS;
     }
 
     private void OnDisable()
@@ -46,6 +37,8 @@ public class Loading : MonoBehaviour
 
     private void Init()
     {
+        loadingScreen.enabled = true;
+        loadingCamera.enabled = true;
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -58,23 +51,29 @@ public class Loading : MonoBehaviour
 
     private void StartUpGame()
     {
-        StartCoroutine(StartUpGameSequence());
+        StartCoroutine(StartSequence());
     }
 
-    private IEnumerator StartUpGameSequence()
+    private IEnumerator StartSequence()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
+        
+        yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
 
-        Debug.Log("Game is fully loaded");
-        loadingCamera.enabled = false;
         CoreConnector.GameManager.PerformInitialSetup();
+// show main menu ui
+
+        CoreConnector.UIManager.DisplayScreen(UIScreens.MainMenu);
+
+        loadingCamera.enabled = false;
+        loadingScreen.enabled = false;
     }
 
     private void LoadNextSceneInQueue()
     {
         if (currentLoadingIndex >= loadSceneQueue.Length)
         {
-            //Debug.Log("All levels loaded");
+            Debug.Log("All levels loaded");
             StartUpGame();
             return;
         }
