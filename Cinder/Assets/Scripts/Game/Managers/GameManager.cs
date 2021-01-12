@@ -90,20 +90,19 @@ public class GameManager : BaseObject
         ballManager.ResetAllBalls();
         playersBatManager.HideAllBats();
         Time.timeScale = 1;
-
         CoreConnector.UIManager.DisplayLevelLoader();
-
-        yield return new WaitForSeconds(0.2f);
 
         var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
 
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
         CoreConnector.LevelsManager.DisplayLevel(levelNumber);
+        
+        yield return new WaitForSeconds(0.1f);
         brickManager.LoadLevelsBricks();
         backgrounds.DisplayForLevel(levelNumber);
         fallingObjectsManager.HideAll();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         CoreConnector.UIManager.HideAllScreens();
         CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
 
@@ -111,7 +110,7 @@ public class GameManager : BaseObject
 
         playerLifeManager.RestartLevel();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         touchPosition.ResumeGame();
 
         StartPlay(0.25f);

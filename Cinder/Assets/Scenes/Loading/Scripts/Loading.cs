@@ -55,7 +55,7 @@ public class Loading : MonoBehaviour
 
     private IEnumerator StartSequence()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
         
         yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
 

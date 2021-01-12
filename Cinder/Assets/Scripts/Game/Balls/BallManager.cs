@@ -103,10 +103,13 @@ public class BallManager : BaseObject
         SpawnParticles(ParticleTypes.NewBallOne, ballStartPosition);
 
         // wait a little while
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
 
         var ball = GetBallFromPool();
         ball.transform.position = ballStartPosition;
+        
+        yield return new WaitForSeconds(0.1f);
+        
         ball.Enable();
         ballList.Add(ball);
 
@@ -200,6 +203,7 @@ public class BallManager : BaseObject
         if (ballList.Contains(ball))
         {
             ballList.Remove(ball);
+            // add the ball back on to the normal ball pool
         }
 
         ball.Disable();
