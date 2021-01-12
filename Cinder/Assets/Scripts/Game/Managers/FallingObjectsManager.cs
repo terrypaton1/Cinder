@@ -100,4 +100,15 @@ public class FallingObjectsManager : MonoBehaviour
             }
         }
     }
+
+    public void LifeLost()
+    {
+        foreach (var fallingPowerUp in fallingPowerUpPool)
+        {
+            if (fallingPowerUp.isFalling)
+            {
+                fallingPowerUp.LifeLost();
+            }
+        }
+    }
 }

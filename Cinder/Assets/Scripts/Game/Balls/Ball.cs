@@ -12,10 +12,10 @@ public sealed class Ball : BaseObject
     private CircleCollider2D circleCollider;
 
     [SerializeField]
-    private GameObject flameBallParticleHolder;
+    private ParticleSystem flameBallParticles;
 
     [SerializeField]
-    private GameObject crazyBallParticleHolder;
+    private ParticleSystem crazyBallParticles;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -57,27 +57,27 @@ public sealed class Ball : BaseObject
     public void ActivateCrazyBall()
     {
         crazyBallIsActive = true;
-        crazyBallParticleHolder.SetActive(true);
+        crazyBallParticles.Play();
     }
 
     public void DisableCrazyBall()
     {
         crazyBallIsActive = false;
-        crazyBallParticleHolder.SetActive(false);
+        crazyBallParticles.Stop();
     }
 
     public void ActivateFlameBall()
     {
         flameBallIsActive = true;
         triggerCollider.enabled = true;
-        flameBallParticleHolder.SetActive(true);
+        flameBallParticles.Play();
     }
 
     public void DisableFlameBall()
     {
         triggerCollider.enabled = false;
         flameBallIsActive = false;
-        flameBallParticleHolder.SetActive(false);
+        flameBallParticles.Stop();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -96,7 +96,6 @@ public sealed class Ball : BaseObject
         CoreConnector.GameManager.ballManager.RemoveBall(this);
     }
 
-    // todo run all these from the fixed update in BallManager
     private void FixedUpdate()
     {
         // check if the y velocity ever reaches zero
@@ -116,7 +115,6 @@ public sealed class Ball : BaseObject
         // gradually slow down the ball as its moving too fast
         if (velocity.magnitude > ballMaxSpeed)
         {
-// Debug.Log("slowing down the ball");
             currentBallSpeed = velocity.magnitude;
             currentBallSpeed -= Time.fixedDeltaTime;
             thisRigidbody.velocity = velocity.normalized * currentBallSpeed;
@@ -217,7 +215,7 @@ public sealed class Ball : BaseObject
         PlaySound(SoundList.ballHitsBat);
         circleCollider.gameObject.layer = layerMovingUp;
 
-// if the players bat is not rotated much, then we deflect the ball based on the side of the bat the player is hitting
+        // if the players bat is not rotated much, then we deflect the ball based on the side of the bat the player is hitting
         speed = Vector2.zero;
         var positionDifference = transform.position - (Vector3) collision.rigidbody.position;
         if (Mathf.Abs(collision.rigidbody.rotation) < 3 && Mathf.Abs(positionDifference.x) > .2f)
@@ -281,6 +279,8 @@ public sealed class Ball : BaseObject
 
     public void LaunchBall(float _ballMaxSpeed)
     {
+        DisableCrazyBall();
+        DisableFlameBall();
         thisRigidbody.isKinematic = false;
         ballMaxSpeed = _ballMaxSpeed;
 

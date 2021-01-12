@@ -210,7 +210,7 @@ public class GameManager : BaseObject
         ballManager.LifeLost();
         brickManager.LifeLost();
         powerUpManager.LifeLost();
-        
+        fallingObjectsManager.LifeLost();
         CoreConnector.GameUIManager.LifeLost();
 
         levelTimer.StopTimer();
