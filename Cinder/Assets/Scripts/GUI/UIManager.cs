@@ -95,10 +95,10 @@ public class UIManager : BaseObject
 
     public void PressMainMenuPlayButton()
     {
-        CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
         var currentLevel = PlayerPrefs.GetInt(DataVariables.currentLevel);
         if (currentLevel == 1)
         {
+            CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
             CoreConnector.UIManager.LoadLevel(currentLevel);
             return;
         }

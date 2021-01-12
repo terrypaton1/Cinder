@@ -18,7 +18,13 @@ public sealed class Ball : BaseObject
     private ParticleSystem crazyBallParticles;
 
     [SerializeField]
+    private ParticleSystem ballTrailParticles;
+
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private TrailRenderer trailRenderer;
 
     private float radians;
     private Vector2 speed;
@@ -78,6 +84,16 @@ public sealed class Ball : BaseObject
         triggerCollider.enabled = false;
         flameBallIsActive = false;
         flameBallParticles.Stop();
+    }
+
+    private void DisableBallTrail()
+    {
+        ballTrailParticles.Stop();
+    }
+
+    private void EnableBallTrail()
+    {
+        ballTrailParticles.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -281,6 +297,8 @@ public sealed class Ball : BaseObject
     {
         DisableCrazyBall();
         DisableFlameBall();
+        DisableBallTrail();
+        
         thisRigidbody.isKinematic = false;
         ballMaxSpeed = _ballMaxSpeed;
 
@@ -305,6 +323,7 @@ public sealed class Ball : BaseObject
         hitWallsInARowOnlyCount = 0;
 
         trailRenderer.emitting = true;
+        EnableBallTrail();
     }
 
     public void Enable()
@@ -316,6 +335,7 @@ public sealed class Ball : BaseObject
 
     public void Disable()
     {
+        DisableBallTrail();
         hitWallsInARowOnlyCount = 0;
         ballIsEnabled = false;
         circleCollider.enabled = false;
@@ -325,7 +345,4 @@ public sealed class Ball : BaseObject
         thisRigidbody.isKinematic = true;
         trailRenderer.emitting = false;
     }
-
-    [SerializeField]
-    private TrailRenderer trailRenderer;
 }
