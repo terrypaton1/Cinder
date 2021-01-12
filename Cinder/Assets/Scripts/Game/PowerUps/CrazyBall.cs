@@ -8,18 +8,14 @@
 
         CoreConnector.GameManager.ballManager.ActivateCrazyBall();
         CoreConnector.GameUIManager.DisplayPowerUpBar();
-        timer = GameVariables.crazyBallLengthOfTime;
+        maxTime =
+            timer = GameVariables.crazyBallLengthOfTime;
         PlaySound(SoundList.PowerUpCrazyBall);
     }
 
     public override void DisablePowerUp()
     {
-        base.DisablePowerUp();
-        if (!powerUpActive)
-        {
-            return;
-        }
-
         CoreConnector.GameManager.ballManager.DisableCrazyBall();
+        base.DisablePowerUp();
     }
 }

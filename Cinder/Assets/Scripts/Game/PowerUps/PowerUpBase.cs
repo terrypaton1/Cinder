@@ -6,10 +6,6 @@ public class PowerUpBase : MonoBehaviour
     protected float timer;
     protected bool powerUpActive;
 
-    public virtual void ManagePowerUpLoop(float deltaTime)
-    {
-    }
-
     public virtual void Activate()
     {
         ResetTimer();
