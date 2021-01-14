@@ -1,6 +1,6 @@
 # Cinder
 <p align="center"> 
-    <img src="./res/GameIcon.jpg">
+    <img src="./res/CinderHeader.jpg">
 </p>
 The complete Unity3D open source to a 'brick breaker' clone game by Terry Paton.
 
