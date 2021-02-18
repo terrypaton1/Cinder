@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
 using System.Collections.Generic;
 
 public class UIManager : BaseObject
@@ -99,7 +97,7 @@ public class UIManager : BaseObject
         if (currentLevel == 1)
         {
             CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
-            CoreConnector.UIManager.LoadLevel(currentLevel);
+            LoadLevel(currentLevel);
             return;
         }
 
@@ -223,7 +221,7 @@ public class UIManager : BaseObject
         screen.Show();
     }
 
-    public void LoadLevel(int levelNumber)
+    public static void LoadLevel(int levelNumber)
     {
         PlayerPrefs.SetInt(DataVariables.currentLevel, levelNumber);
         CoreConnector.GameManager.StartGame();

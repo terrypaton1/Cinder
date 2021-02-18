@@ -39,7 +39,7 @@ public class PowerUpBase : MonoBehaviour
         ResetTimer();
     }
 
-    protected virtual void PowerUpTimeOver()
+    private void PowerUpTimeOver()
     {
         DisablePowerUp();
         CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();

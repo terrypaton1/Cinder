@@ -25,7 +25,7 @@ public class GoogleyEye : MonoBehaviour
             return;
         }
 
-        var dir = (currentBallTracking.transform.position - this.transform.position).normalized * .08f;
+        var dir = (currentBallTracking.transform.position - transform.position).normalized * .08f;
         eyeBall.localPosition = Vector3.Lerp(eyeBall.localPosition, dir, Time.deltaTime * 5f);
     }
 

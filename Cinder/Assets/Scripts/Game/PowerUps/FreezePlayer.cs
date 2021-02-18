@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class FreezePlayer : PowerUpBase
+﻿public class FreezePlayer : PowerUpBase
 {
     public override void Activate()
     {
@@ -9,7 +7,6 @@ public class FreezePlayer : PowerUpBase
         PlaySound(SoundList.PowerUpFreeze);
         timer = GameVariables.freezePlayerLengthOfTime;
     }
-
 
     public override void DisablePowerUp()
     {

@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class LaserBullet : BaseObject
 {
+    [NonSerialized]
+    public bool isUsed;
+
     private float currentLaserSpeed;
     private float laserMaxSpeed = 1;
-    public bool isUsed;
 
     [SerializeField]
     protected Rigidbody2D thisRigidbody;

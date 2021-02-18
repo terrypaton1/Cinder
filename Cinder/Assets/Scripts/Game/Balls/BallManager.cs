@@ -75,7 +75,7 @@ public class BallManager : BaseObject
         StartCoroutine(coroutine);
     }
 
-    public void AddMultiballs(float xPosition = 0)
+    public void AddMultiBalls(float xPosition = 0)
     {
         StartCoroutine(InstantiateMultiBalls(xPosition));
     }

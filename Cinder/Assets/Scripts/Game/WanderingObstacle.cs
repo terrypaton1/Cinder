@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Serialization;
 
 public class WanderingObstacle : BrickBase
 {
@@ -18,7 +17,6 @@ public class WanderingObstacle : BrickBase
 
     public bool activeAndMoving;
 
-    [FormerlySerializedAs("amountofHitsToKill")]
     [Range(1, 10)]
     public int amountOfHitsToKill = 2;
 
@@ -33,7 +31,7 @@ public class WanderingObstacle : BrickBase
 
     // if amountOfBricksBeforeSpawn ==0 then the obstacle should start straight away
     // the obstacle should semi randomly move around the screen
-    // doesnt collide with bricks, but does collide with ball
+    // does not collide with bricks, but does collide with ball
     // Doesn't move below a height of 4
     // after x amount of hits from a ball, this obstacle should be destroyed
 
@@ -55,11 +53,13 @@ public class WanderingObstacle : BrickBase
             return;
         }
 
-        if (!activeAndMoving)
+        if (activeAndMoving)
         {
-            amountOfBricksDestroyedSoFar++;
-            CheckIfObstacleShouldBeEnabled();
+            return;
         }
+
+        amountOfBricksDestroyedSoFar++;
+        CheckIfObstacleShouldBeEnabled();
     }
 
     private void CheckIfObstacleShouldBeEnabled()
@@ -92,7 +92,7 @@ public class WanderingObstacle : BrickBase
         }
     }
 
-    protected override  IEnumerator DestroyBrickSequence(bool playSound = true)
+    protected override IEnumerator DestroyBrickSequence(bool playSound = true)
     {
         BrickHasBeenDestroyed = true;
 
@@ -129,7 +129,7 @@ public class WanderingObstacle : BrickBase
         DisableObstacle();
         transform.position = startingPosition;
         CheckIfObstacleShouldBeEnabled();
-        
+
         base.ResetBrick();
     }
 
@@ -167,10 +167,6 @@ public class WanderingObstacle : BrickBase
 
     public override void UpdateLoop()
     {
-        if (!activeAndMoving)
-        {
-            return;
-        }
     }
 
     protected void FixedUpdate()

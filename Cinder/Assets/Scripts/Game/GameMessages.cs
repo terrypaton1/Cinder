@@ -60,26 +60,7 @@ public class GameMessages : MonoBehaviour
         messageAnimation.Play(HideMessage);
     }
 
-    public void HideInGameMessage()
-    {
-        StopAllCoroutines();
-        StartCoroutine(HideInGameMessageSequence());
-    }
-
-    private IEnumerator HideInGameMessageSequence()
-    {
-        messageAnimation.Play(HideMessage);
-        yield return new WaitForSeconds(1.0f);
-        messageBox.SetActive(false);
-    }
-
     public void LifeLost()
-    {
-        StopAllCoroutines();
-        messageAnimation.Play(HideMessage);
-    }
-
-    public void RestartGame()
     {
         StopAllCoroutines();
         messageAnimation.Play(HideMessage);

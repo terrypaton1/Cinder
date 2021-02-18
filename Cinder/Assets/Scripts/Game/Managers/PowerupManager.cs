@@ -77,7 +77,7 @@ public class PowerupManager : BaseObject
             case PowerupType.MultiBall:
                 PlaySound(SoundList.multiBall);
                 // add two new balls to the scene, side by side at the starting height
-                CoreConnector.GameManager.ballManager.AddMultiballs(-.3f);
+                CoreConnector.GameManager.ballManager.AddMultiBalls(-.3f);
                 ShowInGameMessage(Message.MultiBall);
                 break;
             case PowerupType.WideBat:

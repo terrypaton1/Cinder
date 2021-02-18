@@ -63,6 +63,6 @@ public class LevelButton : MonoBehaviour
 
     public void OnClick()
     {
-        CoreConnector.UIManager.LoadLevel(levelNumber);
+        UIManager.LoadLevel(levelNumber);
     }
 }

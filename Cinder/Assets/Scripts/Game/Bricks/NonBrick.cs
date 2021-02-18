@@ -39,8 +39,4 @@ public class NonBrick : BaseObject
     {
         colliderRef.enabled = true;
     }
-
-    public virtual void Reset()
-    {
-    }
 }

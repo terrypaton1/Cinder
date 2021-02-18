@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Serialization;
 
 public class Boss : BrickBase
 {
     [SerializeField]
     protected FallingFreeze fallingFreezeReference;
 
-    [FormerlySerializedAs("googleyEyes")]
     [SerializeField]
     protected GoogleyEye[] googlyEyes;
 

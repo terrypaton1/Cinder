@@ -41,11 +41,6 @@ public class BrickManager : MonoBehaviour
         {
             brickBase.ResetBrick();
         }
-
-        foreach (var nonBrick in nonBrickList)
-        {
-            nonBrick.Reset();
-        }
     }
 
     public void BrickDestroyed(BrickBase _brick)
