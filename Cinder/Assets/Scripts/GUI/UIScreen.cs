@@ -3,7 +3,7 @@
 public class UIScreen : MonoBehaviour
 {
     [SerializeField]
-    private GameObject content;
+    protected GameObject content;
 
     public void Show()
     {

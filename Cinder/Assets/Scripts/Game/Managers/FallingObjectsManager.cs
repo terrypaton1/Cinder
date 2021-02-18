@@ -4,10 +4,10 @@ using UnityEngine;
 public class FallingObjectsManager : MonoBehaviour
 {
     [SerializeField]
-    private FallingPoints FallingPointsPrefab;
+    protected FallingPoints FallingPointsPrefab;
 
     [SerializeField]
-    private FallingPowerup FallingPowerUpPrefab;
+    protected FallingPowerup FallingPowerUpPrefab;
 
     private const int maxPooled = 20;
     private List<FallingPoints> fallingPointsPool;

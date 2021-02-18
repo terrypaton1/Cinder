@@ -2,13 +2,13 @@
 
 public class GoogleyEye : MonoBehaviour
 {
-    private Ball currentBallTracking;
-
     [SerializeField]
     protected Transform eyeBall;
 
     [SerializeField]
-    private SpriteRenderer[] eyeRenders;
+    protected SpriteRenderer[] eyeRenders;
+
+    private Ball currentBallTracking;
 
     protected void Update()
     {

@@ -10,10 +10,10 @@ public class PlayersBatBase : BaseObject
     public Rigidbody2D rigidRef;
 
     [SerializeField]
-    private Collider2D[] colliders;
+    protected Collider2D[] colliders;
 
     [SerializeField]
-    private SpriteRenderer[] spriteRenderers;
+    protected SpriteRenderer[] spriteRenderers;
 
     private bool batIsEnabled;
     private const string Intro = "Intro";
