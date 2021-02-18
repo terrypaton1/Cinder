@@ -27,7 +27,7 @@ public class GameVariables : BaseObject
 
     public const float powerUpShieldTotalTime = 10;
 
-    public const float tntExplosionRange = .75f;
+    public const float tntExplosionRange = 1.0f;
 
     public const float laserBatLengthOfTime = 4;
 
