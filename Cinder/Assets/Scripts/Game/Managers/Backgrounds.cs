@@ -3,10 +3,10 @@
 public class Backgrounds : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer background;
+    protected SpriteRenderer background;
 
     [SerializeField]
-    private Sprite[] backgrounds;
+    protected Sprite[] backgrounds;
 
     public void DisplayForLevel(int level)
     {

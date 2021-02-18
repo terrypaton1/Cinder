@@ -9,7 +9,7 @@ public class Boss : BrickBase
 
     [FormerlySerializedAs("googleyEyes")]
     [SerializeField]
-    private GoogleyEye[] googlyEyes;
+    protected GoogleyEye[] googlyEyes;
 
     private int freezeDropTriggerCount;
     private bool canDropFreezePower;

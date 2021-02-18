@@ -10,10 +10,10 @@ public class LaserBullet : BaseObject
     protected Rigidbody2D thisRigidbody;
 
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    private BoxCollider2D boxCollider;
+    protected BoxCollider2D boxCollider;
 
     public void Launch(Vector3 velocity)
     {
@@ -72,11 +72,13 @@ public class LaserBullet : BaseObject
 
         if (collision.gameObject.CompareTag(CollisionTags.Brick))
         {
-            HitABrick();
             // todo this could do with optimizing
             var _brick = collision.gameObject.GetComponent<BrickBase>();
-            _brick.BrickHitByBall();
-            RePoolObject();
+            if (_brick != null)
+            {
+                _brick.BrickHitByBall();
+            }
+            HitABrick();
         }
         else
         {

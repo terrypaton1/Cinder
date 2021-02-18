@@ -4,7 +4,7 @@ using UnityEngine;
 public class LaserBulletManager : MonoBehaviour
 {
     [SerializeField]
-    private LaserBullet FallingPointsPrefab;
+    protected LaserBullet FallingPointsPrefab;
 
     private const int maxPooledLasers = 20;
 
