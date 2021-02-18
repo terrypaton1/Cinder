@@ -48,6 +48,7 @@ public class BrickBase : BaseObject
         UpdateAmountOfHitsLeftDisplay();
         visualObjects.transform.localPosition = Vector3.zero;
 
+        SetVisualScale(0.05f);
         EnableColliders();
         ApplyNormalLayers();
         delayCounter = Random.Range(0.0f, 0.5f);
@@ -69,9 +70,10 @@ public class BrickBase : BaseObject
     {
         yield return new WaitForSeconds(delayCounter);
 
+        // set everything tiny
+        SetVisualScale(0.01f);
         EnableVisuals();
-
-        SetVisualScale(0.05f);
+        
         targetScale = 1.0f;
 
         var timePassed = 0.0f;
