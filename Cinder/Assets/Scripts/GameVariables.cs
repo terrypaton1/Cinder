@@ -68,7 +68,6 @@ public class GameVariables : BaseObject
 
     protected void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         totalBricksBroken = PlayerPrefs.GetInt(DataVariables.totalBricksDestroyed);
         SFXEnabled = PlayerPrefs.GetInt(DataVariables.SFXEnabled);
     }
