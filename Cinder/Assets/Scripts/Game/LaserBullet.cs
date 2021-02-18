@@ -73,18 +73,24 @@ public class LaserBullet : BaseObject
         if (collision.gameObject.CompareTag(CollisionTags.Brick))
         {
             // todo this could do with optimizing
-            var _brick = collision.gameObject.GetComponent<BrickBase>();
+            var _brick = collision.gameObject.GetComponentInParent<BrickBase>();
             if (_brick != null)
             {
                 _brick.BrickHitByBall();
             }
+
             HitABrick();
         }
         else
         {
-            PlaySound(SoundList.LaserBulletHitsWall);
-            RePoolObject();
+            HitWall();
         }
+    }
+
+    private void HitWall()
+    {
+        PlaySound(SoundList.LaserBulletHitsWall);
+        RePoolObject();
     }
 
     public void Disable()
