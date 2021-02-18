@@ -1,30 +1,30 @@
 using UnityEngine;
 
-public sealed class Ball : BaseObject
+public class Ball : BaseObject
 {
     [SerializeField]
-    private Rigidbody2D thisRigidbody;
+    protected Rigidbody2D thisRigidbody;
 
     [SerializeField]
-    private CircleCollider2D triggerCollider;
+    protected CircleCollider2D triggerCollider;
 
     [SerializeField]
-    private CircleCollider2D circleCollider;
+    protected CircleCollider2D circleCollider;
 
     [SerializeField]
-    private ParticleSystem flameBallParticles;
+    protected ParticleSystem flameBallParticles;
 
     [SerializeField]
-    private ParticleSystem crazyBallParticles;
+    protected ParticleSystem crazyBallParticles;
 
     [SerializeField]
-    private ParticleSystem ballTrailParticles;
+    protected ParticleSystem ballTrailParticles;
 
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    private TrailRenderer trailRenderer;
+    protected TrailRenderer trailRenderer;
 
     private float radians;
     private Vector2 speed;
