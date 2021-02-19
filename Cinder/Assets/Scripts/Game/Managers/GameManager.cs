@@ -13,7 +13,6 @@ public class GameManager : BaseObject
     [SerializeField]
     public BrickManager brickManager;
 
-    [FormerlySerializedAs("powerupManager")]
     [SerializeField]
     public PowerupManager powerUpManager;
 
@@ -96,7 +95,7 @@ public class GameManager : BaseObject
 
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
         CoreConnector.LevelsManager.DisplayLevel(levelNumber);
-        
+
         yield return new WaitForSeconds(0.1f);
         brickManager.LoadLevelsBricks();
         backgrounds.DisplayForLevel(levelNumber);
@@ -182,7 +181,6 @@ public class GameManager : BaseObject
 
     public void ResumeGame()
     {
-//		Debug.Log("Resume Game");
         CoreConnector.UIManager.ShowGamePlayUI();
         CoreConnector.GameUIManager.DisplayInGameButtons(true);
 
@@ -205,7 +203,7 @@ public class GameManager : BaseObject
 
         playerLifeManager.PlayerLosesALife();
         playersBatManager.PlayerLosesLife();
-        
+
         ballManager.LifeLost();
         brickManager.LifeLost();
         powerUpManager.LifeLost();
@@ -214,7 +212,7 @@ public class GameManager : BaseObject
 
         levelTimer.StopTimer();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         if (playerLifeManager.PlayerLives < 1)
         {
@@ -224,7 +222,7 @@ public class GameManager : BaseObject
         }
 
         // player still has lives left!
-        StartPlay(2.0f);
+        StartPlay(1.0f);
     }
 
     private void StartPlay(float initialDelay)
@@ -250,7 +248,6 @@ public class GameManager : BaseObject
 
     public void RestartGame()
     {
-        // this should perhaps go through the startGaMe
         levelTimer.ResetTimer();
 
         brickManager.RestartLevel();
@@ -260,13 +257,10 @@ public class GameManager : BaseObject
         CoreConnector.GameUIManager.bossHealthRemainingDisplay.Hide();
         scoreManager.RestartLevel();
         powerUpManager.RestartLevel();
-
-        //todo reset the players lives too?
         playerLifeManager.RestartLevel();
+        bonusManager.RestartGame();
 
-        bonusManager.RestartGame(); // todo do I need to do this line, I don't think so?
-
-        StartPlay(0.5f);
+        StartPlay(0.25f);
     }
 
     public override void LevelComplete()
@@ -274,6 +268,7 @@ public class GameManager : BaseObject
         ChangeGameState(GameState.LevelComplete);
         StartCoroutine(LevelCompleteSequence());
     }
+
     private IEnumerator LevelCompleteSequence()
     {
         playersBatManager.LevelComplete();
@@ -295,8 +290,6 @@ public class GameManager : BaseObject
         if (nextLevelNumber > GameVariables.totalAmountOfLevels)
         {
             PlaySound(SoundList.levelComplete);
-            // int playersFinalScore = CoreConnector.GameManager.scoreManager.playerScore;
-            // Debug.Log("players final score:" + playersFinalScore);
             CoreConnector.UIManager.DisplayScreen(UIScreens.GameComplete);
         }
         else
