@@ -14,8 +14,16 @@ public class LevelButton : MonoBehaviour
     [SerializeField]
     protected Button button;
 
+    [SerializeField]
+    protected Image levelSprite;
+
+    [SerializeField]
+    protected Sprite normalLevel;
+
+    [SerializeField]
+    protected Sprite specialLevel;
+
     public int levelNumber = 1;
-    public Image levelSprite;
 
     protected void OnEnable()
     {
@@ -48,6 +56,17 @@ public class LevelButton : MonoBehaviour
             levelSprite.enabled = true;
             lockedSprite.enabled = false;
             button.enabled = true;
+
+            var isBossLevel = levelNumber % 5;
+
+            if (isBossLevel == 0)
+            {
+                levelSprite.sprite = specialLevel;
+            }
+            else
+            {
+                levelSprite.sprite = normalLevel;
+            }
         }
         else
         {
