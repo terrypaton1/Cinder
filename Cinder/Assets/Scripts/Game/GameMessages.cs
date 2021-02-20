@@ -50,19 +50,23 @@ public class GameMessages : MonoBehaviour
     {
         messageBox.SetActive(true);
         messageAnimation.Play(ShowMessage);
+
         yield return new WaitForSeconds(3.0f);
+
         messageAnimation.Play(HideMessage);
+
+        yield return new WaitForSeconds(1.0f);
+        messageBox.SetActive(false);
     }
 
     public void HideInGameMessageInstantly()
     {
-        StopAllCoroutines();
-        messageAnimation.Play(HideMessage);
+        messageBox.SetActive(false);
+        StopCurrentCoroutine();
     }
 
     public void LifeLost()
     {
-        StopAllCoroutines();
-        messageAnimation.Play(HideMessage);
+        HideInGameMessageInstantly();
     }
 }
