@@ -231,23 +231,6 @@ public class GameManager : BaseObject
         ChangeGameState(GameState.Playing);
     }
 
-    public void RestartGame()
-    {
-        levelTimer.ResetTimer();
-
-        brickManager.RestartLevel();
-        playersBatManager.RestartLevel();
-        ballManager.RestartLevel();
-
-        CoreConnector.GameUIManager.bossHealthRemainingDisplay.Hide();
-        scoreManager.RestartLevel();
-        powerUpManager.RestartLevel();
-        playerLifeManager.RestartLevel();
-        bonusManager.RestartGame();
-
-        StartPlay(0.25f);
-    }
-
     public override void LevelComplete()
     {
         ChangeGameState(GameState.LevelComplete);
