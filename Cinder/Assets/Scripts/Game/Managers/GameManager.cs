@@ -150,21 +150,6 @@ public class GameManager : BaseObject
         CoreConnector.UIManager.DisplayScreen(UIScreens.GameOver);
     }
 
-    public void QuitGame()
-    {
-        ChangeGameState(GameState.GameOver);
-
-        Time.timeScale = 1;
-
-        CoreConnector.GameManager.gameVariables.StoreTotalBricksBroken();
-        CoreConnector.LevelsManager.HideAllLevels();
-        CoreConnector.GameUIManager.gameMessages.HideInGameMessageInstantly();
-        playersBatManager.Reset();
-        CoreConnector.GameUIManager.playerLifeDisplay.Hide();
-        ballManager.ResetAllBalls();
-        fallingObjectsManager.HideAll();
-    }
-
     public void PauseGame()
     {
         touchPosition.PauseGame();
