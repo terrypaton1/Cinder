@@ -3,29 +3,10 @@
 public class LaserBat : PlayersBatBase
 {
     private float firingFrequency = 1.0f;
-    private const string Intro = "LaserBatIntro";
-    private const string ToNormal = "LaserBatToNormal";
-    private const string PlayerLosesLifeAnimation = "LaserBatPlayerLosesLife";
     private float timer;
     private bool shootingBullet;
 
-    readonly Vector2 FiringVelocity = new Vector2(0, .1f);
-
-    public override void MorphToPlayState()
-    {
-        MorphToPlayingAnimation.Play(Intro);
-    }
-
-    public override void MorphToNormal()
-    {
-//		Debug.Log("transition to normal bat");
-        MorphToPlayingAnimation.Play(ToNormal);
-    }
-
-    public override void PlayerLosesLife()
-    {
-        MorphToPlayingAnimation.Play(PlayerLosesLifeAnimation);
-    }
+    private readonly Vector2 FiringVelocity = new Vector2(0, 0.1f);
 
     public override void EnableBat()
     {

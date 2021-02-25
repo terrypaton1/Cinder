@@ -19,7 +19,7 @@ public class PlayersBatManager : BaseObject
     [SerializeField]
     protected PlayersBatBase laserBat;
 
-    private Dictionary<int, PlayersBatBase> allBats = new Dictionary<int, PlayersBatBase>();
+    private readonly Dictionary<int, PlayersBatBase> allBats = new Dictionary<int, PlayersBatBase>();
 
     private PlayersBatBase currentBat;
     private Vector3 currentBatPosition;
@@ -78,21 +78,22 @@ public class PlayersBatManager : BaseObject
             return;
         }
 
-        // if th eplayer has an active bat
+        // if the player has an active bat
         PositionAndRotateCurrentActiveBat();
-
         ManageStorePlayersPosition();
     }
 
     private void ManageStorePlayersPosition()
     {
         timer += Time.deltaTime;
-        if (timer > TimerReset)
+        if (!(timer > TimerReset))
         {
-            timer -= TimerReset;
-
-            lastXPosition = currentBat.rigidRef.transform.position.x;
+            return;
         }
+
+        timer -= TimerReset;
+
+        lastXPosition = currentBat.rigidRef.transform.position.x;
     }
 
     private void PositionAndRotateCurrentActiveBat()
@@ -113,11 +114,11 @@ public class PlayersBatManager : BaseObject
         mousePosition.y = batYPosition;
         mousePosition.x = Mathf.Clamp(mousePosition.x, minimumXPosition, maximumXPosition);
 
-//		Log("mousePosition:"+mousePosition);
         currentBatPosition = currentBat.rigidRef.position;
         // lerp towards the mouse position
         var newXPosition = Mathf.Lerp(currentBatPosition.x, mousePosition.x, Time.deltaTime * 60f);
         var dir = currentBatPosition.x - mousePosition.x;
+        // if the player has changed direction completely then first aim for a zero rotation
         if (dir > 0 && lastMovementDirection < 0 || dir < 0 && lastMovementDirection > 0)
         {
             targetRotation = 0;
@@ -125,8 +126,7 @@ public class PlayersBatManager : BaseObject
         }
 
         lastMovementDirection = dir;
-        currentBatPosition.x = newXPosition;
-        // angle based on the amount moving
+        // Calculate the angle based on the amount the bat is moving
         var newDistance = lastXPosition - currentBat.rigidRef.position.x;
         if (Mathf.Abs(newDistance) > .02f)
         {
@@ -136,11 +136,12 @@ public class PlayersBatManager : BaseObject
         targetRotation *= .9f;
         targetRotation = Mathf.Clamp(targetRotation, -60f, 60f);
         currentRotation = Mathf.Lerp(currentRotation, targetRotation, Time.deltaTime * 16f);
+        currentBat.rigidRef.MoveRotation(currentRotation);
 
+        currentBatPosition.x = newXPosition;
         currentBatPosition.y = GameVariables.playersBatYPosition;
         // position the current bat
         currentBat.rigidRef.MovePosition(currentBatPosition);
-        currentBat.rigidRef.MoveRotation(currentRotation);
     }
 
     private void StopTransitionCoroutine()
@@ -186,7 +187,7 @@ public class PlayersBatManager : BaseObject
         if (previousBatType != PlayerBatTypes.None)
         {
             StopTransitionCoroutine();
-           
+
             transitionCoroutine = TransitionToNextBatType();
             StartCoroutine(transitionCoroutine);
         }
@@ -197,7 +198,7 @@ public class PlayersBatManager : BaseObject
             // might want a first reveal of the players bat, growing out of a small dot
             if (currentBat != null)
             {
-                currentBat.MorphToPlayState();
+                currentBat.MorphToPlayingState();
             }
         }
     }
@@ -227,7 +228,7 @@ public class PlayersBatManager : BaseObject
 
         if (currentBat != normalBat)
         {
-            currentBat.MorphToPlayState();
+            currentBat.MorphToPlayingState();
         }
         else
         {
@@ -316,8 +317,7 @@ public class PlayersBatManager : BaseObject
 
     private PlayersBatBase GetBat(int batType)
     {
-        PlayersBatBase bat;
-        allBats.TryGetValue(batType, out bat);
+        allBats.TryGetValue(batType, out var bat);
         return bat;
     }
 }

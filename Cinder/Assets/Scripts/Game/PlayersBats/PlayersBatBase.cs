@@ -16,9 +16,6 @@ public class PlayersBatBase : BaseObject
     protected SpriteRenderer[] spriteRenderers;
 
     private bool batIsEnabled;
-    private const string Intro = "Intro";
-    private const string ToNormal = "ToNormal";
-    private const string PlayerLosesLifeAnimation = "PlayerLosesLife";
 
     protected void OnCollisionEnter2D(Collision2D collision)
     {
@@ -50,19 +47,19 @@ public class PlayersBatBase : BaseObject
         falling.HitPlayersBat();
     }
 
-    public virtual void MorphToPlayState()
+    public void MorphToPlayingState()
     {
-        MorphToPlayingAnimation.Play(Intro);
+        MorphToPlayingAnimation.Play(Constants.Intro);
     }
 
-    public virtual void MorphToNormal()
+    public void MorphToNormal()
     {
-        MorphToPlayingAnimation.Play(ToNormal);
+        MorphToPlayingAnimation.Play(Constants.ToNormal);
     }
 
-    public virtual void PlayerLosesLife()
+    public void PlayerLosesLife()
     {
-        MorphToPlayingAnimation.Play(PlayerLosesLifeAnimation);
+        MorphToPlayingAnimation.Play(Constants.LosesLife);
     }
 
     public virtual void EnableBat()
