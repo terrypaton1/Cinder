@@ -7,7 +7,7 @@ public class Boss : BrickBase
     protected FallingFreeze fallingFreezeReference;
 
     [SerializeField]
-    protected GoogleyEye[] googlyEyes;
+    protected GooglyEye[] googlyEyes;
 
     private int freezeDropTriggerCount;
     private bool canDropFreezePower;

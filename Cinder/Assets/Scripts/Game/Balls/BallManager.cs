@@ -107,9 +107,9 @@ public class BallManager : BaseObject
 
         var ball = GetBallFromPool();
         ball.transform.position = ballStartPosition;
-        
+
         yield return new WaitForSeconds(0.1f);
-        
+
         ball.Enable();
         ballList.Add(ball);
 
@@ -239,5 +239,19 @@ public class BallManager : BaseObject
         {
             ball.ActivateCrazyBall();
         }
+    }
+
+    public Ball GetFirstActiveBall()
+    {
+        foreach (var ball in ballList)
+        {
+            if (ball.activeAndMoving)
+            {
+                return ball;
+            }
+        }
+
+        // no balls are currently active
+        return null;
     }
 }

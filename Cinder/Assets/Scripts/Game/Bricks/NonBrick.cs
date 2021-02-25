@@ -30,12 +30,12 @@ public class NonBrick : BaseObject
         spriteRenderer.enabled = true;
     }
 
-    private void DisableCollisions()
+    protected virtual void DisableCollisions()
     {
         colliderRef.enabled = false;
     }
 
-    private void EnableCollisions()
+    protected virtual void EnableCollisions()
     {
         colliderRef.enabled = true;
     }
