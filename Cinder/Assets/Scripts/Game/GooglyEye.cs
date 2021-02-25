@@ -12,22 +12,17 @@ public class GooglyEye : MonoBehaviour
 
     protected void Update()
     {
-        // todo - this is awful!
-        // look at the players bat
-        Debug.Log(1);
         if (currentBallTracking == null)
         {
             // todo change this to use the ball manager to get a ball!!
             currentBallTracking = CoreConnector.GameManager.ballManager.GetFirstActiveBall();
         }
 
-        Debug.Log(2);
         if (currentBallTracking == null)
         {
             return;
         }
 
-        Debug.Log(3);
         var dir = (currentBallTracking.transform.position - transform.position).normalized * .08f;
         eyeBall.localPosition = Vector3.Lerp(eyeBall.localPosition, dir, Time.deltaTime * 5f);
     }
