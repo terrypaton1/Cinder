@@ -23,20 +23,11 @@ public class LaserBullet : BaseObject
         isUsed = true;
 
         EnableVisuals();
-        EnableCollider();
 
         laserMaxSpeed = GameVariables.laserBulletSpeed;
+
+        thisRigidbody.simulated = true;
         thisRigidbody.velocity = velocity;
-    }
-
-    private void EnableCollider()
-    {
-        boxCollider.enabled = true;
-    }
-
-    private void DisableCollider()
-    {
-        boxCollider.enabled = true;
     }
 
     private void DisableVisuals()
@@ -98,8 +89,8 @@ public class LaserBullet : BaseObject
 
     public void Disable()
     {
+        thisRigidbody.simulated = false;
         DisableVisuals();
-        DisableCollider();
         isUsed = false;
     }
 
