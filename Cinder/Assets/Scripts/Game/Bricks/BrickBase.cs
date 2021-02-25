@@ -51,7 +51,7 @@ public class BrickBase : BaseObject
         SetVisualScale(0.05f);
         EnableColliders();
         ApplyNormalLayers();
-        delayCounter = Random.Range(0.0f, 0.5f);
+        delayCounter = Random.Range(0.0f, 0.4f);
 
         StopRunningCoroutine();
         coroutine = StartSequence();
@@ -70,14 +70,14 @@ public class BrickBase : BaseObject
     {
         yield return new WaitForSeconds(delayCounter);
 
-        // set everything tiny
+        // scale the brick up from tiny. 
         SetVisualScale(0.01f);
         EnableVisuals();
-        
+
         targetScale = 1.0f;
 
         var timePassed = 0.0f;
-        var timeToTake = 0.5f;
+        var timeToTake = Random.Range(0.3f, 0.5f);
 
         while (timePassed < timeToTake)
         {
