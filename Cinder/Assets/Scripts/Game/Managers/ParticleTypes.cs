@@ -1,0 +1,19 @@
+﻿public enum ParticleTypes
+{
+    BrickExplosion,
+    BallHitsBrick,
+    BallHitsBat,
+    NewBallOne,
+    NewBallTwo,
+    BallLost,
+    PowerUpLost,
+    PowerUpCollected,
+    FallingPointsCollected,
+    DestroyFallingItems,
+    TNTExplosion,
+    LaserHitsBrick,
+    WanderingObstacleExplosion,
+    WanderingObstacleSpawn,
+    BossExplosion,
+    FreezePlayer
+}

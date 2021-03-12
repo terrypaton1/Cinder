@@ -26,6 +26,7 @@ public class LaserBullet : BaseObject
 
         laserMaxSpeed = GameVariables.laserBulletSpeed;
 
+        boxCollider.enabled = true;
         thisRigidbody.simulated = true;
         thisRigidbody.velocity = velocity;
     }
@@ -89,6 +90,7 @@ public class LaserBullet : BaseObject
 
     public void Disable()
     {
+        boxCollider.enabled = false;
         thisRigidbody.simulated = false;
         DisableVisuals();
         isUsed = false;

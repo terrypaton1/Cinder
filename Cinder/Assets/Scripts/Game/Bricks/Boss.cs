@@ -21,7 +21,9 @@ public class Boss : BrickBase
         {
             canDropFreezePower = true;
         }
+
         fallingFreezeReference.Setup();
+        HideGooglyEyes();
     }
 
     public override void BrickHitByBall()
@@ -50,6 +52,7 @@ public class Boss : BrickBase
         {
             return;
         }
+
         // drop a freeze! 
         StartFallingFreeze();
         freezeDropTriggerCount = 0;
@@ -121,7 +124,7 @@ public class Boss : BrickBase
             yield return 0;
         }
 
-        CoreConnector.GameManager.brickManager.BrickDestroyed(this);
+        CoreConnector.GameManager.brickManager.BrickDestroyed();
         visualObjects.SetActive(false);
     }
 

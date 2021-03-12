@@ -221,9 +221,9 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &11427786
 MonoBehaviour:
@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cf2889635f543d195177cba0fe1f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUsed: 0
   thisRigidbody: {fileID: 5099436}
   spriteRenderer: {fileID: 21292892}
   boxCollider: {fileID: 6179082}

@@ -45,7 +45,7 @@ public class Brick : BrickBase
         visualObjects.transform.localPosition = newLocal;
 
         newLocal = visualObjects.transform.localEulerAngles;
-        newLocal.z = Random.Range(-15f, 15f) * amount;
+        newLocal.z = Random.Range(-15.0f, 15.0f) * amount;
         visualObjects.transform.localEulerAngles = newLocal;
 
         resetCounter += 2;

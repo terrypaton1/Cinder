@@ -51,33 +51,46 @@ public class LevelButton : MonoBehaviour
 
         if (levelNumber <= maxLevelNumber)
         {
-            // button is unlocked
-            levelNumberLabel.enabled = true;
-            levelSprite.enabled = true;
-            lockedSprite.enabled = false;
-            button.enabled = true;
-
-            var isBossLevel = levelNumber % 5;
-
-            if (isBossLevel == 0)
-            {
-                levelSprite.sprite = specialLevel;
-            }
-            else
-            {
-                levelSprite.sprite = normalLevel;
-            }
+            DisplayLevelUnLocked();
         }
         else
         {
-            // button is locked
-            levelNumberLabel.enabled = false;
-            levelSprite.enabled = false;
-            lockedSprite.enabled = true;
-            button.enabled = false;
+            DisplayLevelLocked();
         }
 
         levelNumberLabel.text = levelNumber.ToString();
+    }
+
+    private void DisplayLevelLocked()
+    {
+        levelNumberLabel.enabled = false;
+        levelSprite.enabled = false;
+        lockedSprite.enabled = true;
+        button.enabled = false;
+    }
+
+    private void DisplayLevelUnLocked()
+    {
+        // button is unlocked
+        levelNumberLabel.enabled = true;
+        levelSprite.enabled = true;
+        lockedSprite.enabled = false;
+        button.enabled = true;
+
+        EvaluateIsBossLevel();
+    }
+
+    private void EvaluateIsBossLevel()
+    {
+        var isBossLevel = levelNumber % 5;
+        if (isBossLevel == 0)
+        {
+            levelSprite.sprite = specialLevel;
+        }
+        else
+        {
+            levelSprite.sprite = normalLevel;
+        }
     }
 
     public void OnClick()

@@ -51,7 +51,7 @@ public class BONUSManager : BaseObject
         fallingObjects = new List<FallingLetter>();
         collectedObjects = new List<FallingLetter>();
         fallingLettersPool = new List<FallingLetter>();
-        for (int i = 0; i < 5; i++)
+        for (var i = 0; i < 5; i++)
         {
             var fallingLetter = Instantiate(letterPrefab, transform, true);
             fallingLettersPool.Add(fallingLetter);

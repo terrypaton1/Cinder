@@ -21,7 +21,6 @@ public class PlayersBatBase : BaseObject
     {
         if (collision.gameObject.CompareTag(CollisionTags.Ball))
         {
-//			Debug.Log("ball hit bat");	
             SpawnParticles(ParticleTypes.BallHitsBat, collision.contacts[0].point);
         }
 
@@ -73,7 +72,6 @@ public class PlayersBatBase : BaseObject
     {
         batIsEnabled = false;
         DisableColliders();
-
         DisableVisuals();
     }
 

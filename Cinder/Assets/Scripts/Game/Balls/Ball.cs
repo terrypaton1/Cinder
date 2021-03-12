@@ -28,31 +28,49 @@ public class Ball : BaseObject
 
     private float radians;
     private Vector2 speed;
-    private int bricksHitInARow;
-    private float addedRepeatedVerticalBounce;
-    private int hitWallsInARowOnlyCount;
-    private int layerMovingUp;
-    private int layerMovingDown;
-    private int fireballLayerMovingUp;
-    private int fireballLayerMovingDown;
+
     private float currentBallSpeed;
     private float ballMaxSpeed = 5;
+
     public bool activeAndMoving;
+    public bool ballIsEnabled;
+
+    private int bricksHitInARow;
+    private int hitWallsInARowOnlyCount;
+    private float addedRepeatedVerticalBounce;
+
+    private int layerMovingUp;
+    private int layerMovingDown;
+
+    private int fireballLayerMovingUp;
+    private int fireballLayerMovingDown;
+
     private bool flameBallIsActive;
     private bool crazyBallIsActive;
-    public bool ballIsEnabled;
+
+    private const string ballMovingUp = "BallMovingUp";
+    private const string ballMovingDown = "BallMovingDown";
+    private const string fireBallMovingDown = "FireBallMovingDown";
+    private const string fireBallMovingUp = "FireBallMovingUp";
 
     private void Awake()
     {
         // todo move these to the ball manager and reference them from there
-        layerMovingUp = LayerMask.NameToLayer("BallMovingUp");
-        layerMovingDown = LayerMask.NameToLayer("BallMovingDown");
-        fireballLayerMovingDown = LayerMask.NameToLayer("FireBallMovingDown");
-        fireballLayerMovingUp = LayerMask.NameToLayer("FireBallMovingUp");
+
+        layerMovingUp = LayerMask.NameToLayer(ballMovingUp);
+        layerMovingDown = LayerMask.NameToLayer(ballMovingDown);
+        fireballLayerMovingDown = LayerMask.NameToLayer(fireBallMovingDown);
+        fireballLayerMovingUp = LayerMask.NameToLayer(fireBallMovingUp);
 
         // get the max speed this ball can move for the current level
-        DisableFlameBall();
+        DisableEffects();
+    }
+
+    private void DisableEffects()
+    {
         DisableCrazyBall();
+        DisableFlameBall();
+        DisableBallTrail();
     }
 
     public void PushFromBumper(Vector2 _force)
@@ -295,10 +313,8 @@ public class Ball : BaseObject
 
     public void LaunchBall(float _ballMaxSpeed)
     {
-        DisableCrazyBall();
-        DisableFlameBall();
-        DisableBallTrail();
-        
+        DisableEffects();
+
         thisRigidbody.isKinematic = false;
         ballMaxSpeed = _ballMaxSpeed;
 

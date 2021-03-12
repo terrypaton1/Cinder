@@ -28,6 +28,9 @@ public class BrickBase : BaseObject
     private float delayCounter;
     private IEnumerator coroutine;
 
+    private const float destroyedBrickScale = 0.05f;
+    private const float destroyBrickTimeToTake = 0.35f;
+
     public bool BrickHasBeenDestroyed
     {
         get;
@@ -48,7 +51,7 @@ public class BrickBase : BaseObject
         UpdateAmountOfHitsLeftDisplay();
         visualObjects.transform.localPosition = Vector3.zero;
 
-        SetVisualScale(0.05f);
+        SetVisualScale(destroyedBrickScale);
         EnableColliders();
         ApplyNormalLayers();
         delayCounter = Random.Range(0.0f, 0.4f);
@@ -92,7 +95,7 @@ public class BrickBase : BaseObject
 
     private void SetVisualScale(float scaleValue)
     {
-        scale.x = scale.y = scaleValue;
+        scale.x = scale.y = scaleValue * targetScale;
         visualObjects.transform.localScale = scale;
     }
 
@@ -109,9 +112,9 @@ public class BrickBase : BaseObject
 
     private void ApplyNormalLayers()
     {
-//		Debug.Log("ApplyNormalLayers on bricks");
         if (!Application.isPlaying)
         {
+            Debug.Log("ApplyNormalLayers");
             return;
         }
 
@@ -205,7 +208,7 @@ public class BrickBase : BaseObject
         BrickHasBeenDestroyed = true;
 
         CoreConnector.GameManager.scoreManager.PointsCollected(Points.brickPointsValue);
-        CoreConnector.GameManager.brickManager.BrickDestroyed(this);
+        CoreConnector.GameManager.brickManager.BrickDestroyed();
 
         SpawnParticles(ParticleTypes.BrickExplosion, transform.position);
         if (playSound)
@@ -217,18 +220,16 @@ public class BrickBase : BaseObject
 
         DisableColliders();
 
-        targetScale = 0.05f;
+        targetScale = destroyedBrickScale;
 
         var timePassed = 0.0f;
-        const float timeToTake = 0.35f;
 
-        while (timePassed < timeToTake)
+        while (timePassed < destroyBrickTimeToTake)
         {
-            var percent = timePassed / timeToTake;
+            var percent = timePassed / destroyBrickTimeToTake;
             timePassed += Time.deltaTime;
             var scaleValue = 1 - percent;
-            var scaleVal = scaleValue * targetScale;
-            SetVisualScale(scaleVal);
+            SetVisualScale(scaleValue);
             yield return null;
         }
 

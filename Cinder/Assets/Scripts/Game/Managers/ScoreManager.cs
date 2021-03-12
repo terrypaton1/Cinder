@@ -7,13 +7,6 @@
     private bool bonusLife3Collected;
     private bool bonusLife4Collected;
 
-    public void RestartLevel()
-    {
-//		Debug.Log("RestartLevel");
-        playerScore = 0;
-        CoreConnector.GameUIManager.pointsDisplay.UpdatePointsDisplay(playerScore);
-    }
-
     public void PointsCollected(int _points)
     {
         playerScore += _points;

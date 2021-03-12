@@ -59,7 +59,7 @@ public class GameMessages : MonoBehaviour
         messageBox.SetActive(false);
     }
 
-    public void HideInGameMessageInstantly()
+    private void HideInGameMessageInstantly()
     {
         messageBox.SetActive(false);
         StopCurrentCoroutine();

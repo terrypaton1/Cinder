@@ -1,32 +1,33 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MultiHitBrick : Brick
 {
+    [FormerlySerializedAs("mutltiHitSpritesReference")]
     [SerializeField]
-    protected BrickMutltiHitSprites mutltiHitSpritesReference;
+    protected BrickMultiHitSprites multiHitSpritesReference;
 
     public override void UpdateAmountOfHitsLeftDisplay()
     {
-        mutltiHitSpritesReference.DisplayHitsLeft(amountOfHitsToDestroy);
+        multiHitSpritesReference.DisplayHitsLeft(amountOfHitsToDestroy);
     }
 
     protected override void DisableVisuals()
     {
         base.DisableVisuals();
-        mutltiHitSpritesReference.Show();
+        multiHitSpritesReference.Show();
     }
 
     public override void Hide()
     {
         base.Hide();
-        mutltiHitSpritesReference.Hide();
-        
+        multiHitSpritesReference.Hide();
     }
 
     public override void ResetBrick()
     {
         base.ResetBrick();
-        
-        mutltiHitSpritesReference.DisplayHitsLeft(amountOfHitsToDestroy);
+
+        multiHitSpritesReference.DisplayHitsLeft(amountOfHitsToDestroy);
     }
 }

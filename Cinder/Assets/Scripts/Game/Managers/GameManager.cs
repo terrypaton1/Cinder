@@ -49,9 +49,9 @@ public class GameManager : BaseObject
     [SerializeField]
     public GameSettings gameSettings;
 
-    private GameState _lastGameState = GameState.Setup;
+    private GameState lastGameState = GameState.Setup;
 
-    private IEnumerator coroutine;
+    private IEnumerator startPlayCoroutine;
 
     private GameState gameState = GameState.Setup;
     private IEnumerator StartGameCoroutine;
@@ -88,7 +88,7 @@ public class GameManager : BaseObject
     {
         ballManager.ResetAllBalls();
         playersBatManager.HideAllBats();
-        Time.timeScale = 1;
+        Time.timeScale = 1.0f;
         CoreConnector.UIManager.DisplayLevelLoader();
 
         var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
@@ -98,20 +98,19 @@ public class GameManager : BaseObject
 
         yield return new WaitForSeconds(0.1f);
         brickManager.LoadLevelsBricks();
+        yield return new WaitForSeconds(0.1f);
         backgrounds.DisplayForLevel(levelNumber);
+        yield return new WaitForSeconds(0.1f);
         fallingObjectsManager.HideAll();
-
         yield return new WaitForSeconds(0.1f);
         CoreConnector.UIManager.HideAllScreens();
-        CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
-
-        CoreConnector.GameUIManager.DisplayInGameButtons(true);
-
-        playerLifeManager.RestartLevel();
-
         yield return new WaitForSeconds(0.1f);
-        touchPosition.ResumeGame();
+        CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
+        CoreConnector.GameUIManager.DisplayInGameButtons(true);
+        playerLifeManager.RestartLevel();
+        yield return new WaitForSeconds(0.1f);
 
+        touchPosition.ResumeGame();
         StartPlay(0.25f);
     }
 
@@ -129,7 +128,7 @@ public class GameManager : BaseObject
         StartGame();
     }
 
-    private void IncrementPlayersCurrentLevel()
+    private static void IncrementPlayersCurrentLevel()
     {
         var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
         levelNumber++;
@@ -160,7 +159,7 @@ public class GameManager : BaseObject
 
     private void ChangeGameState(GameState newState)
     {
-        _lastGameState = gameState;
+        lastGameState = gameState;
         gameState = newState;
     }
 
@@ -171,8 +170,8 @@ public class GameManager : BaseObject
 
         levelTimer.StartTimer();
         touchPosition.ResumeGame();
-        gameState = _lastGameState;
-        Time.timeScale = 1;
+        gameState = lastGameState;
+        Time.timeScale = 1.0f;
     }
 
     public void LoseLife()
@@ -212,9 +211,9 @@ public class GameManager : BaseObject
 
     private void StartPlay(float initialDelay)
     {
-        StopRunningCoroutine(coroutine);
-        coroutine = StartPlaySequence(initialDelay);
-        StartCoroutine(coroutine);
+        StopRunningCoroutine(startPlayCoroutine);
+        startPlayCoroutine = StartPlaySequence(initialDelay);
+        StartCoroutine(startPlayCoroutine);
     }
 
     private IEnumerator StartPlaySequence(float initialDelay)
@@ -270,7 +269,7 @@ public class GameManager : BaseObject
 
         ballManager.LevelComplete();
     }
-
+    
     public void ActivateFlameBall()
     {
         brickManager.ActivateFlameBall();
@@ -288,8 +287,9 @@ public class GameManager : BaseObject
         return gameState == GameState.Playing;
     }
 
-    public void ExitGame()
+    public static void ExitGame()
     {
         CoreConnector.LevelsManager.HideAllLevels();
+        CoreConnector.GameUIManager.playerLifeDisplay.Hide();
     }
 }

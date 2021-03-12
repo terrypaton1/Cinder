@@ -157,7 +157,7 @@ public class BallManager : BaseObject
         ball2.LaunchBall(ballMaxSpeedForCurrentLevel);
     }
 
-    private float CalculateBallMaxSpeed()
+    private static float CalculateBallMaxSpeed()
     {
         // get the current level
         var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
@@ -165,18 +165,14 @@ public class BallManager : BaseObject
         {
             return GameVariables.ballMaxSpeedPhase1;
         }
-
         if (levelNumber < 21)
         {
-//			Debug.Log("GameVariables.instance.ballMaxSpeedPhase2:"+GameVariables.ballMaxSpeedPhase2);
             return GameVariables.ballMaxSpeedPhase2;
         }
-
         if (levelNumber < 41)
         {
             return GameVariables.ballMaxSpeedPhase3;
         }
-
         return GameVariables.ballMaxSpeedPhase4;
     }
 

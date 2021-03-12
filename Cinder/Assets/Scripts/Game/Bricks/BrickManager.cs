@@ -27,7 +27,6 @@ public class BrickManager : MonoBehaviour
 
     public void NextLevel()
     {
-        // Reset the bricklist being monitored.
         activeBrickList = new List<BrickBase>();
         nonBrickList = new List<NonBrick>();
     }
@@ -43,7 +42,7 @@ public class BrickManager : MonoBehaviour
         }
     }
 
-    public void BrickDestroyed(BrickBase _brick)
+    public void BrickDestroyed()
     {
         // check if brick destroyed is the same as the last one
         BrickWasDestroyed();

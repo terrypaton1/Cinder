@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 [InitializeOnLoadAttribute]
 public static class PlayModeStateChanged
 {
-    private static readonly string LoadingScene = "Loading";
+    private const string LoadingScene = "Loading";
 
     static PlayModeStateChanged()
     {

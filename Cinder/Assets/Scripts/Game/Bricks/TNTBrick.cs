@@ -11,7 +11,7 @@ public class TNTBrick : BrickBase
         BrickHasBeenDestroyed = true;
 
         CoreConnector.GameManager.scoreManager.PointsCollected(brickPointsValue);
-        CoreConnector.GameManager.brickManager.BrickDestroyed(this);
+        CoreConnector.GameManager.brickManager.BrickDestroyed();
 
         SpawnParticles(ParticleTypes.TNTExplosion, position);
         if (playSound)

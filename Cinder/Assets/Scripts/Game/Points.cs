@@ -1,4 +1,4 @@
-﻿public class Points
+﻿public static class Points
 {
     public const int MultiHit1 = 500;
     public const int MultiHit2 = 1000;

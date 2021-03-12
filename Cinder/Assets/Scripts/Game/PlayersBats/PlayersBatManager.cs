@@ -23,24 +23,28 @@ public class PlayersBatManager : BaseObject
 
     private PlayersBatBase currentBat;
     private Vector3 currentBatPosition;
-    private PlayerBatTypes currentBatType = PlayerBatTypes.None;
-    private float currentRotation;
+
     private bool freezePlayerActive;
     private bool isMorphingBat;
+    private bool batIsActive;
     private float lastMovementDirection;
     private float lastXPosition;
     private float maximumXPosition;
     private float minimumXPosition;
-    private PlayerBatTypes nextBatType;
-    private bool batIsActive;
-    private PlayerBatTypes previousBatType;
+    private float currentRotation;
     private float targetRotation;
-    private readonly float batYPosition = 2.0f;
+
+    private PlayerBatTypes currentBatType = PlayerBatTypes.None;
+    private PlayerBatTypes nextBatType;
+    private PlayerBatTypes previousBatType;
+
+    private const float batYPosition = 2.0f;
+
     private IEnumerator coroutine;
     private IEnumerator transitionCoroutine;
 
     private float timer;
-    private readonly float TimerReset = 0.2f;
+    private const float TimerReset = 0.2f;
 
     protected void Start()
     {
@@ -61,6 +65,7 @@ public class PlayersBatManager : BaseObject
     public void Reset()
     {
         StopTransitionCoroutine();
+        StopRunningCoroutine();
         currentBatType = PlayerBatTypes.None;
         HideAllBats();
         batIsActive = false;
@@ -118,22 +123,23 @@ public class PlayersBatManager : BaseObject
         // lerp towards the mouse position
         var newXPosition = Mathf.Lerp(currentBatPosition.x, mousePosition.x, Time.deltaTime * 60f);
         var dir = currentBatPosition.x - mousePosition.x;
+
         // if the player has changed direction completely then first aim for a zero rotation
-        if (dir > 0 && lastMovementDirection < 0 || dir < 0 && lastMovementDirection > 0)
+        if (dir > 0.0f && lastMovementDirection < 0.0f || dir < 0.0f && lastMovementDirection > 0.0f)
         {
-            targetRotation = 0;
-//			Debug.Log("changed direction");
+            // player is changing direction
+            targetRotation = 0.0f;
         }
 
         lastMovementDirection = dir;
         // Calculate the angle based on the amount the bat is moving
         var newDistance = lastXPosition - currentBat.rigidRef.position.x;
-        if (Mathf.Abs(newDistance) > .02f)
+        if (Mathf.Abs(newDistance) > 0.02f)
         {
-            targetRotation += (newDistance * 10);
+            targetRotation += newDistance * 10;
         }
 
-        targetRotation *= .9f;
+        targetRotation *= 0.9f;
         targetRotation = Mathf.Clamp(targetRotation, -60f, 60f);
         currentRotation = Mathf.Lerp(currentRotation, targetRotation, Time.deltaTime * 16f);
         currentBat.rigidRef.MoveRotation(currentRotation);
@@ -142,14 +148,6 @@ public class PlayersBatManager : BaseObject
         currentBatPosition.y = GameVariables.playersBatYPosition;
         // position the current bat
         currentBat.rigidRef.MovePosition(currentBatPosition);
-    }
-
-    private void StopTransitionCoroutine()
-    {
-        if (transitionCoroutine != null)
-        {
-            StopCoroutine(transitionCoroutine);
-        }
     }
 
     private IEnumerator StartGameSequence()
@@ -214,7 +212,7 @@ public class PlayersBatManager : BaseObject
 
     private IEnumerator TransitionToNextBatType()
     {
-        // first we transition the current bat to look normal
+        // Transition the current bat to look normal
         isMorphingBat = true;
         if (currentBat != normalBat)
         {
@@ -222,10 +220,10 @@ public class PlayersBatManager : BaseObject
             yield return new WaitForSeconds(1.0f);
         }
 
-        // then we swap to the new bat (which starts looking like a normal bat)
+        // Swap to the new bat (which starts looking like a normal bat)
         SwitchToNextBat();
-        // then we morph to the playing state of the next bat
 
+        // Morph to the playing state of the next bat
         if (currentBat != normalBat)
         {
             currentBat.MorphToPlayingState();
@@ -236,7 +234,7 @@ public class PlayersBatManager : BaseObject
             currentBat.MorphToNormal();
         }
 
-        yield return 0;
+        yield return null;
 
         isMorphingBat = false;
     }
@@ -275,11 +273,7 @@ public class PlayersBatManager : BaseObject
 
     public void RestartLevel()
     {
-        if (coroutine != null)
-        {
-            StopCoroutine(coroutine);
-        }
-
+        StopRunningCoroutine();
         coroutine = StartGameSequence();
         StartCoroutine(coroutine);
     }
@@ -319,5 +313,21 @@ public class PlayersBatManager : BaseObject
     {
         allBats.TryGetValue(batType, out var bat);
         return bat;
+    }
+
+    private void StopTransitionCoroutine()
+    {
+        if (transitionCoroutine != null)
+        {
+            StopCoroutine(transitionCoroutine);
+        }
+    }
+
+    private void StopRunningCoroutine()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
     }
 }

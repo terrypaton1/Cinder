@@ -106,7 +106,7 @@ public class WanderingObstacle : BrickBase
             PlaySound(SoundList.WanderingObstacleDestroyed);
         }
 
-        CoreConnector.GameManager.brickManager.BrickDestroyed(this);
+        CoreConnector.GameManager.brickManager.BrickDestroyed();
 
         yield return null;
 

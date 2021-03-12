@@ -1,25 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
-
-public enum ParticleTypes
-{
-    BrickExplosion,
-    BallHitsBrick,
-    BallHitsBat,
-    NewBallOne,
-    NewBallTwo,
-    BallLost,
-    PowerUpLost,
-    PowerUpCollected,
-    FallingPointsCollected,
-    DestroyFallingItems,
-    TNTExplosion,
-    LaserHitsBrick,
-    WanderingObstacleExplosion,
-    WanderingObstacleSpawn,
-    BossExplosion,
-    FreezePlayer
-}
 
 public class ParticleManager : MonoBehaviour
 {
@@ -41,11 +20,9 @@ public class ParticleManager : MonoBehaviour
     [SerializeField]
     protected ParticleSystem ballLostParticleSystem;
 
-    [FormerlySerializedAs("PowerupLostParticles")]
     [SerializeField]
     protected ParticleSystem PowerUpLostParticles;
 
-    [FormerlySerializedAs("PowerupCollectedParticles")]
     [SerializeField]
     protected ParticleSystem PowerUpCollectedParticles;
 
@@ -145,6 +122,9 @@ public class ParticleManager : MonoBehaviour
 //				Debug.Log("FreezePlayer");
                 FreezePlayerParticles.transform.position = position;
                 FreezePlayerParticles.Emit(1);
+                break;
+            default:
+                // empty.
                 break;
         }
     }

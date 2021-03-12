@@ -53,7 +53,7 @@ public class UIManager : BaseObject
         };
     }
 
-    UIScreen GetScreen(UIScreens type)
+    private UIScreen GetScreen(UIScreens type)
     {
         screens.TryGetValue(type, out var theOut);
 
@@ -68,12 +68,10 @@ public class UIManager : BaseObject
 
     private void DisplayUIScreen(UIScreens displayScreenID)
     {
-        switch (displayScreenID)
+        if (displayScreenID == UIScreens.LevelChooser)
         {
-            case UIScreens.LevelChooser:
-                ShowLevelChooser();
-                CoreConnector.GameManager.ExitGame();
-                break;
+            ShowLevelChooser();
+            GameManager.ExitGame();
         }
 
         currentScreen = displayScreenID;
@@ -124,7 +122,7 @@ public class UIManager : BaseObject
     public void PressedMainMenuButton()
     {
         ShowMainMenu();
-        CoreConnector.GameManager.ExitGame();
+        GameManager.ExitGame();
     }
 
     public void HideAllScreens()
@@ -162,28 +160,34 @@ public class UIManager : BaseObject
         InitialLoad();
     }
 
-    //TODO REMOVE THIS ITS ONLY FOR DESKTOP?
     protected void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // depending on which screen we are on, we need to go back
-            switch (currentScreen)
-            {
-                case UIScreens.MainMenu:
+        EvaluateBackKeyPressed();
+    }
 
-                    break;
-                case UIScreens.Credits:
-                    ShowMainMenu();
-                    break;
-                case UIScreens.Game:
-                    // we are currently in game. if the game isn't paused, then show the pause menu
-                    //   Messenger.Broadcast(GlobalEvents.PauseGame);
-                    break;
-                case UIScreens.LevelChooser:
-                    ShowMainMenu();
-                    break;
-            }
+    private void EvaluateBackKeyPressed()
+    {
+        if (!Input.GetKeyDown(KeyCode.Escape))
+        {
+            return;
+        }
+
+        // depending on which screen we are on, we need to go back
+        switch (currentScreen)
+        {
+            case UIScreens.MainMenu:
+
+                break;
+            case UIScreens.Credits:
+                ShowMainMenu();
+                break;
+            case UIScreens.Game:
+                // we are currently in game. if the game isn't paused, then show the pause menu
+                //   Messenger.Broadcast(GlobalEvents.PauseGame);
+                break;
+            case UIScreens.LevelChooser:
+                ShowMainMenu();
+                break;
         }
     }
 
@@ -196,7 +200,7 @@ public class UIManager : BaseObject
     public void GoLevelChooser()
     {
         ShowLevelChooser();
-        CoreConnector.GameManager.ExitGame();
+        GameManager.ExitGame();
     }
 
     public void DisplayLevelLoader()
