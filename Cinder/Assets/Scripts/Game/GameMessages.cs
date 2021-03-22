@@ -8,26 +8,16 @@ public class GameMessages : MonoBehaviour
     protected TextMeshProUGUI messageText;
 
     [SerializeField]
-    protected GameObject messageBox;
-
-    [SerializeField]
     protected Animator messageAnimation;
 
     private IEnumerator coroutine;
 
-    private const string HideMessage = "HideMessage";
-    private const string ShowMessage = "ShowMessage";
+    private const string Hide = "Hide";
+    private const string Show = "Show";
+    private const string Disabled = "Disabled";
 
-    protected void Awake()
-    {
-        HideMessageInstantly();
-    }
-
-    private void HideMessageInstantly()
-    {
-        // instead change this to make the animator play disabled.
-        messageBox.SetActive(false);
-    }
+    readonly WaitForSeconds showMessageSequence = new WaitForSeconds(3.0f);
+    readonly WaitForSeconds hideMessageSequence = new WaitForSeconds(1.0f);
 
     public void DisplayInGameMessage(string message)
     {
@@ -36,6 +26,11 @@ public class GameMessages : MonoBehaviour
         StopCurrentCoroutine();
         coroutine = ShowMessageSequence();
         StartCoroutine(coroutine);
+    }
+
+    public void LifeLost()
+    {
+        HideInGameMessageInstantly();
     }
 
     private void StopCurrentCoroutine()
@@ -48,25 +43,22 @@ public class GameMessages : MonoBehaviour
 
     private IEnumerator ShowMessageSequence()
     {
-        messageBox.SetActive(true);
-        messageAnimation.Play(ShowMessage);
+        messageAnimation.Play(Show);
 
-        yield return new WaitForSeconds(3.0f);
+        yield return showMessageSequence;
 
-        messageAnimation.Play(HideMessage);
+        // todo possibly add extra effects during the message
 
-        yield return new WaitForSeconds(1.0f);
-        messageBox.SetActive(false);
+        messageAnimation.Play(Hide);
+
+        yield return hideMessageSequence;
+        // Enforce disabled.
+        HideInGameMessageInstantly();
     }
 
     private void HideInGameMessageInstantly()
     {
-        messageBox.SetActive(false);
+        messageAnimation.Play(Disabled);
         StopCurrentCoroutine();
-    }
-
-    public void LifeLost()
-    {
-        HideInGameMessageInstantly();
     }
 }
