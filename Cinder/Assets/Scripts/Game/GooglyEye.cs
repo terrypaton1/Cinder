@@ -10,7 +10,7 @@ public class GooglyEye : MonoBehaviour
 
     private Ball currentBallTracking;
     private bool hasTarget;
-    private bool isEnabled = false;
+    private bool isEnabled;
 
     protected void Update()
     {

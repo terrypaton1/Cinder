@@ -16,4 +16,8 @@ public class Constants : MonoBehaviour
     public const string ballMovingDown = "BallMovingDown";
     public const string fireBallMovingDown = "FireBallMovingDown";
     public const string fireBallMovingUp = "FireBallMovingUp";
+
+    public const string PulseShield = "PulseShield";
+    public const string DisableShield = "DisableShield";
+    public const string ActivateShield = "ActivateShield";
 }

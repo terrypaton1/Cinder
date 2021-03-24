@@ -104,56 +104,50 @@ public class BallManager : BaseObject
 
         // wait a little while
         yield return new WaitForSeconds(0.4f);
-
-        var ball = GetBallFromPool();
-        ball.transform.position = ballStartPosition;
-
-        yield return new WaitForSeconds(0.1f);
-
-        ball.Enable();
-        ballList.Add(ball);
+        AddBall(0);
 
         yield return new WaitForSeconds(0.5f);
 
-        // get speed for ball
-        ballMaxSpeedForCurrentLevel = CalculateBallMaxSpeed();
-        // launch the ball
-        ball.LaunchBall(ballMaxSpeedForCurrentLevel);
+        LaunchAllBalls();
     }
 
     private IEnumerator InstantiateMultiBalls(float xPosition)
     {
         ballStartPosition.y = GameVariables.ballStartHeight;
-        ballStartPosition.x = xPosition;
 
+        ballStartPosition.x = xPosition;
         SpawnParticles(ParticleTypes.NewBallOne, ballStartPosition);
 
         ballStartPosition.x = -xPosition;
-
         SpawnParticles(ParticleTypes.NewBallTwo, ballStartPosition);
 
         yield return new WaitForSeconds(0.5f);
 
-        // add ball 1
+        // add ball 1 & 2
+        AddBall(xPosition);
+        AddBall(-xPosition);
+
+        yield return new WaitForSeconds(0.5f);
+
+        LaunchAllBalls();
+    }
+
+    void LaunchAllBalls()
+    {
+        ballMaxSpeedForCurrentLevel = CalculateBallMaxSpeed();
+        foreach (var ball in ballList)
+        {
+            ball.LaunchBall(ballMaxSpeedForCurrentLevel);
+        }
+    }
+
+    private void AddBall(float xPosition)
+    {
         ballStartPosition.x = xPosition;
         var ball = GetBallFromPool();
         ball.transform.position = ballStartPosition;
         ball.Enable();
         ballList.Add(ball);
-
-        // add ball 2
-        ballStartPosition.x = -xPosition;
-        var ball2 = GetBallFromPool();
-        ball2.transform.position = ballStartPosition;
-        ball2.Enable();
-        ballList.Add(ball2);
-
-        yield return new WaitForSeconds(0.5f);
-
-        ballMaxSpeedForCurrentLevel = CalculateBallMaxSpeed();
-
-        ball.LaunchBall(ballMaxSpeedForCurrentLevel);
-        ball2.LaunchBall(ballMaxSpeedForCurrentLevel);
     }
 
     private static float CalculateBallMaxSpeed()

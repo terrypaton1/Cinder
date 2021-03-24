@@ -34,7 +34,6 @@ public class TNTBrick : BrickBase
             counter -= Time.deltaTime;
             yield return null;
         }
-
     }
 
     public override void UpdateAmountOfHitsLeftDisplay()

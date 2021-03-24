@@ -35,7 +35,7 @@ public class PlayersBatBase : BaseObject
         }
     }
 
-    private void FallingObjectTouched(Collision2D collision)
+    private static void FallingObjectTouched(Collision2D collision)
     {
         var falling = collision.gameObject.GetComponent<FallingBase>();
         if (collision.contacts.Length > 0)

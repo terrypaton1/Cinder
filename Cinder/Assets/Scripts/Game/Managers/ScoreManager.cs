@@ -17,7 +17,7 @@
 
     private void CheckForBonusLife()
     {
-        // todo - this code could be much more effeciently made,
+        // todo - this code could be much more efficiently made,
         // its just a bunch of 'a threshold value and a bool'
 
         EvaluateBonus1();

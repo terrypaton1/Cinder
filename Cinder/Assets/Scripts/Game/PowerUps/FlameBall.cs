@@ -5,7 +5,6 @@
         base.Activate();
 
         PlaySound(SoundList.PowerUpFireball);
-        // tell all current balls to go into flame mode
         CoreConnector.GameManager.ActivateFlameBall();
         timer = GameVariables.flameBallLengthOfTime;
         PlaySound(SoundList.PowerUpLaser);

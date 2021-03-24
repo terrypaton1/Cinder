@@ -34,7 +34,7 @@ public class BrickBase : BaseObject
     public bool BrickHasBeenDestroyed
     {
         get;
-        set;
+        protected set;
     }
 
     public virtual void Hide()

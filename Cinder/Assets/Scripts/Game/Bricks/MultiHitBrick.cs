@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MultiHitBrick : Brick
 {
-    [FormerlySerializedAs("mutltiHitSpritesReference")]
     [SerializeField]
     protected BrickMultiHitSprites multiHitSpritesReference;
 

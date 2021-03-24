@@ -8,7 +8,6 @@ public class BrickManager : MonoBehaviour
     private float distance;
 
     private List<BrickBase> activeBrickList = new List<BrickBase>();
-    private List<NonBrick> nonBrickList = new List<NonBrick>();
 
     public int bricksLayerDuringFlameBall;
     public int bricksLayerNormal;
@@ -28,13 +27,11 @@ public class BrickManager : MonoBehaviour
     public void NextLevel()
     {
         activeBrickList = new List<BrickBase>();
-        nonBrickList = new List<NonBrick>();
     }
 
     public void RestartLevel()
     {
         activeBrickList = CoreConnector.LevelsManager.GetBricksForCurrentLevel();
-        nonBrickList = CoreConnector.LevelsManager.GetNonBricksForCurrentLevel();
 
         foreach (var brickBase in activeBrickList)
         {

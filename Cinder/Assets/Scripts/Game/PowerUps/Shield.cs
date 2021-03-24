@@ -13,9 +13,6 @@ public class Shield : PowerUpBase
     protected Animator shieldAnimator;
 
     private bool shieldPulseShown;
-    private const string PulseShield = "PulseShield";
-    private const string DisableShield = "DisableShield";
-    private const string ActivateShield = "ActivateShield";
 
     private IEnumerator coroutine;
 
@@ -51,7 +48,7 @@ public class Shield : PowerUpBase
         }
 
         shieldPulseShown = true;
-        shieldAnimator.Play(PulseShield);
+        shieldAnimator.Play(Constants.PulseShield);
     }
 
     public override void DisablePowerUp()
@@ -64,7 +61,7 @@ public class Shield : PowerUpBase
 
     private IEnumerator DisableShieldSequence()
     {
-        shieldAnimator.Play(DisableShield);
+        shieldAnimator.Play(Constants.DisableShield);
 
         powerUpActive = false;
         shieldCollider.enabled = false;
@@ -88,7 +85,7 @@ public class Shield : PowerUpBase
         shieldCollider.enabled = true;
         sprite.enabled = true;
 
-        shieldAnimator.Play(ActivateShield);
+        shieldAnimator.Play(Constants.ActivateShield);
         shieldPulseShown = false;
     }
 

@@ -68,15 +68,6 @@ public class LevelsManager : MonoBehaviour
         return brickList;
     }
 
-    public List<NonBrick> GetNonBricksForCurrentLevel()
-    {
-        var levelNumber = GetCurrentLevelNumber();
-        var level = allLevels[levelNumber];
-
-        var brickList = new List<NonBrick>(level.nonBricks);
-        return brickList;
-    }
-
     private static int GetCurrentLevelNumber()
     {
         var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);

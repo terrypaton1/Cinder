@@ -52,22 +52,18 @@ public class ParticleManager : MonoBehaviour
 
     public void SpawnParticleEffect(ParticleTypes effect, Vector3 position)
     {
-        position.z = -.2f;
+        position.z = -0.2f;
         switch (effect)
         {
             case ParticleTypes.BallHitsBrick:
-
-                _brickCollisionParticleSystem.transform.position = position;
-                _brickCollisionParticleSystem.Emit(5);
+                PositionAndEmit(_brickCollisionParticleSystem, position, 5);
                 break;
             case ParticleTypes.BrickExplosion:
-                _brickExplosionParticleSystem.transform.position = position;
-                _brickExplosionParticleSystem.Emit(10);
+                PositionAndEmit(_brickExplosionParticleSystem, position, 10);
                 break;
             case ParticleTypes.BallHitsBat:
 
-                _batCollisionParticleSystem.transform.position = position;
-                _batCollisionParticleSystem.Emit(5);
+                PositionAndEmit(_batCollisionParticleSystem, position, 5);
                 break;
             case ParticleTypes.NewBallOne:
                 _newBallParticleSystem.transform.position = position;
@@ -78,54 +74,47 @@ public class ParticleManager : MonoBehaviour
                 _newBallTwoParticleSystem.Play();
                 break;
             case ParticleTypes.BallLost:
-                ballLostParticleSystem.transform.position = position;
-                ballLostParticleSystem.Emit(10);
+                PositionAndEmit(ballLostParticleSystem, position, 10);
                 break;
             case ParticleTypes.PowerUpLost:
-                PowerUpLostParticles.transform.position = position;
-                PowerUpLostParticles.Emit(10);
+                PositionAndEmit(PowerUpLostParticles, position, 10);
                 break;
             case ParticleTypes.PowerUpCollected:
-                PowerUpCollectedParticles.transform.position = position;
-                PowerUpCollectedParticles.Emit(10);
+                PositionAndEmit(PowerUpCollectedParticles, position, 10);
                 break;
             case ParticleTypes.FallingPointsCollected:
-                FallingPointsCollectedParticles.transform.position = position;
-                FallingPointsCollectedParticles.Emit(5);
+                PositionAndEmit(FallingPointsCollectedParticles, position, 5);
                 break;
             case ParticleTypes.DestroyFallingItems:
-                DestroyFallingItemsParticles.transform.position = position;
-                DestroyFallingItemsParticles.Emit(5);
+                PositionAndEmit(DestroyFallingItemsParticles, position, 5);
                 break;
             case ParticleTypes.TNTExplosion:
-                TNTExplosionParticles.transform.position = position;
-                TNTExplosionParticles.Emit(40);
+                PositionAndEmit(TNTExplosionParticles, position, 40);
                 break;
             case ParticleTypes.LaserHitsBrick:
-                LaserBulletParticles.transform.position = position;
-                LaserBulletParticles.Emit(5);
+                PositionAndEmit(LaserBulletParticles, position, 5);
                 break;
             case ParticleTypes.WanderingObstacleExplosion:
-                WanderingObstacleExplosionParticles.transform.position = position;
-                WanderingObstacleExplosionParticles.Emit(20);
+                PositionAndEmit(WanderingObstacleExplosionParticles, position, 20);
                 break;
             case ParticleTypes.WanderingObstacleSpawn:
-                WanderingObstacleSpawnParticles.transform.position = position;
-                WanderingObstacleSpawnParticles.Emit(10);
+                PositionAndEmit(WanderingObstacleSpawnParticles, position, 10);
                 break;
             case ParticleTypes.BossExplosion:
-//				Debug.Log("BossExplosion");
-                BossExplosionParticles.transform.position = position;
-                BossExplosionParticles.Emit(50);
+                PositionAndEmit(BossExplosionParticles, position, 50);
                 break;
             case ParticleTypes.FreezePlayer:
-//				Debug.Log("FreezePlayer");
-                FreezePlayerParticles.transform.position = position;
-                FreezePlayerParticles.Emit(1);
+                PositionAndEmit(FreezePlayerParticles, position, 1);
                 break;
             default:
                 // empty.
                 break;
         }
+    }
+
+    private void PositionAndEmit(ParticleSystem particles, Vector3 position, int emitCount)
+    {
+        particles.transform.position = position;
+        particles.Emit(emitCount);
     }
 }
