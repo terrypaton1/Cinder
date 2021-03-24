@@ -17,33 +17,65 @@
 
     private void CheckForBonusLife()
     {
-//		Debug.Log("playerScore:"+playerScore);
-        if (!bonusLife1Collected)
+        // todo - this code could be much more effeciently made,
+        // its just a bunch of 'a threshold value and a bool'
+
+        EvaluateBonus1();
+        EvaluateBonus2();
+        EvaluateBonus3();
+        EvaluateBonus4();
+    }
+
+    private void EvaluateBonus1()
+    {
+        if (playerScore < GameVariables.bonusLife1PointsThreshold)
         {
-            if (playerScore >= GameVariables.bonusLife1PointsThreshold)
-            {
-                // give player an extra life
-                bonusLife1Collected = true;
-                AwardExtraLife();
-            }
+            return;
         }
 
-        if (!bonusLife2Collected)
+        if (bonusLife1Collected)
         {
-            if (playerScore >= GameVariables.bonusLife2PointsThreshold)
-            {
-                bonusLife2Collected = true;
-                AwardExtraLife();
-            }
+            return;
         }
 
-        if (!bonusLife3Collected)
+        // give player an extra life
+        bonusLife1Collected = true;
+        AwardExtraLife();
+    }
+
+    private void EvaluateBonus2()
+    {
+        if (bonusLife2Collected) return;
+        if (playerScore < GameVariables.bonusLife2PointsThreshold)
         {
-            if (playerScore >= GameVariables.bonusLife3PointsThreshold)
-            {
-                bonusLife3Collected = true;
-                AwardExtraLife();
-            }
+            return;
+        }
+
+        bonusLife2Collected = true;
+        AwardExtraLife();
+    }
+
+    private void EvaluateBonus3()
+    {
+        if (bonusLife3Collected)
+        {
+            return;
+        }
+
+        if (playerScore < GameVariables.bonusLife3PointsThreshold)
+        {
+            return;
+        }
+
+        bonusLife3Collected = true;
+        AwardExtraLife();
+    }
+
+    private void EvaluateBonus4()
+    {
+        if (playerScore < GameVariables.bonusLife4PointsThreshold)
+        {
+            return;
         }
 
         if (bonusLife4Collected)
@@ -51,16 +83,13 @@
             return;
         }
 
-        if (playerScore >= GameVariables.bonusLife4PointsThreshold)
-        {
-            bonusLife4Collected = true;
-            AwardExtraLife();
-        }
+        bonusLife4Collected = true;
+        AwardExtraLife();
     }
 
     private void AwardExtraLife()
     {
-        ShowInGameMessage("Extra life!");
+        ShowInGameMessage(Constants.ExtraLife);
         CoreConnector.GameManager.playerLifeManager.GivePlayerExtraLife();
     }
 }

@@ -68,8 +68,8 @@ public class GameVariables : BaseObject
 
     protected void Awake()
     {
-        totalBricksBroken = PlayerPrefs.GetInt(DataVariables.totalBricksDestroyed);
-        SFXEnabled = PlayerPrefs.GetInt(DataVariables.SFXEnabled);
+        totalBricksBroken = PlayerPrefs.GetInt(Constants.totalBricksDestroyed);
+        SFXEnabled = PlayerPrefs.GetInt(Constants.SFXEnabled);
     }
 
     public void IncreaseBricksBroken()
@@ -79,6 +79,6 @@ public class GameVariables : BaseObject
 
     public void StoreTotalBricksBroken()
     {
-        PlayerPrefs.SetInt(DataVariables.totalBricksDestroyed, totalBricksBroken);
+        PlayerPrefs.SetInt(Constants.totalBricksDestroyed, totalBricksBroken);
     }
 }

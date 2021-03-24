@@ -32,9 +32,9 @@ public class LevelButton : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        var maxLevelNumber = PlayerPrefs.GetInt(DataVariables.maxLevelBeatenPrefix);
+        var maxLevelNumber = PlayerPrefs.GetInt(Constants.maxLevelBeatenPrefix);
 
-        var currentLevel = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var currentLevel = PlayerPrefs.GetInt(Constants.currentLevel);
 
         var buttonScale = new Vector3(1.0f, 1.0f, 1.0f);
         if (currentLevel == levelNumber)

@@ -79,7 +79,7 @@ public class LevelsManager : MonoBehaviour
 
     private static int GetCurrentLevelNumber()
     {
-        var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
         // levels are stored as base zero
         levelNumber -= 1;
         return levelNumber;

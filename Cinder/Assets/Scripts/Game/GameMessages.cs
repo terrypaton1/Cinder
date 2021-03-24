@@ -16,8 +16,8 @@ public class GameMessages : MonoBehaviour
     private const string Show = "Show";
     private const string Disabled = "Disabled";
 
-    readonly WaitForSeconds showMessageSequence = new WaitForSeconds(3.0f);
-    readonly WaitForSeconds hideMessageSequence = new WaitForSeconds(1.0f);
+    private readonly WaitForSeconds showMessageSequence = new WaitForSeconds(3.0f);
+    private readonly WaitForSeconds hideMessageSequence = new WaitForSeconds(1.0f);
 
     public void DisplayInGameMessage(string message)
     {

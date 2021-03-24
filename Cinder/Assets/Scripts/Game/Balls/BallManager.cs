@@ -124,25 +124,24 @@ public class BallManager : BaseObject
     private IEnumerator InstantiateMultiBalls(float xPosition)
     {
         ballStartPosition.y = GameVariables.ballStartHeight;
-        // show a particle effect of a new ball being instantiated
-        //	Debug.Log("show a particle effect of a new ball being instantiated");
         ballStartPosition.x = xPosition;
+
         SpawnParticles(ParticleTypes.NewBallOne, ballStartPosition);
 
         ballStartPosition.x = -xPosition;
 
         SpawnParticles(ParticleTypes.NewBallTwo, ballStartPosition);
-        // wait a little while
+
         yield return new WaitForSeconds(0.5f);
 
-        // add ball one
+        // add ball 1
         ballStartPosition.x = xPosition;
         var ball = GetBallFromPool();
         ball.transform.position = ballStartPosition;
         ball.Enable();
         ballList.Add(ball);
 
-        // add ball two
+        // add ball 2
         ballStartPosition.x = -xPosition;
         var ball2 = GetBallFromPool();
         ball2.transform.position = ballStartPosition;
@@ -150,29 +149,31 @@ public class BallManager : BaseObject
         ballList.Add(ball2);
 
         yield return new WaitForSeconds(0.5f);
-        // get speed for ball
+
         ballMaxSpeedForCurrentLevel = CalculateBallMaxSpeed();
-        // launch the balls
+
         ball.LaunchBall(ballMaxSpeedForCurrentLevel);
         ball2.LaunchBall(ballMaxSpeedForCurrentLevel);
     }
 
     private static float CalculateBallMaxSpeed()
     {
-        // get the current level
-        var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
         if (levelNumber < 6)
         {
             return GameVariables.ballMaxSpeedPhase1;
         }
+
         if (levelNumber < 21)
         {
             return GameVariables.ballMaxSpeedPhase2;
         }
+
         if (levelNumber < 41)
         {
             return GameVariables.ballMaxSpeedPhase3;
         }
+
         return GameVariables.ballMaxSpeedPhase4;
     }
 

@@ -16,7 +16,7 @@ public class Boss : BrickBase
     {
         UpdateAmountOfHitsLeftDisplay();
         // determine if boss can drop freezes
-        var levelNumber = PlayerPrefs.GetInt(DataVariables.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
         if (levelNumber >= GameVariables.bossesStartDroppingFreezesFromLevel)
         {
             canDropFreezePower = true;

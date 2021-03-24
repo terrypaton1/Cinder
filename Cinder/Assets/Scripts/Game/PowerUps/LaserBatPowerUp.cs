@@ -15,7 +15,7 @@
         base.DisablePowerUp();
         CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Normal);
         powerUpActive = false;
-        CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();
+        CoreConnector.GameManager.powerUpManager.TestDisablePowerUpBar();
     }
     
 }

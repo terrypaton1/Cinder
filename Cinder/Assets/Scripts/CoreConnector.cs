@@ -3,13 +3,9 @@ using UnityEngine.Assertions;
 
 public class CoreConnector : MonoBehaviour
 {
-    private static GameMessages gameMessages;
-    private static CoreConnector instance;
     private static GameManager gameManager;
-    private static GameSettings gameSettings;
     private static GameUIManager gameUIManager;
     private static UIManager uiManager;
-    private static ParticleManager particleManager;
     private static GameSoundManager soundManager;
     private static LevelsManager levelsManager;
 

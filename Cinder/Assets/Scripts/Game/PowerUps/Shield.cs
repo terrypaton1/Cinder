@@ -68,7 +68,7 @@ public class Shield : PowerUpBase
 
         powerUpActive = false;
         shieldCollider.enabled = false;
-        CoreConnector.GameManager.powerUpManager.TestDisablePowerupBar();
+        CoreConnector.GameManager.powerUpManager.TestDisablePowerUpBar();
 
         yield return new WaitForSeconds(1.0f);
 

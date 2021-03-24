@@ -13,7 +13,7 @@ public class SFXMuteButton : MonoBehaviour
         CoreConnector.GameManager.gameVariables.SFXEnabled =
             CoreConnector.GameManager.gameVariables.SFXEnabled == 0 ? 1 : 0;
 
-        PlayerPrefs.SetInt(DataVariables.SFXEnabled, CoreConnector.GameManager.gameVariables.SFXEnabled);
+        PlayerPrefs.SetInt(Constants.SFXEnabled, CoreConnector.GameManager.gameVariables.SFXEnabled);
         EvaluateSFXState();
     }
 

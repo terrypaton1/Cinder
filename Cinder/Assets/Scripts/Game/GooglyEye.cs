@@ -19,17 +19,12 @@ public class GooglyEye : MonoBehaviour
             return;
         }
 
-        if (currentBallTracking == null)
+        if (!hasTarget)
         {
             // todo change this to use the ball manager to get a ball!!
             currentBallTracking = CoreConnector.GameManager.ballManager.GetFirstActiveBall();
-            hasTarget = (currentBallTracking != null);
+            hasTarget = currentBallTracking != null;
             Debug.Log("hasTarget:" + hasTarget);
-        }
-
-        if (!hasTarget)
-        {
-            return;
         }
 
         var dir = (currentBallTracking.transform.position - transform.position).normalized * 0.08f;

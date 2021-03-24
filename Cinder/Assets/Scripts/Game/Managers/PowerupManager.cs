@@ -67,7 +67,7 @@ public class PowerupManager : BaseObject
         // if the game is not in play mode, then don't activate power up - this is to catch some cases during level complete or game over where a power up may be collected at the same time as the event occurs
         if (!CoreConnector.GameManager.IsGamePlaying())
         {
-            // Game is not playing, cannot activate a powerup
+            // Game is not playing, cannot activate a power up
             return;
         }
 
@@ -120,6 +120,9 @@ public class PowerupManager : BaseObject
                 ShowInGameMessage(Message.Freeze);
                 freezePlayer.Activate();
                 break;
+            default:
+                // empty
+                break;
         }
     }
 
@@ -142,7 +145,7 @@ public class PowerupManager : BaseObject
         freezePlayer.ManagePowerUpTime();
     }
 
-    public void TestDisablePowerupBar()
+    public void TestDisablePowerUpBar()
     {
         if (laserBat.IsPowerUpActive())
         {
