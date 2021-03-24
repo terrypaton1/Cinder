@@ -11,4 +11,9 @@ public class Constants : MonoBehaviour
     public const string maxLevelBeatenPrefix = "maxLevelBeaten_01_";
     public const string totalBricksDestroyed = "totalBricksDestroyed";
     public const string SFXEnabled = "SFXEnabled";
+
+    public const string ballMovingUp = "BallMovingUp";
+    public const string ballMovingDown = "BallMovingDown";
+    public const string fireBallMovingDown = "FireBallMovingDown";
+    public const string fireBallMovingUp = "FireBallMovingUp";
 }

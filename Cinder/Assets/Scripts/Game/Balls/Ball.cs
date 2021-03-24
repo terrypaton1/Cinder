@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Ball : BaseObject
 {
@@ -11,20 +12,12 @@ public class Ball : BaseObject
     [SerializeField]
     protected CircleCollider2D circleCollider;
 
+    [FormerlySerializedAs("ballParticleManager")]
     [SerializeField]
-    protected ParticleSystem flameBallParticles;
-
-    [SerializeField]
-    protected ParticleSystem crazyBallParticles;
-
-    [SerializeField]
-    protected ParticleSystem ballTrailParticles;
+    protected BallEffectsManager ballEffectsManager;
 
     [SerializeField]
     protected SpriteRenderer spriteRenderer;
-
-    [SerializeField]
-    protected TrailRenderer trailRenderer;
 
     private float radians;
     private Vector2 speed;
@@ -48,19 +41,14 @@ public class Ball : BaseObject
     private bool flameBallIsActive;
     private bool crazyBallIsActive;
 
-    private const string ballMovingUp = "BallMovingUp";
-    private const string ballMovingDown = "BallMovingDown";
-    private const string fireBallMovingDown = "FireBallMovingDown";
-    private const string fireBallMovingUp = "FireBallMovingUp";
-
     private void Awake()
     {
         // todo move these to the ball manager and reference them from there
 
-        layerMovingUp = LayerMask.NameToLayer(ballMovingUp);
-        layerMovingDown = LayerMask.NameToLayer(ballMovingDown);
-        fireballLayerMovingDown = LayerMask.NameToLayer(fireBallMovingDown);
-        fireballLayerMovingUp = LayerMask.NameToLayer(fireBallMovingUp);
+        layerMovingUp = LayerMask.NameToLayer(Constants.ballMovingUp);
+        layerMovingDown = LayerMask.NameToLayer(Constants.ballMovingDown);
+        fireballLayerMovingDown = LayerMask.NameToLayer(Constants.fireBallMovingDown);
+        fireballLayerMovingUp = LayerMask.NameToLayer(Constants.fireBallMovingUp);
 
         // get the max speed this ball can move for the current level
         DisableEffects();
@@ -70,7 +58,7 @@ public class Ball : BaseObject
     {
         DisableCrazyBall();
         DisableFlameBall();
-        DisableBallTrail();
+        ballEffectsManager.DisableBallTrail();
     }
 
     public void PushFromBumper(Vector2 _force)
@@ -81,37 +69,27 @@ public class Ball : BaseObject
     public void ActivateCrazyBall()
     {
         crazyBallIsActive = true;
-        crazyBallParticles.Play();
+        ballEffectsManager.ActivateCrazyBall();
     }
 
     public void DisableCrazyBall()
     {
         crazyBallIsActive = false;
-        crazyBallParticles.Stop();
+        ballEffectsManager.DisableCrazyBall();
     }
 
     public void ActivateFlameBall()
     {
         flameBallIsActive = true;
         triggerCollider.enabled = true;
-        flameBallParticles.Play();
+        ballEffectsManager.ActivateFlameBall();
     }
 
     public void DisableFlameBall()
     {
         triggerCollider.enabled = false;
         flameBallIsActive = false;
-        flameBallParticles.Stop();
-    }
-
-    private void DisableBallTrail()
-    {
-        ballTrailParticles.Stop();
-    }
-
-    private void EnableBallTrail()
-    {
-        ballTrailParticles.Play();
+        ballEffectsManager.DisableFlameBall();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -338,8 +316,8 @@ public class Ball : BaseObject
         activeAndMoving = true;
         hitWallsInARowOnlyCount = 0;
 
-        trailRenderer.emitting = true;
-        EnableBallTrail();
+        ballEffectsManager.SetTrailEmittingState(true);
+        ballEffectsManager.EnableBallTrail();
     }
 
     public void Enable()
@@ -351,14 +329,19 @@ public class Ball : BaseObject
 
     public void Disable()
     {
-        DisableBallTrail();
+        ballEffectsManager.DisableEffects();
+
         hitWallsInARowOnlyCount = 0;
         ballIsEnabled = false;
+
         circleCollider.enabled = false;
+
         spriteRenderer.enabled = false;
+
         thisRigidbody.velocity = Vector2.zero;
-        activeAndMoving = false;
         thisRigidbody.isKinematic = true;
-        trailRenderer.emitting = false;
+
+        activeAndMoving = false;
+        ballEffectsManager.SetTrailEmittingState(false);
     }
 }

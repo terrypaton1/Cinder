@@ -123,67 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &26613001
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 191594, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_Name
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.480468
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00633955
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5099436, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
-      propertyPath: m_SleepingMode
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6cb7b9ea67ba24309b5d422624509907, type: 3}
 --- !u!1 &95582629
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +402,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &964969859
 Canvas:
   m_ObjectHideFlags: 0
@@ -491,7 +431,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 2
+  serializedVersion: 3
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
@@ -513,7 +453,7 @@ LightingSettings:
   m_MixedBakeMode: 2
   m_LightmapsBakeMode: 1
   m_FilterMode: 1
-  m_LightmapParameters: {fileID: 0}
+  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
   m_ExportTrainingData: 0
   m_TrainingDataDestination: TrainingData
   m_RealtimeResolution: 2
@@ -530,7 +470,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRRussianRouletteStartBounce: 2
+  m_PVRMinBounces: 1
   m_PVREnvironmentMIS: 1
   m_PVRFilteringMode: 1
   m_PVRDenoiserTypeDirect: 1
@@ -545,63 +485,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
---- !u!1001 &1148301115
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 191594, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_Name
-      value: LaserBullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.313603
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.978587
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 466364, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bbe594cc39e5540e2a4f50b36c046681, type: 3}
 --- !u!1 &1470167119
 GameObject:
   m_ObjectHideFlags: 0
