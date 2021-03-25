@@ -367,6 +367,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5115747215050047391, guid: 5320e812534b24a81952af600af689b9,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5320e812534b24a81952af600af689b9, type: 3}
 --- !u!114 &38811229 stripped
@@ -1779,7 +1784,7 @@ Transform:
   m_Children:
   - {fileID: 1901646700}
   m_Father: {fileID: 1274610218}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &902999225
 Animator:
@@ -2057,9 +2062,9 @@ Transform:
   m_Children:
   - {fileID: 2067859158}
   - {fileID: 1814227817}
-  - {fileID: 902999224}
   - {fileID: 1633885593}
   - {fileID: 1739878233}
+  - {fileID: 902999224}
   - {fileID: 225893921}
   m_Father: {fileID: 241679474}
   m_RootOrder: 13
@@ -2077,14 +2082,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterPrefab: {fileID: 11456904, guid: 29ed6e43878e745d29daa13a6be59e60, type: 3}
-  fallingLettersPool: []
-  fallingObjects: []
-  collectedObjects: []
-  _sprite0Animator: {fileID: 2067859159}
-  _sprite1Animator: {fileID: 1814227818}
-  _sprite2Animator: {fileID: 1633885594}
-  _sprite3Animator: {fileID: 1739878234}
-  _sprite4Animator: {fileID: 902999225}
+  letterAnimators:
+  - {fileID: 2067859159}
+  - {fileID: 1814227818}
+  - {fileID: 1633885594}
+  - {fileID: 1739878234}
+  - {fileID: 902999225}
 --- !u!1 &1359544010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,7 +2516,7 @@ Transform:
   m_Children:
   - {fileID: 1524584254}
   m_Father: {fileID: 1274610218}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1633885594
 Animator:
@@ -2709,7 +2712,7 @@ Transform:
   m_Children:
   - {fileID: 644274615}
   m_Father: {fileID: 1274610218}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1739878234
 Animator:

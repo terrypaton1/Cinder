@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
 public class BONUSManager : BaseObject
@@ -9,26 +10,12 @@ public class BONUSManager : BaseObject
     [SerializeField]
     protected FallingLetter letterPrefab;
 
-    private List<string> lettersAvailable;
-    private List<string> lettersCollected;
-    public List<FallingLetter> fallingLettersPool;
-    public List<FallingLetter> fallingObjects;
-    public List<FallingLetter> collectedObjects;
+    private List<FallingLetter> fallingLettersPool;
+    private List<FallingLetter> fallingObjects;
+    private List<FallingLetter> collectedObjects;
 
     [SerializeField]
-    protected Animator _sprite0Animator;
-
-    [SerializeField]
-    protected Animator _sprite1Animator;
-
-    [SerializeField]
-    protected Animator _sprite2Animator;
-
-    [SerializeField]
-    protected Animator _sprite3Animator;
-
-    [SerializeField]
-    protected Animator _sprite4Animator;
+    private List<Animator> letterAnimators;
 
     private IEnumerator coroutine;
     private const string word = "BRICK";
@@ -36,28 +23,24 @@ public class BONUSManager : BaseObject
     private const string LetterBonusCollectedAnimation = "LetterBonusCollected";
     private const string HideLetterAnimation = "HideLetter";
 
-    protected void OnEnable()
-    {
-        Setup();
-    }
-
     public void RestartGame()
     {
         ResetFallingObjectsAvailable();
     }
 
-    private void Setup()
+    public void Setup()
     {
         fallingObjects = new List<FallingLetter>();
         collectedObjects = new List<FallingLetter>();
         fallingLettersPool = new List<FallingLetter>();
+
         for (var i = 0; i < 5; i++)
         {
             var fallingLetter = Instantiate(letterPrefab, transform, true);
-            fallingLettersPool.Add(fallingLetter);
-
             var letter = word.Substring(i, 1);
+
             fallingLetter.Setup(Points.fallingLetterCollectedPointValue, letter);
+            fallingLettersPool.Add(fallingLetter);
         }
 
         HideAllLetters();
@@ -122,24 +105,10 @@ public class BONUSManager : BaseObject
 
         var letterValue = word.IndexOf(_fallingLetter.letter, StringComparison.Ordinal);
 
-        switch (letterValue)
-        {
-            case 0:
-                _sprite0Animator.Play(LetterCollectedAnimation);
-                break;
-            case 1:
-                _sprite1Animator.Play(LetterCollectedAnimation);
-                break;
-            case 2:
-                _sprite2Animator.Play(LetterCollectedAnimation);
-                break;
-            case 3:
-                _sprite3Animator.Play(LetterCollectedAnimation);
-                break;
-            case 4:
-                _sprite4Animator.Play(LetterCollectedAnimation);
-                break;
-        }
+        Assert.IsTrue(letterAnimators.Count == 5,
+            "letterAnimators must have references to the animators for b,o,n,u,s");
+        var animatorRef = letterAnimators[letterValue];
+        animatorRef.Play(LetterCollectedAnimation);
 
         if (collectedObjects.Count >= 5)
         {
@@ -172,11 +141,10 @@ public class BONUSManager : BaseObject
         // now we need to reset the objects for it to start over again
 
         yield return new WaitForSeconds(0.5f);
-        _sprite0Animator.Play(LetterBonusCollectedAnimation);
-        _sprite1Animator.Play(LetterBonusCollectedAnimation);
-        _sprite2Animator.Play(LetterBonusCollectedAnimation);
-        _sprite3Animator.Play(LetterBonusCollectedAnimation);
-        _sprite4Animator.Play(LetterBonusCollectedAnimation);
+        foreach (var letterAnimator in letterAnimators)
+        {
+            letterAnimator.Play(LetterBonusCollectedAnimation);
+        }
 
         yield return new WaitForSeconds(1.5f);
         ResetFallingObjectsAvailable();
@@ -185,11 +153,10 @@ public class BONUSManager : BaseObject
 
     private void HideAllLetters()
     {
-        _sprite0Animator.Play(HideLetterAnimation);
-        _sprite1Animator.Play(HideLetterAnimation);
-        _sprite2Animator.Play(HideLetterAnimation);
-        _sprite3Animator.Play(HideLetterAnimation);
-        _sprite4Animator.Play(HideLetterAnimation);
+        foreach (var letterAnimator in letterAnimators)
+        {
+            letterAnimator.Play(HideLetterAnimation);
+        }
     }
 
     public void LetterWasNotCollected(FallingLetter _fallingLetter)

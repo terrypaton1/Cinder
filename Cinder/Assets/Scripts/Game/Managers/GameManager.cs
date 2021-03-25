@@ -80,6 +80,7 @@ public class GameManager : BaseObject
     {
         fallingObjectsManager.BuildFallingPointsPool();
         fallingObjectsManager.BuildFallingPowerUpsPool();
+        bonusManager.Setup();
         powerUpManager.OneTimeSetup();
         ballManager.Setup();
     }
@@ -107,6 +108,7 @@ public class GameManager : BaseObject
         yield return new WaitForSeconds(0.1f);
         CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
         CoreConnector.GameUIManager.DisplayInGameButtons(true);
+        bonusManager.RestartGame();
         playerLifeManager.RestartLevel();
         yield return new WaitForSeconds(0.1f);
 
