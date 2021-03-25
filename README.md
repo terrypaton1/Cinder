@@ -9,7 +9,7 @@ The major gimmicks of the game are its power-ups and the 'bosses', essentially l
 Available to play in the Android google play store: <a href="https://play.google.com/store/apps/details?id=com.terrypaton.cinder"> Cinder </a>
 
 ## How to I open it?
-Using Unity 2019.4+ open the project in the folder, 'Cinder'. Press play. The game is setup that it requires the scene 'Loading' to be run first. There is a tool for navigating to the games scenes. You can find this under the menu Cinder > Cinder Window
+Using Unity 2020.3+ open the project in the folder, 'Cinder'. Press play. The game is setup that it requires the scene 'Loading' to be run first. There is a tool for navigating to the games scenes. You can find this under the menu Cinder > Cinder Window
 
 # Why?
 Often my paid work is NDA and I can't show anything when looking for new opportunities. So this is a little sampling of what I can do, squeezed in after work and between life.
