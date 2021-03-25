@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RotatingBarrier : NonBrick
 {
@@ -6,22 +7,28 @@ public class RotatingBarrier : NonBrick
     public bool rotateClockwise = true;
 
     [SerializeField]
-    public float speed = 45f;
+    public float speed = 45.0f;
 
+    [FormerlySerializedAs("_rigidbody2D")]
     [SerializeField]
-    protected Rigidbody2D _rigidbody2D;
+    protected Rigidbody2D rigid2D;
 
     protected void FixedUpdate()
     {
-        // only run if enabled
+        if (!spriteRenderer.enabled)
+        {
+            // only run if enabled
+            return;
+        }
+
         // todo probably wold be better to change this to an object on a pivot
         if (rotateClockwise)
         {
-            _rigidbody2D.MoveRotation(_rigidbody2D.rotation + speed * Time.fixedDeltaTime);
+            rigid2D.MoveRotation(rigid2D.rotation + speed * Time.fixedDeltaTime);
         }
         else
         {
-            _rigidbody2D.MoveRotation(_rigidbody2D.rotation - speed * Time.fixedDeltaTime);
+            rigid2D.MoveRotation(rigid2D.rotation - speed * Time.fixedDeltaTime);
         }
     }
 }

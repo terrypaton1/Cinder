@@ -32,11 +32,10 @@ public class LevelButton : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        var maxLevelNumber = PlayerPrefs.GetInt(Constants.maxLevelBeatenPrefix);
-
+        var maxLevelBeaten = PlayerPrefs.GetInt(Constants.maxLevelBeatenPrefix);
         var currentLevel = PlayerPrefs.GetInt(Constants.currentLevel);
-
         var buttonScale = new Vector3(1.0f, 1.0f, 1.0f);
+
         if (currentLevel == levelNumber)
         {
             buttonScale = new Vector3(1.4f, 1.4f, 1.4f);
@@ -44,12 +43,12 @@ public class LevelButton : MonoBehaviour
 
         transform.localScale = buttonScale;
 
-        if (maxLevelNumber < 1)
+        if (maxLevelBeaten < 1)
         {
-            maxLevelNumber = 1;
+            maxLevelBeaten = 1;
         }
 
-        if (levelNumber <= maxLevelNumber)
+        if (levelNumber <= maxLevelBeaten)
         {
             DisplayLevelUnLocked();
         }
@@ -86,11 +85,10 @@ public class LevelButton : MonoBehaviour
         if (isBossLevel == 0)
         {
             levelSprite.sprite = specialLevel;
+            return;
         }
-        else
-        {
-            levelSprite.sprite = normalLevel;
-        }
+
+        levelSprite.sprite = normalLevel;
     }
 
     public void OnClick()

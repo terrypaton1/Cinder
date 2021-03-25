@@ -106,13 +106,10 @@ public class ParticleManager : MonoBehaviour
             case ParticleTypes.FreezePlayer:
                 PositionAndEmit(FreezePlayerParticles, position, 1);
                 break;
-            default:
-                // empty.
-                break;
         }
     }
 
-    private void PositionAndEmit(ParticleSystem particles, Vector3 position, int emitCount)
+    private static void PositionAndEmit(ParticleSystem particles, Vector3 position, int emitCount)
     {
         particles.transform.position = position;
         particles.Emit(emitCount);

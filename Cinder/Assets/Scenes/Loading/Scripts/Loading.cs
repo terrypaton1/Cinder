@@ -16,7 +16,6 @@ public class Loading : MonoBehaviour
     private int currentLoadingIndex;
 
     private readonly string[] loadSceneQueue = {Main, Game, Levels_01_10};
-    private IEnumerator gameLevelCoroutine;
 
     private void OnEnable()
     {
@@ -60,8 +59,6 @@ public class Loading : MonoBehaviour
         yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
 
         CoreConnector.GameManager.PerformInitialSetup();
-        // show main menu ui
-
         CoreConnector.UIManager.DisplayScreen(UIScreens.MainMenu);
 
         loadingCamera.enabled = false;

@@ -115,7 +115,9 @@ public class Boss : BrickBase
         }
 
         yield return 0;
+
         DisableColliders();
+
         while (visualScale.x > 0.1f)
         {
             visualScale.x *= 0.8f;

@@ -132,7 +132,7 @@ public class BallManager : BaseObject
         LaunchAllBalls();
     }
 
-    void LaunchAllBalls()
+    private void LaunchAllBalls()
     {
         ballMaxSpeedForCurrentLevel = CalculateBallMaxSpeed();
         foreach (var ball in ballList)

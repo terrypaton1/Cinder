@@ -148,8 +148,8 @@ public class WanderingObstacle : BrickBase
         visualObjects.transform.localScale = visualScale;
         // apply a random direction
         var randomVector = Random.insideUnitCircle;
-        randomVector = randomVector.normalized * 10f;
-        currentDirectionTendency = 0;
+        randomVector = randomVector.normalized * 10.0f;
+        currentDirectionTendency = 0.0f;
         thisRigidbody.AddForce(randomVector);
     }
 
@@ -192,35 +192,35 @@ public class WanderingObstacle : BrickBase
         {
 //					Debug.Log("slowing down the entity");
             currentSpeed = velocity.magnitude;
-            currentSpeed -= Time.deltaTime * 3f;
+            currentSpeed -= Time.deltaTime * 3.0f;
             thisRigidbody.velocity = velocity.normalized * currentSpeed;
         }
 
         if (useCrazyMovement)
         {
             // crazy ball only gets applied if the ball is away from the bat, don't want it too hard for the player to hit
-            if (transform.position.y > 2)
+            if (transform.position.y > 2.0f)
             {
                 velocity = thisRigidbody.velocity;
                 // modify the balls movement direction, but only if the balls y> 2(?)
-                velocity.x += Random.Range(-.15f, .15f);
-                velocity.y += Random.Range(-.15f, .15f);
+                velocity.x += Random.Range(-0.15f, 0.15f);
+                velocity.y += Random.Range(-0.15f, 0.15f);
                 velocity = velocity.normalized * currentSpeed;
                 thisRigidbody.velocity = velocity;
             }
         }
 
         // depending on left/right direction flip the sprite 
-        if (velocity.x < 0)
+        if (velocity.x < 0.0f)
         {
-            currentDirectionTendency -= .1f;
+            currentDirectionTendency -= 0.1f;
         }
         else
         {
-            currentDirectionTendency += .1f;
+            currentDirectionTendency += 0.1f;
         }
 
-        currentDirectionTendency = Mathf.Clamp(currentDirectionTendency, -1f, 1f);
-        sprite.flipX = currentDirectionTendency < 0;
+        currentDirectionTendency = Mathf.Clamp(currentDirectionTendency, -1.0f, 1.0f);
+        sprite.flipX = currentDirectionTendency < 0.0f;
     }
 }

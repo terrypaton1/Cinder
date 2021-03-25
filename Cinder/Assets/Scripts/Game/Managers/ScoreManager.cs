@@ -87,9 +87,11 @@
         AwardExtraLife();
     }
 
-    private void AwardExtraLife()
+    private static void AwardExtraLife()
     {
         ShowInGameMessage(Constants.ExtraLife);
+        
+        PlaySound(SoundList.ExtraLife);
         CoreConnector.GameManager.playerLifeManager.GivePlayerExtraLife();
     }
 }

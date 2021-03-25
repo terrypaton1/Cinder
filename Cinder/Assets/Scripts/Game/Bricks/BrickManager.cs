@@ -29,16 +29,6 @@ public class BrickManager : MonoBehaviour
         activeBrickList = new List<BrickBase>();
     }
 
-    public void RestartLevel()
-    {
-        activeBrickList = CoreConnector.LevelsManager.GetBricksForCurrentLevel();
-
-        foreach (var brickBase in activeBrickList)
-        {
-            brickBase.ResetBrick();
-        }
-    }
-
     public void BrickDestroyed()
     {
         // check if brick destroyed is the same as the last one

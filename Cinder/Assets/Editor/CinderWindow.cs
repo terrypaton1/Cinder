@@ -7,7 +7,6 @@ public class CinderWindow : EditorWindow
 {
     private static CinderWindow window;
     public Vector2 scrollPosition;
-    private bool showLevelList;
 
     protected void OnGUI()
     {

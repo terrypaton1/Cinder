@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
-    protected void PlaySound(SoundList sound)
+    protected static void PlaySound(SoundList sound)
     {
         CoreConnector.SoundManager.PlaySound(sound);
     }

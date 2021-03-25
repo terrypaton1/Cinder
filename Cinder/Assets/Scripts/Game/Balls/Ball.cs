@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Ball : BaseObject
 {
@@ -12,7 +11,6 @@ public class Ball : BaseObject
     [SerializeField]
     protected CircleCollider2D circleCollider;
 
-    [FormerlySerializedAs("ballParticleManager")]
     [SerializeField]
     protected BallEffectsManager ballEffectsManager;
 

@@ -1,10 +1,14 @@
 ﻿public class PlayerLifeManager : BaseObject
 {
-    private int playerLives;
+    public int PlayerLives
+    {
+        get;
+        private set;
+    }
 
     public void ResetPlayerLives()
     {
-        playerLives = GameVariables.playerStartingLives;
+        PlayerLives = GameVariables.playerStartingLives;
     }
 
     public void RestartLevel()
@@ -12,24 +16,23 @@
         ResetPlayerLives();
         StopAllCoroutines();
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
-        CoreConnector.GameUIManager.playerLifeDisplay.UpdateLivesDisplay(playerLives);
-    }
-
-    public int PlayerLives
-    {
-        get { return playerLives; }
+        UpdateLivesDisplay(PlayerLives);
     }
 
     public void GivePlayerExtraLife()
     {
-        PlaySound(SoundList.ExtraLife);
-        playerLives++;
-        CoreConnector.GameUIManager.playerLifeDisplay.UpdateLivesDisplay(playerLives);
+        PlayerLives++;
+        UpdateLivesDisplay(PlayerLives);
     }
 
     public void PlayerLosesALife()
     {
-        playerLives--;
-        CoreConnector.GameUIManager.playerLifeDisplay.UpdateLivesDisplay(playerLives);
+        PlayerLives--;
+        UpdateLivesDisplay(PlayerLives);
+    }
+
+    private static void UpdateLivesDisplay(int value)
+    {
+        CoreConnector.GameUIManager.playerLifeDisplay.UpdateLivesDisplay(value);
     }
 }
