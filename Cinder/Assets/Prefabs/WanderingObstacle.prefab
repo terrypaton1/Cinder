@@ -38,7 +38,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144562}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: a7681eb31f9a44949b74b2574084b0f7, type: 2}
   m_IsTrigger: 0
@@ -120,13 +120,12 @@ MonoBehaviour:
   visualObjects: {fileID: 175390}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  brickAnimation: {fileID: 9513118}
   useCrazyMovement: 0
   thisRigidbody: {fileID: 5028644}
   _animator: {fileID: 9513118}
-  amountOfBricksBeforeSpawn: 10
+  amountOfBricksBeforeSpawn: 8
   activeAndMoving: 0
-  amountOfHitsToKill: 2
+  amountOfHitsToKill: 4
 --- !u!95 &9513118
 Animator:
   serializedVersion: 3
@@ -254,6 +253,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
