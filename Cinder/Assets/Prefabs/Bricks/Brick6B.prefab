@@ -50,7 +50,6 @@ MonoBehaviour:
   visualObjects: {fileID: 158962}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  brickAnimation: {fileID: 0}
 --- !u!1 &158962
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,18 +137,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.16400553, y: -0.09219464}
-      - {x: -0.23139443, y: -0.020283796}
-      - {x: -0.14321989, y: 0.066944204}
-      - {x: -0.070208944, y: -0.002225285}
-      - {x: 0.00004236002, y: 0.067151256}
-      - {x: 0.0907121, y: -0.024437938}
-      - {x: 0.024218174, y: -0.09559128}
-      - {x: 0.09397129, y: -0.16736479}
-      - {x: 0.0059646484, y: -0.25981694}
-      - {x: -0.06960818, y: -0.18384363}
-      - {x: -0.14141564, y: -0.25062734}
-      - {x: -0.23101327, y: -0.15936023}
+    - - {x: -0.15980655, y: -0.10311186}
+      - {x: -0.23979221, y: -0.021963352}
+      - {x: -0.15077789, y: 0.06778398}
+      - {x: -0.071048625, y: -0.0131425075}
+      - {x: 0.012639139, y: 0.06799093}
+      - {x: 0.09827036, y: -0.021918451}
+      - {x: 0.020019282, y: -0.101469725}
+      - {x: 0.09817031, y: -0.18164116}
+      - {x: 0.010163641, y: -0.27241373}
+      - {x: -0.07044789, y: -0.19308126}
+      - {x: -0.1506535, y: -0.27666098}
+      - {x: -0.24109091, y: -0.18455409}
 --- !u!1 &1117115809648660
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +187,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117115809648660}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -196,6 +195,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

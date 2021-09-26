@@ -70,7 +70,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117506}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -139,8 +139,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130516}
   m_LocalRotation: {x: 0, y: 0, z: 0.38268346, w: 0.9238795}
-  m_LocalPosition: {x: -0.028, y: 0.194, z: 0}
-  m_LocalScale: {x: 1.6678493, y: 1.6678493, z: 1.6678493}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 436992}
   m_RootOrder: 0
@@ -170,9 +170,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.0139552, y: 0.010014874}
-      - {x: -0.056688264, y: -0.2803102}
-      - {x: -0.2666583, y: -0.079267584}
+    - - {x: 0.15682986, y: 0.14826943}
+      - {x: 0.023438595, y: -0.30632454}
+      - {x: -0.29960525, y: 0.014779497}
 --- !u!1 &140048
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
   sprite: {fileID: 21237272}
   visualObjects: {fileID: 100064}
   resetHitsToDestroyCount: 1
-  amountOfHitsToDestroy: 3
+  amountOfHitsToDestroy: 1
   multiHitSpritesReference: {fileID: 6548073206458187071}
 --- !u!1001 &6548073206465425933
 PrefabInstance:
@@ -277,6 +277,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264594564815172364, guid: 92253932a7c1f4ed1b46c31046017aca,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
