@@ -78,6 +78,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -163,8 +164,7 @@ MonoBehaviour:
   visualObjects: {fileID: 125772}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 2
-  brickAnimation: {fileID: 0}
-  mutltiHitSpritesReference: {fileID: 831138172928574272}
+  multiHitSpritesReference: {fileID: 831138172928574272}
 --- !u!1 &163220
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +239,10 @@ PrefabInstance:
       value: MultiHitSprites
       objectReference: {fileID: 0}
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -251,6 +255,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -261,14 +269,6 @@ PrefabInstance:
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

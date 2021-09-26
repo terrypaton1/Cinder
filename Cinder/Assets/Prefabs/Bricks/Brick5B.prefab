@@ -78,6 +78,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -222,8 +223,7 @@ MonoBehaviour:
   visualObjects: {fileID: 100064}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 3
-  brickAnimation: {fileID: 0}
-  mutltiHitSpritesReference: {fileID: 6548073206458187071}
+  multiHitSpritesReference: {fileID: 6548073206458187071}
 --- !u!1001 &6548073206465425933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,6 +234,10 @@ PrefabInstance:
     - target: {fileID: 112178, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_Name
       value: MultiHitSprites
+      objectReference: {fileID: 0}
+    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -248,6 +252,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -258,14 +266,6 @@ PrefabInstance:
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 467794, guid: 92253932a7c1f4ed1b46c31046017aca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
