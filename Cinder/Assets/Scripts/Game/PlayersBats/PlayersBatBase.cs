@@ -15,6 +15,9 @@ public class PlayersBatBase : BaseObject
     [SerializeField]
     protected SpriteRenderer[] spriteRenderers;
 
+    [SerializeField]
+    protected Transform visuals;
+
     private bool batIsEnabled;
 
     protected void OnCollisionEnter2D(Collision2D collision)
@@ -22,20 +25,18 @@ public class PlayersBatBase : BaseObject
         if (collision.gameObject.CompareTag(CollisionTags.Ball))
         {
             SpawnParticles(ParticleTypes.BallHitsBat, collision.contacts[0].point);
+            BatReactsToBallTouchAnimation();
         }
 
-        if (collision.gameObject.CompareTag(CollisionTags.FallingPowerUp))
+        if (collision.gameObject.CompareTag(CollisionTags.FallingPowerUp) ||
+            collision.gameObject.CompareTag(CollisionTags.FallingPoints))
         {
-            FallingObjectTouched(collision);
-        }
-
-        if (collision.gameObject.CompareTag(CollisionTags.FallingPoints))
-        {
+            BatReactsToObjectTouchAnimation();
             FallingObjectTouched(collision);
         }
     }
 
-    private static void FallingObjectTouched(Collision2D collision)
+    private void FallingObjectTouched(Collision2D collision)
     {
         var falling = collision.gameObject.GetComponent<FallingBase>();
         if (collision.contacts.Length > 0)
@@ -44,6 +45,16 @@ public class PlayersBatBase : BaseObject
         }
 
         falling.HitPlayersBat();
+    }
+
+    private void BatReactsToBallTouchAnimation()
+    {
+        MorphToPlayingAnimation.Play(Constants.BallTouch);
+    }
+
+    private void BatReactsToObjectTouchAnimation()
+    {
+        MorphToPlayingAnimation.Play(Constants.ObjectTouch);
     }
 
     public void MorphToPlayingState()

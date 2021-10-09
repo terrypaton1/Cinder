@@ -46,7 +46,7 @@ public class LevelsManager : MonoBehaviour
         HideAllLevels();
         // levels are stored as base zero
         levelNumber -= 1;
-        levelNumber = Mathf.Clamp(levelNumber, 0, allLevels.Length);
+        levelNumber = Mathf.Clamp(levelNumber, 0, allLevels.Length-1);
 
         var level = allLevels[levelNumber];
         level.Show();

@@ -19,6 +19,7 @@ public class BossHealthRemainingDisplay : MonoBehaviour
 
     public void DisplayPercent(float percent)
     {
+        // if not showing, then show
         progressBar.localScale = new Vector3(percent, 1, 1);
     }
 

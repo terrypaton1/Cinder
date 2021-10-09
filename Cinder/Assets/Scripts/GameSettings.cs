@@ -12,9 +12,6 @@ public class GameSettings : ScriptableObject
     [SerializeField]
     public Sprite pointsDisplay100;
 
-    [SerializeField]
-    public Sprite pointsDisplay500;
-
     [Header("Power up sprites")]
     [SerializeField]
     public Sprite powerUpMultiBall;

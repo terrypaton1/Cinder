@@ -30,14 +30,14 @@ public class Boss : BrickBase
     {
         if (canDropFreezePower)
         {
-            ManageDropFreezePower();
+            EvaluateDropNewFreezePowerUp();
         }
 
         base.BrickHitByBall();
         DisplayBossHealth();
     }
 
-    private void ManageDropFreezePower()
+    private void EvaluateDropNewFreezePowerUp()
     {
         // judge whether we should drop a freeze
         freezeDropTriggerCount++;
@@ -62,7 +62,7 @@ public class Boss : BrickBase
     {
         var position = transform.position;
         position.x += Random.Range(-1.4f, 1.4f);
-
+        position.z += 0.5f;
         CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(position, PowerupType.FreezePlayer);
     }
 
@@ -71,6 +71,7 @@ public class Boss : BrickBase
         if (amountOfHitsToDestroy > 0)
         {
             var percent = (float) amountOfHitsToDestroy / resetHitsToDestroyCount;
+            CoreConnector.GameUIManager.bossHealthRemainingDisplay.DisplayBossHealthBar();
             CoreConnector.GameUIManager.bossHealthRemainingDisplay.DisplayPercent(percent);
         }
         else

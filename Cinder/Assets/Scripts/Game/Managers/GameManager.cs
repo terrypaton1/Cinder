@@ -1,4 +1,5 @@
 using System.Collections;
+using Scenes.Effects.Dash;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -55,7 +56,6 @@ public class GameManager : BaseObject
 
     private GameState gameState = GameState.Setup;
     private IEnumerator StartGameCoroutine;
-
     protected void Update()
     {
         if (gameState == GameState.Playing || gameState == GameState.Setup)
@@ -78,8 +78,7 @@ public class GameManager : BaseObject
 
     public void PerformInitialSetup()
     {
-        fallingObjectsManager.BuildFallingPointsPool();
-        fallingObjectsManager.BuildFallingPowerUpsPool();
+        fallingObjectsManager.Initialize();
         bonusManager.Setup();
         powerUpManager.OneTimeSetup();
         ballManager.Setup();
@@ -105,6 +104,7 @@ public class GameManager : BaseObject
         fallingObjectsManager.HideAll();
         yield return new WaitForSeconds(0.1f);
         CoreConnector.UIManager.HideAllScreens();
+        
         yield return new WaitForSeconds(0.1f);
         CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
         CoreConnector.GameUIManager.DisplayInGameButtons(true);

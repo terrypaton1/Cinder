@@ -1,4 +1,4 @@
-﻿public class FallingFreeze : FallingBase
+﻿public class FallingFreeze : FallingPowerup
 {
     public void Setup()
     {
@@ -10,5 +10,4 @@
         CoreConnector.GameManager.powerUpManager.ActivatePowerUp(PowerupType.FreezePlayer);
         base.HitPlayersBat();
     }
-    
 }

@@ -24,11 +24,20 @@ public class GooglyEye : MonoBehaviour
             // todo change this to use the ball manager to get a ball!!
             currentBallTracking = CoreConnector.GameManager.ballManager.GetFirstActiveBall();
             hasTarget = currentBallTracking != null;
-            Debug.Log("hasTarget:" + hasTarget);
         }
 
-        var dir = (currentBallTracking.transform.position - transform.position).normalized * 0.08f;
-        eyeBall.localPosition = Vector3.Lerp(eyeBall.localPosition, dir, Time.deltaTime * 5.0f);
+        if (currentBallTracking == null)
+        {
+            return;
+        }
+
+        var differenceVector = currentBallTracking.transform.position - transform.position;
+        var targetLocation = differenceVector.normalized * 0.08f;
+
+        eyeBall.localPosition = targetLocation;
+
+        // todo every once and a while the eye should look at the player 
+        //  eyeBall.localPosition = Vector3.Lerp(eyeBall.localPosition, targetLocation, Time.deltaTime * 5.0f);
     }
 
     public void Hide()

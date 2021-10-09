@@ -2,9 +2,12 @@
 
 public class Constants : MonoBehaviour
 {
+    // these are player bat related
     public const string LosesLife = "LosesLife";
     public const string ToNormal = "ToNormal";
     public const string Intro = "Intro";
+    public const string ObjectTouch = "ObjectTouch";
+    public const string BallTouch = "BallTouch";
 
     public const string ExtraLife = "Extra life!";
     public const string currentLevel = "currentLevel";

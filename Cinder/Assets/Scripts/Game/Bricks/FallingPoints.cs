@@ -4,9 +4,17 @@ public class FallingPoints : FallingBase
 {
     private int _pointsValue;
     private int category;
+    new public static string dashID = "FallingPoints";
 
+    public override string GetDashID()
+    {
+        return dashID;
+    }
+
+    // dashID=
     public void Setup(int newPointsValue, int _category)
     {
+        Debug.Log("Setup");
         category = _category;
         _pointsValue = newPointsValue;
         // disable all pointsDisplay
@@ -30,7 +38,7 @@ public class FallingPoints : FallingBase
                 spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay100;
                 break;
             default:
-                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay500;
+                spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.pointsDisplay10;
                 break;
         }
     }

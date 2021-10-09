@@ -16,6 +16,8 @@
     {
         var randomPowerUpNum = UnityEngine.Random.Range(0, randomPowerupChoices.Length);
         var randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
-        CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(transform.position, randomTypeOfPowerUp);
+        var position = transform.position;
+        position.z += 0.5f;
+        CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(position, randomTypeOfPowerUp);
     }
 }

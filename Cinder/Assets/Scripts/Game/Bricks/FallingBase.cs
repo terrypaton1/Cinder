@@ -11,7 +11,12 @@ public class FallingBase : BaseObject
     [SerializeField]
     protected Rigidbody2D rigid2D;
 
+
     public bool isFalling;
+
+    public static string dashID;
+    private bool isUsed;
+
 
     public override void LifeLost()
     {
@@ -32,6 +37,7 @@ public class FallingBase : BaseObject
 
     public void StartFalling(Vector3 position)
     {
+        SetUsed();
         // start falling, slowly at first, then faster
         var transform1 = transform;
         transform1.position = position;
@@ -90,5 +96,42 @@ public class FallingBase : BaseObject
         powerUpLostEffectPosition.y = 0;
         SpawnParticles(ParticleTypes.PowerUpLost, powerUpLostEffectPosition);
         Disable();
+    }
+
+    public bool IsUsed()
+    {
+        return isUsed;
+    }
+    
+    protected void SetUsed()
+    {
+        isUsed = true;
+    }
+
+    protected void SetUnused()
+    {
+        isUsed = false;
+    }
+
+    public virtual void HideInstantly()
+    {
+        DisableVisuals();
+        Disable();
+        SetUnused();
+    }
+
+    public virtual string GetDashID()
+    {
+        return dashID;
+    }
+
+    public void Initialize()
+    {
+        
+    }
+
+    public void Hide()
+    {
+        
     }
 }
