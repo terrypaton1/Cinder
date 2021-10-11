@@ -8,6 +8,7 @@ public class BrickManager : MonoBehaviour
     private float distance;
 
     private List<BrickBase> activeBrickList = new List<BrickBase>();
+    private List<NonBrick> nonActiveBrickList = new List<NonBrick>();
 
     public int bricksLayerDuringFlameBall;
     public int bricksLayerNormal;
@@ -15,6 +16,7 @@ public class BrickManager : MonoBehaviour
     protected void Awake()
     {
         activeBrickList = new List<BrickBase>();
+        nonActiveBrickList = new List<NonBrick>();
         bricksLayerDuringFlameBall = LayerMask.NameToLayer("BricksDuringFlameBall");
         bricksLayerNormal = LayerMask.NameToLayer("Bricks");
     }
@@ -22,11 +24,13 @@ public class BrickManager : MonoBehaviour
     public void LoadLevelsBricks()
     {
         activeBrickList = CoreConnector.LevelsManager.GetBricksForCurrentLevel();
+        nonActiveBrickList = CoreConnector.LevelsManager.GetNonBricksForCurrentLevel();
     }
 
     public void NextLevel()
     {
         activeBrickList = new List<BrickBase>();
+        nonActiveBrickList = new List<NonBrick>();
     }
 
     public void BrickDestroyed()
@@ -120,6 +124,11 @@ public class BrickManager : MonoBehaviour
         {
             brickBase.Shake(intensity);
         }
+
+        foreach (var nonBrick in nonActiveBrickList)
+        {
+            nonBrick.Shake(intensity);
+        }
     }
 
     public void LevelComplete()
@@ -154,7 +163,10 @@ public class BrickManager : MonoBehaviour
             brickBase.UpdateLoop();
         }
 
-        // give the non bricks an update loop
+        foreach (var nonBrick in nonActiveBrickList)
+        {
+            nonBrick.UpdateLoop();
+        }
     }
 
     private int CalculateActiveBricks()

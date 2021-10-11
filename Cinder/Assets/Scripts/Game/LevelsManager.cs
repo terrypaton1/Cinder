@@ -46,7 +46,7 @@ public class LevelsManager : MonoBehaviour
         HideAllLevels();
         // levels are stored as base zero
         levelNumber -= 1;
-        levelNumber = Mathf.Clamp(levelNumber, 0, allLevels.Length-1);
+        levelNumber = Mathf.Clamp(levelNumber, 0, allLevels.Length - 1);
 
         var level = allLevels[levelNumber];
         level.Show();
@@ -74,5 +74,13 @@ public class LevelsManager : MonoBehaviour
         // levels are stored as base zero
         levelNumber -= 1;
         return levelNumber;
+    }
+
+    public List<NonBrick> GetNonBricksForCurrentLevel()
+    {
+        var levelNumber = GetCurrentLevelNumber();
+        var level = allLevels[levelNumber];
+        var brickList = new List<NonBrick>(level.nonBricks);
+        return brickList;
     }
 }

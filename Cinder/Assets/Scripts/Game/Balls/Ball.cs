@@ -193,6 +193,18 @@ public class Ball : BaseObject
         {
             ProcessHitABrick(collision);
         }
+
+        if (collision.gameObject.CompareTag(CollisionTags.Bumper))
+        {
+            ProcessABumper(collision);
+        }
+    }
+
+    private void ProcessABumper(Collision2D collision)
+    {
+        var go = collision.gameObject;
+        var roundBumper = go.GetComponentInParent<RoundBumper>();
+        roundBumper.CollideWithBall(this, collision);
     }
 
     private void ProcessHitABrick(Collision2D collision)
