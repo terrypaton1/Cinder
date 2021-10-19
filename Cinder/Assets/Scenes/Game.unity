@@ -1618,8 +1618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b0234d2ee3c4ac7ae5fc943b990d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FallingPointsPrefab: {fileID: 11452836, guid: b2f24ece1ced547daa62424b4a00110e,
-    type: 3}
   dash: {fileID: 507762371}
 --- !u!4 &699194064
 Transform:
@@ -2078,9 +2076,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 5
+      minMaxState: 3
+      scalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2184,9 +2182,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 1, g: 0, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.9780377, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2248,8 +2246,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.2
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2406,7 +2404,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -2459,7 +2457,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -2512,8 +2510,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 6.283185
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2829,7 +2827,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2954,14 +2952,14 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.5056541
-          value: 0.961383
-          inSlope: 0.62553537
-          outSlope: 0.62553537
+          time: 0.08520415
+          value: 1
+          inSlope: -0.118860334
+          outSlope: -0.118860334
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.44466835
         - serializedVersion: 3
           time: 1
           value: 0
@@ -3445,8 +3443,8 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 1
-    tilesY: 1
+    tilesX: 2
+    tilesY: 2
     animationType: 0
     rowIndex: 0
     cycles: 1
@@ -6731,7 +6729,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8cbf221a94747054c8e06397ad6afeeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7325,7 +7323,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540795916}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -8861,6 +8859,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SplitBat
       objectReference: {fileID: 0}
+    - target: {fileID: 3378995098193518388, guid: 945976e2f8b944acfbc115f47a2bd69f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3378995098193518395, guid: 945976e2f8b944acfbc115f47a2bd69f,
         type: 3}
       propertyPath: m_RootOrder
@@ -8984,6 +8987,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SmallBat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593581487188848031, guid: 52700189d945944d587c0c3def664e95,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52700189d945944d587c0c3def664e95, type: 3}
@@ -9143,6 +9151,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserBat
       objectReference: {fileID: 0}
+    - target: {fileID: 4741699741758110444, guid: f8252e15b03b649158cd4b6097a8c0a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8252e15b03b649158cd4b6097a8c0a9, type: 3}
 --- !u!1001 &6643884816176617435
@@ -9212,6 +9225,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WideBat
       objectReference: {fileID: 0}
+    - target: {fileID: 6643884816322044083, guid: b945994b11c01454ba2aa27db3a3fb10,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b945994b11c01454ba2aa27db3a3fb10, type: 3}
 --- !u!1001 &7464691434837077815
@@ -9280,6 +9298,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NormalBat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464691433769462125, guid: 00b837804f0ec47d381555dc603f173e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00b837804f0ec47d381555dc603f173e, type: 3}

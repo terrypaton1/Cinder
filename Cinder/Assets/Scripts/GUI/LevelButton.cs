@@ -34,7 +34,7 @@ public class LevelButton : MonoBehaviour
     {
         var maxLevelBeaten = PlayerPrefs.GetInt(Constants.maxLevelBeatenPrefix);
         var currentLevel = PlayerPrefs.GetInt(Constants.currentLevel);
-        maxLevelBeaten = 99;
+        
         var buttonScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         if (currentLevel == levelNumber)
