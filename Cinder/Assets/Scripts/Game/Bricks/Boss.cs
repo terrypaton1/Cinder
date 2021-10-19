@@ -86,13 +86,14 @@ public class Boss : BrickBase
         ShowGooglyEyes();
         fallingFreezeReference.Setup();
         fallingFreezeReference.Disable();
+        visualObjects.SetActive(true);
 
         freezeDropTriggerCount = 0;
 
         brickPointsValue = Points.BossPointsValue;
-        UpdateAmountOfHitsLeftDisplay();
         base.ResetBrick();
-        CoreConnector.GameUIManager.bossHealthRemainingDisplay.DisplayBossHealthBar();
+
+        CoreConnector.GameUIManager.bossHealthRemainingDisplay.HideBossHealthBar();
     }
 
     protected override void StartItemFallingFromDestroyedBrick()

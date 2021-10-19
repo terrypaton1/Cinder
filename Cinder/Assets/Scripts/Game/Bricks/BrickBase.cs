@@ -31,11 +31,7 @@ public class BrickBase : BaseObject
     private const float destroyedBrickScale = 0.05f;
     private const float destroyBrickTimeToTake = 0.35f;
 
-    public bool BrickHasBeenDestroyed
-    {
-        get;
-        protected set;
-    }
+    public bool BrickHasBeenDestroyed { get; protected set; }
 
     public virtual void Hide()
     {
