@@ -46,6 +46,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -127,16 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe1abca9f3b0465baf09e75e5574bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brickType: 43
   colliderRef: {fileID: 1129604761164789671}
   sprite: {fileID: 1129604761147461639}
   visualObjects: {fileID: 1129604761160420507}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  brickAnimation: {fileID: 0}
+  pool_inUse: 0
   randomPowerupChoices: 
   typeOfPowerUp: 10
   _spriteRenderer: {fileID: 1129604761147461639}
-  fallingPowerUp: {fileID: 5493851169524607740}
 --- !u!1 &1129604761160412575
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +242,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -253,6 +258,10 @@ PrefabInstance:
       value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -263,14 +272,6 @@ PrefabInstance:
     - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 428308, guid: 5eace59df8a0648ec8ac08b9685fbec3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -300,15 +301,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5493851169531877898}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5493851169524607740 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11481334, guid: 5eace59df8a0648ec8ac08b9685fbec3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5493851169531877898}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946921403f76e40dc9fdef73524fe093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

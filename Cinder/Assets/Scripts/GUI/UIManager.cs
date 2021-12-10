@@ -199,8 +199,8 @@ public class UIManager : BaseObject
 
     public void GoLevelChooser()
     {
-        ShowLevelChooser();
         GameManager.ExitGame();
+        ShowLevelChooser();
     }
 
     public void DisplayLevelLoader()

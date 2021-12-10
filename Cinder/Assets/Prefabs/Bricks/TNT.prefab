@@ -76,12 +76,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35b20e7b030c4548b160e5b9b4f91f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brickType: 46
   colliderRef: {fileID: 6122458}
   sprite: {fileID: 21230394}
   visualObjects: {fileID: 102150}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  brickAnimation: {fileID: 0}
 --- !u!1 &153428
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +185,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

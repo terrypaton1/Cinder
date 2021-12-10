@@ -8,6 +8,7 @@ public class CoreConnector : MonoBehaviour
     private static UIManager uiManager;
     private static GameSoundManager soundManager;
     private static LevelsManager levelsManager;
+    private static TestLoadLevel testLoadLevel;
 
     public static GameManager GameManager
     {
@@ -57,5 +58,15 @@ public class CoreConnector : MonoBehaviour
             return levelsManager;
         }
         set => levelsManager = value;
+    }
+
+    public static TestLoadLevel TestLoadLevel
+    {
+        get
+        {
+            Assert.IsNotNull(testLoadLevel, "Error: testLoadLevel reference is null");
+            return testLoadLevel;
+        }
+        set => testLoadLevel = value;
     }
 }

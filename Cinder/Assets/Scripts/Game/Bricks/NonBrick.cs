@@ -8,7 +8,11 @@ public class NonBrick : BaseObject
     [SerializeField]
     protected Collider2D colliderRef;
 
+    [SerializeField]
+    public NonBrickType nonBrickType;
+
     private int resetCounter;
+
     public void Show()
     {
         EnableVisuals();
@@ -40,6 +44,7 @@ public class NonBrick : BaseObject
     {
         colliderRef.enabled = true;
     }
+
     public virtual void Shake(float amount)
     {
         var randomRadius = Random.Range(0.05f, 0.1f) * amount;
@@ -54,10 +59,9 @@ public class NonBrick : BaseObject
 
         resetCounter += 2;
     }
-    
+
     public virtual void UpdateLoop()
     {
-       
         var newPosition =
             Vector3.Lerp(spriteRenderer.transform.localPosition, Vector3.zero, Time.deltaTime * 10);
         spriteRenderer.transform.localPosition = newPosition;

@@ -121,10 +121,6 @@ MonoBehaviour:
   nonBricks:
   - {fileID: 8636139869635170116}
   - {fileID: 8636139870194151623}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &8636139869520647961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -858,6 +854,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8636139870472417125}
     m_Modifications:
+    - target: {fileID: 152180, guid: 5f73a9fa27f664246a0f7ef4b6232e1d, type: 3}
+      propertyPath: m_Name
+      value: Boss3
+      objectReference: {fileID: 0}
     - target: {fileID: 463278, guid: 5f73a9fa27f664246a0f7ef4b6232e1d, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -890,37 +890,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6097634, guid: 5f73a9fa27f664246a0f7ef4b6232e1d, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 463278, guid: 5f73a9fa27f664246a0f7ef4b6232e1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 21271142, guid: 5f73a9fa27f664246a0f7ef4b6232e1d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 161205966781564077, guid: 5f73a9fa27f664246a0f7ef4b6232e1d,
-        type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 463278, guid: 5f73a9fa27f664246a0f7ef4b6232e1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4191386150977230444, guid: 5f73a9fa27f664246a0f7ef4b6232e1d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191386150977242724, guid: 5f73a9fa27f664246a0f7ef4b6232e1d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7026168978426082927, guid: 5f73a9fa27f664246a0f7ef4b6232e1d,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7026168978426082927, guid: 5f73a9fa27f664246a0f7ef4b6232e1d,
-        type: 3}
-      propertyPath: m_Simulated
+    - target: {fileID: 463278, guid: 5f73a9fa27f664246a0f7ef4b6232e1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

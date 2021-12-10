@@ -12,8 +12,9 @@ public class Boss : BrickBase
     private int freezeDropTriggerCount;
     private bool canDropFreezePower;
 
-    protected void Awake()
+    public override void Show()
     {
+        amountOfHitsToDestroy = resetHitsToDestroyCount;
         UpdateAmountOfHitsLeftDisplay();
         // determine if boss can drop freezes
         var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
@@ -23,7 +24,9 @@ public class Boss : BrickBase
         }
 
         fallingFreezeReference.Setup();
-        HideGooglyEyes();
+        ShowGooglyEyes();
+        EnableColliders();
+        EnableVisuals();
     }
 
     public override void BrickHitByBall()

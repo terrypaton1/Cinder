@@ -14,12 +14,12 @@ namespace Scenes.Effects.Dash
 
         public void Initialize()
         {
-            Debug.Log("DashPool.Initialize()\n");
+            //Debug.Log("DashPool.Initialize()\n");
         }
 
         public void CreatePool()
         {
-            Debug.Log("DashPool.CreatePool()\n");
+            //Debug.Log("DashPool.CreatePool()\n");
             dashPools = new Dictionary<string, DashObjectPool>();
             // iterate through the configuration object, creating pools as needed.
 
@@ -39,7 +39,6 @@ namespace Scenes.Effects.Dash
 
             var newPool = newPoolRoot.AddComponent<DashObjectPool>();
             newPool.PoolID = config.dashObject.GetDashID();
-            Debug.Log($" newPool.PoolID: { newPool.PoolID}");
             newPool.SetPoolRoot(newPoolRoot.transform);
             newPool.CreatePool(config.dashObject, config.quantity);
             return newPool;
@@ -50,7 +49,7 @@ namespace Scenes.Effects.Dash
             DashObjectPool dashObjectPool;
             if (dashPools.TryGetValue(dashID, out dashObjectPool))
             {
-                Debug.Log("Found\n");
+                //Debug.Log("Found\n");
             }
             else
             {

@@ -55,9 +55,11 @@ public class Loading : MonoBehaviour
     private IEnumerator StartSequence()
     {
         yield return null;
-        
-        yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
 
+       // yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
+        // todo dispatch a cofiguration event
+
+        CoreConnector.TestLoadLevel.Initialise();
         CoreConnector.GameManager.PerformInitialSetup();
         CoreConnector.UIManager.DisplayScreen(UIScreens.MainMenu);
 

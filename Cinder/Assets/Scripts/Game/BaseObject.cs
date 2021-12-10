@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
+    public bool pool_inUse;
+
     protected static void PlaySound(SoundList sound)
     {
         CoreConnector.SoundManager.PlaySound(sound);

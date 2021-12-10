@@ -152,7 +152,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
   m_IsTrigger: 0
@@ -237,11 +237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d1a09ca4dc840bcb939d5774933828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brickType: 48
   colliderRef: {fileID: 6097634}
   sprite: {fileID: 21250070}
   visualObjects: {fileID: 107782}
   resetHitsToDestroyCount: 20
   amountOfHitsToDestroy: 20
+  pool_inUse: 0
   fallingFreezeReference: {fileID: 2273474988197897588}
   googlyEyes:
   - {fileID: 11464222}
@@ -252,6 +254,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 463278}
     m_Modifications:
+    - target: {fileID: -2036400483609859702, guid: 8d1cea83a80d1476dbeb7cd5aea03efe,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2036400483609859702, guid: 8d1cea83a80d1476dbeb7cd5aea03efe,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 134428, guid: 8d1cea83a80d1476dbeb7cd5aea03efe, type: 3}
       propertyPath: m_Name
       value: FallingFreeze
@@ -298,6 +310,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 428308, guid: 8d1cea83a80d1476dbeb7cd5aea03efe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21289800, guid: 8d1cea83a80d1476dbeb7cd5aea03efe, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

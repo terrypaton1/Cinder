@@ -11,12 +11,12 @@ public class DashObjectPool : MonoBehaviour
     public void SetPoolRoot(Transform newPoolRoot)
     {
         poolRoot = newPoolRoot;
-        Debug.Log("DashObjectPool.DashObjectPool()\n");
+        //Debug.Log("DashObjectPool.DashObjectPool()\n");
     }
 
     public void CreatePool(FallingBase dashObject, int quantity)
     {
-        Debug.Log("DashObjectPool.CreatePool()\n");
+       // Debug.Log($"DashObjectPool.CreatePool({dashObject.name})\n");
         pooledDashObject = dashObject;
 
         pool = new List<FallingBase>();

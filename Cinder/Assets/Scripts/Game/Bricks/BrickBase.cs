@@ -6,6 +6,9 @@ using Random = UnityEngine.Random;
 public class BrickBase : BaseObject
 {
     [SerializeField]
+    public BrickType brickType;
+
+    [SerializeField]
     protected Collider2D colliderRef;
 
     [SerializeField]
@@ -38,6 +41,12 @@ public class BrickBase : BaseObject
         DisableColliders();
         DisableVisuals();
         StopRunningCoroutine();
+    }
+
+    public virtual void Show()
+    {
+        EnableColliders();
+        EnableVisuals();
     }
 
     public virtual void ResetBrick()

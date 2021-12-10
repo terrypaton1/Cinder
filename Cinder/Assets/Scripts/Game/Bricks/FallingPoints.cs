@@ -14,7 +14,6 @@ public class FallingPoints : FallingBase
     // dashID=
     public void Setup(int newPointsValue, int _category)
     {
-        Debug.Log("Setup");
         category = _category;
         _pointsValue = newPointsValue;
         // disable all pointsDisplay
