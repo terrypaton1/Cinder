@@ -88,7 +88,9 @@ public class ExportLevel : MonoBehaviour
 
         levelSettings.levelDataStorage[levelNumber].levelNumber = levelNumber;
         levelSettings.levelDataStorage[levelNumber].jsonData = levelJsonData;
+#if UNITY_EDITOR
         EditorUtility.SetDirty(levelSettings);
+#endif
     }
 
     private void StoreNonBrick(NonBrick nonBrick)
