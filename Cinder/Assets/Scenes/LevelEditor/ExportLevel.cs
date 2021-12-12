@@ -15,22 +15,15 @@ public class ExportLevel : MonoBehaviour
     public void OutputLevelContents()
     {
         Debug.Log("OutputLevelContents");
-        // find the gfirdt level in the scene
-        // bricks = FindObjectOfType<Brick>();
         var foundLevels = Resources.FindObjectsOfTypeAll<Level>();
         bricks = Resources.FindObjectsOfTypeAll<Brick>();
-        Debug.Log($"level:{foundLevels.Length}");
-        Debug.Log($"bricks:{bricks.Length}");
-
         foreach (var level in foundLevels)
         {
             int levelNumber = GetLevelNumberFromName(level.name);
 
             levelData = new LevelData(levelNumber);
-            Debug.Log($" bricks:{level.bricks.Length}");
             ProcessBricks(level.name, level.bricks);
             ProcessNonBricks(level.name, level.nonBricks, ref levelData);
-            Debug.Log($" nonBricks:{level.nonBricks.Length}");
 
             string levelJsonData = JsonUtility.ToJson(levelData);
             Debug.Log(levelJsonData);
@@ -102,7 +95,7 @@ public class ExportLevel : MonoBehaviour
     {
         var position = nonBrick.transform.position;
         position = RoundVector(position);
-        var newData = new LevelData.NonBrickData
+        var newData = new NonBrickData
         {
             position = position,
             eulerRotation = nonBrick.transform.localEulerAngles,
@@ -117,7 +110,7 @@ public class ExportLevel : MonoBehaviour
     {
         var position = levelBrick.transform.position;
         position = RoundVector(position);
-        var newData = new LevelData.BrickData
+        var newData = new BrickData
         {
             position = position,
             eulerRotation = levelBrick.transform.localEulerAngles,

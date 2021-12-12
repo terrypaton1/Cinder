@@ -70,7 +70,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130128}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -159,13 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e6abe2f73b4229b4a925c2fb73d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool_inUse: 0
   brickType: 26
   colliderRef: {fileID: 6000172}
   sprite: {fileID: 21216384}
   visualObjects: {fileID: 125772}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 2
-  pool_inUse: 0
   multiHitSpritesReference: {fileID: 831138172928574272}
 --- !u!1 &163220
 GameObject:
@@ -205,7 +205,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163220}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
   m_IsTrigger: 0
@@ -223,12 +223,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.067647114, y: -0.13576588}
-      - {x: -0.19280389, y: -0.2555698}
-      - {x: -0.06655086, y: 0.29945505}
-      - {x: 0.17084253, y: 0.31155276}
-      - {x: 0.3380254, y: 0.13927718}
-      - {x: 0.30192366, y: -0.07497202}
+    - - {x: 0.03925742, y: -0.18686739}
+      - {x: -0.2628318, y: -0.26881835}
+      - {x: -0.123330265, y: 0.28052855}
+      - {x: 0.15191604, y: 0.353191}
+      - {x: 0.34748864, y: 0.14874043}
+      - {x: 0.2716413, y: -0.13175148}
 --- !u!1001 &831138172917402738
 PrefabInstance:
   m_ObjectHideFlags: 0

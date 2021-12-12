@@ -87,9 +87,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.0017897818, y: 0.04042829}
-      - {x: -0.05820892, y: -0.33353403}
-      - {x: -0.32140297, y: -0.07318519}
+    - - {x: 0.014813639, y: 0.06898632}
+      - {x: -0.058873124, y: -0.37404644}
+      - {x: -0.3665645, y: -0.070528686}
 --- !u!1 &186838
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,13 +135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e633eef59674103bae1703a205017f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool_inUse: 0
   brickType: 15
   colliderRef: {fileID: 6076428}
   sprite: {fileID: 21277226}
   visualObjects: {fileID: 110272}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  pool_inUse: 0
 --- !u!1 &199206
 GameObject:
   m_ObjectHideFlags: 0

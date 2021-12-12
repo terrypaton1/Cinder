@@ -19,7 +19,6 @@ namespace Scenes.Effects.Dash
 
         public void CreatePool()
         {
-            //Debug.Log("DashPool.CreatePool()\n");
             dashPools = new Dictionary<string, DashObjectPool>();
             // iterate through the configuration object, creating pools as needed.
 
@@ -28,8 +27,6 @@ namespace Scenes.Effects.Dash
                 var newPool = CreateNewPool(config);
                 dashPools.Add(newPool.PoolID, newPool);
             }
-
-            Debug.Log($"Amount of pools:{dashPools.Count}\n");
         }
 
         private DashObjectPool CreateNewPool(DashPoolConfig config)

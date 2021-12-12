@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TestLoadLevel : MonoBehaviour
@@ -6,10 +7,15 @@ public class TestLoadLevel : MonoBehaviour
     [SerializeField]
     private LevelSettings levelSettings;
 
-
+    [System.NonSerialized]
     public List<BrickBase> poolObjects = new List<BrickBase>();
+
+    [System.NonSerialized]
     public List<NonBrick> nonBrickPoolObjects = new List<NonBrick>();
+
+    [Range(1, 66)]
     public int loadLevel = 1;
+
     private GameObject holder;
     private GameObject inactiveHolder;
 
@@ -17,6 +23,9 @@ public class TestLoadLevel : MonoBehaviour
 
     public List<BrickBase> currentLevelsBricks;
     public List<NonBrick> currentNonLevelsBricks;
+
+
+    private Level levelRef;
 
     private void OnEnable()
     {
@@ -95,8 +104,14 @@ public class TestLoadLevel : MonoBehaviour
             brick.pool_inUse = true;
             brick.Show();
             brick.transform.SetParent(holder.transform);
-            brick.transform.position = brickData.position;
-            brick.transform.localEulerAngles = brickData.eulerRotation;
+            var position = ProcessPosition(brickData.position);
+            brick.transform.position = position;
+
+            // process rotation
+            var rotation = brickData.eulerRotation;
+            rotation.z = Mathf.RoundToInt(rotation.z / 5.0f) * 5.0f;
+
+            brick.transform.localEulerAngles = rotation;
             brick.transform.localScale = brickData.scale;
 
             currentLevelsBricks.Add(brick);
@@ -105,23 +120,47 @@ public class TestLoadLevel : MonoBehaviour
         // create non bricks
         foreach (var brickData in levelData.nonBricks)
         {
+            Debug.Log($"brickData.nonBrickType:{brickData.nonBrickType}");
+            
             var nonBrick = GetNonBrick(brickData.nonBrickType);
             nonBrick.pool_inUse = true;
             nonBrick.Show();
             nonBrick.transform.SetParent(holder.transform);
+
             nonBrick.transform.position = brickData.position;
-            nonBrick.transform.localEulerAngles = brickData.eulerRotation;
+
+            var rotation = ProcessRotation(brickData.eulerRotation);
+            nonBrick.transform.localEulerAngles = rotation;
             nonBrick.transform.localScale = brickData.scale;
 
             currentNonLevelsBricks.Add(nonBrick);
         }
 
+        if (levelRef != null)
+        {
+            levelRef.bricks = currentLevelsBricks.ToArray();
+            levelRef.nonBricks = currentNonLevelsBricks.ToArray();
+        }
+
         return currentLevelsBricks;
+    }
+
+    private Vector3 ProcessPosition(Vector3 position)
+    {
+        position.x = Mathf.RoundToInt(position.x / 0.01f) * 0.01f;
+        position.y = Mathf.RoundToInt(position.y / 0.01f) * 0.01f;
+        return position;
+    }
+
+    private Vector3 ProcessRotation(Vector3 rotation)
+    {
+        rotation.z = Mathf.RoundToInt(rotation.z / 5.0f) * 5.0f;
+        return rotation;
     }
 
     private void TestCreateLevelHolder()
     {
-        var levelGameObjectName = $"Level-{loadLevel}";
+        var levelGameObjectName = $"Level_{loadLevel}";
 
         if (holder != null && holder.name == levelGameObjectName)
         {
@@ -130,6 +169,7 @@ public class TestLoadLevel : MonoBehaviour
 
         holder = new GameObject(levelGameObjectName);
         holder.transform.SetParent(transform);
+        levelRef = holder.AddComponent<Level>();
     }
 
     private BrickBase GetBrick(BrickType type)
@@ -165,7 +205,7 @@ public class TestLoadLevel : MonoBehaviour
         nonBrickPoolObjects.Add(nonBrick);
         return nonBrick;
     }
-    
+
     private NonBrick TryGetNonBrickFromPool(NonBrickType type)
     {
         if (nonBrickPoolObjects == null)
