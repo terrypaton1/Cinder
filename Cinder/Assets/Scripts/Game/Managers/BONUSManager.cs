@@ -108,7 +108,7 @@ public class BONUSManager : BaseObject
         Assert.IsTrue(letterAnimators.Count == 5,
             "letterAnimators must have references to the animators for b,o,n,u,s");
         var animatorRef = letterAnimators[letterValue];
-        animatorRef.Play(LetterCollectedAnimation);
+        animatorRef.Play(LetterCollectedAnimation, 0, 0.0f);
 
         if (collectedObjects.Count >= 5)
         {
@@ -140,13 +140,14 @@ public class BONUSManager : BaseObject
         CoreConnector.GameManager.scoreManager.PointsCollected(Points.AllLettersOfBONUSCollectedPoints);
         // now we need to reset the objects for it to start over again
 
-        yield return new WaitForSeconds(0.5f);
+        yield return WaitCache.WaitForSeconds(0.5f);
+
         foreach (var letterAnimator in letterAnimators)
         {
-            letterAnimator.Play(LetterBonusCollectedAnimation);
+            letterAnimator.Play(LetterBonusCollectedAnimation, 0, 0.0f);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return WaitCache.WaitForSeconds(1.5f);
         ResetFallingObjectsAvailable();
         HideAllLetters();
     }
@@ -155,7 +156,7 @@ public class BONUSManager : BaseObject
     {
         foreach (var letterAnimator in letterAnimators)
         {
-            letterAnimator.Play(HideLetterAnimation);
+            letterAnimator.Play(HideLetterAnimation, 0, 0.0f);
         }
     }
 

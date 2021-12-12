@@ -48,6 +48,7 @@ public class DashObjectPool : MonoBehaviour
 
         // pool has run out, instantiate 5 more
         Debug.Log($"Expanding pool for {PoolID}\n");
+        
         AddToPool(5);
         return GetObjectFromPool();
     }
