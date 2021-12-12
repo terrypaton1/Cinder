@@ -5,5 +5,6 @@ public enum NonBrickType
     Bumper2,
     RotatingBarrier1A,
     RotatingBarrier1B,
-    RotatingBarrier1C
+    RotatingBarrier1C,
+    FirstInstructions
 }

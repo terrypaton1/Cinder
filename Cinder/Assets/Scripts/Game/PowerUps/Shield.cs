@@ -11,6 +11,7 @@ public class Shield : PowerUpBase
 
     [SerializeField]
     protected Animator shieldAnimator;
+
     [SerializeField]
     protected ParticleSystem shieldParticles;
 
@@ -55,6 +56,11 @@ public class Shield : PowerUpBase
 
     public override void DisablePowerUp()
     {
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+
         StopRunningCoroutine();
 
         coroutine = DisableShieldSequence();
@@ -69,7 +75,7 @@ public class Shield : PowerUpBase
         shieldCollider.enabled = false;
         CoreConnector.GameManager.powerUpManager.TestDisablePowerUpBar();
         shieldParticles.Stop();
-        
+
         yield return new WaitForSeconds(1.0f);
 
         DisableInstantly();
@@ -98,7 +104,7 @@ public class Shield : PowerUpBase
         base.DisableInstantly();
 
         shieldPulseShown = false;
-        
+
         shieldParticles.Stop();
         shieldParticles.Clear();
         shieldCollider.enabled = false;

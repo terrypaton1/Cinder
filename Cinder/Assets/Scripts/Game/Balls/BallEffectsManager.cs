@@ -26,11 +26,13 @@ public class BallEffectsManager : MonoBehaviour
 
     public void DisableBallTrail()
     {
+        trailRenderer.enabled = false;
         ballTrailParticles.Stop();
     }
 
     public void EnableBallTrail()
     {
+        trailRenderer.enabled = true;
         ballTrailParticles.Play();
     }
 
@@ -48,8 +50,8 @@ public class BallEffectsManager : MonoBehaviour
     {
         crazyBallParticles.Stop();
     }
-    
-    
+
+
     public void SetTrailEmittingState(bool state)
     {
         trailRenderer.emitting = state;

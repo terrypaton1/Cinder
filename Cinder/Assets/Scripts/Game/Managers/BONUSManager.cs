@@ -46,7 +46,7 @@ public class BONUSManager : BaseObject
         HideAllLetters();
     }
 
-    private void ResetFallingObjectsAvailable()
+    public void ResetFallingObjectsAvailable()
     {
         foreach (var fallingLetter in fallingObjects)
         {

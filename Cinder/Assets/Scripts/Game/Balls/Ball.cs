@@ -57,6 +57,7 @@ public class Ball : BaseObject
         DisableCrazyBall();
         DisableFlameBall();
         ballEffectsManager.DisableBallTrail();
+        ballEffectsManager.DisableEffects();
     }
 
     public void PushFromBumper(Vector2 _force)
@@ -177,6 +178,11 @@ public class Ball : BaseObject
         {
             CheckBounceOffWallAngle();
             PlaySound(SoundList.ballHitsWall);
+        }
+
+        if (collision.gameObject.CompareTag(CollisionTags.WanderingObstacle))
+        {
+            ProcessHitABrick(collision);
         }
 
         if (collision.gameObject.CompareTag(CollisionTags.Shield))
@@ -339,8 +345,7 @@ public class Ball : BaseObject
 
     public void Disable()
     {
-        ballEffectsManager.DisableEffects();
-
+        DisableEffects();
         hitWallsInARowOnlyCount = 0;
         ballIsEnabled = false;
 

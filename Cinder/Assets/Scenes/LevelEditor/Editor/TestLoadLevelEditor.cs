@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(TestLoadLevel))]
+[CustomEditor(typeof(LevelManager))]
 public class TestLoadLevelEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -10,15 +10,14 @@ public class TestLoadLevelEditor : Editor
 
         if (GUILayout.Button("LOAD"))
         {
-            var exportLevel = target as TestLoadLevel;
-            exportLevel.UnLoadAllLevels();
-            exportLevel.DisplayLevel(exportLevel.loadLevel);
+            var level = target as LevelManager;
+            level.DisplayLevel(level.loadLevel);
         }
 
         if (GUILayout.Button("Unload"))
         {
-            var exportLevel = target as TestLoadLevel;
-            exportLevel.UnLoadAllLevels();
+            var level = target as LevelManager;
+            level.UnLoadAllLevels();
         }
     }
 }

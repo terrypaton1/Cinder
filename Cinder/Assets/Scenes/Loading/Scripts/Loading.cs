@@ -12,10 +12,10 @@ public class Loading : MonoBehaviour
 
     private const string Main = "Main";
     private const string Game = "Game";
-    private const string Levels_01_10 = "All_Levels";
+    private const string LevelManager = "LevelManager";
     private int currentLoadingIndex;
 
-    private readonly string[] loadSceneQueue = {Main, Game, Levels_01_10};
+    private readonly string[] loadSceneQueue = {Main, Game, LevelManager};
 
     private void OnEnable()
     {
@@ -56,10 +56,10 @@ public class Loading : MonoBehaviour
     {
         yield return null;
 
-       // yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
+        // yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
         // todo dispatch a cofiguration event
 
-        CoreConnector.TestLoadLevel.Initialise();
+        CoreConnector.LevelManager.Initialise();
         CoreConnector.GameManager.PerformInitialSetup();
         CoreConnector.UIManager.DisplayScreen(UIScreens.MainMenu);
 

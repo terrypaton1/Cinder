@@ -55,6 +55,7 @@ public class GameManager : BaseObject
 
     private GameState gameState = GameState.Setup;
     private IEnumerator StartGameCoroutine;
+
     protected void Update()
     {
         if (gameState == GameState.Playing || gameState == GameState.Setup)
@@ -93,7 +94,7 @@ public class GameManager : BaseObject
         var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
 
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
-        CoreConnector.LevelsManager.DisplayLevel(levelNumber);
+        CoreConnector.LevelManager.DisplayLevel(levelNumber);
 
         yield return new WaitForSeconds(0.1f);
         brickManager.LoadLevelsBricks();
@@ -103,7 +104,7 @@ public class GameManager : BaseObject
         fallingObjectsManager.HideAll();
         yield return new WaitForSeconds(0.1f);
         CoreConnector.UIManager.HideAllScreens();
-        
+
         yield return new WaitForSeconds(0.1f);
         CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
         CoreConnector.GameUIManager.DisplayInGameButtons(true);
@@ -270,7 +271,7 @@ public class GameManager : BaseObject
 
         ballManager.LevelComplete();
     }
-    
+
     public void ActivateFlameBall()
     {
         brickManager.ActivateFlameBall();
@@ -290,7 +291,10 @@ public class GameManager : BaseObject
 
     public static void ExitGame()
     {
-        CoreConnector.LevelsManager.HideAllLevels();
+        CoreConnector.LevelManager.UnLoadAllLevels();
+        CoreConnector.GameManager.ballManager.ResetAllBalls();
         CoreConnector.GameUIManager.playerLifeDisplay.Hide();
+        CoreConnector.GameManager.bonusManager.ResetFallingObjectsAvailable();
+        CoreConnector.GameManager.fallingObjectsManager.HideAll();
     }
 }

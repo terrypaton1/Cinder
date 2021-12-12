@@ -199,6 +199,7 @@ public class UIManager : BaseObject
 
     public void GoLevelChooser()
     {
+        // todo change this to an event
         GameManager.ExitGame();
         ShowLevelChooser();
     }

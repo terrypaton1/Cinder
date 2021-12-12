@@ -9,4 +9,14 @@
     {
         // empty.
     }
+
+    public override void UpdateLoop()
+    {
+        // empty.
+    }
+
+    public override void Shake(float amount)
+    {
+        // empty.
+    }
 }

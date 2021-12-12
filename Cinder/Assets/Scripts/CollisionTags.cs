@@ -11,5 +11,7 @@ public class CollisionTags : MonoBehaviour
     public const string FallingPoints = "fallingpoints";
     public const string FallingPowerUp = "fallingpowerup";
     public const string Bumper = "bumper";
+    public const string WanderingObstacle = "WanderingObstacle";
+    
     
 }

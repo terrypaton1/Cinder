@@ -23,8 +23,8 @@ public class BrickManager : MonoBehaviour
 
     public void LoadLevelsBricks()
     {
-        activeBrickList = CoreConnector.LevelsManager.GetBricksForCurrentLevel();
-        nonActiveBrickList = CoreConnector.LevelsManager.GetNonBricksForCurrentLevel();
+        activeBrickList = CoreConnector.LevelManager.currentLevelsBricks;
+        nonActiveBrickList = CoreConnector.LevelManager.currentNonLevelsBricks;
     }
 
     public void NextLevel()
