@@ -14,11 +14,11 @@ public class LevelChooser : UIScreen
             counter++;
             var random = Random.Range(1.0f, 1.2f);
             var randomScale = new Vector3(random, random, 1.0f);
-            levelButton.transform.localScale = randomScale;
+            //levelButton.transform.localScale = randomScale;
 
-            var rot = Random.Range(-15.0f, 15.0f);
-            var randomRotation = new Vector3(0, 0, rot);
-            levelButton.transform.localEulerAngles = randomRotation;
+           // var rot = Random.Range(-5.0f, 5.0f);
+           // var randomRotation = new Vector3(0, 0, rot);
+            //levelButton.transform.localEulerAngles = randomRotation;
         }
     }
 }

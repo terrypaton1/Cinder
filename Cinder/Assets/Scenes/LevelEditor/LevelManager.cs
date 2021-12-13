@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private LevelSettings levelSettings;
 
-
     [Range(1, 66)]
     public int loadLevel = 1;
 
@@ -19,7 +18,6 @@ public class LevelManager : MonoBehaviour
 
     public List<BrickBase> currentLevelsBricks;
     public List<NonBrick> currentNonLevelsBricks;
-
 
     private Level levelRef;
 
