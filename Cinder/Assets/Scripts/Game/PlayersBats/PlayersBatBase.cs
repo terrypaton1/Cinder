@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(Animator)), SelectionBase]
 public class PlayersBatBase : BaseObject
 {
     [SerializeField]
-    protected Animator MorphToPlayingAnimation;
+    protected Animator batAnimator;
 
     [SerializeField]
     public Rigidbody2D rigidRef;
@@ -14,9 +13,6 @@ public class PlayersBatBase : BaseObject
 
     [SerializeField]
     protected SpriteRenderer[] spriteRenderers;
-
-    [SerializeField]
-    protected Transform visuals;
 
     private bool batIsEnabled;
 
@@ -49,40 +45,40 @@ public class PlayersBatBase : BaseObject
 
     private void BatReactsToBallTouchAnimation()
     {
-        MorphToPlayingAnimation.Play(Constants.BallTouch, 0, 0.0f);
+        batAnimator.Play(Constants.BallTouch, 0, 0.0f);
     }
 
     private void BatReactsToObjectTouchAnimation()
     {
-        MorphToPlayingAnimation.Play(Constants.ObjectTouch, 0, 0.0f);
+        batAnimator.Play(Constants.ObjectTouch, 0, 0.0f);
     }
 
     public void MorphToPlayingState()
     {
-        MorphToPlayingAnimation.Play(Constants.Intro, 0, 0.0f);
+        batAnimator.Play(Constants.Intro, 0, 0.0f);
     }
 
     public void MorphToNormal()
     {
-        MorphToPlayingAnimation.Play(Constants.ToNormal, 0, 0.0f);
+        batAnimator.Play(Constants.ToNormal, 0, 0.0f);
     }
 
     public void PlayerLosesLife()
     {
-        MorphToPlayingAnimation.Play(Constants.LosesLife, 0, 0.0f);
+        batAnimator.Play(Constants.LosesLife, 0, 0.0f);
     }
 
     public virtual void EnableBat()
     {
         batIsEnabled = true;
-        EnableColliders();
+        EnablePhysics();
         EnableVisuals();
     }
 
     public virtual void DisableBat()
     {
         batIsEnabled = false;
-        DisableColliders();
+        DisablePhysics();
         DisableVisuals();
     }
 
@@ -100,16 +96,18 @@ public class PlayersBatBase : BaseObject
     {
     }
 
-    private void DisableColliders()
+    private void DisablePhysics()
     {
+        rigidRef.simulated = false;
         foreach (var colliderRef in colliders)
         {
             colliderRef.enabled = false;
         }
     }
 
-    private void EnableColliders()
+    private void EnablePhysics()
     {
+        rigidRef.simulated = true;
         foreach (var colliderRef in colliders)
         {
             colliderRef.enabled = true;

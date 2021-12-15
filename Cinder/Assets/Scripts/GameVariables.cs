@@ -31,7 +31,7 @@ public class GameVariables : BaseObject
 
     public const float laserBatLengthOfTime = 4;
 
-    public const float laserBatFiringFrequency = .45f;
+    public const float laserBatFiringFrequency = .25f;
 
     public const float laserBulletSpeed = 3f;
 

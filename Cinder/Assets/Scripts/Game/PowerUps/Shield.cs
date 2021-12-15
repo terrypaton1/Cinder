@@ -108,6 +108,6 @@ public class Shield : PowerUpBase
         shieldParticles.Stop();
         shieldParticles.Clear();
         shieldCollider.enabled = false;
-        sprite.enabled = true;
+        sprite.enabled = false;
     }
 }

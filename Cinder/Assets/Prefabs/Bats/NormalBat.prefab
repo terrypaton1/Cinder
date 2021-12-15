@@ -256,7 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39cbc61ecab542b7886e2698b9ce9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MorphToPlayingAnimation: {fileID: 7464691433769462123}
+  pool_inUse: 0
+  batAnimator: {fileID: 7464691433769462123}
   rigidRef: {fileID: 7464691433769462122}
   colliders:
   - {fileID: 7464691433639950254}
@@ -264,7 +265,6 @@ MonoBehaviour:
   - {fileID: 7464691434920622307}
   spriteRenderers:
   - {fileID: 7464691433356714887}
-  visuals: {fileID: 0}
 --- !u!50 &7464691433769462122
 Rigidbody2D:
   serializedVersion: 4

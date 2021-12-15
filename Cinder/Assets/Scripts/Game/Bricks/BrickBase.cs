@@ -45,8 +45,7 @@ public class BrickBase : BaseObject
 
     public virtual void Show()
     {
-        EnableColliders();
-        EnableVisuals();
+        ResetBrick();
     }
 
     public virtual void ResetBrick()
@@ -59,7 +58,7 @@ public class BrickBase : BaseObject
         SetVisualScale(destroyedBrickScale);
         EnableColliders();
         ApplyNormalLayers();
-        delayCounter = Random.Range(0.0f, 0.4f);
+        delayCounter = Random.Range(0.1f, 0.4f);
 
         StopRunningCoroutine();
         coroutine = StartSequence();
@@ -93,14 +92,15 @@ public class BrickBase : BaseObject
             timePassed += Time.deltaTime;
 
             var scaleVal = CoreConnector.GameManager.gameSettings.scaleInCurve.Evaluate(percent);
+            
             SetVisualScale(scaleVal);
             yield return null;
         }
     }
 
-    private void SetVisualScale(float scaleValue)
+    private void SetVisualScale(float scalePercent)
     {
-        scale.x = scale.y = scaleValue * targetScale;
+        scale.x = scale.y = scalePercent * targetScale;
         visualObjects.transform.localScale = scale;
     }
 
@@ -115,7 +115,7 @@ public class BrickBase : BaseObject
         colliderRef.gameObject.layer = CoreConnector.GameManager.brickManager.bricksLayerDuringFlameBall;
     }
 
-    private void ApplyNormalLayers()
+    protected virtual void ApplyNormalLayers()
     {
         if (!Application.isPlaying)
         {
@@ -137,7 +137,9 @@ public class BrickBase : BaseObject
         amountOfHitsToDestroy--;
         if (amountOfHitsToDestroy < 1)
         {
-            StartCoroutine(DestroyBrickSequence(false));
+            StopRunningCoroutine();
+            coroutine = DestroyBrickSequence(false);
+            StartCoroutine(coroutine);
         }
         else
         {
@@ -209,8 +211,8 @@ public class BrickBase : BaseObject
 
     protected virtual IEnumerator DestroyBrickSequence(bool playSound = true)
     {
-        StartItemFallingFromDestroyedBrick();
         BrickHasBeenDestroyed = true;
+        StartItemFallingFromDestroyedBrick();
 
         CoreConnector.GameManager.scoreManager.PointsCollected(Points.brickPointsValue);
         CoreConnector.GameManager.brickManager.BrickDestroyed();
@@ -254,7 +256,7 @@ public class BrickBase : BaseObject
         sprite.enabled = false;
     }
 
-    public void EnableVisuals()
+    public virtual void EnableVisuals()
     {
         sprite.enabled = true;
     }

@@ -247,16 +247,10 @@ public class PlayersBatManager : BaseObject
         if (nextBatType == PlayerBatTypes.None)
         {
             // no bat
-        }
-        else
-        {
-            currentBat = GetBat((int) nextBatType);
-        }
-
-        if (currentBat == null)
-        {
             return;
         }
+
+        currentBat = GetBat((int) nextBatType);
 
         currentBat.transform.position = currentBatPosition;
         currentBat.EnableBat();
@@ -312,6 +306,11 @@ public class PlayersBatManager : BaseObject
     private PlayersBatBase GetBat(int batType)
     {
         allBats.TryGetValue(batType, out var bat);
+        if (bat == null)
+        {
+            Debug.Log($"batType:{batType} missing");
+        }
+
         return bat;
     }
 

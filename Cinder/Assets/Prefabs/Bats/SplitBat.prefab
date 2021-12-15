@@ -181,7 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4b196bf59ce47fdafd6df14afc7273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MorphToPlayingAnimation: {fileID: 3378995098193518393}
+  pool_inUse: 0
+  batAnimator: {fileID: 0}
   rigidRef: {fileID: 3378995098193518392}
   colliders:
   - {fileID: 3378995097908057015}
@@ -192,7 +193,6 @@ MonoBehaviour:
   - {fileID: 3378995098475849705}
   - {fileID: 3378995098539660939}
   - {fileID: 3378995099016926580}
-  visuals: {fileID: 0}
 --- !u!1 &3378995098475849707
 GameObject:
   m_ObjectHideFlags: 0

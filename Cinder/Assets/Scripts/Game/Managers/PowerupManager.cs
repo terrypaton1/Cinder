@@ -42,7 +42,10 @@ public class PowerupManager : BaseObject
 
     protected void OnEnable()
     {
-        DisableAllPowerUps();
+        shield.DisableInstantly();
+        crazyBallRef.DisableInstantly();
+        laserBat.DisableInstantly();
+        flameBall.DisableInstantly();
     }
 
     public void FireLaser(Vector3 position, Vector3 velocity)

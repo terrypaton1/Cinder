@@ -133,6 +133,13 @@ public class WanderingObstacle : BrickBase
         base.ResetBrick();
     }
 
+    public override void Show()
+    {
+        // Wanderring obstacle doesn't appear at first
+        DisableVisuals();
+        DisableColliders();
+    }
+
     private void EnableObstacle()
     {
         obstaclePointsValue = Points.WanderingObstaclePointsValue;
@@ -222,5 +229,10 @@ public class WanderingObstacle : BrickBase
 
         currentDirectionTendency = Mathf.Clamp(currentDirectionTendency, -1.0f, 1.0f);
         sprite.flipX = currentDirectionTendency < 0.0f;
+    }
+
+    protected override void ApplyNormalLayers()
+    {
+        // empty.
     }
 }

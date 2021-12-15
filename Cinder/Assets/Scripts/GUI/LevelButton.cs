@@ -35,7 +35,7 @@ public class LevelButton : MonoBehaviour
         var maxLevelBeaten = PlayerPrefs.GetInt(Constants.maxLevelBeatenPrefix);
 #if UNITY_EDITOR
         Debug.Log("LEVEL SET TO 99");
-       // maxLevelBeaten = 99;
+        maxLevelBeaten = 99;
 #endif
         var currentLevel = PlayerPrefs.GetInt(Constants.currentLevel);
 
@@ -43,7 +43,7 @@ public class LevelButton : MonoBehaviour
 
         if (currentLevel == levelNumber)
         {
-            buttonScale = new Vector3(1.4f, 1.4f, 1.4f);
+            buttonScale = new Vector3(1.2f, 1.2f, 1.2f);
         }
 
         transform.localScale = buttonScale;

@@ -93,7 +93,7 @@ public class LevelManager : MonoBehaviour
         currentNonLevelsBricks = new List<NonBrick>();
         foreach (var brickData in levelData.bricks)
         {
-//            Debug.Log($"Place brick:{brickData.brickType} {brickData.position}");
+           Debug.Log($"Place brick:{brickData.brickType} {brickData.position}");
 
             var brick = objectPool.GetBrick(brickData.brickType, holder.transform);
             brick.pool_inUse = true;
@@ -168,7 +168,10 @@ public class LevelManager : MonoBehaviour
 
     public void UnLoadAllLevels()
     {
-        objectPool.UnloadAllLevels();
+        if (objectPool != null)
+        {
+            objectPool.UnloadAllLevels();
+        }
 
         DestroyHolder();
     }

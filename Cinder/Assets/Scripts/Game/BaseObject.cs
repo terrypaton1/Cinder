@@ -13,6 +13,7 @@ public class BaseObject : MonoBehaviour
     protected static void ShowInGameMessage(string _messageText)
     {
 //		Debug.Log("ShowInGameMessage:"+_messageText);
+
         CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(_messageText);
     }
 
