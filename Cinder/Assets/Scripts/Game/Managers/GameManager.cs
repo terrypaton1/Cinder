@@ -82,6 +82,7 @@ public class GameManager : BaseObject
         bonusManager.Setup();
         powerUpManager.OneTimeSetup();
         ballManager.Setup();
+        bonusManager.HideAllLetters();
     }
 
     private IEnumerator StartGameSequence()
@@ -198,7 +199,7 @@ public class GameManager : BaseObject
 
         levelTimer.StopTimer();
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1.0f);
 
         if (playerLifeManager.PlayerLives < 1)
         {
@@ -208,7 +209,7 @@ public class GameManager : BaseObject
         }
 
         // player still has lives left!
-        StartPlay(1.0f);
+        StartPlay(0.5f);
     }
 
     private void StartPlay(float initialDelay)
@@ -221,16 +222,18 @@ public class GameManager : BaseObject
     private IEnumerator StartPlaySequence(float initialDelay)
     {
         ChangeGameState(GameState.StartPlay);
-        playersBatManager.RestartLevel();
         ballManager.RestartLevel();
         powerUpManager.RestartLevel();
+        playersBatManager.RestartLevel();
 
+        // during this time I want to track the mouse
         yield return new WaitForSeconds(initialDelay);
 
         ballManager.AddNewBall();
         levelTimer.StartTimer();
         ChangeGameState(GameState.Playing);
     }
+
 
     public override void LevelComplete()
     {
@@ -291,10 +294,12 @@ public class GameManager : BaseObject
 
     public static void ExitGame()
     {
+        // todo change to broadcasting an exit ganme behaviour
         CoreConnector.LevelManager.UnLoadAllLevels();
         CoreConnector.GameManager.ballManager.ResetAllBalls();
         CoreConnector.GameUIManager.playerLifeDisplay.Hide();
         CoreConnector.GameManager.bonusManager.ResetFallingObjectsAvailable();
         CoreConnector.GameManager.fallingObjectsManager.HideAll();
+        CoreConnector.GameManager.particleManager.ExitGame();
     }
 }

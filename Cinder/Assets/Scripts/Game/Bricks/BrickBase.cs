@@ -92,7 +92,7 @@ public class BrickBase : BaseObject
             timePassed += Time.deltaTime;
 
             var scaleVal = CoreConnector.GameManager.gameSettings.scaleInCurve.Evaluate(percent);
-            
+
             SetVisualScale(scaleVal);
             yield return null;
         }

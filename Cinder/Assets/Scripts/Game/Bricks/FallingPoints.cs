@@ -5,6 +5,12 @@ public class FallingPoints : FallingBase
     private int _pointsValue;
     private int category;
     new public static string dashID = "FallingPoints";
+    public override void Hide()
+    {
+        base.Hide();
+        spriteRenderer.enabled = false;
+        
+    }
 
     public override string GetDashID()
     {

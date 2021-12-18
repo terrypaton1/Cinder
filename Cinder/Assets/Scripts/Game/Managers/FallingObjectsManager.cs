@@ -31,6 +31,11 @@ public class FallingObjectsManager : MonoBehaviour
         dash.LevelComplete();
     }
 
+    public void ExitLevel()
+    {
+     //  dash.HideAll();
+    }
+
     public void LifeLost()
     {
         dash.LifeLost();

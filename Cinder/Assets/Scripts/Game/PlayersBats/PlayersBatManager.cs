@@ -75,7 +75,7 @@ public class PlayersBatManager : BaseObject
     {
         if (!CoreConnector.GameManager.IsGamePlaying())
         {
-            return;
+            //     return;
         }
 
         if (currentBatType == PlayerBatTypes.None)
@@ -101,7 +101,7 @@ public class PlayersBatManager : BaseObject
         lastXPosition = currentBat.rigidRef.transform.position.x;
     }
 
-    private void PositionAndRotateCurrentActiveBat()
+    public void PositionAndRotateCurrentActiveBat()
     {
         if (freezePlayerActive)
         {
@@ -142,6 +142,7 @@ public class PlayersBatManager : BaseObject
         targetRotation *= 0.9f;
         targetRotation = Mathf.Clamp(targetRotation, -60f, 60f);
         currentRotation = Mathf.Lerp(currentRotation, targetRotation, Time.deltaTime * 16f);
+
         currentBat.rigidRef.MoveRotation(currentRotation);
 
         currentBatPosition.x = newXPosition;
@@ -152,17 +153,15 @@ public class PlayersBatManager : BaseObject
 
     private IEnumerator StartGameSequence()
     {
-        freezePlayerActive = false;
+        StopTransitionCoroutine();
         HideAllBats();
         currentBatType = PlayerBatTypes.None;
-
-        StopTransitionCoroutine();
-
         ChangeToNewBat(PlayerBatTypes.Normal);
+        currentBat.EnableBat();
+        freezePlayerActive = false;
+        batIsActive = true;
 
         yield return new WaitForSeconds(1.0f);
-
-        batIsActive = true;
     }
 
     public void ChangeToNewBat(PlayerBatTypes _newBatType)

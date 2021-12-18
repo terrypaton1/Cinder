@@ -15,7 +15,7 @@ public class BONUSManager : BaseObject
     private List<FallingLetter> collectedObjects;
 
     [SerializeField]
-    private List<Animator> letterAnimators;
+    private List<BonusCharacter> letterAnimators;
 
     private IEnumerator coroutine;
     private const string word = "BRICK";
@@ -108,7 +108,7 @@ public class BONUSManager : BaseObject
         Assert.IsTrue(letterAnimators.Count == 5,
             "letterAnimators must have references to the animators for b,o,n,u,s");
         var animatorRef = letterAnimators[letterValue];
-        animatorRef.Play(LetterCollectedAnimation, 0, 0.0f);
+        animatorRef.ShowCollected();
 
         if (collectedObjects.Count >= 5)
         {
@@ -144,19 +144,18 @@ public class BONUSManager : BaseObject
 
         foreach (var letterAnimator in letterAnimators)
         {
-            letterAnimator.Play(LetterBonusCollectedAnimation, 0, 0.0f);
+            letterAnimator.PlayCollected();
         }
 
         yield return WaitCache.WaitForSeconds(1.5f);
         ResetFallingObjectsAvailable();
-        HideAllLetters();
     }
 
-    private void HideAllLetters()
+    public void HideAllLetters()
     {
         foreach (var letterAnimator in letterAnimators)
         {
-            letterAnimator.Play(HideLetterAnimation, 0, 0.0f);
+            letterAnimator.Hide();
         }
     }
 

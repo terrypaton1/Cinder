@@ -45,8 +45,7 @@ public class FallingBase : BaseObject
 
         EnableVisuals();
 
-        colliderRef.enabled = true;
-        colliderRef.gameObject.isStatic = false;
+        EnablePhysics();
 
         rigid2D.isKinematic = false;
         rigid2D.simulated = true;
@@ -54,6 +53,12 @@ public class FallingBase : BaseObject
         rigid2D.velocity = Vector3.zero;
 
         isFalling = true;
+    }
+
+    private void EnablePhysics()
+    {
+        colliderRef.enabled = true;
+        colliderRef.gameObject.isStatic = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -102,7 +107,7 @@ public class FallingBase : BaseObject
     {
         return isUsed;
     }
-    
+
     protected void SetUsed()
     {
         isUsed = true;
@@ -127,11 +132,17 @@ public class FallingBase : BaseObject
 
     public void Initialize()
     {
-        
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
-        
+        DisableVisuals();
+        DisablePhysics();
+    }
+
+    private void DisablePhysics()
+    {
+        colliderRef.enabled = false;
+        rigid2D.simulated = false;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
@@ -49,6 +50,36 @@ public class ParticleManager : MonoBehaviour
 
     [SerializeField]
     protected ParticleSystem FreezePlayerParticles;
+
+    private List<ParticleSystem> allParticles;
+
+    protected void OnEnable()
+    {
+        // todo move this to ane event triggering the initialsation
+        Setup();
+    }
+
+
+    protected void Setup()
+    {
+        allParticles = new List<ParticleSystem>();
+        allParticles.Add(FreezePlayerParticles);
+        allParticles.Add(BossExplosionParticles);
+        allParticles.Add(WanderingObstacleSpawnParticles);
+        allParticles.Add(WanderingObstacleExplosionParticles);
+        allParticles.Add(TNTExplosionParticles);
+        allParticles.Add(DestroyFallingItemsParticles);
+        allParticles.Add(FallingPointsCollectedParticles);
+
+        allParticles.Add(_brickCollisionParticleSystem);
+        allParticles.Add(_brickExplosionParticleSystem);
+        allParticles.Add(_batCollisionParticleSystem);
+        allParticles.Add(_newBallParticleSystem);
+        allParticles.Add(_newBallTwoParticleSystem);
+        allParticles.Add(ballLostParticleSystem);
+        allParticles.Add(PowerUpLostParticles);
+        allParticles.Add(PowerUpCollectedParticles);
+    }
 
     public void SpawnParticleEffect(ParticleTypes effect, Vector3 position)
     {
@@ -106,6 +137,17 @@ public class ParticleManager : MonoBehaviour
             case ParticleTypes.FreezePlayer:
                 PositionAndEmit(FreezePlayerParticles, position, 1);
                 break;
+        }
+    }
+
+
+    public void ExitGame()
+    {
+        // Stop all particle immediately
+        foreach (var particle in allParticles)
+        {
+            particle.Stop();
+            particle.Clear();
         }
     }
 
