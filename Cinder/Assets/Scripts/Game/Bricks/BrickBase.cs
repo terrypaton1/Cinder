@@ -85,6 +85,7 @@ public class BrickBase : BaseObject
     private IEnumerator StartSequence()
     {
         DisableVisuals();
+        SetAlpha(0.0f);
         LeanTween.cancel(visualObjects.gameObject);
         yield return new WaitForSeconds(0.5f);
         var randomScale = Random.Range(0.2f, 2.0f);
@@ -97,11 +98,20 @@ public class BrickBase : BaseObject
 
         var timePassed = 0.0f;
         var timeToTake = Random.Range(0.3f, 0.5f);
-        LeanTween.scale(visualObjects.gameObject, Vector3.one, timeToTake)
+        // LeanTween.scale(visualObjects.gameObject, Vector3.one, timeToTake)
+        //     .setEase(LeanTweenType.easeOutBack).setDelay(delayCounter);
+        LeanTween.value(0.0f, 1.0f, timeToTake).setOnUpdate(SetPercent)
             .setEase(LeanTweenType.easeOutBack).setDelay(delayCounter);
 
         yield return new WaitForSeconds(timeToTake);
     }
+
+    private void SetPercent(float percent)
+    {
+        SetAlpha(percent);
+        SetVisualScale(percent);
+    }
+
 
     private void SetVisualScale(float scalePercent)
     {
@@ -261,6 +271,13 @@ public class BrickBase : BaseObject
 
     public void ApplyColor(Color color)
     {
+        sprite.color = color;
+    }
+
+    private void SetAlpha(float value)
+    {
+        var color = sprite.color;
+        color.a = value;
         sprite.color = color;
     }
 }

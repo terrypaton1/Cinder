@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 163096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.45874402, y: 0.45874402, z: 0.57343}
   m_Children: []
   m_Father: {fileID: 424386}
   m_RootOrder: 0
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163096}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5943d6b8956b84c9989646b8fd90e813, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7eb7dfdd645ec4c59bb8d374599a5711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 421370}
-  - component: {fileID: 6043582}
+  - component: {fileID: 251691761210128271}
   m_Layer: 10
   m_Name: Collider
   m_TagString: brick
@@ -137,23 +137,23 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172198}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268346, w: 0.9238795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 448318}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &6043582
-PolygonCollider2D:
+--- !u!61 &251691761210128271
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172198}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -167,14 +167,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.04437513, y: -0.06706181}
-      - {x: -0.20307505, y: 0.07924427}
-      - {x: -0.09503117, y: 0.19553761}
-      - {x: 0.050035585, y: 0.060275868}
-      - {x: 0.18957615, y: -0.08898817}
-      - {x: 0.07506492, y: -0.195025}
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.155}
+  m_EdgeRadius: 0
 --- !u!1 &181110
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,10 +215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e633eef59674103bae1703a205017f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool_inUse: 0
   brickType: 31
-  colliderRef: {fileID: 6043582}
+  colliderRef: {fileID: 251691761210128271}
   sprite: {fileID: 21220498}
   visualObjects: {fileID: 154678}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  pool_inUse: 0
