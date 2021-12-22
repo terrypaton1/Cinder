@@ -45,6 +45,10 @@ public class FallingBase : BaseObject
 
         EnableVisuals();
 
+        spriteRenderer.transform.localScale = Vector3.one * 0.1f;
+        LeanTween.cancel(spriteRenderer.gameObject);
+        LeanTween.scale(spriteRenderer.gameObject, Vector3.one, 0.5f)
+            .setEaseOutBack();
         EnablePhysics();
 
         rigid2D.isKinematic = false;
