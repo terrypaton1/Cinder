@@ -50,13 +50,22 @@ public class BrickBase : BaseObject
 
     public virtual void ResetBrick()
     {
+        visualObjects.transform.localEulerAngles = Vector3.zero;
         BrickHasBeenDestroyed = false;
         amountOfHitsToDestroy = resetHitsToDestroyCount;
         UpdateAmountOfHitsLeftDisplay();
+
         visualObjects.transform.localPosition = Vector3.zero;
+        if (!Application.isPlaying)
+        {
+            SetVisualScale(1.0f);
+            EnableVisuals();
+            return;
+        }
 
         SetVisualScale(destroyedBrickScale);
         EnableColliders();
+
         ApplyNormalLayers();
         delayCounter = Random.Range(0.1f, 0.4f);
 
@@ -75,27 +84,23 @@ public class BrickBase : BaseObject
 
     private IEnumerator StartSequence()
     {
-        yield return new WaitForSeconds(delayCounter);
+        DisableVisuals();
+        LeanTween.cancel(visualObjects.gameObject);
+        yield return new WaitForSeconds(0.5f);
+        var randomScale = Random.Range(0.2f, 2.0f);
+        SetVisualScale(randomScale);
+        EnableVisuals();
 
         // scale the brick up from tiny. 
-        SetVisualScale(0.01f);
-        EnableVisuals();
 
         targetScale = 1.0f;
 
         var timePassed = 0.0f;
         var timeToTake = Random.Range(0.3f, 0.5f);
+        LeanTween.scale(visualObjects.gameObject, Vector3.one, timeToTake)
+            .setEase(LeanTweenType.easeOutBack).setDelay(delayCounter);
 
-        while (timePassed < timeToTake)
-        {
-            var percent = timePassed / timeToTake;
-            timePassed += Time.deltaTime;
-
-            var scaleVal = CoreConnector.GameManager.gameSettings.scaleInCurve.Evaluate(percent);
-
-            SetVisualScale(scaleVal);
-            yield return null;
-        }
+        yield return new WaitForSeconds(timeToTake);
     }
 
     private void SetVisualScale(float scalePercent)
@@ -228,17 +233,10 @@ public class BrickBase : BaseObject
         DisableColliders();
 
         targetScale = destroyedBrickScale;
+        LeanTween.scale(visualObjects.gameObject, Vector3.one * destroyedBrickScale, destroyBrickTimeToTake)
+            .setEase(LeanTweenType.easeInBack);
 
-        var timePassed = 0.0f;
-
-        while (timePassed < destroyBrickTimeToTake)
-        {
-            var percent = timePassed / destroyBrickTimeToTake;
-            timePassed += Time.deltaTime;
-            var scaleValue = 1 - percent;
-            SetVisualScale(scaleValue);
-            yield return null;
-        }
+        yield return new WaitForSeconds(destroyBrickTimeToTake);
 
         DisableVisuals();
     }
@@ -259,5 +257,10 @@ public class BrickBase : BaseObject
     public virtual void EnableVisuals()
     {
         sprite.enabled = true;
+    }
+
+    public void ApplyColor(Color color)
+    {
+        sprite.color = color;
     }
 }

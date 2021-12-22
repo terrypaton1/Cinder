@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private LevelSettings levelSettings;
 
+  
+
     [Range(1, 66)]
     public int loadLevel = 1;
 
@@ -20,6 +22,7 @@ public class LevelManager : MonoBehaviour
     public List<NonBrick> currentNonLevelsBricks;
 
     private Level levelRef;
+
 
     private void OnEnable()
     {
@@ -97,6 +100,7 @@ public class LevelManager : MonoBehaviour
 
             var brick = objectPool.GetBrick(brickData.brickType, holder.transform);
             brick.pool_inUse = true;
+            ApplyColor(brick);
             brick.Show();
             brick.transform.SetParent(holder.transform);
             var position = ProcessPosition(brickData.position);
@@ -137,6 +141,17 @@ public class LevelManager : MonoBehaviour
             levelRef.nonBricks = currentNonLevelsBricks.ToArray();
         }
     }
+
+    private void ApplyColor(BrickBase brick)
+    {
+       
+        // todo get the colour from a scriptable object
+        var color = BrickColors.Instance().GetBrickColor(brick);
+         brick.ApplyColor(color);
+    }
+
+    
+    
 
     private Vector3 ProcessPosition(Vector3 position)
     {

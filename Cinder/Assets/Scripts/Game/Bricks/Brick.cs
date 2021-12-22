@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
+[SelectionBase]
 public class Brick : BrickBase
 {
     private int resetCounter;
@@ -12,7 +13,7 @@ public class Brick : BrickBase
         {
             return;
         }
-        
+
         var pointsValue = Points.fallingPointValues1;
         var category = 0;
 

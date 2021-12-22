@@ -7489,6 +7489,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241679474}
     m_Modifications:
+    - target: {fileID: 2283136498664719657, guid: 068ddaec294b042e7bb5dba27d7b0768,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2283136499052202574, guid: 068ddaec294b042e7bb5dba27d7b0768,
         type: 3}
       propertyPath: m_RootOrder
@@ -7548,6 +7553,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ParticleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283136500132519658, guid: 068ddaec294b042e7bb5dba27d7b0768,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283136500132519658, guid: 068ddaec294b042e7bb5dba27d7b0768,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283136500132519658, guid: 068ddaec294b042e7bb5dba27d7b0768,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283136500132519658, guid: 068ddaec294b042e7bb5dba27d7b0768,
+        type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283136500132519658, guid: 068ddaec294b042e7bb5dba27d7b0768,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283136500132519658, guid: 068ddaec294b042e7bb5dba27d7b0768,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 068ddaec294b042e7bb5dba27d7b0768, type: 3}
