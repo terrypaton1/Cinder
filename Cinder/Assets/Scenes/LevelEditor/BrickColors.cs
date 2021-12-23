@@ -35,9 +35,8 @@ public class BrickColors : ScriptableObject
         return _instance;
     }
 
-    public Color GetBrickColor(BrickBase brick)
+    public Color GetColorWithIndex(int index)
     {
-        var index = brickTypesToColor.IndexOf(brick.brickType);
         if (index < 0)
         {
             return Color.white;
@@ -58,6 +57,17 @@ public class BrickColors : ScriptableObject
 
         Debug.Log($"NOT FOUND:{rounded}");
         return Random.ColorHSV();
+    }
+
+    public Color GetBrickColor(BrickBase brick)
+    {
+        var index = brickTypesToColor.IndexOf(brick.brickType);
+        if (index < 0)
+        {
+            return Color.white;
+        }
+
+        return GetColorWithIndex(index);
     }
 
     private List<BrickType> brickTypesToColor = new List<BrickType>

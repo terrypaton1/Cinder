@@ -46,6 +46,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -93,7 +94,7 @@ GameObject:
   - component: {fileID: 11481334}
   - component: {fileID: 3125566028886428452}
   m_Layer: 14
-  m_Name: FallingPowerup1
+  m_Name: FallingPowerup
   m_TagString: fallingpowerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,12 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946921403f76e40dc9fdef73524fe093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRef: {fileID: 6110440}
+  pool_inUse: 0
+  colliderRef: {fileID: 1912188406745253100}
   spriteRenderer: {fileID: 21289800}
-  isFalling: 0
   rigid2D: {fileID: 3125566028886428452}
-  _collider: {fileID: 6110440}
-  visualObjects: {fileID: 165844}
+  isFalling: 0
+  powerUpType: 40
 --- !u!50 &3125566028886428452
 Rigidbody2D:
   serializedVersion: 4
@@ -163,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 479940}
-  - component: {fileID: 6110440}
+  - component: {fileID: 1912188406745253100}
   m_Layer: 14
   m_Name: Collider
   m_TagString: brick
@@ -185,7 +186,7 @@ Transform:
   m_Father: {fileID: 428308}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6110440
+--- !u!61 &1912188406745253100
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,7 +195,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 157392}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -209,7 +210,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.25}
+  m_Size: {x: 0.3, y: 0.4}
   m_EdgeRadius: 0
 --- !u!1 &165844
 GameObject:

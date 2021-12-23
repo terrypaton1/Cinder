@@ -76,13 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e633eef59674103bae1703a205017f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool_inUse: 0
   brickType: 23
   colliderRef: {fileID: 6099608}
   sprite: {fileID: 21210058}
   visualObjects: {fileID: 110616}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  pool_inUse: 0
 --- !u!1 &160978
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 160978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.71172, y: 0.71172, z: 0.71172}
   m_Children: []
   m_Father: {fileID: 454242}
   m_RootOrder: 0
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160978}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f436a87df72f64cb2b9c47c4d37462ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 782ac7d91258b40b39ba9a8d896adc76, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,7 +203,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199904}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
   m_IsTrigger: 0
@@ -221,15 +221,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.026775956, y: -0.27833736}
-      - {x: -0.049572304, y: -0.34313858}
-      - {x: -0.29423684, y: -0.116036065}
-      - {x: -0.22885925, y: -0.043597527}
-      - {x: -0.3365869, y: 0.06604329}
-      - {x: -0.062515296, y: 0.3106463}
-      - {x: 0.04381614, y: 0.21145284}
-      - {x: 0.1238664, y: 0.28118503}
-      - {x: 0.33525229, y: 0.068303406}
-      - {x: 0.26941013, y: -0.009882018}
-      - {x: 0.33650473, y: -0.09167742}
-      - {x: 0.08909613, y: -0.33701944}
+    - - {x: -0.005918026, y: -0.20641038}
+      - {x: -0.09207462, y: -0.31044468}
+      - {x: -0.30568004, y: -0.09478512}
+      - {x: -0.20760803, y: 0.00053958595}
+      - {x: -0.30552736, y: 0.09710282}
+      - {x: -0.10338324, y: 0.3090113}
+      - {x: 0.0045833215, y: 0.21799184}
+      - {x: 0.09934612, y: 0.30897522}
+      - {x: 0.31073192, y: 0.09936295}
+      - {x: 0.20729166, y: 0.0031957347}
+      - {x: 0.31198418, y: -0.09658145}
+      - {x: 0.09890454, y: -0.31086412}

@@ -76,13 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e633eef59674103bae1703a205017f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool_inUse: 0
   brickType: 28
   colliderRef: {fileID: 6034832}
   sprite: {fileID: 21241746}
   visualObjects: {fileID: 110860}
   resetHitsToDestroyCount: 1
   amountOfHitsToDestroy: 1
-  pool_inUse: 0
 --- !u!1 &183370
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 183370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5408429, y: 0.5408429, z: 0.5408429}
   m_Children: []
   m_Father: {fileID: 465164}
   m_RootOrder: 0
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6da7ae596b594141ae6d5d09c28312f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 204fb72483be54702bb144678ac8a1cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,7 +203,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195760}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
   m_IsTrigger: 0

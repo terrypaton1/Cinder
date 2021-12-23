@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 126846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.54, y: 0.54, z: 1}
   m_Children: []
   m_Father: {fileID: 462720}
   m_RootOrder: 0
@@ -102,8 +102,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: daa1a2c610774475185edad8731d1c82, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4392157}
+  m_Sprite: {fileID: 21300000, guid: cacc0926733294300944b1da03d5ba4b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -151,7 +151,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135592}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: b7cb4ebe8d36b4cffa56c3070d83fe96, type: 2}
   m_IsTrigger: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e633eef59674103bae1703a205017f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool_inUse: 0
   brickType: 34
   colliderRef: {fileID: 6097634}
   sprite: {fileID: 21226586}
