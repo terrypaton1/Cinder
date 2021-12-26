@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BrickColors", menuName = "ScriptableObjects/BrickColors", order = 1)]
@@ -7,33 +6,6 @@ public class BrickColors : ScriptableObject
 {
     [SerializeField]
     private BrickColorSetting[] colorSettings;
-
-
-    private static BrickColors _instance;
-
-
-    public static BrickColors Instance()
-    {
-#if UNITY_EDITOR
-        if (!_instance)
-        {
-            var configsGUIDs = AssetDatabase.FindAssets("t:" + typeof(BrickColors).Name);
-            if (configsGUIDs.Length > 0)
-            {
-                var guid = configsGUIDs[0];
-                var path = AssetDatabase.GUIDToAssetPath(guid);
-                _instance = AssetDatabase.LoadAssetAtPath<BrickColors>(path);
-            }
-        }
-#endif
-
-        if (!_instance)
-        {
-            Debug.LogError("Settings not found, check that one has been created\n");
-        }
-
-        return _instance;
-    }
 
     public Color GetColorWithIndex(int index)
     {

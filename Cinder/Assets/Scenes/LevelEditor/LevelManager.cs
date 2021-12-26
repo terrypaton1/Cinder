@@ -9,7 +9,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private LevelSettings levelSettings;
 
-  
+    // BrickColors is referenced so as to be included in the build
+    [SerializeField]
+    private BrickColors brickColors;
+
 
     [Range(1, 66)]
     public int loadLevel = 1;
@@ -144,14 +147,10 @@ public class LevelManager : MonoBehaviour
 
     private void ApplyColor(BrickBase brick)
     {
-       
         // todo get the colour from a scriptable object
-        var color = BrickColors.Instance().GetBrickColor(brick);
-         brick.ApplyColor(color);
+        var color = brickColors.GetBrickColor(brick);
+        brick.ApplyColor(color);
     }
-
-    
-    
 
     private Vector3 ProcessPosition(Vector3 position)
     {

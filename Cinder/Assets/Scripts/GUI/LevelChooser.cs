@@ -5,13 +5,16 @@ public class LevelChooser : UIScreen
     [SerializeField]
     protected LevelButton[] levelButtons;
 
+    [SerializeField]
+    private BrickColors brickColors;
+    
     protected void OnEnable()
     {
         var counter = 1;
         foreach (var levelButton in levelButtons)
         {
             levelButton.levelNumber = counter;
-            var color = BrickColors.Instance().GetColorWithIndex(counter);
+            var color = brickColors.GetColorWithIndex(counter);
             counter++;
             var random = Random.Range(1.0f, 1.2f);
             var randomScale = new Vector3(random, random, 1.0f);

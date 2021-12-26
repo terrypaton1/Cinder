@@ -6,7 +6,6 @@ public class FallingObjectsManager : MonoBehaviour
     [SerializeField]
     public Dash dash;
 
-    private DashPool pool;
     public void HideAll()
     {
         dash.HideAll(FallingPoints.dashID);
