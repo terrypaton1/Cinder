@@ -17,8 +17,8 @@ public class Boss : BrickBase
         amountOfHitsToDestroy = resetHitsToDestroyCount;
         UpdateAmountOfHitsLeftDisplay();
         // determine if boss can drop freezes
-        var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
-        if (levelNumber >= GameVariables.bossesStartDroppingFreezesFromLevel)
+        var levelNumber = PlayerPrefs.GetInt(Constants.CurrentLevel);
+        if (levelNumber >= GameVariables.BossesStartDroppingFreezesFromLevel)
         {
             canDropFreezePower = true;
         }
@@ -51,7 +51,7 @@ public class Boss : BrickBase
         }
 
         // there is no freeze falling, we could drop another!
-        if (freezeDropTriggerCount < GameVariables.bossDropFreezeTriggerCount)
+        if (freezeDropTriggerCount < GameVariables.BossDropFreezeTriggerCount)
         {
             return;
         }

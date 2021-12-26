@@ -8,7 +8,7 @@
 
     public void ResetPlayerLives()
     {
-        PlayerLives = GameVariables.playerStartingLives;
+        PlayerLives = GameVariables.PlayerStartingLives;
     }
 
     public void RestartLevel()

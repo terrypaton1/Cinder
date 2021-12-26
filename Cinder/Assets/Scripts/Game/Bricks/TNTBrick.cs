@@ -43,7 +43,7 @@ public class TNTBrick : BrickBase
 
     public override void ResetBrick()
     {
-        explosionRange = GameVariables.tntExplosionRange;
+        explosionRange = GameVariables.TntExplosionRange;
         resetHitsToDestroyCount = amountOfHitsToDestroy;
         brickPointsValue = 50;
 

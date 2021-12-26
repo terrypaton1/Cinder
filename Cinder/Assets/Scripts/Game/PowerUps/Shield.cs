@@ -89,7 +89,7 @@ public class Shield : PowerUpBase
         CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPowerUpBar();
 
         maxTime =
-            timer = GameVariables.powerUpShieldTotalTime;
+            timer = GameVariables.PowerUpShieldTotalTime;
 
         shieldCollider.enabled = true;
         sprite.enabled = true;

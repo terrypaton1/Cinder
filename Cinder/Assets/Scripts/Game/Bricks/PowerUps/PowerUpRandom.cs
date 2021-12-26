@@ -20,7 +20,7 @@ public class PowerUpRandom : PowerupBrick
 
     protected override void StartItemFallingFromDestroyedBrick()
     {
-        var randomPowerUpNum = UnityEngine.Random.Range(0, randomPowerupChoices.Length);
+        var randomPowerUpNum = Random.Range(0, randomPowerupChoices.Length);
         var randomTypeOfPowerUp = randomPowerupChoices[randomPowerUpNum];
         var position = transform.position;
         position.z += 0.5f;

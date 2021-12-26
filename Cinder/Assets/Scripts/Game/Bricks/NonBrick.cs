@@ -51,9 +51,10 @@ public class NonBrick : BaseObject
 
         var newLocal = Random.insideUnitSphere * randomRadius;
         newLocal.z = 0;
-        spriteRenderer.transform.localPosition = newLocal;
+        var spriteRendererTransform = spriteRenderer.transform;
+        spriteRendererTransform.localPosition = newLocal;
 
-        newLocal = spriteRenderer.transform.localEulerAngles;
+        newLocal = spriteRendererTransform.localEulerAngles;
         newLocal.z = Random.Range(-15.0f, 15.0f) * amount;
         spriteRenderer.transform.localEulerAngles = newLocal;
 

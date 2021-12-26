@@ -6,7 +6,7 @@
 
         PlaySound(SoundList.PowerUpFireball);
         CoreConnector.GameManager.ActivateFlameBall();
-        timer = GameVariables.flameBallLengthOfTime;
+        timer = GameVariables.FlameBallLengthOfTime;
         PlaySound(SoundList.PowerUpLaser);
     }
 

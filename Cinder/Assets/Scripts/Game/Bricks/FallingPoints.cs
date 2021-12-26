@@ -2,9 +2,10 @@
 
 public class FallingPoints : FallingBase
 {
-    private int _pointsValue;
+    private int pointsValue;
     private int category;
-    new public static string dashID = "FallingPoints";
+    public const string DashID = "FallingPoints";
+
     public override void Hide()
     {
         base.Hide();
@@ -14,14 +15,14 @@ public class FallingPoints : FallingBase
 
     public override string GetDashID()
     {
-        return dashID;
+        return DashID;
     }
 
     // dashID=
     public void Setup(int newPointsValue, int _category)
     {
         category = _category;
-        _pointsValue = newPointsValue;
+        pointsValue = newPointsValue;
         // disable all pointsDisplay
 
         if (!Application.isPlaying)
@@ -52,7 +53,7 @@ public class FallingPoints : FallingBase
     {
         base.HitPlayersBat();
         PlaySound(SoundList.PointsCollected);
-        CoreConnector.GameManager.scoreManager.PointsCollected(_pointsValue);
+        CoreConnector.GameManager.scoreManager.PointsCollected(pointsValue);
     }
 
     protected override void FellInToDeadZone()

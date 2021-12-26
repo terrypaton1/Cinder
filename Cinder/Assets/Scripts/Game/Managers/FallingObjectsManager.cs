@@ -8,12 +8,12 @@ public class FallingObjectsManager : MonoBehaviour
 
     public void HideAll()
     {
-        dash.HideAll(FallingPoints.dashID);
+        dash.HideAll(FallingPoints.DashID);
     }
 
     public void AddFallingPoints(Vector3 position, int value, int category)
     {
-        var falling2 = (FallingPoints) dash.GetDashObject(FallingPoints.dashID);
+        var falling2 = (FallingPoints) dash.GetDashObject(FallingPoints.DashID);
         falling2.Setup(value, category);
         falling2.StartFalling(position);
     }
@@ -28,11 +28,6 @@ public class FallingObjectsManager : MonoBehaviour
     public void LevelComplete()
     {
         dash.LevelComplete();
-    }
-
-    public void ExitLevel()
-    {
-     //  dash.HideAll();
     }
 
     public void LifeLost()

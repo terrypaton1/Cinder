@@ -43,8 +43,7 @@ namespace Scenes.Effects.Dash
 
         public DashObjectPool GetObjectPool(string dashID)
         {
-            DashObjectPool dashObjectPool;
-            if (dashPools.TryGetValue(dashID, out dashObjectPool))
+            if (dashPools.TryGetValue(dashID, out var dashObjectPool))
             {
                 //Debug.Log("Found\n");
             }

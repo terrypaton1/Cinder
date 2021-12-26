@@ -135,7 +135,7 @@ public class GameSoundManager : MonoBehaviour
 
     public void PlaySound(SoundList soundID)
     {
-        if (CoreConnector.GameManager.gameVariables.SFXEnabled == 0)
+        if (CoreConnector.GameManager.gameVariables.sfxEnabled == 0)
         {
 //			Debug.Log("SFX disabled");
             return;

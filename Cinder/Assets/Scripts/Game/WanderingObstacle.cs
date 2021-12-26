@@ -143,7 +143,7 @@ public class WanderingObstacle : BrickBase
     private void EnableObstacle()
     {
         obstaclePointsValue = Points.WanderingObstaclePointsValue;
-        maxSpeed = GameVariables.wanderingObstacleSpeed;
+        maxSpeed = GameVariables.WanderingObstacleSpeed;
         activeAndMoving = true;
 
         EnableColliders();

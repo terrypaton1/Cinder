@@ -96,12 +96,10 @@ public class BrickBase : BaseObject
 
         targetScale = 1.0f;
 
-        var timePassed = 0.0f;
         var timeToTake = Random.Range(0.3f, 0.5f);
-        // LeanTween.scale(visualObjects.gameObject, Vector3.one, timeToTake)
-        //     .setEase(LeanTweenType.easeOutBack).setDelay(delayCounter);
         LeanTween.value(0.0f, 1.0f, timeToTake).setOnUpdate(SetPercent)
-            .setEase(LeanTweenType.easeOutBack).setDelay(delayCounter);
+            .setEase(LeanTweenType.easeOutBack)
+            .setDelay(delayCounter);
 
         yield return new WaitForSeconds(timeToTake);
     }
@@ -111,7 +109,6 @@ public class BrickBase : BaseObject
         SetAlpha(percent);
         SetVisualScale(percent);
     }
-
 
     private void SetVisualScale(float scalePercent)
     {
@@ -211,8 +208,8 @@ public class BrickBase : BaseObject
         while (count > 0)
         {
             visualObjects.transform.localPosition = new Vector2(
-                Random.Range(-GameVariables.brickShakeAmount, GameVariables.brickShakeAmount),
-                Random.Range(-GameVariables.brickShakeAmount, GameVariables.brickShakeAmount));
+                Random.Range(-GameVariables.BrickShakeAmount, GameVariables.BrickShakeAmount),
+                Random.Range(-GameVariables.BrickShakeAmount, GameVariables.BrickShakeAmount));
             yield return null;
             count--;
         }

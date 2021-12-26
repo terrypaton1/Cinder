@@ -62,23 +62,25 @@ public class ParticleManager : MonoBehaviour
 
     protected void Setup()
     {
-        allParticles = new List<ParticleSystem>();
-        allParticles.Add(FreezePlayerParticles);
-        allParticles.Add(BossExplosionParticles);
-        allParticles.Add(WanderingObstacleSpawnParticles);
-        allParticles.Add(WanderingObstacleExplosionParticles);
-        allParticles.Add(TNTExplosionParticles);
-        allParticles.Add(DestroyFallingItemsParticles);
-        allParticles.Add(FallingPointsCollectedParticles);
+        allParticles = new List<ParticleSystem>
+        {
+            FreezePlayerParticles,
+            BossExplosionParticles,
+            WanderingObstacleSpawnParticles,
+            WanderingObstacleExplosionParticles,
+            TNTExplosionParticles,
+            DestroyFallingItemsParticles,
+            FallingPointsCollectedParticles,
+            _brickCollisionParticleSystem,
+            _brickExplosionParticleSystem,
+            _batCollisionParticleSystem,
+            _newBallParticleSystem,
+            _newBallTwoParticleSystem,
+            ballLostParticleSystem,
+            PowerUpLostParticles,
+            PowerUpCollectedParticles
+        };
 
-        allParticles.Add(_brickCollisionParticleSystem);
-        allParticles.Add(_brickExplosionParticleSystem);
-        allParticles.Add(_batCollisionParticleSystem);
-        allParticles.Add(_newBallParticleSystem);
-        allParticles.Add(_newBallTwoParticleSystem);
-        allParticles.Add(ballLostParticleSystem);
-        allParticles.Add(PowerUpLostParticles);
-        allParticles.Add(PowerUpCollectedParticles);
     }
 
     public void SpawnParticleEffect(ParticleTypes effect, Vector3 position)

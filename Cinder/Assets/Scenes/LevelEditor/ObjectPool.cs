@@ -76,7 +76,7 @@ public class ObjectPool : MonoBehaviour
                 continue;
             }
 
-            if (!poolObject.pool_inUse)
+            if (!poolObject.poolInUse)
             {
                 return poolObject;
             }
@@ -92,7 +92,7 @@ public class ObjectPool : MonoBehaviour
         {
             foreach (var poolObject in nonBrickPoolObjects)
             {
-                if (poolObject != null && poolObject.pool_inUse)
+                if (poolObject != null && poolObject.poolInUse)
                 {
                     ReturnToNonBrickPool(poolObject);
                 }
@@ -103,7 +103,7 @@ public class ObjectPool : MonoBehaviour
         {
             foreach (var poolObject in poolObjects)
             {
-                if (poolObject != null && poolObject.pool_inUse)
+                if (poolObject != null && poolObject.poolInUse)
                 {
                     ReturnToPool(poolObject);
                 }
@@ -144,7 +144,7 @@ public class ObjectPool : MonoBehaviour
                 continue;
             }
 
-            if (!poolObject.pool_inUse)
+            if (!poolObject.poolInUse)
             {
                 return poolObject;
             }
@@ -157,7 +157,7 @@ public class ObjectPool : MonoBehaviour
     public void ReturnToNonBrickPool(NonBrick nonBrick)
     {
         TestCreateInactiveHolder();
-        nonBrick.pool_inUse = false;
+        nonBrick.poolInUse = false;
         nonBrick.Hide();
         nonBrick.transform.SetParent(inactiveHolder.transform);
     }
@@ -165,7 +165,7 @@ public class ObjectPool : MonoBehaviour
     public void ReturnToPool(BrickBase brick)
     {
         TestCreateInactiveHolder();
-        brick.pool_inUse = false;
+        brick.poolInUse = false;
         brick.Hide();
         brick.transform.SetParent(inactiveHolder.transform);
     }

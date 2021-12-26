@@ -10,16 +10,16 @@ public class SFXMuteButton : MonoBehaviour
 
     public void AudioButtonPressed()
     {
-        CoreConnector.GameManager.gameVariables.SFXEnabled =
-            CoreConnector.GameManager.gameVariables.SFXEnabled == 0 ? 1 : 0;
+        CoreConnector.GameManager.gameVariables.sfxEnabled =
+            CoreConnector.GameManager.gameVariables.sfxEnabled == 0 ? 1 : 0;
 
-        PlayerPrefs.SetInt(Constants.SFXEnabled, CoreConnector.GameManager.gameVariables.SFXEnabled);
+        PlayerPrefs.SetInt(Constants.SfxEnabled, CoreConnector.GameManager.gameVariables.sfxEnabled);
         EvaluateSFXState();
     }
 
     private void EvaluateSFXState()
     {
-        if (CoreConnector.GameManager.gameVariables.SFXEnabled == 0)
+        if (CoreConnector.GameManager.gameVariables.sfxEnabled == 0)
         {
             onGraphic.SetActive(false);
             offGraphic.SetActive(true);

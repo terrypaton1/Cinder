@@ -25,7 +25,7 @@ public class DashObjectPool : MonoBehaviour
 
     private void AddToPool(int quantity)
     {
-        for (int i = 0; i < quantity; ++i)
+        for (var i = 0; i < quantity; ++i)
         {
             // instantiate the object, set
             var newDash = CreateNewInstance(pooledDashObject);

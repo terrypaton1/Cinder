@@ -28,7 +28,7 @@
 
     private void EvaluateBonus1()
     {
-        if (playerScore < GameVariables.bonusLife1PointsThreshold)
+        if (playerScore < GameVariables.BonusLife1PointsThreshold)
         {
             return;
         }
@@ -46,7 +46,7 @@
     private void EvaluateBonus2()
     {
         if (bonusLife2Collected) return;
-        if (playerScore < GameVariables.bonusLife2PointsThreshold)
+        if (playerScore < GameVariables.BonusLife2PointsThreshold)
         {
             return;
         }
@@ -62,7 +62,7 @@
             return;
         }
 
-        if (playerScore < GameVariables.bonusLife3PointsThreshold)
+        if (playerScore < GameVariables.BonusLife3PointsThreshold)
         {
             return;
         }
@@ -73,7 +73,7 @@
 
     private void EvaluateBonus4()
     {
-        if (playerScore < GameVariables.bonusLife4PointsThreshold)
+        if (playerScore < GameVariables.BonusLife4PointsThreshold)
         {
             return;
         }

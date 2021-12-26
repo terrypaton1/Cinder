@@ -123,9 +123,6 @@ public class PowerupManager : BaseObject
                 ShowInGameMessage(Message.Freeze);
                 freezePlayer.Activate();
                 break;
-            default:
-                // empty
-                break;
         }
     }
 

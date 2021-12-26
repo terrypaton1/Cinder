@@ -92,7 +92,7 @@ public class GameManager : BaseObject
         Time.timeScale = 1.0f;
         CoreConnector.UIManager.DisplayLevelLoader();
 
-        var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(Constants.CurrentLevel);
 
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
         CoreConnector.LevelManager.DisplayLevel(levelNumber);
@@ -133,9 +133,9 @@ public class GameManager : BaseObject
 
     private static void IncrementPlayersCurrentLevel()
     {
-        var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(Constants.CurrentLevel);
         levelNumber++;
-        PlayerPrefs.SetInt(Constants.currentLevel, levelNumber);
+        PlayerPrefs.SetInt(Constants.CurrentLevel, levelNumber);
     }
 
     private void PlayerLostAllLives()
@@ -250,16 +250,16 @@ public class GameManager : BaseObject
         levelTimer.StopTimer();
 
         // check if the max level beaten should be increased
-        var maxLevelBeaten = PlayerPrefs.GetInt(Constants.maxLevelBeatenPrefix);
-        var nextLevelNumber = PlayerPrefs.GetInt(Constants.currentLevel) + 1;
+        var maxLevelBeaten = PlayerPrefs.GetInt(Constants.MAXLevelBeatenPrefix);
+        var nextLevelNumber = PlayerPrefs.GetInt(Constants.CurrentLevel) + 1;
         if (nextLevelNumber > maxLevelBeaten)
         {
             maxLevelBeaten = nextLevelNumber;
             // todo move this to a data manager class
-            PlayerPrefs.SetInt(Constants.maxLevelBeatenPrefix, maxLevelBeaten);
+            PlayerPrefs.SetInt(Constants.MAXLevelBeatenPrefix, maxLevelBeaten);
         }
 
-        if (nextLevelNumber > GameVariables.totalAmountOfLevels)
+        if (nextLevelNumber > GameVariables.TotalAmountOfLevels)
         {
             PlaySound(SoundList.levelComplete);
             CoreConnector.UIManager.DisplayScreen(UIScreens.GameComplete);

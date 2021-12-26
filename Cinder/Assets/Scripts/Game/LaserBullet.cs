@@ -24,7 +24,7 @@ public class LaserBullet : BaseObject
 
         EnableVisuals();
 
-        laserMaxSpeed = GameVariables.laserBulletSpeed;
+        laserMaxSpeed = GameVariables.LaserBulletSpeed;
 
         boxCollider.enabled = true;
         thisRigidbody.simulated = true;
@@ -68,10 +68,10 @@ public class LaserBullet : BaseObject
         if (collision.gameObject.CompareTag(CollisionTags.Brick))
         {
             // todo this could do with optimizing
-            var _brick = collision.gameObject.GetComponentInParent<BrickBase>();
-            if (_brick != null)
+            var brick = collision.gameObject.GetComponentInParent<BrickBase>();
+            if (brick != null)
             {
-                _brick.BrickHitByBall();
+                brick.BrickHitByBall();
             }
 
             HitABrick();

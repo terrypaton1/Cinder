@@ -43,10 +43,10 @@ public class Ball : BaseObject
     {
         // todo move these to the ball manager and reference them from there
 
-        layerMovingUp = LayerMask.NameToLayer(Constants.ballMovingUp);
-        layerMovingDown = LayerMask.NameToLayer(Constants.ballMovingDown);
-        fireballLayerMovingDown = LayerMask.NameToLayer(Constants.fireBallMovingDown);
-        fireballLayerMovingUp = LayerMask.NameToLayer(Constants.fireBallMovingUp);
+        layerMovingUp = LayerMask.NameToLayer(Constants.BallMovingUp);
+        layerMovingDown = LayerMask.NameToLayer(Constants.BallMovingDown);
+        fireballLayerMovingDown = LayerMask.NameToLayer(Constants.FireBallMovingDown);
+        fireballLayerMovingUp = LayerMask.NameToLayer(Constants.FireBallMovingUp);
 
         // get the max speed this ball can move for the current level
         DisableEffects();

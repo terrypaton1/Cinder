@@ -12,7 +12,7 @@ public class LaserBat : PlayersBatBase
     {
         base.EnableBat();
         shootingBullet = true;
-        firingFrequency = GameVariables.laserBatFiringFrequency;
+        firingFrequency = GameVariables.LaserBatFiringFrequency;
     }
 
     public override void DisableBat()

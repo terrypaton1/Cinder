@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
-    public bool pool_inUse;
+    [System.NonSerialized]
+    public bool poolInUse;
 
     protected static void PlaySound(SoundList sound)
     {

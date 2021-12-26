@@ -11,7 +11,7 @@ public class RoundBumper : NonBrick
     public void CollideWithBall(Ball ball, Collision2D collision)
     {
         var force = collision.transform.position - transform.position;
-        force = force.normalized * GameVariables.bumperPushForce;
+        force = force.normalized * GameVariables.BumperPushForce;
         PlaySound(SoundList.RounderBumper);
         ball.PushFromBumper(force);
         bumperAnimation.Play(BumperAnimation, 0, 0.0f);

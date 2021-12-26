@@ -10,15 +10,15 @@ public class Constants : MonoBehaviour
     public const string BallTouch = "BallTouch";
 
     public const string ExtraLife = "Extra life!";
-    public const string currentLevel = "currentLevel";
-    public const string maxLevelBeatenPrefix = "maxLevelBeaten_01_";
-    public const string totalBricksDestroyed = "totalBricksDestroyed";
-    public const string SFXEnabled = "SFXEnabled";
+    public const string CurrentLevel = "currentLevel";
+    public const string MAXLevelBeatenPrefix = "maxLevelBeaten_01_";
+    public const string TotalBricksDestroyed = "totalBricksDestroyed";
+    public const string SfxEnabled = "SFXEnabled";
 
-    public const string ballMovingUp = "BallMovingUp";
-    public const string ballMovingDown = "BallMovingDown";
-    public const string fireBallMovingDown = "FireBallMovingDown";
-    public const string fireBallMovingUp = "FireBallMovingUp";
+    public const string BallMovingUp = "BallMovingUp";
+    public const string BallMovingDown = "BallMovingDown";
+    public const string FireBallMovingDown = "FireBallMovingDown";
+    public const string FireBallMovingUp = "FireBallMovingUp";
 
     public const string PulseShield = "PulseShield";
     public const string DisableShield = "DisableShield";

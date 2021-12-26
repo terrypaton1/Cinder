@@ -54,7 +54,7 @@ public class PlayersBatManager : BaseObject
         allBats.Add((int) PlayerBatTypes.Split, splitBat);
         allBats.Add((int) PlayerBatTypes.Laser, laserBat);
 
-        currentBatPosition = new Vector3(0, GameVariables.playersBatYPosition, 0);
+        currentBatPosition = new Vector3(0, GameVariables.PlayersBatYPosition, 0);
 
         var cam = CoreConnector.GameManager.touchPosition.GetCamera();
 
@@ -146,7 +146,7 @@ public class PlayersBatManager : BaseObject
         currentBat.rigidRef.MoveRotation(currentRotation);
 
         currentBatPosition.x = newXPosition;
-        currentBatPosition.y = GameVariables.playersBatYPosition;
+        currentBatPosition.y = GameVariables.PlayersBatYPosition;
         // position the current bat
         currentBat.rigidRef.MovePosition(currentBatPosition);
     }

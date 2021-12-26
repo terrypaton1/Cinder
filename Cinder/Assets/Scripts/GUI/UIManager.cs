@@ -91,7 +91,7 @@ public class UIManager : BaseObject
 
     public void PressMainMenuPlayButton()
     {
-        var currentLevel = PlayerPrefs.GetInt(Constants.currentLevel);
+        var currentLevel = PlayerPrefs.GetInt(Constants.CurrentLevel);
         if (currentLevel == 1)
         {
             CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
@@ -228,7 +228,7 @@ public class UIManager : BaseObject
 
     public static void LoadLevel(int levelNumber)
     {
-        PlayerPrefs.SetInt(Constants.currentLevel, levelNumber);
+        PlayerPrefs.SetInt(Constants.CurrentLevel, levelNumber);
         CoreConnector.GameManager.StartGame();
     }
 }

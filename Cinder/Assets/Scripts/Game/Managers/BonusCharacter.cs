@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BonusCharacter : MonoBehaviour
@@ -7,10 +6,10 @@ public class BonusCharacter : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Color color = Color.white;
-    private float fadeOutTime = 0.5f;
-    private float fadeInTime = 0.5f;
+    private const float fadeOutTime = 0.5f;
+    private const float fadeInTime = 0.5f;
 
-    public void SetAlpha(float value)
+    private void SetAlpha(float value)
     {
         color.a = value;
         spriteRenderer.color = color;
@@ -30,12 +29,11 @@ public class BonusCharacter : MonoBehaviour
     {
         LeanTween.cancel(spriteRenderer.gameObject);
         LeanTween.value(spriteRenderer.gameObject, color.a, 0.0f, fadeOutTime)
-            .setOnUpdate(SetAlpha).setOnComplete(HideInstantly);
-        // fade from it's current alpha out
-        // letterAnimator.Play(HideLetterAnimation, 0, 0.0f);
+            .setOnUpdate(SetAlpha)
+            .setOnComplete(HideInstantly);
     }
 
-    public void HideInstantly()
+    private void HideInstantly()
     {
         LeanTween.cancel(spriteRenderer.gameObject);
         spriteRenderer.enabled = false;

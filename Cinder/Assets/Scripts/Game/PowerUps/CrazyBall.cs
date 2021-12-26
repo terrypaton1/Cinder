@@ -9,7 +9,7 @@
         CoreConnector.GameManager.ballManager.ActivateCrazyBall();
         CoreConnector.GameUIManager.DisplayPowerUpBar();
         maxTime =
-            timer = GameVariables.crazyBallLengthOfTime;
+            timer = GameVariables.CrazyBallLengthOfTime;
         PlaySound(SoundList.PowerUpCrazyBall);
     }
 

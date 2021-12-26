@@ -72,7 +72,7 @@ public class BONUSManager : BaseObject
         }
 
         // do a random check, if below x% then spawn a dropping letter
-        if (Random.Range(0, 100) <= GameVariables.percentChanceToDropBONUSLetter)
+        if (Random.Range(0, 100) <= GameVariables.PercentChanceToDropBonusLetter)
         {
             var fallingLetter = GetRandomLetterFromPool();
             fallingLetter.StartFalling(position);
@@ -80,7 +80,7 @@ public class BONUSManager : BaseObject
         }
 
         //going to drop extra points … but lets only dpo that a percentage of the time
-        if (Random.Range(0, 100) <= GameVariables.percentChanceToDropPoints)
+        if (Random.Range(0, 100) <= GameVariables.PercentChanceToDropPoints)
         {
             return true;
         }

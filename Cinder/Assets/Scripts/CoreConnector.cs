@@ -3,50 +3,50 @@ using UnityEngine.Assertions;
 
 public class CoreConnector : MonoBehaviour
 {
-    private static GameManager gameManager;
-    private static GameUIManager gameUIManager;
-    private static UIManager uiManager;
-    private static GameSoundManager soundManager;
+    private static GameManager _gameManager;
+    private static GameUIManager _gameUIManager;
+    private static UIManager _uiManager;
+    private static GameSoundManager _soundManager;
     private static LevelManager _levelManager;
 
     public static GameManager GameManager
     {
         get
         {
-            Assert.IsNotNull(gameManager, "Error: gameManager reference is null");
-            return gameManager;
+            Assert.IsNotNull(_gameManager, "Error: gameManager reference is null");
+            return _gameManager;
         }
-        set => gameManager = value;
+        set => _gameManager = value;
     }
 
     public static UIManager UIManager
     {
         get
         {
-            Assert.IsNotNull(uiManager, "Error: uiManager reference is null");
-            return uiManager;
+            Assert.IsNotNull(_uiManager, "Error: uiManager reference is null");
+            return _uiManager;
         }
-        set => uiManager = value;
+        set => _uiManager = value;
     }
 
     public static GameUIManager GameUIManager
     {
         get
         {
-            Assert.IsNotNull(gameUIManager, "Error: gameUIManager reference is null");
-            return gameUIManager;
+            Assert.IsNotNull(_gameUIManager, "Error: gameUIManager reference is null");
+            return _gameUIManager;
         }
-        set => gameUIManager = value;
+        set => _gameUIManager = value;
     }
 
     public static GameSoundManager SoundManager
     {
         get
         {
-            Assert.IsNotNull(soundManager, "Error: soundManager reference is null");
-            return soundManager;
+            Assert.IsNotNull(_soundManager, "Error: soundManager reference is null");
+            return _soundManager;
         }
-        set => soundManager = value;
+        set => _soundManager = value;
     }
 
     public static LevelManager LevelManager

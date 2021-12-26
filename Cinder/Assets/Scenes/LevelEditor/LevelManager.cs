@@ -102,7 +102,7 @@ public class LevelManager : MonoBehaviour
             //Debug.Log($"Place brick:{brickData.brickType} {brickData.position}");
 
             var brick = objectPool.GetBrick(brickData.brickType, holder.transform);
-            brick.pool_inUse = true;
+            brick.poolInUse = true;
             ApplyColor(brick);
             brick.Show();
             brick.transform.SetParent(holder.transform);
@@ -125,7 +125,7 @@ public class LevelManager : MonoBehaviour
             //Debug.Log($"brickData.nonBrickType:{brickData.nonBrickType}");
 
             var nonBrick = objectPool.GetNonBrick(brickData.nonBrickType, holder.transform);
-            nonBrick.pool_inUse = true;
+            nonBrick.poolInUse = true;
             nonBrick.Show();
             nonBrick.transform.SetParent(holder.transform);
             nonBrick.transform.position = brickData.position;

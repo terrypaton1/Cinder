@@ -98,7 +98,7 @@ public class BallManager : BaseObject
 
     private IEnumerator InstantiateNewBall()
     {
-        ballStartPosition.y = GameVariables.ballStartHeight;
+        ballStartPosition.y = GameVariables.BallStartHeight;
         ballStartPosition.x = 0;
         SpawnParticles(ParticleTypes.NewBallOne, ballStartPosition);
 
@@ -113,7 +113,7 @@ public class BallManager : BaseObject
 
     private IEnumerator InstantiateMultiBalls(float xPosition)
     {
-        ballStartPosition.y = GameVariables.ballStartHeight;
+        ballStartPosition.y = GameVariables.BallStartHeight;
 
         ballStartPosition.x = xPosition;
         SpawnParticles(ParticleTypes.NewBallOne, ballStartPosition);
@@ -152,23 +152,23 @@ public class BallManager : BaseObject
 
     private static float CalculateBallMaxSpeed()
     {
-        var levelNumber = PlayerPrefs.GetInt(Constants.currentLevel);
+        var levelNumber = PlayerPrefs.GetInt(Constants.CurrentLevel);
         if (levelNumber < 6)
         {
-            return GameVariables.ballMaxSpeedPhase1;
+            return GameVariables.BallMaxSpeedPhase1;
         }
 
         if (levelNumber < 21)
         {
-            return GameVariables.ballMaxSpeedPhase2;
+            return GameVariables.BallMaxSpeedPhase2;
         }
 
         if (levelNumber < 41)
         {
-            return GameVariables.ballMaxSpeedPhase3;
+            return GameVariables.BallMaxSpeedPhase3;
         }
 
-        return GameVariables.ballMaxSpeedPhase4;
+        return GameVariables.BallMaxSpeedPhase4;
     }
 
     public void BallDestroyed(Ball ball)
