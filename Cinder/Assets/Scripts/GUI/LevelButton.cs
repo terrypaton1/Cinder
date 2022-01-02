@@ -34,8 +34,8 @@ public class LevelButton : MonoBehaviour
     {
         var maxLevelBeaten = PlayerPrefs.GetInt(Constants.MAXLevelBeatenPrefix);
 #if UNITY_EDITOR
-     //   Debug.Log("LEVEL SET TO 99");
-       // maxLevelBeaten = 99;
+        //   Debug.Log("LEVEL SET TO 99");
+         maxLevelBeaten = 99;
 #endif
         var currentLevel = PlayerPrefs.GetInt(Constants.CurrentLevel);
 
@@ -98,6 +98,7 @@ public class LevelButton : MonoBehaviour
 
     public void OnClick()
     {
+        CoreConnector.GameManager.StartFreshGame();
         UIManager.LoadLevel(levelNumber);
     }
 

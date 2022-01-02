@@ -35,7 +35,7 @@ public class FallingBase : BaseObject
         Disable();
     }
 
-    public void StartFalling(Vector3 position)
+    public virtual void StartFalling(Vector3 position)
     {
         SetUsed();
         // start falling, slowly at first, then faster
@@ -74,7 +74,7 @@ public class FallingBase : BaseObject
         }
     }
 
-    public void Disable()
+    public virtual void Disable()
     {
         rigid2D.isKinematic = true;
         isFalling = false;

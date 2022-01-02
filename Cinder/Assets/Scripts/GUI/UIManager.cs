@@ -68,10 +68,15 @@ public class UIManager : BaseObject
 
     private void DisplayUIScreen(UIScreens displayScreenID)
     {
+        // if last screen was 
+        if (currentScreen == UIScreens.Game && displayScreenID != UIScreens.Game)
+        {
+            GameManager.ExitGame();
+        }
+
         if (displayScreenID == UIScreens.LevelChooser)
         {
             ShowLevelChooser();
-            GameManager.ExitGame();
         }
 
         currentScreen = displayScreenID;
@@ -94,7 +99,7 @@ public class UIManager : BaseObject
         var currentLevel = PlayerPrefs.GetInt(Constants.CurrentLevel);
         if (currentLevel == 1)
         {
-            CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
+            CoreConnector.GameManager.StartFreshGame();
             LoadLevel(currentLevel);
             return;
         }

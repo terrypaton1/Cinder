@@ -38,7 +38,6 @@ public class PlayersBatManager : BaseObject
     private PlayerBatTypes nextBatType;
     private PlayerBatTypes previousBatType;
 
-    private const float batYPosition = 2.0f;
 
     private IEnumerator coroutine;
     private IEnumerator transitionCoroutine;
@@ -73,11 +72,6 @@ public class PlayersBatManager : BaseObject
 
     protected void FixedUpdate()
     {
-        if (!CoreConnector.GameManager.IsGamePlaying())
-        {
-            //     return;
-        }
-
         if (currentBatType == PlayerBatTypes.None)
         {
             return;
@@ -116,7 +110,7 @@ public class PlayersBatManager : BaseObject
         }
 
         var mousePosition = CoreConnector.GameManager.touchPosition.GetPlayersPosition();
-        mousePosition.y = batYPosition;
+        mousePosition.y = GameVariables.PlayersBatYPosition;
         mousePosition.x = Mathf.Clamp(mousePosition.x, minimumXPosition, maximumXPosition);
 
         currentBatPosition = currentBat.rigidRef.position;

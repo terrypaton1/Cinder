@@ -37,9 +37,7 @@ public class ObjectPool : MonoBehaviour
         {
             return brickBase;
         }
-
         var brick = Instantiate(brickPrefab, holder, true);
-
         poolObjects.Add(brick);
         return brick;
     }
@@ -120,6 +118,7 @@ public class ObjectPool : MonoBehaviour
         {
             return nonBrick;
         }
+
         nonBrick = Instantiate(brickPrefab, holder, true);
         nonBrickPoolObjects.Add(nonBrick);
         return nonBrick;

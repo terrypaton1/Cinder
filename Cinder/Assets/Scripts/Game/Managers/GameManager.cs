@@ -78,13 +78,16 @@ public class GameManager : BaseObject
 
     public void PerformInitialSetup()
     {
-        fallingObjectsManager.Initialize();
-        bonusManager.Setup();
-        powerUpManager.OneTimeSetup();
         ballManager.Setup();
-        bonusManager.HideAllLetters();
     }
 
+    public void StartFreshGame()
+    {
+        powerUpManager.OneTimeSetup();
+        CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
+        bonusManager.Setup();
+        fallingObjectsManager.Initialize();
+    }
     private IEnumerator StartGameSequence()
     {
         ballManager.ResetAllBalls();
@@ -294,6 +297,7 @@ public class GameManager : BaseObject
 
     public static void ExitGame()
     {
+        // todo, the initilisation process is hooking into this
         // todo change to broadcasting an exit ganme behaviour
         CoreConnector.LevelManager.UnLoadAllLevels();
         CoreConnector.GameManager.ballManager.ResetAllBalls();

@@ -127,12 +127,11 @@ public class LevelManager : MonoBehaviour
             var nonBrick = objectPool.GetNonBrick(brickData.nonBrickType, holder.transform);
             nonBrick.poolInUse = true;
             nonBrick.Show();
-            nonBrick.transform.SetParent(holder.transform);
+            
             nonBrick.transform.position = brickData.position;
 
             var rotation = ProcessRotation(brickData.eulerRotation);
             nonBrick.transform.localEulerAngles = rotation;
-
             nonBrick.transform.localScale = brickData.scale;
 
             currentNonLevelsBricks.Add(nonBrick);
@@ -147,12 +146,11 @@ public class LevelManager : MonoBehaviour
 
     private void ApplyColor(BrickBase brick)
     {
-        // todo get the colour from a scriptable object
         var color = brickColors.GetBrickColor(brick);
         brick.ApplyColor(color);
     }
 
-    private Vector3 ProcessPosition(Vector3 position)
+    private static Vector3 ProcessPosition(Vector3 position)
     {
         position.x = Mathf.RoundToInt(position.x / 0.01f) * 0.01f;
         position.y = Mathf.RoundToInt(position.y / 0.01f) * 0.01f;

@@ -13,7 +13,6 @@
 
     public void RestartLevel()
     {
-        ResetPlayerLives();
         StopAllCoroutines();
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
         UpdateLivesDisplay(PlayerLives);

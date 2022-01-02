@@ -230,6 +230,11 @@ public class BrickBase : BaseObject
         CoreConnector.GameManager.brickManager.BrickDestroyed();
 
         SpawnParticles(ParticleTypes.BrickExplosion, transform.position);
+
+        targetScale = destroyedBrickScale;
+        LeanTween.scale(visualObjects.gameObject, Vector3.one * destroyedBrickScale, destroyBrickTimeToTake)
+            .setEase(LeanTweenType.easeInCirc);
+
         if (playSound)
         {
             PlaySound(SoundList.brickDestroyed);
@@ -238,10 +243,6 @@ public class BrickBase : BaseObject
         yield return null;
 
         DisableColliders();
-
-        targetScale = destroyedBrickScale;
-        LeanTween.scale(visualObjects.gameObject, Vector3.one * destroyedBrickScale, destroyBrickTimeToTake)
-            .setEase(LeanTweenType.easeInBack);
 
         yield return new WaitForSeconds(destroyBrickTimeToTake);
 
@@ -268,6 +269,11 @@ public class BrickBase : BaseObject
 
     public void ApplyColor(Color color)
     {
+        if (sprite == null)
+        {
+            return;
+        }
+
         sprite.color = color;
     }
 
@@ -275,6 +281,6 @@ public class BrickBase : BaseObject
     {
         var color = sprite.color;
         color.a = value;
-        sprite.color = color;
+        ApplyColor(color);
     }
 }

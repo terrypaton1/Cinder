@@ -1,16 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FallingPoints : FallingBase
 {
+    [SerializeField]
+    private TrailRenderer trail;
+
     private int pointsValue;
     private int category;
     public const string DashID = "FallingPoints";
+    IEnumerator coroutine;
 
     public override void Hide()
     {
         base.Hide();
         spriteRenderer.enabled = false;
-        
+        trail.emitting = false;
+        trail.Clear();
+        StopRunningCoroutine(coroutine);
     }
 
     public override string GetDashID()
@@ -18,7 +25,6 @@ public class FallingPoints : FallingBase
         return DashID;
     }
 
-    // dashID=
     public void Setup(int newPointsValue, int _category)
     {
         category = _category;
@@ -32,6 +38,7 @@ public class FallingPoints : FallingBase
 
         isFalling = false;
         spriteRenderer.enabled = true;
+        trail.emitting = false;
         switch (category)
         {
             case 1:
@@ -59,5 +66,26 @@ public class FallingPoints : FallingBase
     protected override void FellInToDeadZone()
     {
         Disable();
+    }
+
+    public override void Disable()
+    {
+        base.Disable();
+        trail.emitting = false;
+    }
+
+    public override void StartFalling(Vector3 position)
+    {
+        base.StartFalling(position);
+
+        StopRunningCoroutine(coroutine);
+        coroutine = EnableTrail();
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator EnableTrail()
+    {
+        yield return null;
+        trail.emitting = true;
     }
 }

@@ -591,7 +591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08ec491cd344aabb2ea0bf76b911a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool_inUse: 0
   camera_ref: {fileID: 546560644}
 --- !u!4 &84232640
 Transform:
@@ -650,7 +649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66193185ed454694b56ec436164df66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool_inUse: 0
   ballPrefabReference: {fileID: 11480320, guid: 6cb7b9ea67ba24309b5d422624509907,
     type: 3}
   ballList: []
@@ -684,7 +682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f925b2c880ba4c47a2a9ec799e9efd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool_inUse: 0
   particleManager: {fileID: 762187814}
   ballManager: {fileID: 149948059}
   brickManager: {fileID: 1671660520}
@@ -1096,7 +1093,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601969688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.15, z: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1088915035}
@@ -1119,7 +1116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975145126df224c96ba96fcf84ea0e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool_inUse: 0
   normalBat: {fileID: 1088915038}
   wideBat: {fileID: 967653227}
   smallBat: {fileID: 72910148}
@@ -1168,7 +1164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98dd76c2422e24c7a9c64699c21c2040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool_inUse: 0
 --- !u!1 &664377746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5464d9d59fd34d45968d06cb101bd14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool_inUse: 0
 --- !u!4 &762187813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2283136499052202574, guid: 068ddaec294b042e7bb5dba27d7b0768,
@@ -7241,7 +7235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47df5057cfb304fc3ac5fa2fc4c34d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool_inUse: 0
   playerScore: 0
 --- !u!1 &2074914847
 GameObject:
@@ -7889,6 +7882,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241679474}
     m_Modifications:
+    - target: {fileID: 5575558039388141322, guid: 992e11ea4eca4004e92c680e6306b429,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575558040069457299, guid: 992e11ea4eca4004e92c680e6306b429,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575558040069457308, guid: 992e11ea4eca4004e92c680e6306b429,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5575558040503085825, guid: 992e11ea4eca4004e92c680e6306b429,
         type: 3}
       propertyPath: m_RootOrder
@@ -7948,6 +7956,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BONUSManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575558040835262066, guid: 992e11ea4eca4004e92c680e6306b429,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575558040932349106, guid: 992e11ea4eca4004e92c680e6306b429,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575558041012109890, guid: 992e11ea4eca4004e92c680e6306b429,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575558041303674877, guid: 992e11ea4eca4004e92c680e6306b429,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 992e11ea4eca4004e92c680e6306b429, type: 3}

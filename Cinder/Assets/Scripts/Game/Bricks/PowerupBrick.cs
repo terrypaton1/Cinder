@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[SelectionBase]
 public class PowerupBrick : BrickBase
 {
     [SerializeField]
@@ -24,12 +25,11 @@ public class PowerupBrick : BrickBase
     {
         CoreConnector.GameManager.fallingObjectsManager.AddFallingPowerUp(transform.position, typeOfPowerUp);
     }
-    
+
     protected void InitializeBrick()
     {
         brickPointsValue = 50;
         UpdateAmountOfHitsLeftDisplay();
         EvaluateDisplay();
     }
-
 }

@@ -10,9 +10,9 @@ public class BONUSManager : BaseObject
     [SerializeField]
     protected FallingLetter letterPrefab;
 
-    private List<FallingLetter> fallingLettersPool;
-    private List<FallingLetter> fallingObjects;
-    private List<FallingLetter> collectedObjects;
+    private List<FallingLetter> fallingLettersPool = new List<FallingLetter>();
+    private List<FallingLetter> fallingObjects = new List<FallingLetter>();
+    private List<FallingLetter> collectedObjects = new List<FallingLetter>();
 
     [SerializeField]
     private List<BonusCharacter> letterAnimators;
@@ -59,9 +59,6 @@ public class BONUSManager : BaseObject
         }
 
         fallingObjects = new List<FallingLetter>();
-        collectedObjects = new List<FallingLetter>();
-
-        HideAllLetters();
     }
 
     public bool BrickShouldDropPoints(Vector3 position)
