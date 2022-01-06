@@ -56,10 +56,11 @@ public class BrickBase : BaseObject
         UpdateAmountOfHitsLeftDisplay();
 
         visualObjects.transform.localPosition = Vector3.zero;
+
+        EnableVisuals();
         if (!Application.isPlaying)
         {
             SetVisualScale(1.0f);
-            EnableVisuals();
             return;
         }
 
@@ -87,7 +88,7 @@ public class BrickBase : BaseObject
         DisableVisuals();
         SetAlpha(0.0f);
         LeanTween.cancel(visualObjects.gameObject);
-        yield return new WaitForSeconds(0.5f);
+        yield return WaitCache.WaitForSeconds(0.5f);
         var randomScale = Random.Range(0.2f, 2.0f);
         SetVisualScale(randomScale);
         EnableVisuals();
@@ -101,7 +102,7 @@ public class BrickBase : BaseObject
             .setEase(LeanTweenType.easeOutBack)
             .setDelay(delayCounter);
 
-        yield return new WaitForSeconds(timeToTake);
+        yield return WaitCache.WaitForSeconds(timeToTake);
     }
 
     private void SetPercent(float percent)
@@ -232,8 +233,9 @@ public class BrickBase : BaseObject
         SpawnParticles(ParticleTypes.BrickExplosion, transform.position);
 
         targetScale = destroyedBrickScale;
+        LeanTween.cancel(visualObjects.gameObject);
         LeanTween.scale(visualObjects.gameObject, Vector3.one * destroyedBrickScale, destroyBrickTimeToTake)
-            .setEase(LeanTweenType.easeInCirc);
+            .setEase(LeanTweenType.linear);
 
         if (playSound)
         {

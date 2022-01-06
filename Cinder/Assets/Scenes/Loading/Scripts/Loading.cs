@@ -25,7 +25,7 @@ public class Loading : MonoBehaviour
 
     protected void Awake()
     {
-        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
 
     private void OnDisable()
@@ -49,15 +49,7 @@ public class Loading : MonoBehaviour
 
     private void StartUpGame()
     {
-        StartCoroutine(StartSequence());
-    }
-
-    private IEnumerator StartSequence()
-    {
-        yield return null;
-
-        // yield return CoreConnector.LevelsManager.CacheAllLevelsSequence();
-        // todo dispatch a cofiguration event
+        // todo dispatch a configuration event?
 
         CoreConnector.LevelManager.Initialise();
         CoreConnector.GameManager.PerformInitialSetup();

@@ -16,8 +16,6 @@ public class GameMessages : MonoBehaviour
     private const string Show = "Show";
     private const string Disabled = "Disabled";
 
-    private readonly WaitForSeconds showMessageSequence = new WaitForSeconds(3.0f);
-    private readonly WaitForSeconds hideMessageSequence = new WaitForSeconds(1.0f);
 
     public void DisplayInGameMessage(string message)
     {
@@ -45,13 +43,13 @@ public class GameMessages : MonoBehaviour
     {
         messageAnimation.Play(Show);
 
-        yield return showMessageSequence;
+        yield return WaitCache.WaitForSeconds(3.0f);
 
         // todo possibly add extra effects during the message
 
         messageAnimation.Play(Hide);
 
-        yield return hideMessageSequence;
+        yield return WaitCache.WaitForSeconds(1.0f);
         // Enforce disabled.
         HideInGameMessageInstantly();
     }

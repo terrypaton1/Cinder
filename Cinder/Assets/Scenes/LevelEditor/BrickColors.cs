@@ -14,7 +14,7 @@ public class BrickColors : ScriptableObject
             return Color.white;
         }
 
-        var rounded = Mathf.RoundToInt(index / 3.0f);
+        var rounded = Mathf.RoundToInt(index / 6.0f);
         if (rounded < colorSettings.Length)
         {
             var setting = colorSettings[rounded];

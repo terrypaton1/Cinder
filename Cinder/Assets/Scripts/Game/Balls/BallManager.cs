@@ -103,10 +103,10 @@ public class BallManager : BaseObject
         SpawnParticles(ParticleTypes.NewBallOne, ballStartPosition);
 
         // wait a little while
-        yield return new WaitForSeconds(0.4f);
+        yield return  WaitCache.WaitForSeconds(0.4f);
         AddBall(0);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return WaitCache.WaitForSeconds(0.5f);
 
         LaunchAllBalls();
     }
@@ -121,13 +121,13 @@ public class BallManager : BaseObject
         ballStartPosition.x = -xPosition;
         SpawnParticles(ParticleTypes.NewBallTwo, ballStartPosition);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return WaitCache.WaitForSeconds(0.5f);
 
         // add ball 1 & 2
         AddBall(xPosition);
         AddBall(-xPosition);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return WaitCache.WaitForSeconds(0.5f);
 
         LaunchAllBalls();
     }

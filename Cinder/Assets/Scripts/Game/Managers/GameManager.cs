@@ -88,6 +88,7 @@ public class GameManager : BaseObject
         bonusManager.Setup();
         fallingObjectsManager.Initialize();
     }
+
     private IEnumerator StartGameSequence()
     {
         ballManager.ResetAllBalls();
@@ -100,21 +101,21 @@ public class GameManager : BaseObject
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
         CoreConnector.LevelManager.DisplayLevel(levelNumber);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return WaitCache.WaitForSeconds(0.1f);
         brickManager.LoadLevelsBricks();
-        yield return new WaitForSeconds(0.1f);
+        yield return WaitCache.WaitForSeconds(0.1f);
         backgrounds.DisplayForLevel(levelNumber);
-        yield return new WaitForSeconds(0.1f);
+        yield return WaitCache.WaitForSeconds(0.1f);
         fallingObjectsManager.HideAll();
-        yield return new WaitForSeconds(0.1f);
+        yield return WaitCache.WaitForSeconds(0.1f);
         CoreConnector.UIManager.HideAllScreens();
 
-        yield return new WaitForSeconds(0.1f);
+        yield return WaitCache.WaitForSeconds(0.1f);
         CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
         CoreConnector.GameUIManager.DisplayInGameButtons(true);
         bonusManager.RestartGame();
         playerLifeManager.RestartLevel();
-        yield return new WaitForSeconds(0.1f);
+        yield return WaitCache.WaitForSeconds(0.1f);
 
         touchPosition.ResumeGame();
         StartPlay(0.25f);

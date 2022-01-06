@@ -24,9 +24,8 @@ public class Boss : BrickBase
         }
 
         fallingFreezeReference.Setup();
-        ShowGooglyEyes();
-        EnableColliders();
-        EnableVisuals();
+
+        ResetBrick();
     }
 
     public override void BrickHitByBall()
@@ -86,7 +85,6 @@ public class Boss : BrickBase
 
     public override void ResetBrick()
     {
-        ShowGooglyEyes();
         fallingFreezeReference.Setup();
         fallingFreezeReference.Disable();
         visualObjects.SetActive(true);
@@ -95,7 +93,7 @@ public class Boss : BrickBase
 
         brickPointsValue = Points.BossPointsValue;
         base.ResetBrick();
-
+        ShowGooglyEyes();
         CoreConnector.GameUIManager.bossHealthRemainingDisplay.HideBossHealthBar();
     }
 
@@ -105,9 +103,9 @@ public class Boss : BrickBase
 
     protected override IEnumerator DestroyBrickSequence(bool playSound = true)
     {
+        BrickHasBeenDestroyed = true;
         StartItemFallingFromDestroyedBrick();
 
-        BrickHasBeenDestroyed = true;
         // based on the boss starting health, award points
         var pointsForBoss = Points.BossPointsValue * resetHitsToDestroyCount;
 
@@ -123,16 +121,12 @@ public class Boss : BrickBase
 
         DisableColliders();
 
-        while (visualScale.x > 0.1f)
-        {
-            visualScale.x *= 0.8f;
-            visualScale.y *= 0.8f;
-            visualObjects.transform.localScale = visualScale;
-            yield return 0;
-        }
-
+        LeanTween.cancel(visualObjects.gameObject);
+        LeanTween.scale(visualObjects.gameObject, Vector3.one * 0.1f, 0.35f);
+        yield return WaitCache.WaitForSeconds(0.35f);
+        DisableVisuals();
+        HideGooglyEyes();
         CoreConnector.GameManager.brickManager.BrickDestroyed();
-        visualObjects.SetActive(false);
     }
 
     public override void Hide()

@@ -27,13 +27,19 @@ public class BallEffectsManager : MonoBehaviour
     public void DisableBallTrail()
     {
         trailRenderer.enabled = false;
-        ballTrailParticles.Stop();
+        if (ballTrailParticles != null)
+        {
+            ballTrailParticles.Stop();
+        }
     }
 
     public void EnableBallTrail()
     {
         trailRenderer.enabled = true;
-        ballTrailParticles.Play();
+        if (ballTrailParticles != null)
+        {
+            ballTrailParticles.Play();
+        }
     }
 
     public void DisableEffects()
