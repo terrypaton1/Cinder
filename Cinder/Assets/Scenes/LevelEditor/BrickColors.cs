@@ -1,11 +1,21 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "BrickColors", menuName = "ScriptableObjects/BrickColors", order = 1)]
 public class BrickColors : ScriptableObject
 {
     [SerializeField]
     private BrickColorSetting[] colorSettings;
+
+    private void OnEnable()
+    {
+        foreach (var setting in colorSettings)
+        {
+            setting.MixColors();
+        }
+    }
 
     public Color GetColorWithIndex(int index)
     {

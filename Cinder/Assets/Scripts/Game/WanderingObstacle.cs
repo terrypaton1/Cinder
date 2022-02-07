@@ -135,7 +135,7 @@ public class WanderingObstacle : BrickBase
 
     public override void Show()
     {
-        // Wanderring obstacle doesn't appear at first
+        // Wandering obstacle doesn't appear at first
         DisableVisuals();
         DisableColliders();
     }

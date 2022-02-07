@@ -21,7 +21,6 @@ public class BrickMultiHitSprites : MonoBehaviour
         // the max number shown is 6
         var value = Mathf.Clamp(amountOfHitsToDestroy, 0, 6);
         var sprite = hitNumbers[value];
-        Debug.Log("sprite:" + sprite);
         spriteRenderer.sprite = sprite;
     }
 

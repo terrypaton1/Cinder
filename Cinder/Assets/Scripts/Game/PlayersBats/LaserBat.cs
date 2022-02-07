@@ -6,7 +6,7 @@ public class LaserBat : PlayersBatBase
     private float timer;
     private bool shootingBullet;
 
-    private readonly Vector2 FiringVelocity = new Vector2(0, 0.1f);
+    private readonly Vector2 firingVelocity = new Vector2(0, 0.1f);
 
     public override void EnableBat()
     {
@@ -24,7 +24,7 @@ public class LaserBat : PlayersBatBase
     private void FireBullet()
     {
         PlaySound(SoundList.LaserBulletFiring);
-        CoreConnector.GameManager.powerUpManager.FireLaser(transform.position, FiringVelocity);
+        CoreConnector.GameManager.powerUpManager.FireLaser(transform.position, firingVelocity);
     }
 
     protected override void UpdateLoop()

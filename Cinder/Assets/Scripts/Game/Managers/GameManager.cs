@@ -54,7 +54,7 @@ public class GameManager : BaseObject
     private IEnumerator startPlayCoroutine;
 
     private GameState gameState = GameState.Setup;
-    private IEnumerator StartGameCoroutine;
+    private IEnumerator startGameCoroutine;
 
     protected void Update()
     {
@@ -71,9 +71,9 @@ public class GameManager : BaseObject
 
     public void StartGame()
     {
-        StopRunningCoroutine(StartGameCoroutine);
-        StartGameCoroutine = StartGameSequence();
-        StartCoroutine(StartGameCoroutine);
+        StopRunningCoroutine(startGameCoroutine);
+        startGameCoroutine = StartGameSequence();
+        StartCoroutine(startGameCoroutine);
     }
 
     public void PerformInitialSetup()
@@ -298,8 +298,8 @@ public class GameManager : BaseObject
 
     public static void ExitGame()
     {
-        // todo, the initilisation process is hooking into this
-        // todo change to broadcasting an exit ganme behaviour
+        // todo, the initialisation process is hooking into this
+        // todo change to broadcasting an exit game behaviour
         CoreConnector.LevelManager.UnLoadAllLevels();
         CoreConnector.GameManager.ballManager.ResetAllBalls();
         CoreConnector.GameUIManager.playerLifeDisplay.Hide();

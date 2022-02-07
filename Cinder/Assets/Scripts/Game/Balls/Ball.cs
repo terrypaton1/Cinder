@@ -60,9 +60,9 @@ public class Ball : BaseObject
         ballEffectsManager.DisableEffects();
     }
 
-    public void PushFromBumper(Vector2 _force)
+    public void PushFromBumper(Vector2 force)
     {
-        thisRigidbody.AddForce(_force, ForceMode2D.Force);
+        thisRigidbody.AddForce(force, ForceMode2D.Force);
     }
 
     public void ActivateCrazyBall()
@@ -98,8 +98,8 @@ public class Ball : BaseObject
             return;
         }
 
-        var _brick = other.gameObject.GetComponentInParent<BrickBase>();
-        _brick.BrickHitByBall();
+        var brick = other.gameObject.GetComponentInParent<BrickBase>();
+        brick.BrickHitByBall();
     }
 
     public override void LevelComplete()
@@ -223,7 +223,7 @@ public class Ball : BaseObject
             return;
         }
 
-        resetBounceCheck();
+        ResetBounceCheck();
         PlaySound(SoundList.ballHitsBrick);
         SpawnParticles(ParticleTypes.BallHitsBrick, collision.contacts[0].point);
 
@@ -239,7 +239,7 @@ public class Ball : BaseObject
 
     private void ProcessHitPlayersBat(Collision2D collision)
     {
-        resetBounceCheck();
+        ResetBounceCheck();
         PlaySound(SoundList.ballHitsBat);
         circleCollider.gameObject.layer = layerMovingUp;
 
@@ -299,18 +299,18 @@ public class Ball : BaseObject
         thisRigidbody.velocity = velocity;
     }
 
-    private void resetBounceCheck()
+    private void ResetBounceCheck()
     {
         addedRepeatedVerticalBounce = 0;
         hitWallsInARowOnlyCount = 0;
     }
 
-    public void LaunchBall(float _ballMaxSpeed)
+    public void LaunchBall(float ballMaxSpeed)
     {
         DisableEffects();
 
         thisRigidbody.isKinematic = false;
-        ballMaxSpeed = _ballMaxSpeed;
+        this.ballMaxSpeed = ballMaxSpeed;
 
         // if there is only 1 brick left, then aim the ball at that brick
         if (CoreConnector.GameManager.brickManager.IsOneBrickLeft())

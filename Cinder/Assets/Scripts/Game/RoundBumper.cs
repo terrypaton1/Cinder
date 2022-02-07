@@ -7,7 +7,6 @@ public class RoundBumper : NonBrick
 
     private const string BumperAnimation = "RoundBumper1";
 
-
     public void CollideWithBall(Ball ball, Collision2D collision)
     {
         var force = collision.transform.position - transform.position;

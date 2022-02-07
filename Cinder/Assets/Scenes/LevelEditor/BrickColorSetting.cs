@@ -20,4 +20,16 @@ public class BrickColorSetting
 
     [SerializeField, Range(0.00f, 1.00f)]
     public float hueMaximum = 1.0f;
+
+    [SerializeField]
+    public Color colorMin;
+
+    [SerializeField]
+    public Color colorMax;
+
+    public void MixColors()
+    {
+        colorMin = Color.HSVToRGB(hueMinimum, saturationMin, valueMin, true);
+        colorMax = Color.HSVToRGB(hueMaximum, saturationMax, valueMax, true);
+    }
 }
