@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayersBatManager : BaseObject
 {
@@ -299,11 +300,7 @@ public class PlayersBatManager : BaseObject
     private PlayersBatBase GetBat(int batType)
     {
         allBats.TryGetValue(batType, out var bat);
-        if (bat == null)
-        {
-            Debug.Log($"batType:{batType} missing");
-        }
-
+        Assert.IsNotNull(bat, $"batType:{batType} missing");
         return bat;
     }
 

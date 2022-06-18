@@ -84,7 +84,7 @@ public class GameManager : BaseObject
     public void StartFreshGame()
     {
         powerUpManager.OneTimeSetup();
-        CoreConnector.GameManager.playerLifeManager.ResetPlayerLives();
+        playerLifeManager.ResetPlayerLives();
         bonusManager.Setup();
         fallingObjectsManager.Initialize();
     }
@@ -227,7 +227,7 @@ public class GameManager : BaseObject
     {
         ChangeGameState(GameState.StartPlay);
         ballManager.RestartLevel();
-        powerUpManager.RestartLevel();
+        CoreConnector.GameManager.powerUpManager.RestartLevel();
         playersBatManager.RestartLevel();
 
         // during this time I want to track the mouse
@@ -247,6 +247,7 @@ public class GameManager : BaseObject
 
     private IEnumerator LevelCompleteSequence()
     {
+        // todo change this to be a broadcast?
         playersBatManager.LevelComplete();
         brickManager.LevelComplete();
         powerUpManager.LevelComplete();

@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PowerupManager : BaseObject
 {
+    [FormerlySerializedAs("crazyBallRef")]
     [SerializeField]
-    protected CrazyBall crazyBallRef;
+    protected CrazyBallPowerUp crazyBallPowerUpRef;
 
     [SerializeField]
     protected Shield shield;
@@ -18,7 +21,21 @@ public class PowerupManager : BaseObject
     protected FreezePlayer freezePlayer;
 
     [SerializeField]
+    protected SplitBatPowerUp splitBat;
+
+    [SerializeField]
+    protected MultiBallPowerUp multiBallPowerUp;
+
+    [SerializeField]
+    protected WideBatPowerUp wideBatPowerUp;
+
+    [SerializeField]
+    protected SmallBatPowerUp smallBatPowerUp;
+
+    [Space(10), SerializeField]
     protected LaserBulletManager laserBulletManager;
+
+    private Dictionary<PowerupType, PowerUpBase> allPowerups = new Dictionary<PowerupType, PowerUpBase>();
 
     public void OneTimeSetup()
     {
@@ -34,35 +51,46 @@ public class PowerupManager : BaseObject
 
     private void DisableAllPowerUps()
     {
-        shield.DisablePowerUp();
-        crazyBallRef.DisablePowerUp();
-        laserBat.DisablePowerUp();
-        flameBall.DisablePowerUp();
+        foreach (var powerup in allPowerups)
+        {
+            powerup.Value.DisablePowerUp();
+        }
     }
 
     protected void OnEnable()
     {
-        shield.DisableInstantly();
-        crazyBallRef.DisableInstantly();
-        laserBat.DisableInstantly();
-        flameBall.DisableInstantly();
+        allPowerups = new Dictionary<PowerupType, PowerUpBase>
+        {
+            {PowerupType.Shield, shield},
+            {PowerupType.CrazyBall, crazyBallPowerUpRef},
+            {PowerupType.LaserBat, laserBat},
+            {PowerupType.FlameBall, flameBall},
+            {PowerupType.FreezePlayer, freezePlayer},
+            {PowerupType.SplitBat, splitBat},
+            {PowerupType.WideBat, wideBatPowerUp},
+            {PowerupType.MultiBall, multiBallPowerUp},
+            {PowerupType.SmallBat, smallBatPowerUp}
+        };
+
+        foreach (var powerUpKeyPair in allPowerups)
+        {
+            powerUpKeyPair.Value.DisableInstantly();
+        }
     }
 
     public void FireLaser(Vector3 position, Vector3 velocity)
     {
-        // fire a laser from position, in direction and speed of velocity
-//		Debug.Log("fire a bullet");
-// todo change this to using a pool
-        //     var _laserBullet = Instantiate(laserBulletPrefabReference, position, Quaternion.identity);
-        //    _laserBullet.transform.parent = transform;
-        //   _laserBullet.Launch(velocity);
-
         laserBulletManager.LaunchLaserBullet(position, velocity);
     }
 
     public override void LifeLost()
     {
         DisableAllPowerUps();
+    }
+
+    public void DisableLaserBat()
+    {
+        laserBat.DisableInstantly();
     }
 
     public void ActivatePowerUp(PowerupType powerUpType)
@@ -74,55 +102,13 @@ public class PowerupManager : BaseObject
             return;
         }
 
-        // check that level isn't complete as its possible that a power up is collected just as you complete a level		
-        switch (powerUpType)
+        foreach (var powerUpPair in allPowerups)
         {
-            case PowerupType.MultiBall:
-                PlaySound(SoundList.multiBall);
-                // add two new balls to the scene, side by side at the starting height
-                CoreConnector.GameManager.ballManager.AddMultiBalls(-.3f);
-                ShowInGameMessage(Message.MultiBall);
-                break;
-            case PowerupType.WideBat:
-                laserBat.DisableInstantly();
-                PlaySound(SoundList.PowerUpWideBat);
-                CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Wide);
-                ShowInGameMessage(Message.WideBat);
-                break;
-            case PowerupType.SmallBat:
-                laserBat.DisableInstantly();
-                PlaySound(SoundList.PowerUpSmallBat);
-                CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Small);
-                ShowInGameMessage(Message.SmallBat);
-                break;
-            case PowerupType.LaserBat:
-                CoreConnector.GameUIManager.DisplayPowerUpBar();
-                laserBat.Activate();
-                ShowInGameMessage(Message.LaserBat);
-                break;
-            case PowerupType.SplitBat:
-                laserBat.DisableInstantly();
-                PlaySound(SoundList.PowerUpSplitBat);
-                CoreConnector.GameManager.playersBatManager.ChangeToNewBat(PlayerBatTypes.Split);
-                ShowInGameMessage(Message.SplitBat);
-                break;
-            case PowerupType.Shield:
-                CoreConnector.GameUIManager.DisplayPowerUpBar();
-                ShowInGameMessage(Message.Shield);
-                shield.Activate();
-                break;
-            case PowerupType.FlameBall:
-                flameBall.Activate();
-                ShowInGameMessage(Message.Fireball);
-                break;
-            case PowerupType.CrazyBall:
-                crazyBallRef.Activate();
-                ShowInGameMessage(Message.CrazyBall);
-                break;
-            case PowerupType.FreezePlayer:
-                ShowInGameMessage(Message.Freeze);
-                freezePlayer.Activate();
-                break;
+            if (powerUpPair.Key == powerUpType)
+            {
+                powerUpPair.Value.Activate();
+                return;
+            }
         }
     }
 
@@ -138,11 +124,10 @@ public class PowerupManager : BaseObject
 
     private void ManagePowerUps()
     {
-        crazyBallRef.ManagePowerUpTime();
-        shield.ManagePowerUpTime();
-        laserBat.ManagePowerUpTime();
-        flameBall.ManagePowerUpTime();
-        freezePlayer.ManagePowerUpTime();
+        foreach (var powerUpPair in allPowerups)
+        {
+            powerUpPair.Value.ManagePowerUpTime();
+        }
     }
 
     public void TestDisablePowerUpBar()
@@ -157,7 +142,7 @@ public class PowerupManager : BaseObject
             return;
         }
 
-        if (crazyBallRef.IsPowerUpActive())
+        if (crazyBallPowerUpRef.IsPowerUpActive())
         {
             return;
         }

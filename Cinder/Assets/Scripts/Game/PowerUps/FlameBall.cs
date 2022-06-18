@@ -6,8 +6,9 @@
 
         PlaySound(SoundList.PowerUpFireball);
         CoreConnector.GameManager.ActivateFlameBall();
-        timer = GameVariables.FlameBallLengthOfTime;
+        Timer = GameVariables.FlameBallLengthOfTime;
         PlaySound(SoundList.PowerUpLaser);
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Message.Fireball);
     }
 
     public override void DisablePowerUp()

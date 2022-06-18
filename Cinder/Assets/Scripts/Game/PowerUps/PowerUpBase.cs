@@ -2,31 +2,30 @@
 
 public class PowerUpBase : MonoBehaviour
 {
-    protected float maxTime = 1.0f;
-    protected float timer;
-    protected bool powerUpActive;
-
+    protected float MAXTime = 1.0f;
+    protected float Timer;
+    protected bool PowerUpActive;
     
     public virtual void Activate()
     {
         ResetTimer();
-        powerUpActive = true;
+        PowerUpActive = true;
     }
 
     public virtual void DisablePowerUp()
     {
-        powerUpActive = false;
+        PowerUpActive = false;
         ResetTimer();
     }
 
     private void ResetTimer()
     {
-        timer = 0.0f;
+        Timer = 0.0f;
     }
 
     public bool IsPowerUpActive()
     {
-        return powerUpActive;
+        return PowerUpActive;
     }
 
     protected void PlaySound(SoundList sound)
@@ -36,7 +35,7 @@ public class PowerUpBase : MonoBehaviour
 
     public virtual void DisableInstantly()
     {
-        powerUpActive = false;
+        PowerUpActive = false;
         ResetTimer();
     }
 
@@ -48,17 +47,17 @@ public class PowerUpBase : MonoBehaviour
 
     public virtual void ManagePowerUpTime()
     {
-        if (!powerUpActive)
+        if (!PowerUpActive)
         {
             return;
         }
 
-        timer -= Time.deltaTime;
+        Timer -= Time.deltaTime;
         // display percent left
-        var percentLeft = timer / maxTime;
+        var percentLeft = Timer / MAXTime;
         percentLeft = Mathf.Clamp01(percentLeft);
         CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPercent(percentLeft);
-        if (timer <= 0)
+        if (Timer <= 0)
         {
             PowerUpTimeOver();
         }

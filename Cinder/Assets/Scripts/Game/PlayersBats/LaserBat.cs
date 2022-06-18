@@ -29,6 +29,7 @@ public class LaserBat : PlayersBatBase
 
     protected override void UpdateLoop()
     {
+        // todo move this to the LaserBatPowerUp class
         if (!shootingBullet)
         {
             return;

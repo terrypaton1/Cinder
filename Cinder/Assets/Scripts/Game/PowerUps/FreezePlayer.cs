@@ -5,7 +5,8 @@
         base.Activate();
         CoreConnector.GameManager.playersBatManager.EnableFreezePlayer();
         PlaySound(SoundList.PowerUpFreeze);
-        timer = GameVariables.FreezePlayerLengthOfTime;
+        Timer = GameVariables.FreezePlayerLengthOfTime;
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Message.Freeze);
     }
 
     public override void DisablePowerUp()

@@ -8,7 +8,7 @@ public class LaserBulletManager : MonoBehaviour
 
     private const int maxPooledLasers = 20;
 
-    private List<LaserBullet> laserBulletPool;
+    private List<LaserBullet> laserBulletPool = new List<LaserBullet>();
 
     public void HideAll()
     {
@@ -20,8 +20,7 @@ public class LaserBulletManager : MonoBehaviour
 
     public void OneTimeSetup()
     {
-        laserBulletPool = new List<LaserBullet>();
-        for (var i = 0; i < maxPooledLasers; ++i)
+        while (laserBulletPool.Count < maxPooledLasers)
         {
             var laserBullet = Instantiate(FallingPointsPrefab, transform, true);
             laserBullet.transform.parent = transform;

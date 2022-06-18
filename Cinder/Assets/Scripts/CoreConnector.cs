@@ -19,6 +19,7 @@ public class CoreConnector : MonoBehaviour
         set => _gameManager = value;
     }
 
+
     public static UIManager UIManager
     {
         get

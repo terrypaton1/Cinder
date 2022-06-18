@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class LevelTimer : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class LevelTimer : MonoBehaviour
     [SerializeField]
     public PowerupType[] randomPowerupChoices;
 
-    private const string repeatingFunctionName = "IncrementTime";
+    private IEnumerator coroutine;
 
     private const float repeatingTimeStep = 1.0f;
     private float timePassed;
@@ -16,6 +17,7 @@ public class LevelTimer : MonoBehaviour
     private bool powerUpDropStarted;
     private float timeBetweenPowerUpsTimer;
     private float timeBetweenPowerUps;
+    private bool timeIsRunning;
 
     protected void OnEnable()
     {
@@ -28,10 +30,22 @@ public class LevelTimer : MonoBehaviour
     public void StartTimer()
     {
         StopTimer();
-        InvokeRepeating(repeatingFunctionName, repeatingTimeStep, repeatingTimeStep);
+        timeIsRunning = true;
+
+        coroutine = TimerSequence();
+        StartCoroutine(coroutine);
     }
 
-    public void IncrementTime()
+    private IEnumerator TimerSequence()
+    {
+        while (timeIsRunning)
+        {
+            yield return new WaitForSeconds(repeatingTimeStep);
+            IncrementTime();
+        }
+    }
+
+    private void IncrementTime()
     {
         if (!CoreConnector.GameManager.IsGamePlaying())
         {
@@ -54,11 +68,11 @@ public class LevelTimer : MonoBehaviour
         }
 
         timeBetweenPowerUpsTimer += repeatingTimeStep;
-        if (!(timeBetweenPowerUpsTimer > timeBetweenPowerUps))
+        if (timeBetweenPowerUpsTimer < timeBetweenPowerUps)
         {
             return;
         }
-
+        Debug.Log(timeBetweenPowerUpsTimer);
         timeBetweenPowerUpsTimer = 0;
         DropPowerUp();
     }
@@ -74,7 +88,12 @@ public class LevelTimer : MonoBehaviour
 
     public void StopTimer()
     {
-        CancelInvoke(repeatingFunctionName);
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        timeIsRunning = false;
     }
 
     private void DropPowerUp()
@@ -87,7 +106,7 @@ public class LevelTimer : MonoBehaviour
         var upStartPosition = new Vector3(xRange, 8.0f, 0.0f);
         var powerUpStartPosition = upStartPosition;
         fallingPowerUp.StartFalling(powerUpStartPosition);
-        
+
         CoreConnector.GameManager.particleManager.SpawnParticleEffect(
             ParticleTypes.LaserHitsBrick,
             powerUpStartPosition);

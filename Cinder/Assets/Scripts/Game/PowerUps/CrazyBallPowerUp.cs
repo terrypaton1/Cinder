@@ -1,15 +1,14 @@
-﻿public class CrazyBall : PowerUpBase
+﻿public class CrazyBallPowerUp : PowerUpBase
 {
     public override void Activate()
     {
         base.Activate();
 
         CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Message.CrazyBall);
-
         CoreConnector.GameManager.ballManager.ActivateCrazyBall();
         CoreConnector.GameUIManager.DisplayPowerUpBar();
-        maxTime =
-            timer = GameVariables.CrazyBallLengthOfTime;
+        MAXTime =
+            Timer = GameVariables.CrazyBallLengthOfTime;
         PlaySound(SoundList.PowerUpCrazyBall);
     }
 

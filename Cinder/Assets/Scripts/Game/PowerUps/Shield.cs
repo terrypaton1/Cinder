@@ -30,7 +30,7 @@ public class Shield : PowerUpBase
     public override void ManagePowerUpTime()
     {
         base.ManagePowerUpTime();
-        if (!powerUpActive)
+        if (!PowerUpActive)
         {
             return;
         }
@@ -40,7 +40,7 @@ public class Shield : PowerUpBase
 
     private void EvaluatePulseShield()
     {
-        if (timer > 1.5f)
+        if (Timer > 1.5f)
         {
             return;
         }
@@ -71,7 +71,7 @@ public class Shield : PowerUpBase
     {
         shieldAnimator.Play(Constants.DisableShield);
 
-        powerUpActive = false;
+        PowerUpActive = false;
         shieldCollider.enabled = false;
         CoreConnector.GameManager.powerUpManager.TestDisablePowerUpBar();
         shieldParticles.Stop();
@@ -84,12 +84,14 @@ public class Shield : PowerUpBase
     public override void Activate()
     {
         base.Activate();
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Message.Shield);
+        CoreConnector.GameUIManager.DisplayPowerUpBar();
 
         PlaySound(SoundList.PowerUpShield);
         CoreConnector.GameUIManager.powerupRemainingDisplay.DisplayPowerUpBar();
 
-        maxTime =
-            timer = GameVariables.PowerUpShieldTotalTime;
+        MAXTime =
+            Timer = GameVariables.PowerUpShieldTotalTime;
 
         shieldCollider.enabled = true;
         sprite.enabled = true;
