@@ -100,17 +100,20 @@ public class GameManager : BaseObject
 
         CoreConnector.GameUIManager.playerLifeDisplay.Show();
         CoreConnector.LevelManager.DisplayLevel(levelNumber);
-
         yield return WaitCache.WaitForSeconds(0.1f);
+        
         brickManager.LoadLevelsBricks();
         yield return WaitCache.WaitForSeconds(0.1f);
+        
         backgrounds.DisplayForLevel(levelNumber);
         yield return WaitCache.WaitForSeconds(0.1f);
+        
         fallingObjectsManager.HideAll();
         yield return WaitCache.WaitForSeconds(0.1f);
+        
         CoreConnector.UIManager.HideAllScreens();
-
         yield return WaitCache.WaitForSeconds(0.1f);
+        
         CoreConnector.UIManager.DisplayScreen(UIScreens.Game);
         CoreConnector.GameUIManager.DisplayInGameButtons(true);
         bonusManager.RestartGame();
@@ -125,7 +128,6 @@ public class GameManager : BaseObject
     {
         brickManager.NextLevel();
         ballManager.GoingToNextLevel();
-        levelTimer.ResetTimer();
         playersBatManager.GoingToNextLevel();
         levelTimer.ResetTimer();
 
@@ -137,6 +139,7 @@ public class GameManager : BaseObject
 
     private static void IncrementPlayersCurrentLevel()
     {
+        // todo move this to a player object
         var levelNumber = PlayerPrefs.GetInt(Constants.CurrentLevel);
         levelNumber++;
         PlayerPrefs.SetInt(Constants.CurrentLevel, levelNumber);
@@ -237,8 +240,7 @@ public class GameManager : BaseObject
         levelTimer.StartTimer();
         ChangeGameState(GameState.Playing);
     }
-
-
+    
     public override void LevelComplete()
     {
         ChangeGameState(GameState.LevelComplete);
@@ -278,18 +280,6 @@ public class GameManager : BaseObject
         yield return null;
 
         ballManager.LevelComplete();
-    }
-
-    public void ActivateFlameBall()
-    {
-        brickManager.ActivateFlameBall();
-        ballManager.ActivateFlameBall();
-    }
-
-    public void DisableFlameBall()
-    {
-        brickManager.DisableFlameBall();
-        ballManager.DisableFlameBall();
     }
 
     public bool IsGamePlaying()

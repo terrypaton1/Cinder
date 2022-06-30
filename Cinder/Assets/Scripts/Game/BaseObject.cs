@@ -11,13 +11,6 @@ public class BaseObject : MonoBehaviour
         CoreConnector.SoundManager.PlaySound(sound);
     }
 
-    protected static void ShowInGameMessage(string _messageText)
-    {
-//		Debug.Log("ShowInGameMessage:"+_messageText);
-
-        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(_messageText);
-    }
-
     protected static void SpawnParticles(ParticleTypes particleType, Vector3 position)
     {
         CoreConnector.GameManager.particleManager.SpawnParticleEffect(particleType, position);

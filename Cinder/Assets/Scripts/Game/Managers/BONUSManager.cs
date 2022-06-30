@@ -131,7 +131,7 @@ public class BONUSManager : BaseObject
 
     private IEnumerator AllLettersCollected()
     {
-        ShowInGameMessage(Message.BonusPoints);
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Message.BonusPoints);
         PlaySound(SoundList.AllBONUSLettersCollected);
 
         CoreConnector.GameManager.scoreManager.PointsCollected(Points.AllLettersOfBONUSCollectedPoints);

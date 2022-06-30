@@ -21,6 +21,7 @@ namespace Scenes.Effects.Dash
         public FallingBase GetDashObject(string dashID)
         {
             // get the first available pooled object
+            // Todo look at using a generic factory pattern here
             var dashObjectPool = dashPool.GetObjectPool(dashID);
             var dashObject = dashObjectPool.GetObjectFromPool();
             return dashObject;

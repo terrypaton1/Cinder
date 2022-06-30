@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PowerupManager : BaseObject
 {
-    [FormerlySerializedAs("crazyBallRef")]
     [SerializeField]
     protected CrazyBallPowerUp crazyBallPowerUpRef;
 

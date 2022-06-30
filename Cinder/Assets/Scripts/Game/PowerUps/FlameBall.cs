@@ -5,7 +5,8 @@
         base.Activate();
 
         PlaySound(SoundList.PowerUpFireball);
-        CoreConnector.GameManager.ActivateFlameBall();
+        CoreConnector.GameManager.brickManager.ActivateFlameBall();
+        CoreConnector.GameManager.ballManager.ActivateFlameBall();
         Timer = GameVariables.FlameBallLengthOfTime;
         PlaySound(SoundList.PowerUpLaser);
         CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Message.Fireball);
@@ -15,6 +16,7 @@
     {
         base.DisablePowerUp();
 
-        CoreConnector.GameManager.DisableFlameBall();
+        CoreConnector.GameManager.brickManager.DisableFlameBall();
+        CoreConnector.GameManager.ballManager.DisableFlameBall();
     }
 }

@@ -89,7 +89,7 @@
 
     private static void AwardExtraLife()
     {
-        ShowInGameMessage(Constants.ExtraLife);
+        CoreConnector.GameUIManager.gameMessages.DisplayInGameMessage(Constants.ExtraLife);
         
         PlaySound(SoundList.ExtraLife);
         CoreConnector.GameManager.playerLifeManager.GivePlayerExtraLife();

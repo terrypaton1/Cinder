@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [ExecuteInEditMode]
@@ -11,8 +13,9 @@ public class BrickBase : BaseObject
     [SerializeField]
     protected Collider2D colliderRef;
 
+    [FormerlySerializedAs("sprite")]
     [SerializeField]
-    protected SpriteRenderer sprite;
+    protected SpriteRenderer[] sprites;
 
     [SerializeField]
     public GameObject visualObjects;
@@ -35,6 +38,30 @@ public class BrickBase : BaseObject
     private const float destroyBrickTimeToTake = 0.35f;
 
     public bool BrickHasBeenDestroyed { get; protected set; }
+
+    protected void OnValidate()
+    {
+        if (sprites == null || sprites.Length == 0)
+        {
+            return;
+        }
+
+        bool passedTest = true;
+        foreach (var sprite in sprites)
+        {
+            if (sprite == null)
+            {
+                passedTest = false;
+            }
+        }
+
+        if (passedTest)
+        {
+            return;
+        }
+
+        sprites = visualObjects.GetComponentsInChildren<SpriteRenderer>();
+    }
 
     public virtual void Hide()
     {
@@ -261,26 +288,35 @@ public class BrickBase : BaseObject
 
     protected virtual void DisableVisuals()
     {
-        sprite.enabled = false;
+        foreach (var sprite in sprites)
+        {
+            sprite.enabled = false;
+        }
     }
 
     public virtual void EnableVisuals()
     {
-        sprite.enabled = true;
+        foreach (var sprite in sprites)
+        {
+            sprite.enabled = true;
+        }
     }
 
     public void ApplyColor(Color color)
     {
-        if (sprite == null)
+        if (sprites == null)
         {
             return;
         }
 
+        var sprite = sprites[0];
         sprite.color = color;
     }
 
     private void SetAlpha(float value)
     {
+        var sprite = sprites[0];
+
         var color = sprite.color;
         color.a = value;
         ApplyColor(color);

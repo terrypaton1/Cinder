@@ -228,7 +228,10 @@ public class WanderingObstacle : BrickBase
         }
 
         currentDirectionTendency = Mathf.Clamp(currentDirectionTendency, -1.0f, 1.0f);
-        sprite.flipX = currentDirectionTendency < 0.0f;
+        foreach (var sprite in sprites)
+        {
+            sprite.flipX = currentDirectionTendency < 0.0f;
+        }
     }
 
     protected override void ApplyNormalLayers()
