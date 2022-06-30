@@ -94,7 +94,7 @@ public class Boss : BrickBase
         brickPointsValue = Points.BossPointsValue;
         base.ResetBrick();
         ShowGooglyEyes();
-        CoreConnector.GameUIManager.bossHealthRemainingDisplay.HideBossHealthBar();
+        CoreConnector.GameUIManager?.bossHealthRemainingDisplay?.HideBossHealthBar();
     }
 
     protected override void StartItemFallingFromDestroyedBrick()

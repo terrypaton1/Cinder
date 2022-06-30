@@ -34,7 +34,7 @@ public class CoreConnector : MonoBehaviour
     {
         get
         {
-            Assert.IsNotNull(_gameUIManager, "Error: gameUIManager reference is null");
+            //Assert.IsNotNull(_gameUIManager, "Error: gameUIManager reference is null");
             return _gameUIManager;
         }
         set => _gameUIManager = value;

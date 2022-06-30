@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -13,9 +16,8 @@ public class BrickBase : BaseObject
     [SerializeField]
     protected Collider2D colliderRef;
 
-    [FormerlySerializedAs("sprite")]
     [SerializeField]
-    protected SpriteRenderer[] sprites;
+    protected List<SpriteRenderer> sprites;
 
     [SerializeField]
     public GameObject visualObjects;
@@ -41,26 +43,34 @@ public class BrickBase : BaseObject
 
     protected void OnValidate()
     {
-        if (sprites == null || sprites.Length == 0)
+        if (sprites == null || sprites.Count == 0)
         {
-            return;
+            var foundSprite = visualObjects.GetComponentsInChildren<SpriteRenderer>();
+            sprites = foundSprite.ToList();
         }
 
-        bool passedTest = true;
-        foreach (var sprite in sprites)
+        TestForBackgroundSprite();
+    }
+
+    private void TestForBackgroundSprite()
+    {
+        if (sprites.Count == 1)
         {
-            if (sprite == null)
+            var originalSprite = sprites[0];
+            if (originalSprite == null)
             {
-                passedTest = false;
+                Debug.Log($"Missing sprite for:{gameObject.name}");
+                return;
             }
-        }
 
-        if (passedTest)
-        {
-            return;
+            var newSprite = Instantiate(originalSprite, originalSprite.transform.parent);
+            var position = originalSprite.transform.localPosition;
+            position.z = 0.5f;
+            newSprite.transform.localPosition = position;
+            newSprite.transform.localScale = originalSprite.transform.localScale * 1.3f;
+            newSprite.color = Color.black;
+            sprites.Add(newSprite);
         }
-
-        sprites = visualObjects.GetComponentsInChildren<SpriteRenderer>();
     }
 
     public virtual void Hide()

@@ -7,11 +7,6 @@ namespace Scenes.Effects.Dash
         [SerializeField]
         private DashPool dashPool;
 
-        private void Awake()
-        {
-            Debug.Log("Dash.Awake()\n");
-        }
-
         public void Initialize()
         {
             dashPool.Initialize();

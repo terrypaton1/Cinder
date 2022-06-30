@@ -29,6 +29,7 @@ Transform:
   m_Children:
   - {fileID: 452384}
   - {fileID: 4191386150956362778}
+  - {fileID: 5855101176095489806}
   m_Father: {fileID: 463278}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,11 +157,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brickType: 49
   colliderRef: {fileID: 6097634}
-  sprite: {fileID: 21271142}
+  sprites:
+  - {fileID: 21271142}
+  - {fileID: 4191386150977242724}
+  - {fileID: 4191386150977230444}
+  - {fileID: 7441059527507427641}
   visualObjects: {fileID: 107782}
   resetHitsToDestroyCount: 25
   amountOfHitsToDestroy: 25
-  pool_inUse: 0
   fallingFreezeReference: {fileID: 161205966759194227}
   googlyEyes:
   - {fileID: 4191386150962167576}
@@ -237,6 +241,88 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 08e8a5d2da63447299a20df17f10e568, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1923065235891157287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5855101176095489806}
+  - component: {fileID: 7441059527507427641}
+  m_Layer: 0
+  m_Name: Boss3 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5855101176095489806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923065235891157287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
+  m_Children: []
+  m_Father: {fileID: 462720}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &7441059527507427641
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923065235891157287}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 08e8a5d2da63447299a20df17f10e568, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -440,6 +526,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6731866259620767995}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &4191386150977242724 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7441828731114466975, guid: 6e769933b44f44ee0bffacaa42ac506a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6731866259620767995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4191386150962167576 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7441828731103303651, guid: 6e769933b44f44ee0bffacaa42ac506a,
@@ -452,3 +544,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a1fce0853d941b2a750fa094aaa0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &4191386150977230444 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7441828731114454679, guid: 6e769933b44f44ee0bffacaa42ac506a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6731866259620767995}
+  m_PrefabAsset: {fileID: 0}
