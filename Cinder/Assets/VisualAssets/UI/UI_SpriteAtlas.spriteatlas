@@ -33,6 +33,18 @@ SpriteAtlas:
       m_Overridden: 0
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 53
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -44,12 +56,13 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 1f29669deeeae4713908a0e23d08e979, type: 3}
-    totalSpriteSurfaceArea: 1549375
+    totalSpriteSurfaceArea: 1756957
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 1f2bdd301eaab9e468dcc0eba54a5825, type: 3}
   - {fileID: 21300000, guid: 8559906083891426b9798b682eb2e333, type: 3}
   - {fileID: 21300000, guid: 07811ba2210e0451397d50d30c86132e, type: 3}
   - {fileID: 21300000, guid: 1e2ec1c206fb548459092fc463729a58, type: 3}
@@ -57,6 +70,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 97d4b1b522d904ff195212df59b77d7b, type: 3}
   - {fileID: 21300000, guid: ac1a40d57b2334dcdaaf0429059db0c9, type: 3}
   - {fileID: 21300000, guid: 1ac2fbe561a2e4b0dac60be6245f2368, type: 3}
+  - {fileID: 4389455915782915022, guid: 86c43d56610d52d4b84d5652896498f1, type: 3}
   - {fileID: 21300000, guid: eed269f656e25480eb8e79d168606356, type: 3}
   - {fileID: 21300000, guid: 9026ba27ea4e94cc9847ec82b43fa90a, type: 3}
   - {fileID: 21300000, guid: e18c0667dd6a04f71b3bdfb463b28ee6, type: 3}
@@ -65,10 +79,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e62615f950f3f43cc959195c8774ea6c, type: 3}
   - {fileID: 21300000, guid: 9d0d042a39cb14e96ae93828b7a06ca6, type: 3}
   - {fileID: 21300000, guid: 1c0d285aaab834231b6e6d52b4ed2029, type: 3}
+  - {fileID: 21300000, guid: 3794ea6a01e22a74bac77d21e26adf81, type: 3}
   - {fileID: 21300000, guid: 4101b9da07097498b99cfe40b8cf5a68, type: 3}
   - {fileID: 21300000, guid: 7aa2477b594c34fd095a30f7e12e9414, type: 3}
   - {fileID: 21300000, guid: 5f5b3bbb2fb674284a1d8be19fe516c6, type: 3}
   - {fileID: 21300000, guid: 5f8a73fbcb40443adb6d8752feb049b7, type: 3}
+  - {fileID: 21300000, guid: b3f4081ce95b94b4aa9c8262e8092aed, type: 3}
   - {fileID: 21300000, guid: 942d874d45ec44934b461782a0617e22, type: 3}
   - {fileID: 21300000, guid: e5178d6d5190c49139bed5b3a9a1677e, type: 3}
   - {fileID: 21300000, guid: f496638d170174790bdf0ba95678456d, type: 3}
@@ -76,6 +92,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 58dfd1aff856947079a70ad25a7f9dc2, type: 3}
   - {fileID: 21300000, guid: ffdc4acfaa96c43d7a4765108f1f856f, type: 3}
   m_PackedSpriteNamesToIndex:
+  - sfxButtonOutline
   - SpecialLevelIcon
   - MainMenuPlayButton
   - LevelIconLocked
@@ -83,6 +100,7 @@ SpriteAtlas:
   - PowerupRemainingBar
   - BossHealthIcon
   - nextLevelButton
+  - BbuttonShape_0
   - LoadingIcon
   - InGameMessageBox
   - dashedLine
@@ -91,10 +109,12 @@ SpriteAtlas:
   - Quit
   - LevelChooserButton
   - sfxButtonOff
+  - MainMenuPlayButtonBack
   - CreditsButton
   - sfxButtonOn
   - YesButton
   - PlayButton
+  - GeneralBackground
   - clockIcon
   - JohnHattenIcon
   - PauseButton

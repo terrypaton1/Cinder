@@ -12,7 +12,7 @@ public class WaitCache : MonoBehaviour
     private void Awake()
     {
         _waitCache = this;
-        Debug.Log("WaitCache.Awake()\n");
+        Debug.Log("WaitCache.Awake()\n",gameObject);
         cache = new Dictionary<string, YieldInstruction>();
     }
 

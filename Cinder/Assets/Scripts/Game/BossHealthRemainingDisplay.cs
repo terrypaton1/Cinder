@@ -12,6 +12,8 @@ public class BossHealthRemainingDisplay : MonoBehaviour
     [SerializeField]
     protected Animator messageAnimation;
 
+    private IEnumerator _coroutine;
+
     protected void Awake()
     {
         _messageBox.SetActive(false);
@@ -31,8 +33,9 @@ public class BossHealthRemainingDisplay : MonoBehaviour
 
     public void HideBossHealthBar()
     {
-        StopAllCoroutines();
-        StartCoroutine(HideInGameMessageSequence());
+        StopRoutine();
+        _coroutine = HideInGameMessageSequence();
+        StartCoroutine(_coroutine);
     }
 
     private IEnumerator HideInGameMessageSequence()
@@ -44,7 +47,15 @@ public class BossHealthRemainingDisplay : MonoBehaviour
 
     public void Hide()
     {
-        StopAllCoroutines();
+        StopRoutine();
         messageAnimation.Play("BossHealthRemainingHide");
+    }
+
+    private void StopRoutine()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
     }
 }

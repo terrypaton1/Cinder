@@ -125,7 +125,9 @@ public class BrickBase : BaseObject
         DisableVisuals();
         SetAlpha(0.0f);
         LeanTween.cancel(visualObjects.gameObject);
+
         yield return WaitCache.WaitForSeconds(0.5f);
+
         var randomScale = Random.Range(0.2f, 2.0f);
         SetVisualScale(randomScale);
         EnableVisuals();
@@ -135,7 +137,8 @@ public class BrickBase : BaseObject
         targetScale = 1.0f;
 
         var timeToTake = Random.Range(0.3f, 0.5f);
-        LeanTween.value(0.0f, 1.0f, timeToTake).setOnUpdate(SetPercent)
+        LeanTween.value(0.0f, 1.0f, timeToTake)
+            .setOnUpdate(SetPercent)
             .setEase(LeanTweenType.easeOutBack)
             .setDelay(delayCounter);
 
@@ -325,10 +328,11 @@ public class BrickBase : BaseObject
 
     private void SetAlpha(float value)
     {
-        var sprite = sprites[0];
-
-        var color = sprite.color;
-        color.a = value;
-        ApplyColor(color);
+        foreach (var spriteRenderer in sprites)
+        {
+            var _color = spriteRenderer.color;
+            _color.a = value;
+            spriteRenderer.color = _color;
+        }
     }
 }
