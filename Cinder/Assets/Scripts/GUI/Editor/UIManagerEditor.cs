@@ -12,11 +12,11 @@ public class UIManagerEditor : Editor
     private List<UIScreen> scenes;
     UIScreen[] allScenes;
 
-    [DrawGizmo(GizmoType.NotSelected)]
+    [DrawGizmo(GizmoType.NotInSelectionHierarchy)]
     static void RenderCustomGizmo(Transform objectTransform, GizmoType gizmoType)
     {
         //Draw here
-        Debug.Log(1);
+//        Debug.Log(1);
     }
 
     private void OnEnable()

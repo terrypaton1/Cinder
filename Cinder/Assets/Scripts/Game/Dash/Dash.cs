@@ -34,7 +34,7 @@ namespace Scenes.Effects.Dash
         public void HideAll(string dashID)
         {
             var dashObjectPool = dashPool.GetObjectPool(dashID);
-            dashObjectPool.HideAll();
+            dashObjectPool?.HideAll();
         }
 
         public void LevelComplete()

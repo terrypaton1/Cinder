@@ -45,27 +45,32 @@ public class PlayersBatBase : BaseObject
 
     private void BatReactsToBallTouchAnimation()
     {
-        batAnimator.Play(Constants.BallTouch, 0, 0.0f);
+        PlayAnimation(Constants.BallTouch);
     }
 
     private void BatReactsToObjectTouchAnimation()
     {
-        batAnimator.Play(Constants.ObjectTouch, 0, 0.0f);
+        PlayAnimation(Constants.ObjectTouch);
     }
 
     public void MorphToPlayingState()
     {
-        batAnimator.Play(Constants.Intro, 0, 0.0f);
+        PlayAnimation(Constants.LosesLife);
     }
 
     public void MorphToNormal()
     {
-        batAnimator.Play(Constants.ToNormal, 0, 0.0f);
+        PlayAnimation(Constants.LosesLife);
     }
 
     public void PlayerLosesLife()
     {
-        batAnimator.Play(Constants.LosesLife, 0, 0.0f);
+        PlayAnimation(Constants.LosesLife);
+    }
+
+    private void PlayAnimation(string stateName)
+    {
+        batAnimator.Play(stateName, 0, 0.0f);
     }
 
     public virtual void EnableBat()

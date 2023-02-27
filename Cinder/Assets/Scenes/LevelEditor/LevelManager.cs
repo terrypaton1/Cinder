@@ -127,7 +127,7 @@ public class LevelManager : MonoBehaviour
             var nonBrick = objectPool.GetNonBrick(brickData.nonBrickType, holder.transform);
             nonBrick.poolInUse = true;
             nonBrick.Show();
-            
+
             nonBrick.transform.position = brickData.position;
 
             var rotation = ProcessRotation(brickData.eulerRotation);
@@ -199,6 +199,14 @@ public class LevelManager : MonoBehaviour
             else
             {
                 DestroyImmediate(holder);
+            }
+        }
+
+        foreach (Transform id in transform)
+        {
+            if (!Application.isPlaying)
+            {
+                DestroyImmediate(id.gameObject);
             }
         }
     }
