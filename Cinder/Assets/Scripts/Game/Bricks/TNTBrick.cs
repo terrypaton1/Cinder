@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TNTBrick : BrickBase
 {
-    private float explosionRange = 8;
+    private float explosionRange = 8.0f;
 
     protected override IEnumerator DestroyBrickSequence(bool playSound = true)
     {
@@ -36,17 +36,17 @@ public class TNTBrick : BrickBase
         }
     }
 
-    public override void UpdateAmountOfHitsLeftDisplay()
+    public override void UpdateHitsRemainingDisplay()
     {
         // TNT brick doesn't use this
     }
 
-    public override void ResetBrick()
+    public override void ResetBrick(float delay = -1)
     {
         explosionRange = GameVariables.TntExplosionRange;
         resetHitsToDestroyCount = amountOfHitsToDestroy;
         brickPointsValue = 50;
 
-        base.ResetBrick();
+        base.ResetBrick(delay);
     }
 }

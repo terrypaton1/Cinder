@@ -124,16 +124,16 @@ public class WanderingObstacle : BrickBase
         DisableVisuals();
     }
 
-    public override void ResetBrick()
+    public override void ResetBrick(float delay = -1.0f)
     {
         DisableObstacle();
         transform.position = startingPosition;
         CheckIfObstacleShouldBeEnabled();
 
-        base.ResetBrick();
+        base.ResetBrick(delay);
     }
 
-    public override void Show()
+    public override void Show(float delay)
     {
         // Wandering obstacle doesn't appear at first
         DisableVisuals();

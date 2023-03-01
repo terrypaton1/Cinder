@@ -16,7 +16,7 @@ public class PowerupBrick : BrickBase
     {
     }
 
-    public override void UpdateAmountOfHitsLeftDisplay()
+    public override void UpdateHitsRemainingDisplay()
     {
         // powerUp brick doesn't use this
     }
@@ -29,7 +29,7 @@ public class PowerupBrick : BrickBase
     protected void InitializeBrick()
     {
         brickPointsValue = 50;
-        UpdateAmountOfHitsLeftDisplay();
+        UpdateHitsRemainingDisplay();
         EvaluateDisplay();
     }
 }

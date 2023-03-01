@@ -12,10 +12,10 @@ public class Boss : BrickBase
     private int freezeDropTriggerCount;
     private bool canDropFreezePower;
 
-    public override void Show()
+    public override void Show(float delay)
     {
         amountOfHitsToDestroy = resetHitsToDestroyCount;
-        UpdateAmountOfHitsLeftDisplay();
+        UpdateHitsRemainingDisplay();
         // determine if boss can drop freezes
         var levelNumber = PlayerPrefs.GetInt(Constants.CurrentLevel);
         if (levelNumber >= GameVariables.BossesStartDroppingFreezesFromLevel)
@@ -25,7 +25,7 @@ public class Boss : BrickBase
 
         fallingFreezeReference.Setup();
 
-        ResetBrick();
+        ResetBrick(delay);
     }
 
     public override void BrickHitByBall()
@@ -83,7 +83,7 @@ public class Boss : BrickBase
         }
     }
 
-    public override void ResetBrick()
+    public override void ResetBrick(float delay = -1)
     {
         fallingFreezeReference.Setup();
         fallingFreezeReference.Disable();
@@ -92,7 +92,7 @@ public class Boss : BrickBase
         freezeDropTriggerCount = 0;
 
         brickPointsValue = Points.BossPointsValue;
-        base.ResetBrick();
+        base.ResetBrick(delay);
         ShowGooglyEyes();
         CoreConnector.GameUIManager?.bossHealthRemainingDisplay?.HideBossHealthBar();
     }

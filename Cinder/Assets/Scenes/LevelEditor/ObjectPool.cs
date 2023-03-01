@@ -35,9 +35,12 @@ public class ObjectPool : MonoBehaviour
 
         if (brickBase != null)
         {
+            brickBase.poolInUse = true;
             return brickBase;
         }
+
         var brick = Instantiate(brickPrefab, holder, true);
+        brick.poolInUse = true;
         poolObjects.Add(brick);
         return brick;
     }
@@ -116,11 +119,13 @@ public class ObjectPool : MonoBehaviour
 
         if (nonBrick != null)
         {
+            nonBrick.poolInUse = true;
             return nonBrick;
         }
 
         nonBrick = Instantiate(brickPrefab, holder, true);
         nonBrickPoolObjects.Add(nonBrick);
+        nonBrick.poolInUse = true;
         return nonBrick;
     }
 
@@ -188,6 +193,16 @@ public class ObjectPool : MonoBehaviour
         if (inactiveHolder != null)
         {
             return;
+        }
+
+        // Do a nasty search
+        foreach (Transform _transform in transform)
+        {
+            if (_transform.name == "inactiveHolder")
+            {
+                inactiveHolder = _transform.gameObject;
+                return;
+            }
         }
 
         inactiveHolder = new GameObject("inactiveHolder");

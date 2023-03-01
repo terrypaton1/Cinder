@@ -9,14 +9,13 @@ public class ExportLevel : MonoBehaviour
     [SerializeField]
     private LevelSettings levelSettings;
 
-    private Brick[] bricks;
     private LevelData levelData;
 
     public void OutputLevelContents()
     {
         Debug.Log("OutputLevelContents");
         var foundLevels = Resources.FindObjectsOfTypeAll<Level>();
-        bricks = Resources.FindObjectsOfTypeAll<Brick>();
+        Brick[] bricks = Resources.FindObjectsOfTypeAll<Brick>();
         foreach (var level in foundLevels)
         {
             int levelNumber = GetLevelNumberFromName(level.name);
@@ -31,7 +30,7 @@ public class ExportLevel : MonoBehaviour
         }
     }
 
-    int GetLevelNumberFromName(String levelName)
+    private int GetLevelNumberFromName(String levelName)
     {
         var initalOffset = "LEVEL_".Length;
         var numberString = levelName.Substring(initalOffset, levelName.Length - initalOffset);
@@ -125,9 +124,9 @@ public class ExportLevel : MonoBehaviour
 
     private Vector3 RoundVector(Vector3 position)
     {
-        position.x = Mathf.RoundToInt(position.x * 1000.0f) / 1000.0f;
-        position.y = Mathf.RoundToInt(position.y * 1000.0f) / 1000.0f;
-        position.z = Mathf.RoundToInt(position.z * 1000.0f) / 1000.0f;
+        position.x = Mathf.RoundToInt(position.x / 0.01f) * 0.01f;
+        position.y = Mathf.RoundToInt(position.y / 0.01f) * 0.01f;
+        position.z = Mathf.RoundToInt(position.z / 0.01f) * 0.01f;
         return position;
     }
 

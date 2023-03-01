@@ -5,7 +5,7 @@ public class MultiHitBrick : Brick
     [SerializeField]
     protected BrickMultiHitSprites multiHitSpritesReference;
 
-    public override void UpdateAmountOfHitsLeftDisplay()
+    public override void UpdateHitsRemainingDisplay()
     {
         multiHitSpritesReference.DisplayHitsLeft(amountOfHitsToDestroy);
     }
@@ -22,9 +22,9 @@ public class MultiHitBrick : Brick
         multiHitSpritesReference.Hide();
     }
 
-    public override void ResetBrick()
+    public override void ResetBrick(float delay = -1.0f)
     {
-        base.ResetBrick();
+        base.ResetBrick(delay);
 
         multiHitSpritesReference.DisplayHitsLeft(amountOfHitsToDestroy);
     }

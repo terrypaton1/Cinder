@@ -13,12 +13,12 @@ public class BrickEditor : Editor
         }
 
         BrickBase myTarget = (Brick) target;
-        myTarget.UpdateAmountOfHitsLeftDisplay();
+        myTarget.UpdateHitsRemainingDisplay();
     }
 
     protected void Awake()
     {
         BrickBase myTarget = (Brick) target;
-        myTarget.UpdateAmountOfHitsLeftDisplay();
+        myTarget.UpdateHitsRemainingDisplay();
     }
 }

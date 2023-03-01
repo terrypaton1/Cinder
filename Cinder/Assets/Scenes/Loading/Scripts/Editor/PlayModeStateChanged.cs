@@ -1,6 +1,7 @@
 ﻿#region
 
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 #endregion
@@ -12,6 +13,7 @@ public static class PlayModeStateChanged
 
     static PlayModeStateChanged()
     {
+        Debug.Log("Auto play");
         EditorApplication.playModeStateChanged += PlayModeState;
     }
 

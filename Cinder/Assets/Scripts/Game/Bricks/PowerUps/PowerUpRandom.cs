@@ -12,10 +12,10 @@ public class PowerUpRandom : PowerupBrick
         _spriteRenderer.sprite = CoreConnector.GameManager.gameSettings.powerUpRandom;
     }
 
-    public override void ResetBrick()
+    public override void ResetBrick(float delay = -1.0f)
     {
         InitializeBrick();
-        base.ResetBrick();
+        base.ResetBrick(delay);
     }
 
     protected override void StartItemFallingFromDestroyedBrick()

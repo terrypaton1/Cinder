@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Analytics;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -12,7 +13,6 @@ public class LevelManager : MonoBehaviour
     // BrickColors is referenced so as to be included in the build
     [SerializeField]
     private BrickColors brickColors;
-
 
     [Range(1, 66)]
     public int loadLevel = 1;
@@ -97,17 +97,20 @@ public class LevelManager : MonoBehaviour
         // instead of storing it as json, parse it and store it.
         currentLevelsBricks = new List<BrickBase>();
         currentNonLevelsBricks = new List<NonBrick>();
+
         foreach (var brickData in levelData.bricks)
         {
             //Debug.Log($"Place brick:{brickData.brickType} {brickData.position}");
 
             var brick = objectPool.GetBrick(brickData.brickType, holder.transform);
-            brick.poolInUse = true;
             ApplyColor(brick);
-            brick.Show();
+            Debug.Log("Show brick");
             brick.transform.SetParent(holder.transform);
             var position = ProcessPosition(brickData.position);
             brick.transform.position = position;
+            var delay = (position.y - 5.0f) / 5.0f;
+            delay = Mathf.Clamp(delay, 0.05f, 3.0f);
+            brick.Show(delay);
 
             // process rotation
             var rotation = brickData.eulerRotation;
@@ -125,7 +128,6 @@ public class LevelManager : MonoBehaviour
             //Debug.Log($"brickData.nonBrickType:{brickData.nonBrickType}");
 
             var nonBrick = objectPool.GetNonBrick(brickData.nonBrickType, holder.transform);
-            nonBrick.poolInUse = true;
             nonBrick.Show();
 
             nonBrick.transform.position = brickData.position;
@@ -206,7 +208,10 @@ public class LevelManager : MonoBehaviour
         {
             if (!Application.isPlaying)
             {
-                DestroyImmediate(id.gameObject);
+                if (id.gameObject.name != "ObjectPool")
+                {
+                    DestroyImmediate(id.gameObject);
+                }
             }
         }
     }

@@ -1,10 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [ExecuteInEditMode]
@@ -80,17 +77,17 @@ public class BrickBase : BaseObject
         StopRunningCoroutine();
     }
 
-    public virtual void Show()
+    public virtual void Show(float delay)
     {
-        ResetBrick();
+        ResetBrick(delay);
     }
 
-    public virtual void ResetBrick()
+    public virtual void ResetBrick(float delay = -1)
     {
         visualObjects.transform.localEulerAngles = Vector3.zero;
         BrickHasBeenDestroyed = false;
         amountOfHitsToDestroy = resetHitsToDestroyCount;
-        UpdateAmountOfHitsLeftDisplay();
+        UpdateHitsRemainingDisplay();
 
         visualObjects.transform.localPosition = Vector3.zero;
 
@@ -105,7 +102,14 @@ public class BrickBase : BaseObject
         EnableColliders();
 
         ApplyNormalLayers();
-        delayCounter = Random.Range(0.1f, 0.4f);
+        if (delay == -1.0f)
+        {
+            delayCounter = Random.Range(0.1f, 0.4f);
+        }
+        else
+        {
+            delayCounter = delay;
+        }
 
         StopRunningCoroutine();
         coroutine = StartSequence();
@@ -199,7 +203,7 @@ public class BrickBase : BaseObject
             StartShake();
         }
 
-        UpdateAmountOfHitsLeftDisplay();
+        UpdateHitsRemainingDisplay();
     }
 
     private void StartShake()
@@ -220,14 +224,12 @@ public class BrickBase : BaseObject
         colliderRef.enabled = true;
     }
 
-    public virtual void UpdateAmountOfHitsLeftDisplay()
+    public virtual void UpdateHitsRemainingDisplay()
     {
     }
 
     public virtual void BrickHitByBall()
     {
-        // if brick is being destroyed already , then don't run any of this
-
         amountOfHitsToDestroy--;
         if (amountOfHitsToDestroy < 1)
         {
@@ -239,7 +241,7 @@ public class BrickBase : BaseObject
             StartShake();
         }
 
-        UpdateAmountOfHitsLeftDisplay();
+        UpdateHitsRemainingDisplay();
     }
 
     private IEnumerator ShakeBrick()
